@@ -1,0 +1,341 @@
+/* @font-face {
+	font-family: qxziti;
+	src: url(../common/fonts/NotoSansMonoCJKsc-Regular.ttf);
+
+} */
+/* 
+@font-face {
+	font-family: qxzitisz;
+	src: url(../common/fonts/DIN-Mediumqx.woff);
+	
+
+}
+
+@font-face {
+	font-family: qxzitiszxi;
+	src: url(../common/fonts/DIN-Mediumqx.woff);
+	
+} */
+
+
+body {
+	/* 	font-family: qxziti; */
+
+}
+
+
+a {
+	color: #fff;
+	text-decoration: none
+}
+
+a:hover,
+a:visited,
+a:active {
+	text-decoration: none
+}
+
+
+#headerqx {
+	color: #fff;
+	height: 3.1rem;
+
+	width: 100vw;
+	top: 2rem;
+	position: fixed;
+	z-index: 9999;
+
+}
+
+.headqx {
+	line-height: 3rem;
+	position: absolute;
+	width: 60vw;
+	left: 20vw;
+	top: 0px;
+
+}
+
+.qxname {
+	font-size: 0.93rem;
+	width: 100%;
+	text-align: center;
+	height: 100%;
+	font-family: qxziti;
+
+}
+
+.qxname span {}
+
+.gengxin {
+	font-size: 0.6rem;
+	color: #fff;
+	line-height: 3rem;
+	position: absolute;
+	right: 0.2rem;
+}
+
+
+i {
+	font-style: normal
+}
+
+li {
+	list-style: none;
+}
+
+#qxmiddle {
+	width: 100vw;
+	position: relative;
+	top: 3rem;
+	color: #fff;
+	text-align: center;
+	font-family: qxziti;
+	min-height: 90vh;
+	background-position: 0px 0px;
+	background-size: 100% auto;
+	background-repeat: no-repeat
+}
+
+.qxitme1 {
+	line-height: 100%;
+	padding-top: 1.1rem;
+	font-size: 0.81rem;
+	letter-spacing: 1px;
+
+}
+
+.qxitme2 {
+	padding-top: 0.6rem;
+	font-size: 2.4rem;
+	font-family: 'qxzitisz';
+	line-height: 150%;
+}
+
+.qxitme3 {
+	line-height: 180%;
+	padding-top: 0rem;
+	font-size: 0.82rem;
+
+}
+
+/* .qxitme3 span{font-family: 'qxzitiszxi';
+    font-si ze: 0.90rem;
+}
+.qxitme3 span i{font-fami ly: 'HIVEBOX';font-siz e:0.9rem;font-weight:lighter;
+}
+.qxnav{width:100vw;margin:0 auto;height:3rem;line-height:3.1rem;backgro und:#066;margin-top: 0.5rem;} */
+
+.qxnav li {
+	float: left;
+	font-size: 0.81rem;
+	width: 16.6%;
+	color: #fafafa;
+	position: relative
+}
+
+.qxnav li span {
+	opacity: 0.8;
+}
+
+.qxnav li a {
+	color: #fff;
+	opacity: 0.8;
+}
+
+.qxnav li.active a {
+	color: #fff;
+	opacity: 1;
+}
+
+.qxnav li.active:after {
+	content: "";
+	width: 0.8rem;
+	height: 3px;
+	border-left: 0px solid #fff;
+	border-right: 0px solid #fff;
+	border-bottom: 0.2rem solid #fff;
+	border-radius: 1px;
+	font-size: 0;
+	line-height: 0;
+	opacity: 1;
+	position: absolute;
+	bottom: 0.5rem;
+
+	left: calc(50% - 6px);
+}
+
+.qxnav li.li1 {}
+
+.qxnav li.li2 {}
+
+.qxnav li.li3 {}
+
+.qxnav li.li4 {}
+
+.qxnav li.li5 {}
+
+.qxitme5 {
+	margin-top: 0.17rem;
+}
+
+.qxitme5 img {
+	padding: 0px;
+	margin: 0px;
+	z-index: 9;
+	position: relative;
+}
+
+.qxitme6 {
+	width: 100%;
+}
+
+.qxitme6 img {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+}
+
+.qxbox {
+	position: relative;
+	z-index: 2
+}
+
+.xriqi {
+	font-size: 11px;
+	color: #909090;
+	width: 90vw;
+	margin-left: 0.8rem;
+	height: 2rem;
+}
+
+.xriqi li {
+	float: left;
+	font-family: 'qxzitiszxi';
+	width: 33.3%;
+	text-align: left
+}
+
+.xriqi2 {
+	font-size: 11px;
+	color: #909090;
+	width: 60vw;
+	margin-left: 20vw;
+	height: 2rem;
+}
+
+.xriqi2 li {
+	float: left;
+	font-family: 'qxzitiszxi';
+	width: 50%;
+	text-align: center
+}
+
+.xriqi2 li:first-child,
+.xriqi2 li:nth-child(2) {
+	display: none;
+}
+
+.xriqi4 {
+	font-size: 11px;
+	color: #909090;
+	width: 88vw;
+	margin-left: 0rem;
+	height: 2rem;
+}
+
+.xriqi4 li {
+	float: left;
+	font-family: 'qxzitiszxi';
+	width: 25%;
+	text-align: center
+}
+
+
+.zhishilist {
+	font-size: 0.6rem;
+	width: 90vw;
+	margin: 0 auto;
+	padding-bottom: 1rem;
+	overflow: hidden
+}
+
+.zhishilist li {
+	list-style: none;
+	float: left;
+	width: 50%;
+}
+
+.zhishilist li>div {
+	float: left;
+	height: 1.5rem;
+	line-height: 1.5rem;
+}
+
+.zhishilist li .name {
+	width: 30%;
+	color: #666
+}
+
+.zhishilist li .jd {
+	width: 35%;
+	height: 0.6rem;
+	background: #f1f1f1;
+	margin-top: 0.45rem;
+	border-radius: 2rem;
+}
+
+.zhishilist li .sz {
+	width: 25%;
+	padding-left: 5%;
+	font-family: 'qxzitiszxi';
+	color: #ea3035
+}
+
+.zhishilist li .jd .jdt {
+	background: #ea3035;
+	height: 0.6rem;
+	border-radius: 2rem;
+}
+
+.zhishilist li .sz.pblue {
+	color: #498eed
+}
+
+.zhishilist li.pblue .jd .jdt {
+	background: #498eed;
+}
+
+.zhishilist li.pblue .sz {
+	color: #498eed;
+}
+
+.qxpao {
+	margin-top: 2rem;
+	padding-bottom: 2rem;
+}
+
+.qxpao .qxpao1 {
+	font-family: qxziti;
+	font-size: 0.85rem;
+	color: #000;
+}
+
+.qxpao .qxpao2 {
+	font-size: 2.3rem;
+	font-family: 'qxzitiszxi';
+	line-height: 165%
+}
+
+.pblue {
+	color: #498eed
+}
+
+.pred {
+	color: #ea3035
+}
+
+.qxbottom {
+	height: 2rem;
+	width: 100%;
+}
