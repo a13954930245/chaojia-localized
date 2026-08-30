@@ -1,0 +1,318 @@
+@font-face {
+	font-family: qxziti;
+	src: url(../common/fonts/NotoSansMonoCJKsc-Regular.ttf);
+
+}
+
+@font-face {
+	font-family: qxzitisz;
+	src: url(../common/fonts/RobotoDraft-Medium.woff.ttf);
+	/* 数字 粗*/
+}
+
+@font-face {
+	font-family: qxzitiszxi;
+        src: url(../common/fonts/RobotoDraft-Medium.woff.ttf);
+	/* 数字 细 常规*/
+}
+
+@font-face {
+	font-family: riliziti;
+	src: url(../common/fonts/DIN-Mediumqx.woff);
+}
+
+
+
+
+body {
+	padding: 0px;
+	margin: 0px
+}
+
+table {
+	max-width: 100%;
+	background-color: transparent;
+	border-collapse: collapse;
+	border-spacing: 0px;
+}
+
+.aboluo-w-700 {
+	width: 100%;
+	height: 33rem;
+	margin-top: 3rem
+}
+
+.aboluo-leftdiv {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 100%;
+	border: 0px solid #6cd3fb;
+}
+
+.aboluo-tools {
+	position: relative;
+	line-height: 10px;
+	width: 7rem;
+	height: 2.5rem;
+	padding: .9rem 0px 0px 0px;
+	margin-left: 57%;
+	box-sizing: initial;
+}
+
+.aboluo-rilidiv {
+	position: relative;
+	width: 100%;
+
+
+}
+
+input,
+button,
+select,
+textarea {
+	font-family: "Microsoft YaHei", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+input,
+button,
+select,
+textarea {
+	border: 0px;
+	padding: 0px;
+	line-height: initial;
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	font-size: 1rem;
+	background: none;
+	font-weight: bold;
+	color: #000;
+	/*font-family: qxziti;*/
+}
+
+.aboluo-calendar-select-year {
+	float: left;
+}
+
+.aboluo-calendar-select-year select {
+	width: 100%;
+}
+
+.aboluo-calendar-month {
+	float: left;
+	margin-left: 0px;
+	line-height: 10px;
+}
+
+.aboluo-calendar-month a {
+	font-size: 16px;
+	text-align: center;
+	color: #008080;
+	text-decoration: none;
+	display: none
+}
+
+.aboluo-calendar-month select {
+	width: 2.6rem
+}
+
+.aboluo-tools .aboluo-toToday {
+	width: 20%;
+	border: 0px solid #f5f5f5;
+	margin-left: 15px;
+	margin-top: 4px;
+	color: #b7b7b7;
+	background: #ffffff;
+}
+
+.aboluo-tools .aboluo-toToday:hover {
+	border: 0px solid #1a8cff;
+}
+
+.aboluo-rilitable {
+	width: 100%;
+	text-align: center;
+	hegiht: 100%;
+	margin-top: 2.15rem;
+}
+
+.aboluo-rilitable .aboluo-rilithead {
+	border-top: #f7f7f7 solid 0px;
+	border-bottom: #f7f7f7 solid 0px;
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr {
+	width: 100%;
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr th {
+	height: 1.5rem;
+	width: 14.2%;
+	font-size: 0.6rem;
+	padding-bottom: 0.5rem;
+	padding-top: 0.1rem;
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr td {
+
+	text-align: right;
+	width: 14.2%;
+	font-size: 20px;
+	color: #000000;
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr .aboluo-currToday {
+	background: #FFBB00;
+	color: #FFFFFF;
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr .aboluo-tdcurrToday {
+	background: #FFBB00;
+	color: #FFFFFF;
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr td a {
+	height: 3.8rem;
+	line-height: 210%;
+	/* font-family: riliziti, qxzitiszxi; */
+	background: #fff;
+	font-size: 0.9rem;
+	color: #000000;
+	display: block;
+	margin: auto;
+	position: relative;
+	padding-top: 0.1rem;
+	padding-left: 0.45rem;
+	/* padding-top: 0.8rem; */
+	/* padding-right: 0.5rem; */
+}
+
+.aboluo-rilidiv .aboluo-rilitable .aboluo-td-a-ban {
+	font-family: riliziti;
+	font-weight: normal;
+	font-size: .8rem;
+	position: absolute;
+	text-align: left;
+	line-height: .9rem;
+	text-indent: 1px;
+	display: block;
+	height: .95rem;
+	overflow: hidden;
+	top: 2.3rem;
+	/* right: 0.35rem; */
+}
+
+.aboluo-rilidiv .aboluo-rilitable .aboluo-td-a-xiu {
+	font-family: riliziti;
+	font-weight: normal;
+	font-size: .8rem;
+	position: absolute;
+	text-align: left;
+	line-height: .9rem;
+	text-indent: 1px;
+	display: block;
+	height: .95rem;
+	color: #fff;
+	overflow: hidden;
+	top: 2.3rem;
+	/* right: 0.35rem; */
+}
+
+.aboluo-rilidiv .aboluo-rilitable .aboluo-td-a-xiujia {
+	font-weight: normal;
+	font-size: 12px;
+	position: absolute;
+	text-align: center;
+	line-height: 14px;
+	text-indent: 1px;
+	display: block;
+	height: 15px;
+	color: #e9910c;
+	overflow: hidden;
+	top: 2.1rem;
+	/* right: 0.rem; */
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr td a:hover {
+	border: 0px solid #FFBB00;
+	cursor: pointer;
+}
+
+.aboluo-rilidiv .aboluo-rilitable tr td .aboluo-aclick {
+	border: 3px solid #FFBB00;
+}
+
+.aboluo-rilidiv .aboluo-rilitable .aboluo-rilitbody .aboluo-pervMonthDays {
+	color: #BFBFC5;
+}
+
+.aboluo-rilidiv .aboluo-rilitable .aboluo-rilitbody .aboluo-nextMonthDays {
+	color: #BFBFC5;
+}
+
+.aboluo-rightdiv p {
+	color: #FFFFFF;
+	margin: 10px auto;
+}
+
+.aboluo-rightdiv .aboluo-xssj span {
+	margin-left: 5px;
+}
+
+.aboluo-rightdiv .aboluo-currday {
+	width: 60%;
+	height: 20%;
+	margin: auto;
+	text-align: center;
+	background: #FFBB00;
+	font-size: 50px;
+}
+
+
+.rilibottom {
+	font-size: 0.865rem;
+	line-height: 280%;
+	padding-top: 1rem;
+	padding-bottom: 0.5rem;
+	border-bottom: 0.8rem #f3f4f8 solid;
+	overflow: hidden
+}
+
+.rilibottom .leiji {
+	float: left;
+	padding-left: 1rem;
+	font-family: qxzitisz;
+}
+
+.rilibottom .shangzheng {
+	float: left;
+	padding-left: 7.0rem;
+}
+
+.rilibottom span {
+	font-family: riliziti;
+
+}
+
+.rilibottom span .pblue {
+	color: #498eed
+}
+
+.pred {}
+
+
+.fontred {
+	color: #dd3834
+}
+
+.fontblue {
+	color: #4e87d6
+}
+
+.fontblack {
+	color: #000
+}
