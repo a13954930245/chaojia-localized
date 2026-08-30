@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		  <meta name="theme-color" content="#f12f37">
+		  <meta name="format-detection" content="telephone=no">
+
+		<script type="text/javascript" src="./js/touch.min.js"></script>
+		<script type="text/javascript" src="../cc/jquery.min.js"></script>
+
+		<script type="text/javascript">
+			let scale = 1;
+			const maxScale = 3;
+			let isMoving = false;
+			let lastPosition = {
+				x: 0,
+				y: 0
+			};
+			var canvas = null;
+			if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+				var version = parseFloat(RegExp.$1);
+				if (version > 2.3) {
+					var phoneScale = parseInt(window.screen.width) / 750;
+					document.write('<meta name="viewport" content="width=750, minimum-scale=' + phoneScale +
+						', maximum-scale=' + phoneScale + '">');
+				} else {
+					document.write('<meta name="viewport" content="width=750">');
+				}
+			} else {
+				//document.write('<meta name="viewport" content="width=100rem, user-scalable=no">');
+				// var phoneScale = window.screen.width / 750; // 设计稿基准宽度750px
+				//     var viewportContent = 'width=750, initial-scale=' + phoneScale + 
+				//                          ', maximum-scale=' + phoneScale + ', user-scalable=no';
+				//     document.write('<meta name="viewport" content="' + viewportContent + '">');
+			}
+		// document.documentElement.style.fontSize = (window.screen.width / 60) + 'px';
+			console.log((document.documentElement.style.fontSize));
+			// console.log("布局视口宽度:", document.documentElement.clientWidth);
+			// console.log("视觉视口缩放:", window.visualViewport.scale);
+		</script>
+
+		<script src="../../js/common.js"></script>
+		<script src="../../js/local-api.js?v=local48"></script>
+
+		<title>dray</title>
+		<style media="screen">
+			* {
+				margin: 0;
+				padding: 0;
+			/* 	 max-width: 100% !important;  /* 防止元素溢出 */
+				/* max-height: 100% !important;   */
+				/*  touch-action: manipulation;   /* 禁用双击缩放 */ */
+			}
+
+			#picBox {
+				width: 100%;
+				height: 100%;
+				position: fixed;
+				top: 0;
+			}
+			  * { margin: 0; padding: 0; }
+			    #picBox { width: 100%; height: 100%; position: fixed; top: 0; }
+			    .ContentBox { width: 100%; height: 100vh; overflow: auto; background: #222; }
+
+			/* section {
+      padding-top: 100%;
+    } */
+
+			.set {
+
+				font-size: 22px;
+				margin-top: 20px;
+			}
+
+			button {
+				font-size: 22px;
+				margin-bottom: 10px;
+			}
+
+			.photoInfo {
+				width: 100%;
+				font: 24px/50px "";
+			}
+
+			.outputPic {
+				display: block;
+			}
+
+			.event {
+				font: 20px/40px "";
+				color: #f00;
+			}
+
+			.ContentBox {
+				width: 100vw;
+				height: 100vh;
+				overflow: scroll;
+				background: #222;
+			}
+
+			body {
+				margin: 0;
+				overflow: hidden;
+				/* min-width: 1200px; */
+				/* 禁止整个页面滚动 */
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="ContentBox">
+			<div id="picBox">
+
+			</div>
+		</div>
+
+
+
+		<section style="display: none;">
+			<span>功能：支持多张图片多种模式编辑，图片四角除了一个删除，其余拖拽可缩放旋转；图片支持手势缩放旋转</span>
+			<span class="event">当前操作事件：无操作</span>
+			<div class="set">
+				<h3>更改背景：</h3>
+				<button class="changeBg">添加/移除背景</button>
+				<button class="bgColor">更改背景色</button>
+			</div>
+			<div class="set">
+				<h3>添加图片：</h3>
+				<p>
+					<button class="addFullPic">添加一张满屏的图片</button>
+					<button class="addAutoPic">添加一张自适应的图片</button>
+					<button class="addFixedPic">添加一张200px的图片</button>
+					<button class="addEnablePic">添加一张禁止编辑的图片</button>
+				</p>
+				<label style="border: 1px #888 solid;">
+					<input type="file" class="file" style="display: none;">
+					<input type="file" class="filelogo" style="display: none;">
+					添加本地图片
+				</label>
+			</div>
+			<div class="set">
+				<h3>获取图片并改变层级：</h3>
+				<button class="changeHierarchy">获取最底层的图片并提升到最高</button>
+			</div>
+			<div class="set">
+				<h3>更改编辑模式：(<span class="nowModel">Cascade模式</span>)</h3>
+				<button class="CascadeModel">Cascade模式</button>
+				<button class="autoHierarchyModel">autoHierarchy模式</button>
+			</div>
+			<div class="set">
+				<h3>更改画布宽高：</h3>
+				<button class="changeWH1">500*400</button>
+				<button class="changeWH2">复原</button>
+			</div>
+			<div class="set">
+				<h3>清空画布：</h3>
+				<button class="clearCanvas">清空</button>
+			</div>
+			<div class="set">
+				<h3>更改选中图片属性：</h3>
+				<button class="getPhotoInfo">获取当前选中图片的位置信息</button>
+				<p><input type="text" class="photoInfo"></p>
+				<button class="rotate">旋转选中图片</button>
+				<button class="enlarge">放大选中图片</button>
+				<button class="narrow">缩小选中图片</button>
+				<button class="changeUrl">更改选中图片的url</button>
+				<button class="autoScale">重置选中图片</button>
+				<button class="deletePic">删除选中图片</button>
+			</div>
+			<div class="set">
+				<h3>输出图片：</h3>
+				<button class="outputmodel1">输出0.5倍图片</button>
+				<button class="outputmodel2">输出1倍图片</button>
+				<button class="outputmodel3">输出2倍图片</button>
+			</div>
+			<img src="" alt="" class="outputPic">
+		</section>
+
+
+
+		<section class="sidesection">
+			<button class="addBgBtn">上传底图</button>
+			<input id="Bgfile" type="file" style="display: none;">
+			<button class="ShowIconBtn">添加图标</button>
+			<button class="JingBtn">精调</button>
+			<button class="OutEditBtn">预览</button>
+			<button class="ZoomBtn">放大还原</button>
+			<button class="Back">返回</button>
+			<button class="Addlogo">一键加Logo</button>
+		</section>
+		<section class="IconList">
+			<div class="icontitlebox">
+				<div class="iconboxtitle">添加小图标</div>
+				<div class="closeiconbox">关闭</div>
+			</div>
+			<div id="icon-list">
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/green_t.png">
+					</div>
+					<p>绿小t</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/red_t.png">
+					</div>
+					<p>红小t</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_green_t.png">
+					</div>
+					<p>绿小t</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_red_t.png">
+					</div>
+					<p>红小t</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/green_line.png">
+					</div>
+					<p>绿竖线</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/red_line.png">
+					</div>
+					<p>红竖线</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/red_heng.png">
+					</div>
+					<p>红横线</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/chengbenxian.png">
+					</div>
+					<p>成本线</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/bluedot.png">
+					</div>
+					<p>蓝圆点</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/reddot.png">
+					</div>
+					<p>红圆点</p>
+				</div>
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_blue_s.png">
+					</div>
+					<p>蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_blue_s_d.png">
+					</div>
+					<p>蓝色倒s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/blue_s.png">
+					</div>
+					<p>蓝色S</p>
+				</div>
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_blue_s.png">
+					</div>
+					<p>倒蓝色S</p>
+				</div>
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_blue_s_z.png">
+					</div>
+					<p>蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/blue_s_z.png">
+					</div>
+					<p>蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/blue_s_d.png">
+					</div>
+					<p>蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_blue_s_d.png">
+					</div>
+					<p>蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_blue_s_w.png">
+					</div>
+					<p>蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/blue_s_w.png">
+					</div>
+					<p>蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/tm_duan_d_s.png">
+					</div>
+					<p>透明蓝色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/tm_duan_s.png">
+					</div>
+					<p>透明蓝色s</p>
+				</div>
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_red_b.png">
+					</div>
+					<p>红色B</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_red_b_d.png">
+					</div>
+					<p>红色倒B</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/red_b.png">
+					</div>
+					<p>红色B</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/red_b_z.png">
+					</div>
+					<p>红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_red_b_z.png">
+					</div>
+					<p>红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_red_b.png">
+					</div>
+					<p>倒红色B</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_red_b_d.png">
+					</div>
+					<p>红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/red_b_d.png">
+					</div>
+					<p>红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_red_b_w.png">
+					</div>
+					<p>红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/red_b_w.png">
+					</div>
+					<p>红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/tm_duan_b.png">
+					</div>
+					<p>透明红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/tm_duan_d_b.png">
+					</div>
+					<p>透明红色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_yellow_w.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_yellow_w_d.png">
+					</div>
+					<p>黄色倒T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/yellow_t.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				
+				
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_yellow_t.png">
+					</div>
+					<p>倒黄色T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_yellow_t_z.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/yellow_t_z.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_yellow_t_d.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/yellow_t_d.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_yellow_t_w.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/yellow_t_w.png">
+					</div>
+					<p>黄色T</p>
+				</div>
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_hui_b.png">
+					</div>
+					<p>ios灰色B</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_hui_b_d.png">
+					</div>
+					<p>ios灰色B</p>
+				</div>
+				
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/hui_b.png">
+					</div>
+					<p>灰色B</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_b.png">
+					</div>
+					<p>倒灰色B</p>
+				</div>
+				
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_b_z.png">
+					</div>
+					<p>灰色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/hui_b_z.png">
+					</div>
+					<p>灰色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_b_d.png">
+					</div>
+					<p>灰色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_b_w.png">
+					</div>
+					<p>灰色b</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_hui_s.png">
+					</div>
+					<p>ios灰色S</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/apple_hui_s_d.png">
+					</div>
+					<p>ios倒灰色S</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/hui_s.png">
+					</div>
+					<p>灰色S</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_s.png">
+					</div>
+					<p>倒灰色S</p>
+				</div>
+		
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_s_z.png">
+					</div>
+					<p>灰色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/hui_s_z.png">
+					</div>
+					<p>灰色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_s_d.png">
+					</div>
+					<p>灰色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/d_hui_s_w.png">
+					</div>
+					<p>灰色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/hui_s_d.png">
+					</div>
+					<p>灰色s</p>
+				</div>
+				<div class="icon">
+					<div class="iconimgbox">
+						<img src="img/hui_s_w.png">
+					</div>
+					<p>灰色s</p>
+				</div>
+
+		</section>
+		<section class="Jingtiao">
+			<div id="controls">
+				<div class="row">
+					<button class="button" id="Adjust_Up">↑</button>
+				</div>
+				<div class="row">
+					<button class="button" id="Adjust_Left">←</button>
+					<button class="button" id="Adjust_Right">→</button>
+				</div>
+				<div class="row">
+					<button class="button" id="Adjust_Down">↓</button>
+				</div>
+			</div>
+			<div id="controls" style="bottom:300px">
+				<div class="row">
+					<input type="text" id="PhotoScale" class="PhotoScale" value="1">
+				</div>
+				<div class="row">
+					<button class="button" id="DeleteBtn">删</button>
+				</div>
+			</div>
+
+		</section>
+		<section class="OutpreviewBox" style="display: none;">
+			<div class="OutpreBox">
+				<img src="" id="OutpreviewImg" />
+			</div>
+			<div class="OutpreBox" style="position: fixed;bottom: 5rem;">
+				<button class="SaveBtn">保存到股票(<span class="gpname"></span>)信息中</button>
+			</div>
+
+		</section>
+		<style>
+			.SaveBtn {
+
+				padding: 1rem;
+				margin: 1rem atuo;
+			}
+
+			.OutpreBox {
+				text-align: center;
+				width: 90%;
+				margin: 0 auto;
+			}
+
+			.sidesection {
+				position: fixed;
+				left: 0;
+				width: 100%;
+				bottom: 0;
+				height: 8%;
+				background-color: aquamarine;
+				padding-top: 0;
+			}
+
+			.sidesection button {
+				margin: 2px;
+				text-align: center;
+				padding: 3px;
+				border: none;
+				border-radius: 2px;
+				background-color: #3498db;
+				color: #fff;
+			}
+
+			#icon {
+				width: 50px;
+				height: 50px;
+				background-color: #3498db;
+				position: absolute;
+				border-radius: 50%;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+
+
+			.Jingtiao {
+				position: fixed;
+				right: 0;
+				width: 20%;
+				height: 100px;
+				bottom: 10%;
+				display: none;
+			}
+
+
+			.button {
+				background-color: rgba(52, 152, 219, 0.7);
+				border: none;
+				color: white;
+				padding: 15px;
+				margin: 5px;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: background-color 0.3s;
+				font-size: 18px;
+			}
+
+			.button:hover {
+				background-color: rgba(52, 152, 219, 1);
+			}
+
+			#controls {
+				position: absolute;
+				bottom: 20px;
+				left: 50%;
+				transform: translateX(-50%);
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.row {
+				display: flex;
+			}
+
+			.row>.button {
+				width: 60px;
+			}
+
+			.IconList {
+				position: fixed;
+				height: 30%;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+				background-color: #fff;
+				display: none;
+			}
+
+			#toggle-button {
+				background-color: #3498db;
+				color: white;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				font-size: 18px;
+				margin-bottom: 10px;
+				transition: background-color 0.3s;
+			}
+
+			#toggle-button:hover {
+				background-color: #2980b9;
+			}
+
+			#icon-list {
+				position: relative;
+				width: 100%;
+				max-height: 25vh;
+				background-color: white;
+				border-radius: 5px;
+				transition: transform 0.3s ease;
+				overflow: scroll;
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(120px, 2fr));
+				/* 自适应列数 */
+				gap: 10px;
+				padding: 10px;
+			}
+
+			#icon-list.active {
+				transform: translateY(0);
+			}
+
+			.icon {
+				padding: 10px;
+				text-align: center;
+				cursor: pointer;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				transition: background-color 0.3s;
+			}
+
+			.icon:hover {
+				background-color: #f9f9f9;
+			}
+
+			.iconimgbox {
+				height: 100px;
+				overflow: hidden;
+			}
+
+			.icon img {
+				max-height: 100%;
+				margin-bottom: 5px;
+			}
+
+			.icontitlebox {
+				width: 90%;
+				font-size: 1.8rem;
+				padding: 10px 5%;
+			}
+
+			.iconboxtitle {
+				width: 50%;
+				float: left;
+			}
+
+			.closeiconbox {
+				width: 50%;
+				float: right;
+				text-align: right;
+			}
+
+			.PhotoScale {
+				width: 50px;
+				border: 1px solid #2980b9;
+				background: none;
+				border-radius: 3px;
+				font-size: 1.8rem;
+				color: #f00;
+			}
+
+			.OutpreviewBox {
+				position: fixed;
+				z-index: 99;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: #888;
+				overflow: scroll;
+				height: 100vh;
+			}
+
+			#OutpreviewImg {
+				max-width: 100%;
+			}
+		</style>
+		<script src="./js/index.js"></script>
+
+
+
+
+	</body>
+
+</html>
