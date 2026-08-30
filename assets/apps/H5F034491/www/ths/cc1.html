@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+
+<html style="font-size: 16.25px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f12f37">
+    <meta name="format-detection" content="telephone=no">
+    <title>股票交割单生成器-持仓生成器-炒家记账系统</title>
+    <link id="light-mode" href="./cc/user71.css" rel="stylesheet" type="text/css">
+    <link id="dark-theme" rel="stylesheet" href="./cc/cc-dark.css" disabled>
+    <link href="./cc/userx0803.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="./cc/jquery.min.js"></script>
+
+
+    <style type="text/css">
+        /* Add dark mode toggle button style */
+        .theme-toggle {
+            position: absolute;
+            left: 4rem;
+            top: 0.5rem;
+            font-size: 1.2rem;
+            color: white;
+            cursor: pointer;
+            z-index: 999999;
+        }
+
+        /* Dark mode specific styles */
+        body.dark-mode {
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .ccDataDiv {
+            background-color: #1e1e1e;
+        }
+
+
+        .header-image,
+        .ccDataDiv,
+        .navicon,
+        .navicon-fixed,
+        .navicon-scrollable,
+        .naviconbg,
+        .chicang img,
+        .bottompic img {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .tab-nav2 {
+            background: #fff;
+
+        }
+
+        @supports (bottom: env(safe-area-inset-bottom)) {
+            .tab-na v2 {
+                padding-bottom: constant(safe-area-inset-bottom);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+
+        @font-face {
+            font-family: Harmony;
+            src: url(./common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+
+        }
+
+        @font-face {
+            font-family: MiLanPro;
+            src: url(./common/fonts/MiLanProVF.woff);
+
+        }
+
+        @font-face {
+            font-family: 'DIN';
+            src: url('./common/fonts/digital.otf');
+
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .drcjios {
+            font-size: 1.1rem;
+            padding-right: 1rem;
+            padding-top: 0.05rem;
+            padding-bottom: 0.26rem;
+            padding-left: 0.9rem;
+
+            font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+        }
+
+        .userhomgback {
+            width: 12vw;
+            height: 2.7rem;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            z-index: 99999
+        }
+
+        .zqnumber2 {
+            position: relative;
+            padding-left: 3px;
+        }
+
+        .zqnumber2 span {
+
+
+            position: relative;
+            top: 0rem;
+            left: 0rem;
+            font-family: 'DIN',
+        }
+
+
+
+
+        .drcjios,
+        .drcj {
+            padding-right: 0rem;
+            padding-left: 0rem;
+        }
+
+        .zqname2 {
+            font-family: 'DIN', "MiLanPro";
+            padding-right: 0rem;
+            padding-left: 0rem;
+            font-weight: normal;
+            position: relative
+        }
+
+        .zqnumber2 {
+            font-family: 'DIN', "MiLanPro";
+        }
+
+        @font-face {
+            font-family: FZLTHJW;
+            src: url(./common/fonts/FZLTHJW.TTF);
+
+        }
+
+        .zqname {
+
+            padding-top: 0.05rem;
+
+        }
+
+        .zqname2 {
+            font-size: 0.80rem;
+            padding-left: 0rem;
+            /* padding-left: 0.8rem;*/
+        }
+
+        .headzq2 {
+
+            font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+
+        }
+
+        .zqnumber2 {
+            font-size: 0.80rem;
+            padding-left: 0px;
+            text-align: center;
+        }
+
+        .headzq2 {
+            width: 46vw;
+            left: 27vw;
+            background: #f12f37;
+        }
+
+        .zqname2 {
+            font-family: "MiLanPro";
+            padding: 0;
+            font-weight: normal;
+            position: relative;
+            font-size: 0.80rem;
+            text-align: center;
+            /* width: 100%; */
+            display: inherit;
+            align-items: center;
+            justify-content: center;
+            /* margin-left: 1rem; */
+        }
+
+        .drcjios::after,
+        .zqname2after {
+            content: '';
+            background: url(./ls/topcion.png);
+            position: absolute;
+            background-size: 0.852rem;
+            transform: translate(-50%, 80%);
+            width: 0.8rem;
+            height: 0.8rem;
+            margin-left: .8rem;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            word-break: break-all;
+        }
+
+        .ccmiddle {
+            min-height: 17.83rem;
+        }
+
+        .cangwei {
+            font-family: "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+            right: 0.1rem;
+            width: 4.2rem;
+            min-width: 4.2rem;
+            height: auto;
+
+            line-height: 0.99rem;
+            transform: scale(0.99);
+            font-size: 0.7rem;
+            color: #6c6c6e;
+            top: 5.815rem;
+            /*  	top: 5.62rem;*/
+            text-align: center;
+
+        }
+
+        .cangwei span {
+            /*padding-right: 0.15rem;
+				padding-left: 0.05rem; */
+            /*padding-left;*/
+            font-size: 0.65rem;
+            font-family: "FZLTHJW";
+        }
+
+        .cangwei i {
+            font-size: 0.70rem;
+        }
+
+
+        .total1 .li4 {
+            float: left;
+            font-size: 0.92rem;
+            line-height: 1.5rem;
+            /*font-size: 0.86rem; 0.75*/
+            width: 33.3%;
+        }
+
+        .total1 .li5 {
+            float: left;
+            font-size: 0.75rem;
+            line-height: 1.5rem;
+            /*font-size: 0.86rem; 0.75*/
+            width: 33.3%;
+        }
+
+        .total1 .li6 {
+            float: left;
+            font-size: 0.8rem;
+            line-height: 1.5rem;
+            /*font-size: 0.86rem; 0.75*/
+            width: 33.3%;
+        }
+
+        .total {
+
+            top: 9.75rem;
+
+        }
+
+        .total1 {
+            width: 100%;
+            padding-left: 0.15rem;
+        }
+
+        .total1 .li {
+            float: left;
+            font-size: 1rem;
+            width: 33.2%;
+        }
+
+        .total1 .li3 span {
+            font-size: 0.76rem;
+            padding-left: 0.38rem;
+        }
+
+        .total1 .li3 span i {
+            font-size: 0.719rem;
+        }
+
+        .gpmiddle {
+            margin: 0px 0rem;
+            padding-top: 0rem;
+            background: #fff;
+
+        }
+
+        .navicon {
+            position: relative;
+            top: 0rem;
+            /* top: 6.48rem;*/
+            width: 100vw;
+            height: 2.42rem;
+
+        }
+
+        .navicon-fixed {
+            position: relative;
+            top: 0rem;
+            width: 100vw;
+            height: 2.42rem;
+        }
+
+        .gpitem .gulicz {
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f1f1f1;
+            width: 24rem;
+            padding: 0px;
+            display: none;
+            line-height: 2.5rem;
+            margin-top: 0.42rem;
+            overflow: hidden
+        }
+
+        .gpitem .gulicz li {
+            list-style: none;
+            float: left;
+            color: #333;
+            width: 20%;
+            box-sizing: border-box;
+            font-size: 0.935rem;
+            text-align: center;
+            background: #fbfbfb;
+        }
+
+
+        .gpitem .gulicz li {
+            list-style: none;
+            float: left;
+            color: #333;
+            width: 20%;
+            box-sizing: border-box;
+            font-size: 0.935rem;
+            text-align: center;
+            background: #fbfbfb;
+        }
+
+
+        .gpitem .gulicz li a {
+            font-family: myFirstFang;
+            color: #686868;
+            text-decoration: none;
+        }
+
+
+        .gpitem .gulicz li {
+            border-right: 1px solid #f5f5f5;
+        }
+
+        .gpitem .gulicz li:last-child {
+            border-right: 1px solid #f5f5f5;
+        }
+
+        .gpitem .gulicz li:hover {
+            background: #e2e2e2
+        }
+
+        .gpitem::after {
+            content: "";
+            position: absolute;
+            left: .9rem;
+            right: .9rem;
+            bottom: 0;
+            height: 1px;
+            background: #f1f1f1;
+        }
+
+        .fontblue {
+            color: #4c8fe0;
+        }
+
+        .fontred {
+            color: #dd3834;
+        }
+
+        .fontjj {
+            letter-spacing: 0rem;
+            /*-0.01rem;*/
+        }
+
+        .navicon {
+
+            margin-left: 0rem;
+            /* background-image: url("./cc/chicang_03.jpg"); */
+            background-position: 0 top
+        }
+
+
+        .naviconbg {
+            position: relative;
+            top: 0rem;
+            width: 100vw;
+            height: 2.457rem;
+            margin-left: 0rem;
+            /* background-image: url("./cc/chicang_031.jpg"); */
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: 0 bottom;
+            display: flex;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        /* Fixed part styles */
+        .navicon-fixed {
+            position: relative;
+            width: 28.33vw;
+            height: 100%;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: 0 bottom;
+        }
+
+        /* Scrollable part styles */
+        .navicon-scrollable {
+            position: relative;
+            width: 74.9vw;
+            height: 100%;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+
+        }
+
+        /* Hide scrollbar for webkit browsers */
+        .navicon-scrollable::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Style for scrollable items */
+        .navicon-scrollable .ykpxios,
+        .navicon-scrollable .gspxios,
+        .navicon-scrollable .jgpxios,
+        .navicon-scrollable .cspxios,
+        .navicon-scrollable .kypxios,
+        .navicon-scrollable .yklpxios,
+        .navicon-scrollable .fudpxios,
+        .navicon-scrollable .cpxios {
+            flex-shrink: 0;
+            /* width: 100.5vw; */
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* Style for szpxios in fixed section */
+        .navicon-fixed .szpxios {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+            margin-left: -0.3rem;
+            /* Debug: Add a border to see the element */
+
+        }
+
+
+
+        .navicon-scrollable .ykpxios {
+            position: relative;
+            /* margin-left: -1rem; */
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 60% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        /* Additional navigation elements for navicon-scrollable */
+        .navicon-scrollable .gspxios {
+            margin-left: -1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .navicon-scrollable .jgpxios {
+            margin-left: -0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .navicon-scrollable .cspxios {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .navicon-scrollable .kypxios {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .navicon-scrollable .yklpxios {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 90% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .navicon-scrollable .fudpxios {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        .navicon-scrollable .cpxios {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-position: center;
+            cursor: pointer;
+        }
+
+        /* Hover effects for all navigation elements */
+        .navicon-scrollable .ykpxios:hover,
+        .navicon-scrollable .gspxios:hover,
+        .navicon-scrollable .jgpxios:hover,
+        .navicon-scrollable .cspxios:hover,
+        .navicon-scrollable .kypxios:hover,
+        .navicon-scrollable .yklpxios:hover,
+        .navicon-scrollable .fudpxios:hover,
+        .navicon-scrollable .cpxios:hover {
+            opacity: 0.8;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        /* Active state for navigation elements */
+        .navicon-scrollable .ykpxios.active,
+        .navicon-scrollable .gspxios.active,
+        .navicon-scrollable .jgpxios.active,
+        .navicon-scrollable .cspxios.active,
+        .navicon-scrollable .kypxios.active,
+        .navicon-scrollable .yklpxios.active,
+        .navicon-scrollable .fudpxios.active,
+        .navicon-scrollable .cpxios.active {
+            opacity: 1;
+            transform: scale(1.05);
+            transition: all 0.2s ease-in-out;
+        }
+
+        /* Responsive design for navigation elements */
+        @media (max-width: 768px) {
+
+            .navicon-scrollable .ykpxios,
+            .navicon-scrollable .gspxios,
+            .navicon-scrollable .jgpxios,
+            .navicon-scrollable .cspxios,
+            .navicon-scrollable .kypxios,
+            .navicon-scrollable .yklpxios,
+            .navicon-scrollable .fudpxios,
+            .navicon-scrollable .cpxios {
+                min-width: 27vw;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Dark mode support for navigation elements */
+        body.dark-mode .navicon-scrollable .ykpxios,
+        body.dark-mode .navicon-scrollable .gspxios,
+        body.dark-mode .navicon-scrollable .jgpxios,
+        body.dark-mode .navicon-scrollable .cspxios,
+        body.dark-mode .navicon-scrollable .kypxios,
+        body.dark-mode .navicon-scrollable .yklpxios,
+        body.dark-mode .navicon-scrollable .fudpxios,
+        body.dark-mode .navicon-scrollable .cpxios {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        /* Focus states for accessibility */
+        .navicon-scrollable .ykpxios:focus,
+        .navicon-scrollable .gspxios:focus,
+        .navicon-scrollable .jgpxios:focus,
+        .navicon-scrollable .cspxios:focus,
+        .navicon-scrollable .kypxios:focus,
+        .navicon-scrollable .yklpxios:focus,
+        .navicon-scrollable .fudpxios:focus,
+        .navicon-scrollable .cpxios:focus {
+            /* outline: 2px solid #f12f37; */
+            outline-offset: 2px;
+        }
+
+        .cangwei b {
+            font-weight: normal
+        }
+
+        .nodata {
+            text-align: center;
+            font-size: 0.95rem;
+            padding-top: 4rem;
+            padding-bottom: 0.2rem;
+            background-color: rgb(246, 246, 246);
+            display: none
+        }
+
+        .bottompic2 {
+            background-color: rgb(246, 246, 246);
+            font-size: 0rem;
+            display: none
+        }
+
+        .chicang {
+            font-size: 0rem;
+        }
+
+        .navicon {
+
+            margin-left: 0rem;
+            /* background-image: url("./cc/chicang_03iso.jpg"); */
+            background-position: 0 top
+        }
+
+        .navicon-fixed {
+            margin-left: 0.2rem;
+
+            background-position: 0 top
+        }
+
+        .cangwei {
+            color: #313131
+        }
+
+        .cangwei span {
+            color: #6c6c6e;
+        }
+
+        .dzdnew {
+            position: absolute;
+            /* Makes it positionable */
+            /* top: 0;
+							left: 0; */
+            background-color: transparent;
+            margin-top: 3.5rem;
+            height: 2rem;
+            width: 100%;
+            display: block;
+            cursor: pointer;
+            z-index: 99
+                /* Ensures it's above other elements */
+        }
+
+        .navbarf2>.tab-nav2 .hangqing {
+            position: absolute;
+            left: 16vw;
+            width: 16vw;
+            padding-bottom: 0;
+            height: 3.6rem;
+            background: none;
+        }
+
+        .navbarf2>.tab-nav2 .zixuan {
+            position: absolute;
+            left: 32vw;
+            width: 16vw;
+            padding-bottom: 0;
+            height: 3.6rem;
+            background: none;
+        }
+
+        .tab-nav2 {
+            background: #fff;
+
+        }
+
+
+        @supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+            .tab-nav2 {
+                background: #fff;
+            }
+
+            .navbarf2>.tab-nav2 .bnews,
+            .navbarf2>.tab-nav2 .buser,
+            .navbarf2>.tab-nav2 .bhome,
+            .navbarf2>.tab-nav2 .bcatalog,
+            .navbarf2>.tab-nav2 .bzixuan,
+            .navbarf2>.tab-nav2 .hangqing,
+            .navbarf2>.tab-nav2 .zixuan {
+                bottom: calc(env(safe-area-inset-bottom) + 4px);
+                padding-bottom: calc(env(safe-area-inset-bottom) + 4px);
+                height: 3.6rem;
+            }
+        }
+    </style>
+
+
+
+    <style type="text/css">
+        .navbarf2>.tab-nav2 .bzixuan {
+            position: absolute;
+            bottom: 0px;
+            left: 16vw;
+            width: 16vw;
+            height: 3.6rem;
+            background: none;
+        }
+
+        .gpitem-active {
+            border-bottom: 1px solid #1e1e1e !important;
+        }
+    </style>
+
+    <!-- START: NEW AND IMPROVED SCROLLING CSS -->
+    <style>
+        /* Main container for the list, enables horizontal scrolling */
+        /*#gplistbox {*/
+        /*    width: 100%;*/
+        /*    overflow-x: auto;*/
+        /* Makes the content scrollable */
+        /*    overflow-y: auto;*/
+        /*    background-color: #fff;*/
+        /*    -webkit-overflow-scrolling: touch;*/
+        /* Smooth scrolling for iOS */
+        /*    scrollbar-width: none;*/
+        /* Hide scrollbar for Firefox */
+        /*}*/
+
+        #gplistbox {
+            max-height: 500px;
+            /* Example height, adjust as needed */
+            overflow-y: auto;
+            overflow-x: auto;
+            position: relative;
+            /* Crucial for calculating correct initial positions */
+        }
+
+        .liname {
+            position: fixed;
+            z-index: 10;
+            /* Ensures it stays on top of other content */
+            overflow-y: auto;
+            /* As you originally requested */
+
+            /* Your existing styling */
+            left: -1rem;
+            text-align: left;
+            padding-left: 2rem;
+            background-image: url(./cc/cwbg.jpg);
+            background-size: 1.2rem;
+            background-position: -10% 20%;
+            background-repeat: no-repeat;
+            background-color: #fff;
+            /* VERY IMPORTANT: must have a solid background */
+            margin-right: 1rem;
+        }
+
+        #gplistbox::-webkit-scrollbar {
+            display: none;
+            /* Hide scrollbar for Chrome, Safari */
+        }
+
+        .gpitem {
+            position: relative;
+            padding: 0.42rem 0;
+            min-width: 44.1rem;
+            /*color: #dd3834; */
+            white-space: nowrap;
+        }
+
+
+        /* Action buttons container */
+        .gulicz {
+            display: none;
+            /* It's always hidden in the list now, we clone it on tap */
+            line-height: 2.5rem;
+            border-top: 1px solid #f5f5f5;
+            background: #fbfbfb;
+        }
+
+        .gulicz li {
+            list-style: none;
+            float: left;
+            width: 20%;
+            text-align: center;
+        }
+
+        /* --- Responsive Adjustments for Smaller Phones --- */
+        @media (max-width: 375px) {
+            .gpitem {
+                min-width: 50rem;
+                /* Adjust min-width for smaller screens */
+            }
+        }
+    </style>
+    <!-- END: NEW AND IMPROVED SCROLLING CSS -->
+
+    <style>
+        .gpitem .gpli .li1 {
+            position: sticky;
+            overflow-y: auto;
+            /* Standard */
+            left: 0rem;
+            text-align: left;
+            padding-left: 1rem;
+            background-image: url(./cc/cwbg.jpg);
+            background-size: 1.2rem;
+            background-position: -10% 20%;
+            background-repeat: no-repeat;
+            background-color: #fff;
+            margin-right: 1rem;
+            /* height: 2rem; */
+
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .gpitem .gpli .li1::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* NEW CSS FOR THE STATIONARY ACTION BAR */
+        .gulicz-fixed-actions {
+            position: absolute;
+            /* Position relative to the document */
+            left: 0;
+            width: 100%;
+            /* Full screen width */
+            z-index: 100;
+            /* Ensure it's on top of other content */
+            display: flex;
+            /* Use flexbox for the list items inside */
+            margin-top: 0;
+            /* Override any inherited margin */
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f1f1f1;
+            line-height: 2.5rem;
+            background: #fbfbfb;
+            padding: 0;
+            overflow: hidden;
+            /* This is key - it won't scroll internally */
+        }
+
+        .gulicz-fixed-actions li {
+            list-style: none;
+            float: left;
+            color: #333;
+            width: 20%;
+            box-sizing: border-box;
+            font-size: 0.935rem;
+            text-align: center;
+        }
+
+        .gulicz-fixed-actions li a {
+            background-color: #fff;
+            color: #686868;
+            text-decoration: none;
+            display: block;
+            /* Make the whole area clickable */
+        }
+    </style>
+
+    <style>
+        /* NEW CSS FOR THE IN-FLOW ACTION BAR */
+        .gulicz-inserted-actions {
+            /* No position: absolute, left, top, or z-index */
+            width: 100%;
+            display: flex;
+            /* Use flexbox for the items inside */
+            border-top: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f1f1f1;
+            line-height: 2.5rem;
+            background: #fbfbfb;
+            padding: 0;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .gulicz-inserted-actions li {
+            list-style: none;
+            color: #333;
+            width: 20%;
+            /* Each of the 5 buttons takes 20% width */
+            box-sizing: border-box;
+            font-size: 0.935rem;
+            text-align: center;
+        }
+
+        .gulicz-inserted-actions li a {
+            color: #686868;
+            text-decoration: none;
+            display: block;
+            /* Make the whole area clickable */
+        }
+    </style>
+
+</head>
+
+<body style="background-color: rgb(246, 246, 246); font-size: 36px; margin: 0px; padding: 0px;">
+    <div class="theme-toggle" onclick="toggleDarkMode()">
+        <i class="fa fa-moon-o"></i>
+    </div>
+    <div class="ztlyanse" style="position:fixed;top:0px;width:100%;height:2.1rem;z-index:999999;background:#f12f37">
+    </div>
+    <div id="wrapper" style="background:#fff">
+        <div id="user" style="margin-bottom:80px;background:#fff">
+
+            <script type="text/javascript" src="./cc/gupiao1229ios.js"></script>
+
+            <div class="ccDataDiv" style="background-size:100% auto;background-repeat:no-repeat;margin-top: 2rem;">
+                <!---->
+                <div id="header" class="header-image"
+                    style="background-position:0px 0px;background-size:100% auto;background-repeat:no-repeat">
+                    <a class="mairubtm" href="mr.html"></a>
+                    <a class="setbtm" href="cx.html"></a>
+                    <a class="maichubtn"></a>
+                    <div class="container">
+                        <div class="row">
+                            <a href="index.html">
+                                <div class="userhomgback ">
+                                </div>
+                            </a>
+                            <div class="mobiletop2">
+                                <div class="headzq2">
+
+                                    <span class="drcjios ">
+
+                                    </span>
+                                    <b class="zqname2">
+                                        <span class="zqnumber2">****6389</span>
+                                    </b>
+                                </div>
+                            </div>
+
+                            <div class="shuaxin" id="shuaxin" onclick="javascript:location.reload();"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="ccmiddle"
+                    style=" background-size:90% auto;background-repeat:no-repeat;background-position: 10px 80px;">
+
+                    <div class="cangwei" id="cangwei"
+                        style="background-size: 0% 1.35rem; background-repeat: no-repeat;">
+                        <span>仓位5</span>
+                    </div>
+                    <div class="eyes" style="position: absolute; ;width: 20px;height:20px;left: 3.1rem;top: 6.9rem;">
+                        <img src="./index/eyehidden.png" style="width:100%;display: none;" alt="">
+                    </div>
+                    <div class="total">
+                        <div class="total1">
+                            <div class="li li1" id="zichan">--</div>
+                            <div class="li li2  " id="tyk">--</div>
+                            <div class="li3   li " id="dryk">--<span></span></div>
+                        </div>
+                        <div class="total1 total2">
+                            <div class="li li1" id="totalsz">--</div>
+                            <div class="li li2" id="keyong">--</div>
+                            <div class="li li3" id="kequ">--</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gpmiddle" style="background-size:100%">
+
+                    <div class="chicang"><img id="chicang-image" width="100%"></div>
+                    <!--data Display -->
+
+
+                    <div class="naviconbg">
+                        <!-- Fixed part -->
+                        <div class="navicon-fixed">
+                            <div class="szpxios"></div>
+                        </div>
+                        <!-- Scrollable part -->
+                        <div class="navicon-scrollable">
+                            <div class="ykpxios"></div> <!-- 盈亏排序 -->
+                            <div class="gspxios"></div> <!-- 股数排序 -->
+                            <div class="jgpxios"></div> <!-- 价格排序 -->
+                            <div class="cspxios"></div> <!-- 成本排序 -->
+                            <div class="kypxios"></div> <!-- 可用排序 -->
+                            <div class="yklpxios"></div> <!-- 盈亏率排序 -->
+                        </div>
+                    </div>
+
+                    <div id="gplistbox" style="background-color: #fff;">
+                    </div>
+
+                </div>
+
+                <div class="bottompic2"></div>
+                <div class="bottompic"
+                    style="background-image: url('./cc/bottom1.jpg'); background-size: cover; width: 100%; height: 6rem; aspect-ratio: 1125/162; background-repeat: no-repeat;  transition: transform 0.3s ease-in-out;">
+                    <a class="dzdnew" href="./dzdc.html?monthly"></a>
+                </div>
+                <div class="bottomkong" style="width: 100%;height: 15rem;display: none;"></div>
+                <input id="navcss" value="0" type="hidden">
+
+            </div>
+
+            <div class="navbarf2">
+                <div class="tab-nav2 tabs2">
+                    <img src="./mingxi_files/bottom4.jpg">
+                    <a class="bhome" href="sy.html"></a>
+                    <a class="bcatalog" href="mulu.html"></a>
+                    <a class="zixuan" href="zx.html"></a>
+                    <a class="buser" href="index.html"></a>
+                    <a class="bnews" href="zxun.html"></a>
+                    <a class="bzixuan" href="hq.html"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="./cc/jquery.min.js"></script>
+<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+<script type="text/javascript" src="./cc/flexible.js"></script>
+<script type="text/javascript" src="./cc/global.js"></script>
+<script type="text/javascript" src="./qx/echarts501.min.js  "></script>
+
+
+<script type="text/javascript">
+    var ccshdata = {};
+    $(".eyes").toggle(function () {
+        $(".eyes img").show();
+        ccshowhidden(ccshdata);
+    }, function () {
+        $(".eyes img").hide();
+        ccshowhidden(ccshdata);
+    })
+
+    $('.maichubtn').click(function () {
+        alert('点击持仓的股票，选择卖出按钮')
+    });
+
+    var nav = $("#navcss").val();
+
+    $('.tab-item').eq(nav).addClass("tab-item-active");
+
+    $('.bzixuan').click(function () {
+        alert('功能正在开发中...');
+    });
+
+    function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+        var OldBarHeight = NewBarHeight;
+        var DqBarHeight = 2; //单位rem;
+        viewRemWidth = window.innerWidth / remToPx;
+        NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+        if (NewBarHeight == NaN) {
+            NewBarHeight = OldBarHeight;
+        }
+        //	NewBarHeight = NewBarHeight - 0.5;
+        $(".ccDataDiv").css("margin-top", NewBarHeight + "rem");
+        $(".ztlyanse").css("height", NewBarHeight + "rem");
+        $("#header").css("top", NewBarHeight + "rem");
+        //$("#header").css("top", (NewBarHeight + 2) + "rem");
+        document.addEventListener('plusready', function () {
+            plus.navigator.setStatusBarBackground(Global_BarColor); // 黄色背景
+            plus.navigator.setStatusBarStyle("light");
+        });
+        if (Global_PhoneType == "Apple") {
+            const isDarkMode = !document.getElementById('dark-theme').disabled;
+            // $("#header").css("background-image", "url(./cc/hbgaz_ios.jpg)");
+
+            if (!isDarkMode) {
+                // ...
+            } else {
+                $(".ccDataDiv").css("background-image", "url(./cc/ccdark1.png)");
+                document.querySelector('.navicon').style.backgroundImage = "url('./cc/arrowiosyk1dark.png')";
+                document.querySelector('.naviconbg .navicon').style.backgroundImage = "url('./cc/arrowiosyk1dark.png')";
+            }
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                setTimeout(function () {
+                    $(".headzq2").css("background", "none");
+                }, 3000)
+            });
+
+
+            if ($(".tab-nav2") && $(".tabs2") && $(".tab-nav2 img").attr("src") == "./mingxi_files/bottom4.jpg") {
+                $(".tab-nav2 img").attr("src", "./mingxi_files/bottom5.jpg");
+                $(".tab-nav2 a").css("height", "4.8rem");
+            }
+        }
+    }
+
+
+</script>
+<script>
+    const loginData = JSON.parse(localStorage.getItem('loginData'));
+
+    if (loginData && loginData.userdata) {
+        console.log("uimode:", loginData.userdata.uimode);  // Debug print
+        toggleDarkModeCC(loginData.userdata.uimode);         // Use the value
+    } else {
+        console.error("loginData or userdata is missing");
+    }
+</script>
+
+<!-- START: NEW AND IMPROVED SCROLLING SCRIPT -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Function to initialize or re-initialize synchronized scrolling
+        window.reinitializeScrolling = function () {
+            const navScrollable = document.querySelector('.navicon-scrollable');
+            const gplistbox = document.getElementById('gplistbox');
+
+            if (!navScrollable || !gplistbox) {
+                console.error("Scrollable elements not found. Cannot initialize synchronized scrolling.");
+                return;
+            }
+
+            let isSyncingNav = false;
+            let isSyncingGp = false;
+
+            const syncScroll = (source, target) => {
+                if (source === navScrollable && isSyncingGp) return;
+                if (source === gplistbox && isSyncingNav) return;
+
+                if (source === navScrollable) isSyncingNav = true;
+                if (source === gplistbox) isSyncingGp = true;
+
+                window.requestAnimationFrame(() => {
+                    target.scrollLeft = source.scrollLeft;
+
+                    if (source === navScrollable) isSyncingNav = false;
+                    if (source === gplistbox) isSyncingGp = false;
+                });
+            };
+
+            navScrollable.onscroll = null;
+            gplistbox.onscroll = null;
+
+            navScrollable.addEventListener('scroll', () => syncScroll(navScrollable, gplistbox));
+            gplistbox.addEventListener('scroll', () => syncScroll(gplistbox, navScrollable));
+        };
+
+        setTimeout(() => {
+            window.reinitializeScrolling();
+        }, 500);
+
+        window.reinitializeScrollingOnDataLoad = function () {
+            setTimeout(() => {
+                if (typeof window.reinitializeScrolling === "function") {
+                    window.reinitializeScrolling();
+                }
+            }, 200);
+        };
+    });
+</script>
+<!-- END: NEW AND IMPROVED SCROLLING SCRIPT -->
+
+
+<!-- FINAL SCRIPT for Cross-Platform Action Bar -->
+<!-- FINAL SCRIPT for Cross-Platform Action Bar -->
+<script>
+    $(document).ready(function () {
+        const gplistbox = document.getElementById('gplistbox');
+        if (!gplistbox) return;
+
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchHandled = false;
+
+        // --- REVISED Centralized Function to Manage the Action Bar ---
+        function manageActionbar($item) {
+            const isAlreadyActive = $item.hasClass('item-active');
+
+            // --- Always perform cleanup and reset first ---
+            $('.gulicz-inserted-actions').remove(); // Remove any previously inserted bar
+            $('.gpitem.item-active').removeClass('item-active'); // Remove highlight from the old item
+
+            // If we just clicked the active item, our job is to close it. We're done.
+            if (isAlreadyActive) {
+                return;
+            }
+
+            // --- Create and INSERT the new action bar ---
+            const $originalGulicz = $item.find('.gulicz');
+            if ($originalGulicz.length === 0) return;
+
+            // Clone the original action bar template
+            const $actionBar = $originalGulicz.clone()
+                .removeClass('gulicz') // Keep the original hidden
+                .addClass('gulicz-inserted-actions') // Add our new class for styling
+                .css('display', 'flex'); // Ensure it's displayed
+
+            // **THE KEY CHANGE**: Insert the new action bar into the document
+            // flow, right after the item that was clicked.
+            $item.after($actionBar);
+
+            // Add a class to the clicked item for styling
+            $item.addClass('item-active');
+        }
+
+
+        // --- Touch Event Handlers for iOS/Android responsiveness (No changes needed here) ---
+        gplistbox.addEventListener('touchstart', function (e) {
+            const targetRow = e.target.closest('.gpitem');
+            if (!targetRow) return;
+
+            touchHandled = false;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        gplistbox.addEventListener('touchend', function (e) {
+            const targetRow = e.target.closest('.gpitem');
+            if (!targetRow) return;
+
+            const touchEndX = e.changedTouches[0].clientX;
+            const touchEndY = e.changedTouches[0].clientY;
+            const deltaX = Math.abs(touchEndX - touchStartX);
+            const deltaY = Math.abs(touchEndY - touchStartY);
+
+            if (deltaX < 10 && deltaY < 10) { // It's a TAP
+                if (touchHandled) return;
+                touchHandled = true;
+
+                manageActionbar($(targetRow));
+                e.preventDefault(); // Prevent ghost click
+            }
+        }, false);
+
+        // --- Fallback Click Handler for Desktops and Android (No changes needed here) ---
+        $(gplistbox).on('click', '.gpitem', function () {
+            if (touchHandled) {
+                touchHandled = false; // Reset for next interaction
+                return;
+            }
+            manageActionbar($(this));
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const scrollContainer = document.getElementById('gplistbox');
+        // Key Change: Select all elements with the .liname class
+        const fixedElements = document.querySelectorAll('.liname');
+
+        if (!scrollContainer || fixedElements.length === 0) {
+            return; // Exit if the necessary elements aren't on the page
+        }
+
+        // Use a Map to store the original top offset for each element
+        const initialOffsets = new Map();
+
+        // --- Function to calculate and store initial positions ---
+        function recordInitialPositions() {
+            const containerRect = scrollContainer.getBoundingClientRect();
+            fixedElements.forEach(el => {
+                // Temporarily reset style to get the "natural" position in the flow
+                el.style.top = '';
+                const elRect = el.getBoundingClientRect();
+                const initialTop = elRect.top - containerRect.top;
+                initialOffsets.set(el, initialTop);
+            });
+            // After recording, update positions immediately
+            updatePositions();
+        }
+
+        // --- Function to update positions on scroll ---
+        function updatePositions() {
+            const scrollTop = scrollContainer.scrollTop;
+            const containerRect = scrollContainer.getBoundingClientRect();
+
+            fixedElements.forEach(el => {
+                const initialTop = initialOffsets.get(el);
+                if (initialTop === undefined) return; // Skip if no offset was recorded
+
+                // Calculate the new 'top' position
+                const newTop = initialTop - scrollTop;
+
+                // Apply the final style, pinning it relative to the viewport
+                el.style.top = (containerRect.top + newTop) + 'px';
+            });
+        }
+
+        // --- Event Listeners ---
+
+        // Listen for scroll events on the container
+        scrollContainer.addEventListener('scroll', updatePositions);
+
+        // Use ResizeObserver to automatically recalculate if container size changes
+        // This is more efficient than the old 'window.onresize'
+        const resizeObserver = new ResizeObserver(() => {
+            recordInitialPositions();
+        });
+        resizeObserver.observe(scrollContainer);
+
+        // Initial setup
+        recordInitialPositions();
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Find all the elements we need to work with
+        const navFixed = document.querySelector('.navicon-fixed');
+        const ykpxiosElement = document.querySelector('.ykpxios'); // The first scrollable item
+
+        // Check if the required elements exist on the page
+        if (navFixed && ykpxiosElement) {
+            // Check if the .szpxios element is inside the navFixed container
+            const szpxiosElement = navFixed.querySelector('.szpxios');
+
+            // --- Main Logic ---
+            // IF the .szpxios element is the one being displayed in the fixed area...
+            if (szpxiosElement) {
+                // ...then apply the special layout.
+
+                // 1. Set the smaller width on the fixed container
+                navFixed.style.width = '23.9vw';
+
+                // 2. Add a left margin ONLY to the .ykpxios element to create the gap.
+                // This pushes all subsequent scrollable items to the right as well.
+                ykpxiosElement.style.marginLeft = '4.43vw';
+
+            } else {
+                // ...OTHERWISE, ensure the default layout is used.
+
+                // 1. Set the width back to the default
+                navFixed.style.width = '28.33vw';
+
+                // 2. Remove the extra margin from the .ykpxios element
+                ykpxiosElement.style.marginLeft = '0';
+            }
+        }
+    });
+</script>
+
+</html>
