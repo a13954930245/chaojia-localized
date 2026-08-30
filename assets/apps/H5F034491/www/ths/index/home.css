@@ -1,0 +1,315 @@
+@charset "utf-8";
+
+
+.clear {
+	clear: both
+}
+
+.homebox {
+	width: 100vw;
+	background-color: #f5f5f5;
+	background-image: url(./../index/home2.png);
+	background-position: 0px 0px;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	min-height: 91rem;
+}
+
+.homenav {
+	height: 2.85rem;
+	width: 100vw;
+	/* 	background-image: url(http://borilxx.cn/chaojia/ths/ths_1_11_24_dl/ths/index/homebg1.jpg); */
+	background-position: 0px 0px;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	position: fixed;
+	top: 2rem;
+	z-index: 9999
+}
+
+.homeshuaxin {
+	position: absolute;
+	top: 0rem;
+	right: 0rem;
+	width: 4rem;
+	height: 3rem;
+	z-index: 99999
+}
+
+
+
+.home {
+	font-size: 1rem;
+	width: 92vw;
+	margin-left: 4vw;
+	font-family: "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif, "Heiti SC";
+	position: absolute;
+	top: 3.85rem;
+	height: 30rem;
+	margin-top: 2rem;
+
+}
+
+.hometop {
+	width: 100%;
+	height: 3rem;
+}
+
+.homelogo {
+	float: left;
+	/* width: 1.82rem; */
+	width: 2.1rem;
+	padding-left: 0.22rem;
+	padding-top: 0.4rem;
+}
+
+.homelogo img {
+	max-width: 100%
+}
+
+.homename {
+	float: right;
+	width: 85%;
+	margin-right: 2%;
+	font-size: 1rem;
+	background: rgb(255, 255, 255);
+
+}
+
+.homename .namep1 {
+	font-size: 1.1rem;
+	line-height: 136%;
+	height: 1.6rem;
+}
+
+.homename .namep2 {
+	font-size: 0.8rem;
+	color: #999999;
+	/* font-family: "HarmonyOS_Sans_SC_Regular"; */
+	margin-top: 0.1rem;
+}
+
+.homezj {
+	font-family: 'DIN';
+	font-size: 1.14rem;
+	margin-top: 2.8rem;
+	height: 6.6rem;
+	margin-left: 0.4rem;
+	letter-spacing: 0px;
+}
+
+.homezj li {
+	list-style: none;
+	float: left;
+}
+
+.homezj1 {
+	height: 3.8em;
+}
+
+.homezj .zj1 {
+	width: 55%;
+}
+
+.homezj2 {
+	height: 3.8rem;
+	line-height: 180%;
+}
+
+.homezj .zj2 {}
+
+#hykbl {
+	font-size: 0.82rem;
+	padding-left: 0.5rem;
+	font-family: "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+}
+
+.homeyue {
+	width: 100%;
+	padding-top: 7.2rem;
+	color: #999999;
+	position: relative
+}
+
+.homeyuetop {
+	font-size: 0.9rem;
+	padding-left: 0.1rem;
+	font-family: Harmony;
+}
+
+.homeyuem {
+	height: 2rem;
+	width: 100%;
+}
+
+.homeyue1 {
+	font-size: 1.1rem;
+	margin-top: .35rem;
+	padding-left: 0.2rem;
+	line-height: 160%;
+	width: 56%;
+	float: left;
+	font-family: 'DIN', "Heiti SC";
+}
+
+.homeyuebt {
+	font-size: 0.9rem;
+	line-height: 180%;
+	color: #999999;
+	font-family: Harmony;
+}
+
+#homepaoyin {
+	padding-left: 0.2rem;
+}
+
+#shouyi {
+	padding-left: 0.1rem;
+	padding-right: 0px;
+}
+
+.homeyue2 {
+	width: 44%;
+	float: left;
+	height: 1.8rem;
+	position: relative
+}
+
+.bhomeyue2ios {
+	background: #fff;
+	width: 44%;
+	float: left;
+	height: 1.8rem;
+	position: relative
+}
+
+.homemairu {
+	position: absolute;
+	top: 0.5rem;
+	left: 0.2rem;
+	width: 2.5rem;
+	height: 5rem;
+}
+
+.homemaichu {
+	position: absolute;
+	top: 0.5rem;
+	left: 4rem;
+	width: 4rem;
+	height: 5rem;
+}
+
+.chicang {
+	position: absolute;
+	top: 0.5rem;
+	right: 4rem;
+	width: 4rem;
+	height: 5rem;
+}
+
+.homechaxun {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.2rem;
+	width: 4rem;
+	height: 5rem;
+}
+
+.homeqx,
+.homeqx:hover {
+	color: #000;
+	text-decoration: none
+}
+
+.homexg {
+	height: 2rem;
+	width: 100%;
+	margin-top: 4.2rem;
+	font-size: 0.75rem;
+	color: #999999;
+	font-stretch: condensed;
+}
+
+.homexg1 {
+	width: 50%;
+	float: left;
+	padding-left: 2.75rem
+}
+
+.homexg2 {
+	width: 50%;
+	float: left;
+	padding-left: 2.9rem;
+}
+
+.homexg1 span,
+.homexg2 span {
+	color: #e83030;
+	padding: 0px 3px;
+	font-family: 'DIN';
+}
+
+.homebottom {
+	height: 50rem;
+	width: 100%;
+}
+
+.homelogout {
+	width: 100%;
+	height: 8rem;
+	display: block
+}
+
+.hblue {
+	color: #4691ee
+}
+
+.hblack {
+	color: #000 !important;
+}
+
+.hred,
+.zj2 .fontred {
+	color: #e83030
+}
+
+.pblue,
+.homezj .fontblue2 {
+	color: #4691ee
+}
+
+.zhengquannamediv {
+	float: left;
+}
+
+.renzhengdiv {
+	margin-left: .2rem;
+	padding-right: .3rem;
+	padding-left: .2rem;
+	background-color: #f4f7fe;
+	border-radius: 4px;
+	font-size: .7rem;
+	color: #4165f7;
+	border-color: #e9ecf5;
+	transform: scale(0.9);
+	display: inline-block;
+	transform-origin: 0 -1rem;
+}
+
+.renzhengdivnew {
+	margin-left: .2rem;
+	padding-right: .3rem;
+	padding-left: .2rem;
+	background-color: #f4f7fe;
+	border-radius: 4px;
+	font-size: .65rem;
+	color: #4165f7;
+	border-color: #e9ecf5;
+	float: left;
+}
+
+.remzhengicon {
+	width: .6rem;
+	margin: 0 3px;
+	margin-top: -2px;
+}
