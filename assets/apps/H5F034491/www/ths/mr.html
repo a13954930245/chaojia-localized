@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)https://www.gp123.cn/m/user.html?rec=mairu -->
+<html style="font-size: 16.25px;">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport"
+		content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+	<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+	<meta name="format-detection" content="telephone=no">
+
+	<title>股票买入</title>
+
+	<!-- <script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script> -->
+
+	<link rel="stylesheet" href="./mr/font-awesome.min.css">
+	<link rel="stylesheet" href="./mr/bootstrap.min.css" media="all" type="text/css">
+
+	<link href="./mr/user7.css" rel="stylesheet" type="text/css">
+	<link href="./mr/userx0803.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="./mr/jquery.min.js"></script>
+	<script type="text/javascript" src="./mr/flexible.js"></script>
+	<script type="text/javascript" src="./mr/global.js"></script>
+
+	<script src="./mr/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+		/*	// 进入页面时获取对应大小
+// 改变字体大小
+function resizeFont() {
+let winW = document.documentElement.clientWidth > 750 ? 750 : document.documentElement.clientWidth
+document.documentElement.style.fontSize = (winW / 750) * 100 + 'px'
+}
+window.addEventListener('load', () => resizeFont())
+window.addEventListener('resize', () => resizeFont())
+*/
+	</script>
+
+
+
+	<style type="text/css">
+		.cangbutton {
+			border: none;
+			background-color: aqua;
+			width: 3rem;
+			float: left;
+			margin-right: .4rem;
+			text-align: center;
+		}
+
+		.tab-nav2 {
+			background: #f5f5f5;
+
+		}
+
+		@supports (bottom: env(safe-area-inset-bottom)) {
+			.tab-na v2 {
+				padding-bottom: constant(safe-area-inset-bottom);
+				padding-bottom: env(safe-area-inset-bottom);
+			}
+		}
+	</style>
+
+
+	<style type="text/css">
+		@font-face {
+			font-family: Harmony;
+			src: url(./common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+		}
+
+		@font-face {
+			font-family: MiLanPro;
+			src: url(./common/fonts/MiLanProVF.woff);
+		}
+
+		@font-face {
+			font-family: 'DIN';
+			src: url('./common/fonts/digital.otf');
+			/*DIN-Mediummy.otf  /DIN-Mediummy.woff*/
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		.drcjios {
+			font-size: 1.1rem;
+			padding-right: 1rem;
+			padding-top: 0.05rem;
+			padding-bottom: 0.26rem;
+			padding-left: 0.9rem;
+
+			font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+		}
+
+		.userhomgback {
+			width: 12vw;
+			height: 2.7rem;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 99999
+		}
+
+		.zqnumber2 {
+			position: relative;
+			padding-left: 3px;
+		}
+
+		.zqnumber2 span {
+
+
+			position: relative;
+			top: 0rem;
+			left: 0rem;
+			font-family: 'DIN',
+		}
+
+
+
+
+		.drcjios,
+		.drcj {
+			padding-right: 0rem;
+			padding-left: 0rem;
+		}
+
+		.zqname2 {
+			font-family: 'DIN', "MiLanPro";
+			padding-right: 0rem;
+			padding-left: 0rem;
+			font-weight: normal;
+			position: relative
+		}
+
+		.zqnumber2 {
+			font-family: 'DIN', "MiLanPro";
+		}
+	</style>
+
+</head>
+
+<body style="background-color: rgb(246, 246, 246); font-size: 36px;">
+	<div class="ztlyanse" style="position:fixed;top:0px;width:100vw;background:#f12f37; height:2.2rem;z-index:999999">
+	</div>
+	<div id="wrapper" style="background:#fff;margin-top:2rem">
+		<div id="user" style="margin-bottom:80px;background:#fff">
+
+
+
+
+
+			<div style="background-size:100% auto;background-repeat:no-repeat">
+
+				<div id="header"
+					style="height:3.2rem;margin-top:2rem;background-position:0px -3px;background-size:100% auto;background-repeat:no-repeat;background:#f12f37">
+					<a class="mairubtm" href="mr.html"></a>
+					<a class="setbtm" href="mulu.html"></a>
+					<div class="container">
+						<div class="row">
+							<div class="back" onclick="javascript:history.back(-1);" style="line-height: 2rem;">
+								< </div>
+
+									<div class="headzq">
+										<div class="zqname">
+											<span class="biemingname"></span><br><span class="zqnumber"></span>
+										</div>
+
+									</div>
+
+									<div class="shuaxin" id="shuaxin" onclick="javascript:location.reload();"></div>
+							</div>
+						</div>
+
+					</div>
+					<div class="container-fluid bgwrite">
+						<form id="mairu" action="./php/user.php" method="post" enctype="multipart/form-data">
+							<div class="form-row">
+								<div class="form-group col-xs-12" style="display:none">
+									<input type="hidden" class="form-control" id="status" name="status" value="0">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="inputEmail3">买入日期</label>
+									<input type="hidden" class="form-control " id="shichanglx" name="shichanglx"
+										value="">
+									<input type="date" class="form-control "
+										style="width:100%;height:35px;background-color:white" id="jiaoyiriqi"
+										name="jiaoyiriqi" required="" value="" playsinline>
+								</div>
+								<div class="form-group col-md-12">
+									<label for="inputPassword4">买入时间 </label>
+
+									<link rel="stylesheet" href="./mr/mobileSelect.css">
+
+									<script type="text/javascript" src="./mr/mobileSelect.js"></script>
+									<style type="text/css">
+										#trigger3 span:last-child tt {
+											color: #fff
+										}
+
+										#trigger3 span tt {
+											font-size: 14px;
+											line-height: 24px;
+											color: #000
+										}
+									</style>
+									<!-- <div id="trigger3" class="form-control" style="cursor: pointer;">选择时间</div>
+                                    <input type="hidden" class="form-control" id="jiaoyitime1" name="jiaoyitime" step="1"
+                                        required=""> -->
+
+									<input type="text" class="form-control" id="jiaoyitime2" name="jiaoyitime" step="1"
+										required="" value="">
+									<div id="trigger3" class="form-control"
+										style="cursor: pointer;opacity: .01;position: absolute;top: 30px;">选择时间
+									</div>
+
+
+									<script type="text/javascript">
+										var numArr1 = ['09', '10', '11', '13', '14', '15'];
+										var numArr2 = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14',
+											'15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31',
+											'32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48',
+											'49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59'
+										];
+										var mobileSelect3 = new MobileSelect({
+											trigger: '#trigger3',
+											title: '选择时间',
+											wheels: [{
+												data: numArr1
+											},
+											{
+												data: numArr2
+											},
+											{
+												data: numArr2
+											}
+											],
+											position: [0, 0, 0],
+
+											callback: function (indexArr, str) {
+												var mytime = $("#trigger3").text();
+												mytime = mytime.slice(0, -1);
+												mystr = mytime.replace(/\s*/g, "");
+
+												$("#jiaoyitime1").val(mystr);
+												$("#jiaoyitime2").val(mystr);
+
+											}
+										});
+
+
+										/**
+										 * 参数说明
+										 * @param trigger(必填参数) 触发对象的id/class/tag
+										 * @param wheels(必填参数)  数据源,需要显示的数据
+										 * @param title 控件标题
+										 * @param position 初始化定位
+										 * @param callback 选择成功后触发的回调函数，返回indexArr(选中的选项索引)、data(选中的数据)
+										 * @param transitionEnd 每一次手势滑动结束后触发的回调函数,返回indexArr(当前选中的选项索引)、data(选中的数据)
+										 */
+									</script>
+
+
+
+								</div>
+								<div class="form-group col-md-12">
+									<label for="qcbili">股票类型</label>
+									<select name="gptype" id="gptype" class="form-control" style="width:300px">
+
+										<option value="0" selected="selected"> 主板</option>
+										<option value="3"> 新三板</option>
+									</select>
+								</div>
+								<div class="form-group col-md-12">
+									<input type="hidden" class="form-control" id="status" name="status" value="0">
+									<label for="inputEmail4">股票代码</label>
+									<input type="number" class="form-control" id="gupiaono" name="gupiaono" required=""
+										value="">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="inputEmail4">股票名称</label>
+									<input type="text" class="form-control" id="gupiao" name="gupiao"
+										placeholder="输入股票代码，自动获取股票名称" required="" readonly="" value="">
+								</div>
+								<div class="form-group col-md-12 sanban">
+									<label for="inputAddress">当前价格(参考)</label>
+									<input type="text" class="form-control" id="price" name="price" readonly=""
+										placeholder="新三板股票，当前价格">
+								</div>
+								<div class="form-group col-md-12 sanban" style="display:none">
+									<label for="inputAddress">昨日收盘价</label>
+									<input type="text" class="form-control" id="z_pr" name="z_pr"
+										placeholder="新三板股票，上一个交易日的收盘价">
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="inputAddress">买入价格</label>
+									<input type="text" class="form-control" id="jiage" name="jiage" required=""
+										value="">
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="inputCity">可用资金</label>
+									<input type="text" class="form-control" id="zijin" value="" readonly="">
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="inputCity">可买数量</label>
+									<input type="text" class="form-control" id="shuliang" readonly="">
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="inputCity"><span class="MairuNum">买入数量(100的倍数)</span>
+										<div id="memo" style="font-size:12px;color:red">
+										</div>
+									</label>
+									<input type="number" class="form-control" id="gushu" name="gushu" required=""
+										value="">
+									<div onclick="jisuancwnum(1)" class="cangbutton">全仓</div>
+									<div onclick="jisuancwnum(0.5)" class="cangbutton">1/2仓</div>
+									<div onclick="jisuancwnum(0.333333333)" class="cangbutton">1/3仓</div>
+									<div onclick="jisuancwnum(0.25)" class="cangbutton">1/4仓</div>
+									<div onclick="jisuancwnum(0.2)" class="cangbutton">1/5仓</div>
+									<div onclick="jisuancwnum(0.1)" class="cangbutton">1/10仓</div>
+								</div>
+
+							</div>
+
+							<input type="hidden" name="rec" value="mairu">
+							<input type="hidden" name="mairutype" value="add" id="mairutype">
+							<input type="hidden" name="id" value="" id="mairuid">
+							<input type="hidden" name="username" id="Globalname" value="initial">
+							<input type="submit" name="submit" class="btn  btn-danger  btn-block" id="tijiao"
+								disabled="" value="提交">
+							<div id="memo" style="font-size:12px"></div>
+						</form>
+					</div>
+
+					<style type="text/css">
+						.navbarf2>.tab-nav2 .hangqing {
+							position: absolute;
+							left: 16vw;
+							width: 16vw;
+							padding-bottom: 0;
+							height: 3.6rem;
+							background: none;
+						}
+
+						.navbarf2>.tab-nav2 .zixuan {
+							position: absolute;
+							left: 32vw;
+							width: 16vw;
+							padding-bottom: 0;
+							height: 3.6rem;
+							background: none;
+						}
+					</style>
+
+
+					<style type="text/css">
+						.tab-nav2 {
+							background: #f5f5f5;
+
+						}
+
+
+						@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+							.tab-nav2 {
+								background: #f5f5f5;
+							}
+
+							.navbarf2>.tab-nav2 .bnews,
+							.navbarf2>.tab-nav2 .buser,
+							.navbarf2>.tab-nav2 .bhome,
+							.navbarf2>.tab-nav2 .bcatalog,
+							.navbarf2>.tab-nav2 .bzixuan,
+							.navbarf2>.tab-nav2 .hangqing,
+							.navbarf2>.tab-nav2 .zixuan {
+								bottom: calc(env(safe-area-inset-bottom));
+								padding-bottom: calc(env(safe-area-inset-bottom));
+								height: 3.6rem;
+							}
+						}
+					</style>
+
+
+
+					<style type="text/css">
+						.navbarf2>.tab-nav2 .bzixuan {
+							position: absolute;
+							bottom: 0px;
+							left: 16vw;
+							width: 16vw;
+							height: 3.6rem;
+							background: none;
+						}
+					</style>
+					<div class="navbarf2">
+						<div class="tab-nav2 tabs2">
+							<img src="./mingxi_files/bottom4.jpg">
+							<a class="bhome" href="index.html"></a>
+							<a class="bcatalog" href="mulu.html"></a>
+							<a class="zixuan" href="#"></a>
+							<a class="buser" href="index.html"></a>
+							<a class="bnews" href="#"></a>
+							<div class="bzixuan"></div>
+						</div>
+					</div>
+					<script src="../js/common.js"></script>
+					<script src="../js/local-api.js?v=local48"></script>
+					<script>
+						var nav = $("#navcss").val();
+
+						$('.tab-item').eq(nav).addClass("tab-item-active");
+
+						$('.bzixuan').click(function () {
+							// alert('功能正在开发中...');
+						});
+
+                                                var tradeQuoteRefreshTimer = null;
+                                                var latestTradeQuote = null;
+                                                var lastAutoTradePrice = null;
+
+                                                function tradeStockSymbol(code) {
+                                                        code = String(code || "").replace(/\D/g, "").slice(-6);
+                                                        if (/^(4|8|920)/.test(code)) return "bj" + code;
+                                                        if (/^[569]/.test(code)) return "sh" + code;
+                                                        return "sz" + code;
+                                                }
+
+                                                function tradeNumber(value) {
+                                                        var parsed = parseFloat(value);
+                                                        return isFinite(parsed) ? parsed : 0;
+                                                }
+
+                                                function parseTradeQuote(payload, symbol) {
+                                                        var market = payload && payload.data && payload.data[symbol];
+                                                        var quote = market && market.qt && market.qt[symbol];
+                                                        if (!quote || !quote[1]) throw new Error("未查询到该股票行情");
+
+                                                        var marketRows = market.qt && market.qt.market;
+                                                        var marketText = marketRows && marketRows[0] || "";
+                                                        var marketKey = symbol.slice(0, 2) === "sh" ? "SH" :
+                                                                (symbol.slice(0, 2) === "sz" ? "SZ" : "");
+                                                        var hasMarketState = marketKey && marketText.indexOf(marketKey + "_") >= 0;
+                                                        var quoteTime = String(quote[30] || "").replace(/\D/g, "");
+                                                        var now = new Date();
+                                                        var today = String(now.getFullYear()) +
+                                                                String(now.getMonth() + 1).padStart(2, "0") +
+                                                                String(now.getDate()).padStart(2, "0");
+                                                        var quoteDate = quoteTime.slice(0, 8);
+                                                        var quoteAt = quoteTime.length >= 14 ?
+                                                                new Date(
+                                                                        parseInt(quoteTime.slice(0, 4), 10),
+                                                                        parseInt(quoteTime.slice(4, 6), 10) - 1,
+                                                                        parseInt(quoteTime.slice(6, 8), 10),
+                                                                        parseInt(quoteTime.slice(8, 10), 10),
+                                                                        parseInt(quoteTime.slice(10, 12), 10),
+                                                                        parseInt(quoteTime.slice(12, 14), 10)
+                                                                ) : null;
+
+                                                        return {
+                                                                symbol: symbol,
+                                                                name: String(quote[1]).trim(),
+                                                                current: tradeNumber(quote[3]),
+                                                                currentText: String(quote[3] || ""),
+                                                                previousClose: tradeNumber(quote[4]),
+                                                                open: tradeNumber(quote[5]),
+                                                                volume: tradeNumber(quote[36] || quote[6]),
+                                                                bidPrice: tradeNumber(quote[9]),
+                                                                askPrice: tradeNumber(quote[19]),
+                                                                upperLimit: tradeNumber(quote[47]),
+                                                                lowerLimit: tradeNumber(quote[48]),
+                                                                quoteTime: quoteTime,
+                                                                quoteToday: quoteDate === today,
+                                                                quoteAgeMinutes: quoteAt ? Math.max(0, (now.getTime() - quoteAt.getTime()) / 60000) : Infinity,
+                                                                marketOpen: !hasMarketState || marketText.indexOf(marketKey + "_open_") >= 0
+                                                        };
+                                                }
+
+                                                function requestLiveTradeQuote() {
+                                                        var code = String($("#gupiaono").val() || "").replace(/\D/g, "").slice(-6);
+                                                        if (!/^\d{6}$/.test(code)) {
+                                                                return Promise.reject(new Error("股票代码错误，请重新输入"));
+                                                        }
+                                                        var symbol = tradeStockSymbol(code);
+                                                        var url = "https://bor.lingling123.top/chaojia/chaojia2_05_29/php/getgp.php?code=" +
+                                                                encodeURIComponent(symbol) + "&rec=getDayKlinedata&_=" + Date.now();
+                                                        return fetch(url, { cache: "no-store" }).then(function (response) {
+                                                                if (!response || response.ok === false) throw new Error("实时行情请求失败");
+                                                                return response.json();
+                                                        }).then(function (payload) {
+                                                                return parseTradeQuote(payload, symbol);
+                                                        });
+                                                }
+
+                                                function applyLiveTradeQuote(data, mode) {
+                                                        var gpname = data.name;
+                                                        var firstLetter = gpname.substr(0, 1);
+                                                        if ((firstLetter === "C" || firstLetter === "N") && gpname.length === 5) {
+                                                                gpname = gpname.substr(0, 3);
+                                                        }
+
+                                                        var enteredPrice = tradeNumber($("#jiage").val());
+                                                        var canFollowMarket = mode === 0 || !enteredPrice ||
+                                                                (lastAutoTradePrice !== null &&
+                                                                        Math.abs(enteredPrice - lastAutoTradePrice) < 0.000001);
+                                                        $("#shichanglx").val(data.symbol.slice(0, 2));
+                                                        $("#gupiao").val(gpname);
+                                                        $("#price").val(data.currentText);
+                                                        if (canFollowMarket) {
+                                                                $("#jiage").val(data.currentText);
+                                                                jisuannum();
+                                                        }
+                                                        lastAutoTradePrice = data.current;
+                                                        latestTradeQuote = data;
+                                                }
+
+                                                function huoxianjia(m) {
+                                                        m = typeof m === "undefined" ? 0 : m;
+                                                        return requestLiveTradeQuote().then(function (data) {
+                                                                applyLiveTradeQuote(data, m);
+                                                                return data;
+                                                        }).catch(function (error) {
+                                                                if (m === 0) alert(error.message || "实时行情获取失败");
+                                                                return null;
+                                                        });
+                                                }
+
+                                                function validateLiveBuyQuote() {
+                                                        return requestLiveTradeQuote().then(function (data) {
+                                                                applyLiveTradeQuote(data, 1);
+                                                                if (!data.quoteToday || !data.marketOpen) {
+                                                                        throw new Error("当前市场未开市，禁止买入");
+                                                                }
+                                                                if (data.current <= 0 || data.open <= 0 || data.volume <= 0 ||
+                                                                        data.quoteAgeMinutes > 15) {
+                                                                        throw new Error("该股票当前停牌或行情未更新，禁止买入");
+                                                                }
+                                                                if (data.upperLimit > 0 && data.current >= data.upperLimit - 0.0001 &&
+                                                                        data.askPrice <= 0) {
+                                                                        throw new Error("该股票当前涨停且无卖盘，禁止买入");
+                                                                }
+                                                                return data;
+                                                        });
+                                                }
+
+                                                function refreshLiveBuyQuote() {
+                                                        var code = String($("#gupiaono").val() || "").replace(/\D/g, "");
+                                                        if (!/^\d{6}$/.test(code)) return;
+                                                        if (typeof window.isMarketOpen === "function" && !window.isMarketOpen()) return;
+                                                        huoxianjia(1);
+                                                }
+
+                                                $(document).ready(function () {
+                                                        setTimeout(refreshLiveBuyQuote, 1000);
+                                                        tradeQuoteRefreshTimer = setInterval(refreshLiveBuyQuote, 5000);
+                                                        document.addEventListener("visibilitychange", function () {
+                                                                if (!document.hidden) refreshLiveBuyQuote();
+                                                        });
+                                                        $(window).on("beforeunload", function () {
+                                                                if (tradeQuoteRefreshTimer) clearInterval(tradeQuoteRefreshTimer);
+                                                        });
+                                                });
+
+						function jisuannum() {
+							$jiage = $('#jiage').val();
+							$zijin = $('#zijin').val().replace(/,/g, '');
+							$sl = parseInt($zijin / $jiage);
+							$("#shuliang").val($sl);
+						}
+						function jisuancwnum(c) {
+							$sl = $("#shuliang").val();
+							if ($sl >= 0) {
+								$("#gushu").val(Math.floor(($sl * c) / 100) * 100);
+
+								$('#tijiao').attr("disabled", false);
+							} else {
+								alert("可用金额为负，之前得买入金额太多，初始资金不足。请调整！");
+							}
+
+						}
+
+
+
+
+						loginstatus(function (data) {
+							const urlParams = new URLSearchParams(window.location.search);
+							var id = null;
+							var code = null;
+							if (urlParams.get("id")) {
+								id = urlParams.get("id");
+								$("#mairutype").val("update");
+								$("#tijiao").prop('disabled', false);
+								mairuid
+								$("#mairuid").val(id);
+							}
+							if (urlParams.get("code")) {
+								code = urlParams.get("code");
+								$("#mairutype").val("add");
+                                                          $("#gupiaono").val(String(code).replace(/\D/g, "").slice(-6));
+							}
+
+							$("#Globalname").val(Global_Username);
+
+
+							$.post(host + "php/user.php", {
+								rec: "mairuload",
+								id: id,
+								code: code,
+								username: Global_Username
+							})
+								.done(function (data) {
+									if (data.status == "FAIL") {
+										window.location.href = "login.html";
+									}
+									console.log(data);
+									$("#zijin").val(data.zky);
+									if (data.userdata) {
+										$(".biemingname").html(data.userdata.biemingname);
+										$(".zqnumber").html(data.userdata.zhengquannumber);
+										//
+										const now = new Date();
+
+										// 格式化日期 (YYYY-MM-DD)
+										const dateStr = now.getFullYear() + '-' +
+											String(now.getMonth() + 1).padStart(2, '0') + '-' +
+											String(now.getDate()).padStart(2, '0');
+
+										// 格式化时间 (HH:MM:SS)
+										const timeStr = String(now.getHours()).padStart(2, '0') + ':' +
+											String(now.getMinutes()).padStart(2, '0') + ':' +
+											String(now.getSeconds()).padStart(2, '0');
+										$("#jiaoyiriqi").val(dateStr);
+										$("#jiaoyitime1").val(timeStr);
+										$("#jiaoyitime2").val(timeStr);
+									}
+									if (data.row) {
+										$("#shichanglx").val(data.row.jydate);
+										$("#jiaoyiriqi").val(data.row.jydate);
+										$("#jiaoyitime1").val(data.row.jytime);
+										$("#jiaoyitime2").val(data.row.jytime);
+										$("#gupiaono").val(data.row.jycode);
+										$("#gupiao").val(data.row.name);
+										$("#jiage").val(data.row.price);
+										$("#gushu").val(data.row.num * 100);
+										huoxianjia(1);
+										if (data.row.price) {
+											jisuannum();
+										}
+									}
+
+								})
+
+							$(function () {
+
+								var t = 0;
+								$('#jiaoyiriqi').blur(function () {
+									jiaoyiriqi = $(this).val();
+									if (new Date(jiaoyiriqi).getDay() == 0 || new Date(jiaoyiriqi).getDay() ==
+										6) {
+										//	$(this).val('');
+										alert('您选择了周末，请重新选择日期');
+
+									}
+								})
+
+
+								$('#gupiaono').blur(function () {
+									huoxianjia();
+								});
+
+								//
+								$('#jiage').blur(function () {
+
+									jisuannum();
+								});
+
+
+								$("#gushu").bind("input propertychange", function () {
+
+									$gs = $('#gushu').val();
+									$shuliang = $('#shuliang').val();
+									$gupiao = $('#gupiao').val();
+
+
+									if ($gs > 0 && parseInt($gs) <= parseInt($shuliang)) { //&& ($gs % 100 == 0)
+										// console.log($gs)
+										$('#tijiao').attr("disabled", false);
+										$("#memo").html("");
+										var p = 100;
+										if ($gupiao.includes("债")) {
+											p = 10;
+
+										}
+
+										if (t == 0 && $gs % p != 0) {
+											console.log('t1', t)
+											$("#memo").html("买入数量为" + p + "的倍数");
+											$('#tijiao').attr("disabled", true)
+										} else {
+											console.log('t2', t)
+											$('#tijiao').attr("disabled", false);
+											$("#memo").html("");
+										}
+										$(".MairuNum").html("买入数量(" + p + "的倍数)");
+										$('#tijiao').attr("disabled", false);
+									} else {
+										// console.log($gs)
+										// console.log($shuliang)
+										$("#memo").html("请输入股数(100的倍数)并且在可买数量内，可买数量只是参照，确认没问题，可以提交");
+										$('#tijiao').attr("disabled", false);
+									}
+								});
+							});
+						})
+
+						// 绑定改变事件
+						$("#gptype").change(function () {
+							// 获取选择的值
+							var gptype = $(this).val();
+
+							if (gptype == 3) {
+								$("#gupiao").removeAttr("readonly");
+								$('#gupiao').attr('placeholder', "新三板股票请自行输入股票名称");
+								//$(".sanban").show();
+							} else {
+								//	$(".sanban").hide();
+								$('#gupiao').attr("readonly", "readonly");
+								$('#gupiao').attr('placeholder', "输入股票代码，自动获取股票名称");
+							}
+
+						});
+
+						//提交数据
+						$(document).ready(function () {
+							$("#mairu").submit(function (event) {
+								event.preventDefault(); // 阻止表单的默认提交行为  
+								// 获取表单数据  
+
+                                                        if (typeof window.isMarketOpen !== 'function' || !window.isMarketOpen()) {
+                                                                alert('非交易时间禁止买入');
+                                                                return;
+                                                        }
+
+								var form = $(this);
+								validateLiveBuyQuote().then(function () {
+									showLoadingLayer();
+
+									var formData = form.serialize();
+
+								// 使用 AJAX 提交表单数据  
+								$.ajax({
+									type: "POST",
+									url: host + "php/user.php", // 替换为你的服务器端点  
+									data: formData,
+									success: function (response) {
+										// 处理服务器返回的响应  
+										console.log(response);
+										if (response.status == "SUCCESS") {
+											alert(response.beizhu);
+											qinghuancun();
+										}
+										hideLoadingLayer();
+										window.location.href = "cc.html";
+									},
+									error: function (xhr, status, error) {
+										// 处理提交错误  
+										console.log("Error: " + error);
+										hideLoadingLayer();
+									}
+								});
+								}).catch(function (error) {
+									alert(error && error.message || "实时行情校验失败，无法买入");
+								});
+							});
+						});
+
+						function PC_Tiao(data, remToPx) {
+							var DqBarHeight = 2; //单位rem;
+							viewRemWidth = window.innerWidth / remToPx;
+							NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+
+							$("#wrapper").css("margin-top", NewBarHeight + "rem");
+							$("#header").css("margin-top", NewBarHeight + "rem");
+							$(".ztlyanse").css("height", (NewBarHeight + 0.2) + "rem");
+						}
+					</script>
+					<input id="navcss" value="1" type="hidden">
+				</div>
+
+			</div>
+		</div>
+		<div class="mobileSelect">
+			<div class="grayLayer"></div>
+			<div class="content">
+				<div class="btnBar">
+					<div class="fixWidth">
+						<div class="cancel">取消</div>
+						<div class="title">选择时间</div>
+						<div class="ensure">确认</div>
+					</div>
+				</div>
+				<div class="panel">
+					<div class="fixWidth">
+						<div class="wheels">
+							<div class="wheel" style="width: 33.33%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li>09</li>
+									<li>10</li>
+									<li>11</li>
+									<li>13</li>
+									<li>14</li>
+									<li>15</li>
+								</ul>
+							</div>
+							<div class="wheel" style="width: 33.33%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li>00</li>
+									<li>01</li>
+									<li>02</li>
+									<li>03</li>
+									<li>04</li>
+									<li>05</li>
+									<li>06</li>
+									<li>07</li>
+									<li>08</li>
+									<li>09</li>
+									<li>10</li>
+									<li>11</li>
+									<li>12</li>
+									<li>13</li>
+									<li>14</li>
+									<li>15</li>
+									<li>16</li>
+									<li>17</li>
+									<li>18</li>
+									<li>19</li>
+									<li>20</li>
+									<li>21</li>
+									<li>22</li>
+									<li>23</li>
+									<li>24</li>
+									<li>25</li>
+									<li>26</li>
+									<li>27</li>
+									<li>28</li>
+									<li>29</li>
+									<li>30</li>
+									<li>31</li>
+									<li>32</li>
+									<li>33</li>
+									<li>34</li>
+									<li>35</li>
+									<li>36</li>
+									<li>37</li>
+									<li>38</li>
+									<li>39</li>
+									<li>40</li>
+									<li>41</li>
+									<li>42</li>
+									<li>43</li>
+									<li>44</li>
+									<li>45</li>
+									<li>46</li>
+									<li>47</li>
+									<li>48</li>
+									<li>49</li>
+									<li>50</li>
+									<li>51</li>
+									<li>52</li>
+									<li>53</li>
+									<li>54</li>
+									<li>55</li>
+									<li>56</li>
+									<li>57</li>
+									<li>58</li>
+									<li>59</li>
+									<li>60</li>
+								</ul>
+							</div>
+							<div class="wheel" style="width: 33.33%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li>00</li>
+									<li>01</li>
+									<li>02</li>
+									<li>03</li>
+									<li>04</li>
+									<li>05</li>
+									<li>06</li>
+									<li>07</li>
+									<li>08</li>
+									<li>09</li>
+									<li>10</li>
+									<li>11</li>
+									<li>12</li>
+									<li>13</li>
+									<li>14</li>
+									<li>15</li>
+									<li>16</li>
+									<li>17</li>
+									<li>18</li>
+									<li>19</li>
+									<li>20</li>
+									<li>21</li>
+									<li>22</li>
+									<li>23</li>
+									<li>24</li>
+									<li>25</li>
+									<li>26</li>
+									<li>27</li>
+									<li>28</li>
+									<li>29</li>
+									<li>30</li>
+									<li>31</li>
+									<li>32</li>
+									<li>33</li>
+									<li>34</li>
+									<li>35</li>
+									<li>36</li>
+									<li>37</li>
+									<li>38</li>
+									<li>39</li>
+									<li>40</li>
+									<li>41</li>
+									<li>42</li>
+									<li>43</li>
+									<li>44</li>
+									<li>45</li>
+									<li>46</li>
+									<li>47</li>
+									<li>48</li>
+									<li>49</li>
+									<li>50</li>
+									<li>51</li>
+									<li>52</li>
+									<li>53</li>
+									<li>54</li>
+									<li>55</li>
+									<li>56</li>
+									<li>57</li>
+									<li>58</li>
+									<li>59</li>
+									<li>60</li>
+								</ul>
+							</div>
+						</div>
+						<div class="selectLine"></div>
+						<div class="shadowMask"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<script>
+			const inputs = document.querySelectorAll('input');
+			inputs.forEach(input => {
+				input.style.setProperty('font-size', '16px', 'important');
+			});
+		</script>
+
+
+
+</body>
+
+</html>
