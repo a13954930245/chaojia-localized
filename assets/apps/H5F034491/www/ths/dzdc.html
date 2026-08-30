@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>已清仓股票</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./dzd/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <style>
+        :root {
+            --blue: #536de6;
+            --red: #ff5b5b;
+            --danger: #ff5b5b;
+            --primary: #536de6;
+            --light: #dde8f5;
+        }
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        @font-face {
+            font-family: 'DIN';
+            src: url('./common/fonts/digital.otf');
+        }
+
+        @font-face {
+            font-family: DIN-Regular;
+            src: url(./common/fonts/DIN-thinqx.woff);
+            /* 数字 细 常规*/
+        }
+
+        html {
+            font-size: 15.625px;
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            /* background-image: url('./common/dzdc.png');
+            opacity: 0.5;
+            background-size: 100%;
+            background-repeat: no-repeat; */
+            /* margin-top: 0.5rem; */
+            font-family: 'DIN';
+            font-size: 14.4583px;
+            font-weight: 400;
+            line-height: 1.5;
+            /* color: #212529; */
+            /* background: #fff; */
+            /* background: #f5f5f5; */
+
+        }
+
+        a {
+            color: #536de6;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        a:hover {
+            color: #1e3dce;
+            text-decoration: underline;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: .5rem;
+        }
+
+        input,
+        select {
+            margin: 0;
+            font-family: inherit;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .col-md-12 {
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            padding-bottom: 1rem;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: #c2cbf6;
+            outline: 0;
+            box-shadow: 0 0 0 .2rem rgba(83, 109, 230, .25);
+        }
+
+        .btn {
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #ff5b5b;
+            border-color: #ff5b5b;
+        }
+
+        .btn-danger:hover {
+            background-color: #ff3535;
+            border-color: #ff2828;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .space {
+            padding: 3.9% 4% 1% 4%;
+        }
+
+        .space2 {
+            /* padding: 1rem 0.5rem 0rem 0.1rem; */
+            padding-top: 0.7rem;
+            /* padding-left: 1rem;
+            padding-right: 1rem; */
+            padding-bottom: 0rem;
+        }
+
+        .mobile2 {
+            background-color: #f5f5f5;
+            background-image: url('../ths/dzdc/navbar.png');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            min-height: 30vh;
+        }
+
+        .mobiletop2 {
+            height: 2.90rem;
+            color: #fff;
+            /* margin-top: 0.5rem; */
+        }
+
+        .headzq2 {
+            line-height: 1rem;
+            font-size: 0.9rem;
+            position: relative;
+            letter-spacing: 0;
+            text-align: center;
+            padding: 0.35rem 0;
+        }
+
+        .drcj {
+            font-size: 1.1rem;
+            padding: 0.05rem 0 0.4rem;
+            font-family: 'DIN';
+            font-weight: 500;
+        }
+
+        .zqname2 {
+            font-family: "DIN";
+            padding: 0;
+            font-weight: normal;
+            position: relative;
+        }
+
+        .back {
+            width: 12vw;
+            height: 2.7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .dznave {
+            position: relative;
+            margin-top: 0.3rem;
+            color: #666666;
+            width: 100vw;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            z-index: 99999;
+        }
+
+        /* .dznave a {
+            color: #666666;
+            font-size: 0.95rem;
+            width: 15.5%;
+            float: left;
+            display: block;
+            margin: 0 0.5%;
+            text-align: center;
+            text-decoration: none;
+            font-family: "DIN-Mediumqx", "MiLanPro";
+        } */
+
+        .dznave a {
+            color: #666666;
+            font-size: 1rem;
+            width: 15.9%;
+            float: left;
+            display: block;
+            margin: 0 0.25%;
+            text-align: center;
+            text-decoration: none;
+            font-family: "DIN-Mediumqx", "MiLanPro";
+        }
+
+        /* .dznave a.on {
+  color: #292929;
+  border-bottom: 0.2rem solid #e83030;
+} */
+        /* new code for active underline */
+        .dznave a.on {
+            color: #292929;
+            position: relative;
+            border-bottom: none !important;
+        }
+
+        .dznave a.on::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25%;
+            height: 2px;
+            /* background-color: currentColor; */
+            border-bottom: 0.2rem solid #e83030;
+            border-radius: 0.1rem;
+        }
+
+        .dzbox {
+            width: 100%;
+            margin: 0;
+
+            /* margin-top: 0.3rem; */
+        }
+
+        .dzbox-yk {
+            width: 100%;
+            font-size: 0.9rem;
+            color: #323232;
+            height: auto;
+            background-image: url(../img/dzdtop_05.png);
+            background-size: 100% auto;
+            background-position: -0.05rem 0.2rem;
+            background-repeat: no-repeat;
+            overflow: hidden
+        }
+
+        .dzbox-yk-left {
+            font-family: "DIN-Regular";
+            color: #323232;
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            line-height: 165%;
+            font-size: 1rem;
+            padding-left: 2rem;
+        }
+
+        .dzbox-yk-left .ykriqi {
+            font-size: 0.85rem;
+            color: #999999;
+            /* padding-left: 2.25rem; */
+            padding-left: 1rem;
+            padding-top: 0.1rem;
+            line-height: 155%;
+        }
+
+        .dzbox-info {
+            margin-top: 0.6rem;
+            overflow: hidden;
+            line-height: 1.62;
+        }
+
+        .dzbox-info li {
+            list-style: none;
+            float: left;
+            width: 45.2%;
+            overflow: hidden;
+            font-size: 0.97rem;
+            color: #999;
+            margin-right: 9.4%;
+        }
+
+        .dzbox-info li:nth-child(2n) {
+            margin-right: 0%
+        }
+
+        .dzbox-info li em {
+            font-style: normal;
+            width: 55%;
+            display: inline-block
+        }
+
+        .dzbox-info li span {
+            font-family: 'DIN';
+            color: #323232;
+            float: right;
+            font-size: 0.89rem;
+        }
+
+        .dzbox-num {
+            display: flex;
+            justify-content: center;
+            text-align: center;
+            font-size: 1.8rem;
+            margin-top: 0.2rem;
+        }
+
+        .ykriqi>img {
+            width: 1.2rem;
+        }
+
+        .dzbox-top {
+            width: 100%;
+            height: auto;
+            background: #fff;
+        }
+
+        .dzbox-bottom {
+            width: 100%;
+            height: auto;
+            background: #fff;
+        }
+
+        .dzbox-icon {
+            width: 100%;
+            margin: 0 auto;
+            height: 1.2rem;
+            margin-top: 0.34rem;
+            padding-left: calc(50% - 0.3rem)
+        }
+
+        .jdx {
+            height: 0.6rem;
+            width: 0.6rem;
+            border-right: 0.11rem solid #323232;
+            border-top: 0.11rem solid #323232;
+            transform: rotate(-45deg);
+        }
+
+        .chaxunlist {
+            margin-top: 1rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .tablelist {
+            width: 92%;
+            /* This creates the left/right 'margin' effect */
+            margin: 0 auto;
+            /* Centers the table */
+            border-collapse: collapse;
+            margin-top: -0.8rem;
+        }
+
+        .month-header {
+            background-color: #ffffff;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        /* 1. Month Header: Full width border */
+        .month-header th {
+            padding: 1.1rem 0 0.6rem 0;
+            /* Extra top padding to separate month groups */
+            text-align: left;
+            font-size: 1.1rem;
+            background-color: transparent;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        /* 2. Base style for all stock cells */
+        .month-details td {
+            border-bottom: 1px solid #eeeeee;
+            vertical-align: top;
+            padding-top: 0.4rem;
+            /* Standard padding for the 1st row */
+            padding-bottom: 0.8rem;
+        }
+
+        /* 3. Align the numbers (Amount, Profit, Market) with the Stock Name */
+        .month-details td:not(:first-child) {
+            /* This pushes numbers down to match the baseline of the larger Stock Name */
+            padding-top: 1.1rem;
+        }
+
+
+
+
+
+
+        .tablelist th {
+            font-size: 1rem;
+            line-height: 1.8;
+            font-weight: normal;
+            position: relative
+        }
+
+        .tablelist td {
+            border-bottom: 0px;
+            font-family: 'DIN';
+            text-align: end;
+        }
+
+        .tablelist td div {
+            border-bottom: 0px;
+            font-family: 'DIN';
+            text-align: start;
+            /* padding-left: 0.5rem; */
+        }
+
+        .tablelist td div.infofontzw0 {
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+
+
+        .tablelist .b {
+            width: 0.75rem;
+            bottom: 0.7rem;
+            margin-left: 0.32rem;
+            padding-bottom: 0.1rem;
+        }
+
+        .tablelist .b2 {
+            width: 0.85rem;
+            bottom: 0.7rem;
+            margin-left: 0.07rem;
+            margin-right: 0.3rem;
+        }
+
+
+        .infofont {
+            color: #999999;
+            font-size: 0.9rem;
+        }
+
+        .infofontzw {
+            font-family: "MiLanPro";
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #323232
+        }
+
+        .infofontzw2 {
+            font-size: 0.7rem;
+            padding-bottom: 0.2rem;
+        }
+
+        .infofontzw1 {
+            font-size: 0.82rem;
+            padding-bottom: 0.1rem;
+        }
+
+        .infofontzw0 {
+            font-size: 1rem;
+        }
+
+        .jdx-tr {
+            /* height: 0.6rem;
+            width: 0.6rem;
+            border-right: 0.11rem solid #323232;
+            border-top: 0.11rem solid #323232;
+            transform: rotate(-45deg);
+            display: inline-block; */
+            display: inline-block;
+            width: 0.8rem;
+            height: 0.8rem;
+            border-right: 2px solid #999;
+            border-top: 2px solid #999;
+            transform: rotate(135deg);
+            vertical-align: middle;
+            transition: transform 0.2s ease;
+            /* Makes the opening look smoother */
+            margin-top: 0.6rem;
+            /* Fine-tune vertical alignment with text */
+        }
+
+        .border-span {
+            width: 100%;
+            display: flex;
+            margin: 0 auto;
+            padding: 0;
+            border-bottom: 1px solid rgb(235, 235, 235);
+            box-sizing: border-box;
+        }
+
+
+        /* .border-span-l th::after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            margin: 0 auto;
+            padding: 0;
+            border-bottom: 1px solid rgb(235, 235, 235);
+            box-sizing: border-box;
+        } */
+
+        /* Text color classes */
+        .text-red {
+            color: var(--red);
+        }
+
+        .text-blue {
+            color: var(--blue);
+        }
+
+        /* btn */
+        .dzbox-tab-group {
+            display: flex;
+            background: #eee;
+            /* margin-bottom: 7px; */
+            width: 77%;
+            margin-left: 2.9rem;
+        }
+
+
+        .dzbox-tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px 0;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .dzbox-tab.active {
+            color: #000;
+            background: #fff;
+            margin: 2px;
+        }
+
+        .red {
+            color: #ff2536;
+        }
+
+        .green {
+            color: #4691ee;
+        }
+
+        .amount {
+            font-size: 1.2rem;
+            /* Adjusted to match screenshot */
+            /*padding-right: 2rem;*/
+            font-weight: 500;
+        }
+
+        .profitRate {
+            font-size: 1.2rem;
+            padding-right: 2.5rem;
+            /* Space between rate and market */
+            font-weight: 500;
+            width: 33.5%;
+
+        }
+
+        .market {
+            font-size: 1.2rem;
+            padding-right: 0;
+            /* Align flush to the right margin */
+            font-weight: 500;
+            width: 15%;
+        }
+
+        /* .dznave a.on {
+            color: #e83030;
+            border-bottom: 0.121rem solid #e83030
+        } */
+
+        .chaxunbtxt2 {
+            margin-top: 1rem;
+        }
+
+        .month-details {
+            /* Remove the border from the TR */
+            border-bottom: none !important;
+        }
+
+        /* Base styles applied to ALL cells */
+        .month-details td {
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        /* Specific styles for the FIRST td */
+        .month-details td:first-child {
+            vertical-align: middle;
+            /* padding: 1rem 0; (Optional: add if needed) */
+        }
+
+        /* Specific styles for the REST of the tds */
+        .month-details td:not(:first-child) {
+            vertical-align: top;
+            padding-top: 0.8rem;
+        }
+
+
+        /* Remove the border from the very last stock item in a list if desired */
+        .month-details:last-child td {
+            border-bottom: none;
+        }
+
+        .table-header-image {
+            width: 100%;
+            height: auto;
+            margin: 0 !important;
+            padding: 0 !important;
+            display: block;
+            /* This ensures no extra space below the image */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main"
+        style="background-image: url('../ths/dzdc/bg123.png'); background-size: 100% auto; background-repeat: no-repeat; background-attachment: fixed;">
+        <div class="mobile2">
+            <aside class="empty" style="background-color: #f12f37; height: 0.3rem; margin-top: 0;"></aside>
+            <div class="mobiletop2">
+                <div class="headzq2">
+                    <div class="drcj">已清仓股票</div>
+                    <b class="zqname2">东莞证券<span class="zqnumber2"> **3390 </span></b>
+                </div>
+                <a class="back" href="cx.html"></a>
+            </div>
+
+            <div class="dznave">
+                <a href="dzdc.html?monthly" class="nav-link on">本月</a>
+                <a href="dzdc.html?three" class="nav-link">近三月 </a>
+                <a href="dzdc.html?six" class="nav-link">快半年</a>
+                <a href="dzdc.html?year" class="nav-link">今年</a>
+                <a href="dzdc.html?all" class="nav-link">全部 </a>
+                <a href="dzdc.html" class="nav-link">自定义</a>
+            </div>
+
+            <div class="dzbox">
+                <div class="dzbox-top space">
+                    <!-- <div class="dzbox-yk-left">
+                        <div>实现总盈亏 (<span id="datastart">年</span>月<span id="dataend">月</span>)</div>
+                        <div class="ykriqi"><img class="eye" src="../img/eye.png"></div>
+                    </div> -->
+                    <div class="dzbox-yk-left">
+                        <div id="date-range-label">实现总盈亏 (--)</div>
+                        <div class="ykriqi"><img class="eye" src="../img/eye.png"></div>
+                    </div>
+                    <div class="dzbox-num" id="qjykclass">
+                        <div class="yknum1">+0.00</div>
+                    </div>
+                    <div class="dzbox-info">
+                        <li><em>成功率</em><span id="pjcw">--</span></li>
+                        <li><em style="padding-left: 0.3rem;">清仓次数</em><span id="unijynums">--</span></li>
+                        <li><em>平均持股天数</em><span id="chenggonglv">--</span></li>
+                        <li><em style="padding-left: 0.3rem;">交易股票数</em><span id="jynums">--</span></li>
+                        <li class="jdshow"><em>平均盈利</em><span id="yinglinums">--</span></li>
+                        <li class="jdshow"><em style="padding-left: 0.3rem;">平均亏损</em><span id="kuisunnums">--</span>
+                        </li>
+                        <li class="jdshow"><em>最大盈利</em><span id="numdays">--</span></li>
+                        <li class="jdshow"><em style="padding-left: 0.3rem;">最大亏损</em><span id="kuisunmax">--</span>
+                        </li>
+                    </div>
+                    <div class="dzbox-icon">
+                        <div class="jdx"></div>
+                    </div>
+                </div>
+
+                <div class="dzbox-bottom space2">
+                    <div
+                        style="display: inline-flex;width: 100%; padding-right: 1rem; padding-left: 1rem;    padding-top: 0.3rem;    height: 3rem;">
+                        <div class="dzbox-tab-group" role="group" aria-label="Button group">
+                            <span class="dzbox-tab active" id="btnTimeShow" aria-pressed="true">按时间展示</span>
+                            <span class="dzbox-tab">股票热力图</span>
+                            <span class="dzbox-tab">盈亏排行榜</span>
+                        </div>
+                        <img src="../img/question.png" alt="delayicon" style="height: 1.3rem;
+                        display: inline-block;
+                        margin-left: 1.5rem;
+                        margin-top: 0.7rem;">
+                    </div>
+                    <table class="tablelist2">
+                        <img src="./dzdc/tableHeader1.png" alt="" class="table-header-image">
+                    </table>
+                    <table class="tablelist">
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="chaxunlist">
+                <span class="chaxunbtxt1">更多数据请调整时间范围进行查看</span>
+                <a href="=dzdset">
+                    <div class="chaxunbtxt2"><span>功能幫助 </span><span class="line1"
+                            style="padding: 0 0.5rem;">|</span><span>意见反馈</span></div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+    <script type="text/javascript" src="./dzd/global.js"></script>
+    <script>
+
+        $(document).on("click", '.dzbox-icon', function () {
+            $('.jdshow').toggle();
+            $(this).children('.jd').css("transform", "rotate(-45deg)");
+            if ($('.jdshow').is(':visible')) {
+                $(this).children('.jdx').css("transform", "rotate(-45deg)");
+            } else {
+                $(this).children('.jdx').css("transform", "rotate(-225deg)");
+            }
+        });
+        let masked = false;
+        const originalTexts = new WeakMap();
+
+        $(document).on("click", '.eye', function () {
+            // console.log('click');
+            const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+
+            while (walker.nextNode()) {
+                const node = walker.currentNode;
+
+                if (!masked) {
+                    // Save original text if it contains digits
+                    if (/\d/.test(node.textContent)) {
+                        originalTexts.set(node, node.textContent);
+                        node.textContent = node.textContent.replace(/[0-9,.+---%]/g, '*');
+                    }
+                } else {
+                    // Restore original text if it was changed
+                    if (originalTexts.has(node)) {
+                        node.textContent = originalTexts.get(node);
+                    }
+                }
+            }
+
+            masked = !masked;
+        });
+        // Tab switching functionality
+        $('.dzbox-tab').click(function () {
+            $('.dzbox-tab').removeClass('active');
+            $(this).addClass('active');
+            // Add functionality for different tabs here
+        });
+
+    </script>
+    <script>
+
+        function fetchDatas(type, callback) {
+            $.post(host + "php/user.php", {
+                rec: "liquidatedstocks",
+                type: type,
+                username: Global_Username
+            })
+                .done(function (data) {
+                    console.log(data);
+                    callback(data);
+
+                });
+        }
+
+        //     function displaydzdData(data) {
+        //         console.log(data);
+        //         let totalProfit = 0;
+        //         let totalLoss = 0;
+        //         let totalTrades = 0;
+        //         let totalWinTrades = 0;
+        //         let totalLosingTrades = 0;
+        //         let totalMaxProfit = 0;
+        //         let totalMaxLoss = 0;
+
+        //         // console.log(data.monthlyData);
+        //         data.monthlyData.forEach(item => {
+
+        //             const stock = item.stocks;
+        //             const profit = stock.amount; // Using "total" as total profit/loss
+        //             totalProfit += profit > 0 ? profit : 0;
+        //             totalLoss += profit < 0 ? -profit : 0;
+        //             totalTrades += stock.totalTrades;
+        //             totalWinTrades += stock.winningTrades;
+        //             totalLosingTrades += stock.losingTrades;
+        //             totalMaxProfit = Math.max(totalMaxProfit, stock.maxProfit);
+        //             totalMaxLoss += -Math.abs(stock.maxLoss);
+        //         });
+
+        //         const winRate = totalTrades > 0 ? (totalWinTrades / totalTrades) * 100 : 0;
+        //         const avgProfit = totalWinTrades > 0 ? totalProfit / totalWinTrades : 0;
+        //         const avgLoss = totalLosingTrades > 0 ? totalLoss / totalLosingTrades : 0;
+
+        //         // const sign = totalProfit > 0 ? '+' : (totalProfit < 0 ? '-' : '');
+
+        //         // $('#datastart').text(data.dateRange?.start || '--');
+        //         const dr = data.dateRange;
+        //         if (dr && dr.start) {
+        //             const s = dr.start.split('-');
+        //             const endStr = dr.end === "今天" ? "至今" : dr.end;
+        //             $('#date-range-label').text(`实现总盈亏(${s[0]}年${s[1]}月${s[2]}日-${endStr})`);
+        //         }
+        //         $('#dataend').text(data.dateRange?.end || '--');
+        //         let result = totalProfit - totalLoss;
+
+        //         // 1. Determine the display format
+        //         // If it's a whole number (result % 1 === 0), use .toFixed(2)
+        //         // Otherwise, convert to string to show exactly what's in the data
+        //         let displayValue = (result % 1 === 0) ? result.toFixed(2) : result.toString();
+
+        //         // 2. Set the text
+        //         $('.yknum1').text(displayValue);
+
+        //         // 3. Update the color based on your previous requirement (<0 is red, else blue)
+        //         $('.yknum1').css('color', result < 0 ? '#4691ee' : '#ff2536');
+        //         $('#pjcw').text(winRate.toFixed(2) + '%');
+        //         $('#unijynums').text(data.clearTimes || '--');
+        //         $('#chenggonglv').text(data.holidayData?.average || '--');
+        //         $('#jynums').text(totalTrades || '--');
+        //         $('#yinglinums').text(avgProfit.toFixed(2) || '--');
+        //         $('#kuisunnums').text(avgLoss.toFixed(2) || '--');
+        //         $('#numdays').text('+' + totalMaxProfit.toFixed(2) || '--');
+        //         $('#kuisunmax').text(totalMaxLoss.toFixed(2) || '--');
+        //         // data.gps.forEach(item => {
+        //         //     const code = item.code;
+        //         //     const datax = item.data;
+        //         //     datax.forEach(item => { console.log(item); });
+
+
+        //         //     // const month = item.month.substring(0, 7);
+        //         //     // if (!groupedData[month]) groupedData[month] = [];
+        //         //     // groupedData[month].push(item.stocks);
+        //         // });
+
+
+        //         // const groupedData = {};
+        //         // const groupedData2 = {};
+        //         // data.monthlyData.forEach(item => {
+        //         //     const month = item.month.substring(0, 7);
+        //         //     if (!groupedData[month]) groupedData[month] = [];
+        //         //     groupedData[month].push(item.stocks);
+
+        //         //     // Find matching GPS data for this stock
+        //         //     const matchingGps = data.gps.find(gpsItem => gpsItem.code === item.stocks.code);
+
+        //         //     if (matchingGps) {
+        //         //         console.log('Match found for stock:', item.stocks.code);
+        //         //         // You can do something with the matchingGps here
+        //         //         // For example, add to groupedData2
+        //         //         if (!groupedData2[month]) {
+        //         //             groupedData2[month] = [];
+        //         //         }
+        //         //         groupedData2[month].push({
+        //         //             stock: item.stocks,
+        //         //             gps: matchingGps
+        //         //         });
+        //         //     }
+        //         // });
+        //         const groupedData = {};
+
+        //         data.monthlyData.forEach(item => {
+        //             const month = item.month.substring(0, 7);
+
+        //             if (!groupedData[month]) groupedData[month] = [];
+        //             groupedData[month].push(item.stocks);
+        //         });
+        //         const $tableBody = $('.tablelist tbody');
+        //         $tableBody.empty();
+
+        //         //     Object.entries(groupedData).forEach(([month, stocks]) => {
+        //         //         const total = stocks.reduce((sum, stock) => sum + stock.amount, 0);
+        //         //         console.log(total);
+        //         //         const monthHeaderValue = total > 0 ? '#ff2536' : (total < 0 ? '#e93030' : 'black');
+        //         //         console.log(monthHeaderValue);
+        //         //         $tableBody.append(`
+        //         //     <tr class="month-header">
+        //         //         <th style="width: 34%; text-align: left;">
+        //         //             <div style="margin-left: 0.5rem;">
+        //         //                 <div class="jdx-tr" style="${stocks.length === 0 ? 'visibility: hidden;' : ''}"></div>
+        //         //                 <span style="font-size:1rem;padding-top: 3rem; padding-left:0.5rem">${month}</span>
+        //         //             </div>
+        //         //         </th>
+        //         //         <th colspan="3" class="monthHeaderTotal" style="color: ${monthHeaderValue}; font-size: 1.2rem; text-align: right; padding-right: 0;">
+        //         //     </tr>
+        //         // `);
+        //         //     });
+
+        //         Object.entries(groupedData).forEach(([month, stocks]) => {
+        //             // Calculate total
+        //             const total = stocks.reduce((sum, stock) => sum + stock.amount, 0);
+
+        //             // Determine color (matching your logic: red for positive, blue/red for negative)
+        //             const monthHeaderValue = total > 0 ? '#ff2536' : (total < 0 ? '#4691ee' : '#e93030');
+
+        //             $tableBody.append(`
+        //     <tr class="month-header">
+        //         <th colspan="4" style="border-bottom: 1px solid #eeeeee; padding: 1.1rem 0 0.6rem 0;">
+        //             <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+
+        //                 <!-- Left Side: Icon and Month Name -->
+        //                 <div style="display: flex; align-items: center; margin-left: 0.5rem;">
+        //                     <div class="jdx-tr" style="${stocks.length === 0 ? 'visibility: hidden;' : ''}"></div>
+        //                     <span style="font-size: 1.1rem; padding-left: 0.6rem;">${month}</span>
+        //                 </div>
+
+        //                 <!-- Right Side: The Total Value -->
+        //                 <div class="monthHeaderTotal" style="color: ${monthHeaderValue}; font-size: 1.1rem; font-family: 'DIN';">
+        //                     ${total > 0 ? '+' : ''}${total === 0 ? '0.00' : total.toFixed(2)}
+        //                 </div>
+
+        //             </div>
+        //         </th>
+        //     </tr>
+        // `);
+        //         });
+
+        //         // === Toggle month rows ===
+        //         $(document).off('click', '.month-header').on('click', '.month-header', function () {
+        //             const $this = $(this);
+        //             const $icon = $this.find('.jdx-tr');
+
+        //             if ($this.next().hasClass('month-details')) {
+        //                 $this.nextUntil(':not(.month-details)').remove();
+        //                 $icon.css('transform', 'rotate(135deg)');
+        //             } else {
+        //                 const month = $this.find('span').text();
+        //                 const stocks = groupedData[month] || [];
+
+        //                 if (stocks.length === 0) {
+        //                     $this.after(`<tr class="month-details"><td colspan="4" style="text-align:center;color:#999;">本月无清仓记录</td></tr>`);
+        //                 } else {
+        //                     stocks.slice().reverse().forEach(stock => {
+
+        //                         const profitRate = stock.amount !== 0 ? (stock.total / stock.amount) : 0;
+        //                         // Determine color for amount
+        //                         const amountColor = stock.amount > 0 ? '#e93030' : (stock.amount < 0 ? '#4691ee' : 'black');
+
+        //                         // Determine color for profitRate
+        //                         const profitRateColor = profitRate > 0 ? '#e93030' : (profitRate < 0 ? '#4691ee' : 'black');
+        //                         const change2Color = stock.change2 > 0 ? '#e93030' : (stock.change2 < 0 ? '#4691ee' : 'black');
+        //                         $this.after(`<tr class="month-details">
+        //                         <td>
+        //                             <div class="infofontzw infofontzw0">${stock.name}</div>
+        //                             <div class="infofont">${stock.date} 清仓</div>
+        //                         </td>
+        //                         <td class="amount" style="color: ${amountColor};">${stock.amount || '--'}</td>
+        //                         <td class="profitRate" style="color: ${profitRateColor};">${profitRate.toFixed(2) || '--'}%</td>
+        //                         <td class="market" style="color: ${change2Color};">
+        //                             ${(stock.change2 || stock.change2 === 0) ? parseFloat(stock.change2).toFixed(2) : '0.00'}%
+        //                         </td>
+        //                     </tr>
+        //                 `); // <td>${stock.gps.rate.toFixed(0) || '--'}%</td >// 1101 要改的
+        //                     });
+        //                     $icon.css('transform', 'rotate(-45deg)');
+        //                 }
+        //             }
+        //         });
+        //     }
+
+        function displaydzdData(data) {
+            if (data.status == "FAIL") {
+                window.location.href = "login.html";
+            }
+
+            // Update Securities Info
+            if (data.userdata) {
+                $('.zqname2').contents().filter(function () {
+                    return this.nodeType === 3;
+                })[0].nodeValue = data.userdata.zhengquanname;
+                $('.zqnumber2').text(' ' + data.userdata.zhengquannumber + ' ');
+            }
+
+            // --- 1. Calculate Summary Stats ---
+            let totalProfit = 0, totalLoss = 0, totalTrades = 0, totalWinTrades = 0, totalLosingTrades = 0;
+            let totalMaxProfit = 0, totalMaxLoss = 0;
+
+            data.monthlyData.forEach(item => {
+                const stock = item.stocks;
+                const profit = stock.amount;
+                totalProfit += profit > 0 ? profit : 0;
+                totalLoss += profit < 0 ? -profit : 0;
+                totalTrades += stock.totalTrades;
+                totalWinTrades += stock.winningTrades;
+                totalLosingTrades += stock.losingTrades;
+                totalMaxProfit = Math.max(totalMaxProfit, stock.maxProfit);
+                totalMaxLoss += -Math.abs(stock.maxLoss);
+            });
+
+            const winRate = totalTrades > 0 ? (totalWinTrades / totalTrades) * 100 : 0;
+            const avgProfit = totalWinTrades > 0 ? totalProfit / totalWinTrades : 0;
+            const avgLoss = totalLosingTrades > 0 ? totalLoss / totalLosingTrades : 0;
+
+            // Update Date Range Label
+            const dr = data.dateRange;
+            if (dr && dr.start) {
+                const s = dr.start.split('-');
+                const endStr = dr.end === "今天" ? "至今" : dr.end;
+                $('#date-range-label').text(`实现总盈亏(${s[0]}年${s[1]}月${s[2]}日-${endStr})`);
+            }
+
+            let result = totalProfit - totalLoss;
+            $('.yknum1').text((result % 1 === 0) ? result.toFixed(2) : result.toString());
+            $('.yknum1').css('color', result < 0 ? '#4691ee' : '#ff2536');
+            $('#pjcw').text(winRate.toFixed(2) + '%');
+            $('#unijynums').text(data.clearTimes || '--');
+            $('#chenggonglv').text(data.holidayData?.average || '--');
+            $('#jynums').text(totalTrades || '--');
+            $('#yinglinums').text(avgProfit.toFixed(2) || '--');
+            $('#kuisunnums').text(avgLoss.toFixed(2) || '--');
+            $('#numdays').text('+' + totalMaxProfit.toFixed(2) || '--');
+            $('#kuisunmax').text(totalMaxLoss.toFixed(2) || '--');
+
+            // --- 2. DYNAMIC PADDING LOGIC ---
+            const width = window.innerWidth;
+            let dynamicPadding;
+
+            if (width <= 395) {
+                dynamicPadding = "11.2rem"; // iPhone 12/15
+            } else if (width > 395 && width <= 420) {
+                dynamicPadding = "11.9rem"; // XR / Android
+            } else {
+                dynamicPadding = "12.5rem"; // Pro Max
+            }
+
+            // --- 3. Build the Table Headers ---
+            const groupedData = {};
+            data.monthlyData.forEach(item => {
+                const month = item.month.substring(0, 7);
+                if (!groupedData[month]) groupedData[month] = [];
+                groupedData[month].push(item.stocks);
+            });
+
+            const $tableBody = $('.tablelist tbody');
+            $tableBody.empty();
+
+            Object.entries(groupedData).forEach(([month, stocks]) => {
+                const total = stocks.reduce((sum, stock) => sum + stock.amount, 0);
+                const monthHeaderValue = total > 0 ? '#ff2536' : (total < 0 ? '#4691ee' : '#e93030');
+
+                $tableBody.append(`
+            <tr class="month-header">
+                <th colspan="4" style="border-bottom: 1px solid #eeeeee; padding: 1.1rem 0 0.6rem 0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                        <div style="display: flex; align-items: center; margin-left: 0.5rem; white-space: nowrap; flex-shrink: 0;">
+                            <div class="jdx-tr" style="${stocks.length === 0 ? 'visibility: hidden;' : ''}"></div>
+                            <span style="font-size: 1.1rem; padding-left: 0.6rem;">${month}</span>
+                        </div>
+                        <div class="monthHeaderTotal" style="color: ${monthHeaderValue}; font-size: 1.1rem; font-family: 'DIN'; padding-right: ${dynamicPadding}; flex: 1; text-align: right; font-weight: 500;">
+                            ${total > 0 ? '+' : ''}${total === 0 ? '0.00' : total.toFixed(2)}
+                        </div>
+                    </div>
+                </th>
+            </tr>
+        `);
+            });
+
+            // --- 4. ADDED: CLICK EVENT HANDLER (FIXED) ---
+            $(document).off('click', '.month-header').on('click', '.month-header', function () {
+                const $this = $(this);
+                const $icon = $this.find('.jdx-tr');
+
+                // If details are already showing, remove them (Close)
+                if ($this.next().hasClass('month-details')) {
+                    $this.nextUntil(':not(.month-details)').remove();
+                    $icon.css('transform', 'rotate(135deg)');
+                }
+                // If details are hidden, show them (Open)
+                else {
+                    const month = $this.find('span').text();
+                    const stocks = groupedData[month] || [];
+
+                    if (stocks.length === 0) {
+                        $this.after(`<tr class="month-details"><td colspan="4" style="text-align:center;color:#999;">本月无清仓记录</td></tr>`);
+                    } else {
+                        // Loop through stocks and append detail rows
+                        // slice().reverse() ensures the list appears in order
+                        stocks.slice().reverse().forEach(stock => {
+							const calculatedCost = stock.total - stock.amount;
+                            // const profitRate = stock.amount !== 0 ? (stock.total / stock.amount) : 0;
+							const profitRate = (calculatedCost !== 0) ? (stock.amount / calculatedCost) * 100 : 0;
+                            const amountColor = stock.amount > 0 ? '#e93030' : (stock.amount < 0 ? '#4691ee' : 'black');
+                            const profitRateColor = profitRate > 0 ? '#e93030' : (profitRate < 0 ? '#4691ee' : 'black');
+                            const change2Color = stock.change2 > 0 ? '#e93030' : (stock.change2 < 0 ? '#4691ee' : 'black');
+
+                            $this.after(`
+                        <tr class="month-details">
+                            <td>
+                                <div class="infofontzw infofontzw0">${stock.name}</div>
+                                <div class="infofont">${stock.date} 清仓</div>
+                            </td>
+                            <td class="amount" style="color: ${amountColor};">${stock.amount || '--'}</td>
+                            <td class="profitRate" style="color: ${profitRateColor};">${profitRate.toFixed(2) || '--'}%</td>
+                            <td class="market" style="color: ${change2Color};">
+                                ${(stock.change2 || stock.change2 === 0) ? parseFloat(stock.change2).toFixed(2) : '0.00'}%
+                            </td>
+                        </tr>
+                    `);
+                        });
+                        $icon.css('transform', 'rotate(-45deg)');
+                    }
+                }
+            });
+        }
+
+        loginstatus(function () {
+            var loginData = localStorage.getItem("loginData");
+            loginData = JSON.parse(loginData);
+            console.log(loginData);
+
+            if (loginData && loginData.userdata) {
+                const uData = loginData.userdata;
+
+                // 1. Update Securities Name (e.g., 广发证券)
+                // We target only the text node so we don't overwrite the <span> inside
+                $('.zqname2').contents().filter(function () {
+                    return this.nodeType === 3; // Targets the text "东莞证券"
+                })[0].nodeValue = uData.zhengquanname;
+
+                // 2. Update Account Number (e.g., 39****63)
+                $('.zqnumber2').text(' ' + uData.zhengquannumber + ' ');
+            }
+            //存储数据；
+            const type = window.location.search || '?default';
+            var storageKey = 'myData' + type;
+            var storageDateKey = 'dataDate' + type;
+            var today = new Date().toISOString().split('T')[0];
+
+            var storedData = localStorage.getItem(storageKey);
+            var storedDate = localStorage.getItem(storageDateKey);
+
+            if (storedData != "undefined" && storedDate === today && storedData != "undefined") {
+                // Use stored data
+                var data = JSON.parse(storedData);
+                console.log(data);
+                displaydzdData(data);
+            } else {
+                localStorage.removeItem(storageKey);
+                localStorage.removeItem(storageDateKey);
+                fetchDatas(type, function (data) {
+                    localStorage.setItem(storageKey, JSON.stringify(data));
+                    localStorage.setItem(storageDateKey, today);
+
+                    displaydzdData(data);
+
+
+                });
+            }
+        });
+
+        $(document).ready(function () {
+            $('.yknum1').each(function () {
+                // 1. Get the text
+                // 2. Remove commas and percent signs so parseFloat works
+                var text = $(this).text().trim().replace(/,/g, '').replace(/%/g, '');
+
+                // 3. Convert to a real number
+                var value = parseFloat(text);
+
+                // Check if it's a valid number before applying color
+                if (!isNaN(value)) {
+                    if (value < 0) {
+                        $(this).css('color', '#4691ee');
+                    } else {
+                        $(this).css('color', '#ff2536');
+                    }
+                }
+            });
+        });
+
+        // Navigation handling
+        // $('.nav-link').click(function () {
+        //     // e.preventDefault();
+        //     currentSection = $(this).data('section');
+        //     $('.nav-link').removeClass('on');
+        //     $(this).addClass('on');
+        // });
+
+        $(document).ready(function () {
+            const query = window.location.search; // e.g., "?monthly"
+            $('.nav-link').each(function () {
+                if ($(this).attr('href').includes(query)) {
+                    $('.nav-link').removeClass('on');
+                    $(this).addClass('on');
+                }
+            });
+        });
+
+
+
+
+    </script>
+
+    <!-- <script>
+        // 1. Define the complete Static Data object
+        const staticMockData = {
+            dateRange: {
+                start: "2024-01-01",
+                end: "今天"
+            },
+            clearTimes: 42, // 清倉次數
+            holidayData: {
+                average: "12.5" // 平均持股天数
+            },
+            monthlyData: [
+                {
+                    month: "2024-03-01",
+                    stocks: {
+                        name: "腾讯控股",
+                        code: "00700",
+                        date: "2024-03-15",
+                        amount: 8500.00,  // 盈亏金额
+                        total: 425.00,   // Used to calculate profitRate (425/8500 = 0.05 or 5%)
+                        change2: 2.34,   // 市场表现
+                        totalTrades: 5,
+                        winningTrades: 4,
+                        losingTrades: 1,
+                        maxProfit: 1200.00,
+                        maxLoss: -300.00
+                    }
+                },
+                {
+                    month: "2024-03-01",
+                    stocks: {
+                        name: "阿里巴巴-W",
+                        code: "09988",
+                        date: "2024-03-10",
+                        amount: -2100.00,
+                        total: -105.00,
+                        change2: -1.20,
+                        totalTrades: 3,
+                        winningTrades: 1,
+                        losingTrades: 2,
+                        maxProfit: 500.00,
+                        maxLoss: -600.00
+                    }
+                },
+                {
+                    month: "2024-02-01",
+                    stocks: {
+                        name: "美团-W",
+                        code: "03690",
+                        date: "2024-02-22",
+                        amount: 4500.00,
+                        total: 900.00,
+                        change2: 5.67,
+                        totalTrades: 2,
+                        winningTrades: 2,
+                        losingTrades: 0,
+                        maxProfit: 4500.00,
+                        maxLoss: 0.00
+                    }
+                },
+                {
+                    month: "2024-01-01",
+                    stocks: {
+                        name: "小米集团-W",
+                        code: "01810",
+                        date: "2024-01-15",
+                        amount: -500.00,
+                        total: -25.00,
+                        change2: 0.45,
+                        totalTrades: 4,
+                        winningTrades: 2,
+                        losingTrades: 2,
+                        maxProfit: 100.00,
+                        maxLoss: -300.00
+                    }
+                }
+            ]
+        };
+
+        // 2. Initialize the page with the static data
+        $(document).ready(function () {
+            // Call your existing display function
+            displaydzdData(staticMockData);
+
+            // Force the summary number color (Red for positive, Blue for negative)
+            const summaryVal = parseFloat($('.yknum1').text());
+            if (summaryVal >= 0) {
+                $('.yknum1').css('color', '#ff2536').text('+' + summaryVal.toFixed(2));
+            } else {
+                $('.yknum1').css('color', '#4691ee');
+            }
+        });
+    </script> -->
+</body>
+
+</html>
