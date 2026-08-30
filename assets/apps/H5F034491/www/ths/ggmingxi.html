@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html style="font-size: 15.625px;">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+    <meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="max-age=600">
+    <title></title>
+    <link rel="stylesheet" href="./dzd/font-awesome.min.css">
+    <link rel="stylesheet" href="./dzd/bootstrap.min.css" media="all" type="text/css">
+    <script src="./dzd/echarts.min.js"></script>
+	
+	<style>
+		/* Anchoring arrows to the price-ratio-wrapper */
+		.price-ratio-wrapper {
+			position: relative; /* Essential reference point */
+			display: flex;
+			align-items: baseline;
+			gap: 0.2rem;
+		}
+
+		.nav-arrow {
+			position: absolute;
+			top: -10%;
+			transform: translateY(-50%);
+			width: 0.8rem; /* Size of the arrow */
+			height: 0.8rem;
+			cursor: pointer;
+			z-index: 100;
+			display: flex;
+			align-items: center;
+		}
+
+		.nav-arrow-left {
+			right: 100%;       /* Fixed to the left edge of the text */
+			margin-right: 1rem; /* Exactly 1rem gap */
+		}
+
+		.nav-arrow-right {
+			left: 100%;        /* Fixed to the right edge of the text */
+			margin-left: 1rem;  /* Exactly 1rem gap */
+		}
+
+		.nav-arrow img {
+			width: 100%;
+			height: auto;
+
+		}
+
+		/* Dark mode support */
+		body.dark-mode .nav-arrow img {
+			filter: invert(1) brightness(2);
+		}
+	</style>
+
+
+    <style type="text/css">
+        @font-face {
+            font-family: 'MiLanProVF';
+            src: url('./common/fonts/MiLanProVF.woff') format('opentype');
+        }
+
+        @font-face {
+            font-family: 'DIN';
+            src: url('./common/fonts/digital.otf');
+        }
+
+        @font-face {
+            font-family: qxzitiszxi;
+            src: url(./common/fonts/DIN-Mediumqx.woff);
+            /* 数字 细 常规*/
+        }
+
+        @font-face {
+            font-family: DIN-Regular;
+            src: url(./common/fonts/DIN-Rrgularqx.woff);
+            /* 数字 细 常规*/
+        }
+
+        @font-face {
+            font-family: DIN-Medium;
+            src: url(./common/fonts/DIN-Mediumqx.woff);
+            /* 数字 细 常规*/
+        }
+
+        @font-face {
+            font-family: DIN-Thinqx;
+            src: url(./common/fonts/DIN-thinqx.woff);
+            /* 数字 细 常规*/
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            /* width: 100%; */
+        }
+
+        body {
+            /*   background-image: url(./common/ggmingxi/bg1.png); */
+            background-size: 100%;
+            background-position: top center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-size: 1rem;
+            padding-top: 5.5rem;
+            /* height: 100vh;
+		        overflow: hidden; */
+        }
+
+        .header {
+            height: 0rem;
+            /* background-color: rgba(0, 128, 0, 0.568); */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            /* 		    background-image: url('./common/ggmingxi/topbar.png'); */
+            background-size: 100%;
+            background-position: top center;
+        }
+
+        /* .empty {
+            height: 3.5rem;
+            position: fixed;
+            top: 2rem;
+            width: 100%;
+            z-index: 999;
+            background-image: url('./common/ggmingxi/firstcontainer.png');
+            background-size: 100%;
+            background-position: top center;
+        } */
+
+        .empty1 {
+            height: 4.2rem;
+            /* background-color: rgba(0, 0, 255, 0.623);  */
+            background-image: url('./common/ggmingxi/toggle.png');
+            background-size: 100%;
+            background-position: top center;
+            /* background-repeat: no-repeat;
+		    background-attachment: fixed;*/
+        }
+
+        .empty2 {
+            height: 2.85rem;
+            /* background-color: rgba(255, 94, 0, 0.623); */
+            background-image: url('./common/ggmingxi/title.png');
+            background-size: 100%;
+            background-position: top center;
+            /* background-repeat: no-repeat;
+		    background-attachment: fixed; */
+        }
+
+        .empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 3.5rem;
+            width: 100%;
+            z-index: 999;
+            background-image: url('./common/ggmingxi/firstcontainer1.png');
+            background-size: 100%;
+            background-position: top center;
+        }
+
+        .price-ratio-wrapper {
+            display: flex;
+            align-items: baseline;
+            /* Aligns items nicely along their text baseline */
+            gap: 0.2rem;
+        }
+
+        .industrial {
+            font-family: 'MiLanProVF';
+            font-size: 1.28rem;
+            color: white;
+        }
+
+        .currentPrice {
+            font-family: 'MiLanProVF';
+            font-size: 0.9rem;
+            color: white;
+        }
+
+        .userRatio {
+            font-family: 'DIN';
+            font-size: 0.88rem;
+            color: white;
+        }
+
+        /* .industrial {
+            position: absolute;
+            font-family: 'MiLanProVF';
+            font-size: 1.28rem;
+            color: white;
+            margin-top: 0.6rem;
+            margin-left: 10.9rem;
+        }
+
+        .currentPrice {
+            position: absolute;
+            font-family: 'MiLanProVF';
+            font-size: 0.9rem;
+            color: white;
+            margin-top: 2.1rem;
+            margin-left: 10.2rem;
+        }
+
+        .userRatio {
+            position: absolute;
+            font-family: 'DIN';
+            font-size: 0.88rem;
+            color: white;
+            margin-top: 2.1rem;
+            margin-left: 12.2rem;
+        } */
+
+        .containerHead {
+            height: 2.85rem;
+            /* background-color: rgba(255, 0, 0, 0.411); */
+            position: relative;
+            background-image: url('./common/ggmingxi/dates1.png');
+            background-size: 100%;
+            color: #999;
+            /* background-repeat: no-repeat;
+		    background-attachment: fixed; */
+        }
+
+        .containerdate {
+            position: absolute;
+            margin-left: 5.5rem;
+            margin-top: 1.3rem;
+            font-family: 'DIN';
+            font-size: 0.85rem;
+        }
+
+        .containerenddate {
+            position: absolute;
+            margin-left: 10.3rem;
+            margin-top: 1.4rem;
+            font-family: 'MiLanProVF';
+            font-size: 0.87rem;
+        }
+
+        /* 
+        .stats-container {
+            height: 9.5rem;
+            position: relative;
+            background-image: url('./common/ggmingxi/stats_container.png');
+            background-size: 100%;
+
+        }
+
+        .floatingpl {
+            position: absolute;
+            font-size: 1.76rem;
+            margin-left: 1rem;
+            font-family: 'DIN';
+        }
+
+        .floatingplratio {
+            position: absolute;
+            font-size: 1.2rem;
+            margin-top: 2.7rem;
+            margin-left: 1rem;
+            font-family: 'DIN';
+        }
+
+        .rpl {
+            position: absolute;
+            font-size: 1.75rem;
+            margin-left: 15.1rem;
+            font-family: 'DIN';
+        }
+
+        .rplratio {
+            position: absolute;
+            font-size: 1.2rem;
+            margin-top: 2.7rem;
+            margin-left: 15.1rem;
+            font-family: 'DIN';
+        }
+
+        .noOfHoldingDays {
+            position: absolute;
+            font-size: 1rem;
+            margin-top: 5.3rem;
+            text-align: right;
+            width: 12.4rem;
+            font-family: 'DIN';
+        }
+
+        .realizepl {
+            position: absolute;
+            font-size: 1.07rem;
+            margin-top: 5.3rem;
+            left: 18.7rem;
+            width: 7rem;
+            text-align: right;
+            font-family: 'DIN';
+        }
+
+        .transactiontaxes {
+            position: absolute;
+            font-size: 1.1rem;
+            margin-top: 6.76rem;
+            text-align: right;
+            width: 12.4rem;
+            font-family: 'DIN';
+        }
+
+        .individualStockPositions {
+            position: absolute;
+            font-size: 1.1rem;
+            margin-top: 6.76rem;
+            left: 18.7rem;
+            width: 7rem;
+            text-align: right;
+            font-family: 'DIN';
+        } */
+
+
+        .stats-container {
+            height: 9.5rem;
+            background-image: url('./common/ggmingxi/statContainer.png');
+            background-size: 100%;
+
+            /* Flexbox properties */
+            display: flex;
+            /* justify-content: space-between; */
+            padding: 0.2rem 1rem;
+            /* Adjust padding as needed */
+            box-sizing: border-box;
+            color: #323232;
+            font-weight: 600;
+            /* Ensures padding is included in the element's total width and height */
+        }
+
+        .stats-column {
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-between; */
+            height: 100%;
+        }
+
+        /* Align text to the right for the second column's items */
+        .stats-column:last-child {
+            align-items: flex-start;
+            padding-left: 2rem;
+        }
+
+        /* Reset individual item positioning */
+        .floatingpl,
+        .floatingplratio,
+        .rpl,
+        .rplratio,
+        .noOfHoldingDays,
+        .realizepl,
+        .transactiontaxes,
+        .individualStockPositions {
+            font-family: 'DIN-Regular';
+            font-weight: 600;
+
+            /* All position, margin, left, width properties are removed */
+        }
+
+        /* Keep the original font sizes */
+        .floatingpl {
+            font-size: 1.6rem;
+        }
+
+        .floatingplratio {
+            font-size: 1.2rem;
+            /* font-size: 1.6rem; */
+            margin-top: 0.1rem;
+        }
+
+        .rpl {
+            font-size: 1.6rem;
+        }
+
+        .rplratio {
+            font-size: 1.2rem;
+            margin-top: 0.1rem;
+        }
+
+        .noOfHoldingDays {
+            font-size: 1rem;
+            margin-top: 0.9rem;
+        }
+
+        .realizepl {
+            font-size: 1rem;
+            margin-top: 0.9rem;
+        }
+
+        .transactiontaxes {
+            font-size: 1rem;
+        }
+
+        .individualStockPositions {
+            font-size: 1rem;
+        }
+
+        /* Text alignment for specific elements */
+        .noOfHoldingDays,
+        .transactiontaxes {
+            text-align: right;
+            width: 11.3rem;
+            /* Retained from original to match alignment */
+        }
+
+        .realizepl,
+        .individualStockPositions {
+            text-align: right;
+            width: 11.4rem;
+            /* Retained from original to match alignment */
+        }
+
+        .refencepl {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            height: 4.3rem;
+        }
+
+
+
+
+        /* General container for all transactions */
+        .transactions {
+            position: relative;
+            height: auto;
+            overflow-y: auto;
+            font-family: 'DIN-Regular';
+            /*font-weight: bold;*/
+            font-weight: 600;
+            color: #323232;
+        }
+
+        /* Main container for a single transaction, now a flex container */
+        .transactionsSec {
+            height: 6.5rem;
+            /* font-family: 'DIN'; */
+            font-size: 1.25rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            /* Stack rows vertically */
+            justify-content: space-around;
+            /* Distribute space between rows */
+            padding: 0.6rem 1.1rem;
+            /* Add some padding for spacing */
+            box-sizing: border-box;
+            line-height: 0.4
+                /* Include padding in the element's total width and height */
+        }
+
+        /* Flex container for each row of content */
+        .transaction-row {
+            display: flex;
+            justify-content: space-between;
+            /* Pushes the left and right columns apart */
+            align-items: center;
+            width: 100%;
+        }
+
+        /* --- Item Styles --- */
+
+        .buy_sell {
+            font-family: 'MiLanProVF';
+            font-size: 1.1rem;
+            font-weight: normal;
+        }
+
+        .total {
+            color: rgba(91, 154, 230, 255);
+            font-size: 1.05rem;
+            text-align: right;
+        }
+
+        /* Common style for the values in the bottom rows */
+        .transaction-value {
+            font-size: 1rem;
+            text-align: right;
+        }
+
+        .transaction-row1 {
+            display: flex;
+            width: 100%;
+            margin-top: 0.4rem;
+        }
+
+        .transaction-row2 {
+            display: flex;
+            width: 100%;
+            margin-top: 0.25rem;
+        }
+
+        .transaction-row1>div {
+            flex: 1;
+            text-align: right;
+        }
+
+        .transaction-row2>div:last-child {
+            text-align: right;
+        }
+
+        .transaction-row2>div {
+            flex: 1;
+            text-align: right;
+        }
+
+        .transaction-row1>div:last-child {
+            text-align: right;
+        }
+
+        .price,
+        .amount,
+        .quantity,
+        .taxes {
+            font-size: 1.1rem;
+            /* MAKE SURE to remove any text-align, padding-left, or margin-left from here */
+        }
+
+        .transaction-details {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 0.2rem;
+            /* Optional: Adds a small space between "buy_sell" and "date" */
+        }
+
+        /* You might want to adjust the .date style slightly for better alignment */
+        .date {
+            padding-left: 0.4rem;
+            font-size: 1.03rem;
+            color: #666;
+            /* Example: make the date a bit lighter */
+        }
+
+        .has-total .price {
+            margin-top: 2.1rem;
+        }
+
+        .back {
+            width: 4rem;
+            height: 3rem;
+            float: left;
+        }
+
+        .bottomimg {
+            width: 100%;
+            position: relative;
+        }
+
+        .bottomimg img {
+            width: 100%;
+        }
+
+        .addnotes {
+            width: 100%;
+            position: absolute;
+            top: 0;
+            height: 3rem;
+        }
+
+        .klinechartbtn {
+            /* background-image: url('./common/ggmingxi/chartToggle.png'); */
+            /* background-color: red; */
+            width: 4rem;
+            height: 2.5rem;
+            float: right;
+            margin-right: 1rem;
+            margin-top: 1rem;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        #klinechart {
+            width: 100%;
+            height: 400px;
+            /* display: none; */
+        }
+    </style>
+    <style>
+        .back {
+
+            width: 4rem;
+            height: 4rem;
+            /* float: left; */
+            margin-top: -4rem;
+            /*background-color: yellow;*/
+            margin-left: 0;
+        }
+    </style>
+	
+	    <style>
+	        .kline-header {
+	            /* font-family: 'DIN'; */
+	            display: flex;
+	            align-items: center;
+	            font-size: 0.8rem;
+	            padding: 4px 10px;
+	            background: #fff;
+	            color: #666;
+	            font-family: Arial, sans-serif;
+	            gap: 8px;
+	            border-bottom: 1px solid #f0f0f0;
+	            font-weight: normal;
+	        }
+	
+	        .header-label {
+	            font-family: 'DIN';
+	            background: #eee;
+	            padding: 1px 4px;
+	            border-radius: 2px;
+	            color: #333;
+	        }
+	
+	        .ma5-clr {
+	            color: #333;
+	        }
+	
+	        .ma10-clr {
+	            color: #8a2be2;
+	        }
+	
+	        /* Purple */
+	        .ma20-clr {
+	            color: #ff8c00;
+	        }
+	
+	        /* Orange */
+	        .ma30-clr {
+	            color: #4169e1;
+	        }
+	
+	        /* Blue */
+	
+	        #volume-header {
+	            /* font-family: 'DIN'; */
+	            font-family: Arial, sans-serif;
+	            position: absolute;
+	            top: 80%;
+	            /* Adjust based on your chart height */
+	            width: 105%;
+	            z-index: 5;
+	            background: rgba(255, 255, 255, 0.8);
+	        }
+	    </style>
+
+
+
+</head>
+
+<body style="background-color: rgb(245, 245, 245); font-size: 36px;margin: 0;padding: 0;">
+    <div class="ztlyanse" style="position:fixed;top:0px;width:100vw;background:#f12f37; height:2.2rem;z-index:999999">
+    </div>
+
+
+    <div class="header">
+        <!-- <div class="status-bar">
+            <div>1:20 馃洝锔忦煋扁彴馃搷</div>
+            <div>馃摱馃搳馃摫89%</div>   
+        </div> -->
+    </div>
+
+    <div class="empty12">
+        <div class="industrial" id="industrial"></div>
+
+        <!-- Wrap currentPrice and userRatio in a new div -->
+        <div class="price-ratio-wrapper">
+            <div class="currentPrice" id="currentPrice"></div>
+            <div class="userRatio" id="userRatio"></div>
+        </div>
+    </div>
+    <div class="back" id="back" href="cc1.html"></div>
+
+    <div class="containerHead">
+        <div class="containerdate" id="containerdate"></div>
+    </div>
+
+    <div class="stats-container">
+        <!-- Left Column -->
+        <div class="stats-column">
+            <div class="fpl" style="    height: 4.3rem;">
+                <div class="floatingpl" id="floatingpl"></div>
+                <div class="floatingplratio" id="floatingplratio"></div>
+            </div>
+            <div class="noOfHoldingDays" id="noOfHoldingDays"></div>
+            <div class="transactiontaxes" id="transactiontaxes"></div>
+        </div>
+        <!-- Right Column -->
+        <div class="stats-column">
+            <div class="refencepl">
+                <div class="rpl" id="rpl"></div>
+                <div class="rplratio" id="rplratio"></div>
+            </div>
+            <div class="realizepl" id="realizepl"></div>
+            <div class="individualStockPositions" id="individualStockPositions"></div>
+        </div>
+    </div>
+
+
+    <div class="empty1">
+        <div class="klinechartbtn" id="toggleChartBtn">
+        </div>
+    </div>
+    <div id="chart-container" style="padding: 12px; background-color: #ffffff; padding-top: 0;
+        padding-bottom: 0;">
+        <div class="charttitle">
+            <img src="../ths/common/ggmingxi/titlesChart.png" alt="" style="height: 2rem;">
+        </div>
+        <div class="title" style="font-size: 1rem; padding-left: 0.1rem; color: #333333; font-family: 'MiLanProVF';">日线
+        </div>
+    </div>
+
+    </div>
+
+    <div class="empty2"></div>
+
+    <div class="transactions">
+        <!-- <div class="firstSec">
+            <div class="buy_sell" id="buy_sell_1"></div>
+            <div class="date" id="date_1"></div>
+            <div class="total" id="total_1"></div>
+            <div class="price" id="price_1"></div>
+            <div class="amount" id="amount_1"></div>
+            <div class="quantity" id="quantity_1"></div>
+            <div class="taxes" id="taxes_1"></div>
+        </div>
+        <div class="secondSec">
+            <div class="buy_sell" id="buy_sell_2"></div>
+            <div class="date" id="date_2"></div>
+            <div class="price" id="price_2"></div>
+            <div class="amount" id="amount_2"></div>
+            <div class="quantity" id="quantity_2"></div>
+            <div class="taxes" id="taxes_2"></div>
+        </div> -->
+    </div>
+    <div class="bottomimg">
+        <img src="./common/ggmingxi/ggmingxibottom.jpg" alt="">
+        <div class="addnotes" onclick="addnotes();"></div>
+    </div>
+</body>
+<script type="text/javascript" src="./dzd/jquery.min.js"></script>
+<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+<script type="text/javascript">
+    $(document).on("click", '.dzlist', function () {
+        $(this).children('.dzlist-con').toggle();
+        $(this).find('.jd').css("transform", "rotate(-45deg)");
+        if ($(this).children('.dzlist-con').is(':visible')) {
+            $(this).children('.dzlist-top').css("border-bottom", "0.01rem solid #eeeeee");
+
+        } else {
+            $(this).find('.jd').css("transform", "rotate(-225deg)");
+            $(this).children('.dzlist-top').css("border-bottom", "0px");
+
+        }
+    });
+    $("#back").click(function () {
+        window.location.href = "cc.html";
+    })
+    $(document).on("click", '.dzbox-icon', function () {
+
+        $('.jdshow').toggle();
+        $(this).children('.jd').css("transform", "rotate(-45deg)");
+        if ($('.jdshow').is(':visible')) {
+            $(this).children('.jdx').css("transform", "rotate(-45deg)");
+
+        } else {
+            $(this).children('.jdx').css("transform", "rotate(-225deg)");
+
+
+        }
+    });
+
+    loginstatus(function () {
+        ggmingxifetchDatas(function (data) {
+            console.log(data);
+            ggmingxidispaly(data);
+        });
+    });
+
+    function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+        var OldBarHeight = NewBarHeight;
+        var DqBarHeight = 2; //单位rem;
+        viewRemWidth = window.innerWidth / remToPx;
+        NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+        if (NewBarHeight == NaN) {
+            NewBarHeight = OldBarHeight;
+        }
+        $(".empty").css("top", NewBarHeight + "rem");
+        $(".ztlyanse").css("height", NewBarHeight + "rem");
+        $("body").css("padding-top", (NewBarHeight + 0) + "rem");
+
+    }
+
+    (function flexible(window, document) {
+
+        var gg = getComputedStyle(document.documentElement).fontSize;
+        console.log(gg);
+        var docEl = document.documentElement
+        var dpr = window.devicePixelRatio || 1
+        // adjust body font size
+        function setBodyFontSize() {
+            if (document.body) {
+                document.body.style.fontSize = (12 * dpr) + 'px'
+            } else {
+                document.addEventListener('DOMContentLoaded', setBodyFontSize)
+            }
+        }
+        setBodyFontSize();
+        // set 1rem = viewWidth / 10
+        function setRemUnit() {
+            var rem = docEl.clientWidth / 26.875
+            docEl.style.fontSize = rem + 'px'
+            console.log(rem);
+        }
+        setRemUnit()
+        // reset rem unit on page resize
+        window.addEventListener('resize', setRemUnit)
+        window.addEventListener('pageshow', function (e) {
+            if (e.persisted) {
+                setRemUnit()
+            }
+        })
+        // detect 0.5px supports
+        if (dpr >= 2) {
+            var fakeBody = document.createElement('body')
+            var testElement = document.createElement('div')
+            testElement.style.border = '.5px solid transparent'
+            fakeBody.appendChild(testElement)
+            docEl.appendChild(fakeBody)
+            if (testElement.offsetHeight === 1) {
+                docEl.classList.add('hairlines')
+            }
+            docEl.removeChild(fakeBody)
+        }
+    }(window, document))
+</script>
+
+<script>
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     var chartDom = document.getElementById('klinechart');
+    //     var myChart = echarts.init(chartDom);
+
+    //     // Your data (reformatted)
+    //     var rawData = [
+    //         ["2025-04-25", 45.000, 46.100, 58.550, 43.580],
+    //         ["2025-04-28", 46.000, 39.910, 47.850, 39.820],
+    //         ["2025-04-29", 39.000, 41.300, 42.000, 38.000],
+    //         ["2025-04-30", 40.510, 38.590, 41.300, 38.580],
+    //         ["2025-05-06", 40.000, 40.900, 41.240, 38.900],
+    //         ["2025-05-07", 40.980, 39.860, 43.500, 39.800],
+    //         ["2025-05-08", 38.880, 41.800, 47.800, 38.370],
+    //         ["2025-05-09", 41.820, 39.830, 42.600, 39.390],
+    //         ["2025-05-12", 39.850, 39.940, 40.180, 39.500],
+    //         ["2025-05-13", 40.340, 39.560, 41.440, 39.500],
+    //         ["2025-05-14", 39.200, 39.420, 39.600, 38.680]
+    //     ];
+
+    //     // Formatting data into a structure suitable for ECharts
+    //     var formattedData = rawData.map(function (item) {
+    //         return [
+    //             item[0],    // Date
+    //             item[1],    // Open
+    //             item[2],    // Close
+    //             item[3],    // Highest
+    //             item[4]     // Lowest
+    //         ];
+    //     });
+
+    //     // Options for ECharts
+    //     var option = {
+    //         title: {
+    //             text: 'Stock K-Line Chart',
+    //             left: 'center'
+    //         },
+    //         tooltip: {
+    //             trigger: 'axis',
+    //             axisPointer: {
+    //                 type: 'cross',
+    //                 crossStyle: {
+    //                     color: '#999'
+    //                 }
+    //             }
+    //         },
+    //         xAxis: {
+    //             type: 'category',
+    //             data: formattedData.map(function (item) {
+    //                 return item[0];
+    //             }),
+    //             boundaryGap: false,
+    //             axisLine: { onZero: false }
+    //         },
+    //         yAxis: {
+    //             type: 'value'
+    //         },
+    //         series: [
+    //             {
+    //                 name: 'K-Line',
+    //                 type: 'candlestick',
+    //                 data: formattedData.map(function (item) {
+    //                     return item.slice(1);
+    //                 }),
+    //                 itemStyle: {
+    //                     color: '#0f0',
+    //                     color0: '#f00',
+    //                     borderColor: '#0f0',
+    //                     borderColor0: '#f00'
+    //                 }
+    //             }
+    //         ]
+    //     };
+
+    //     // Set the option to the chart
+    //     myChart.setOption(option);
+    //     // Initially hide the chart
+    //     chartDom.style.display = 'none';
+    //     document.getElementById('toggleChartBtn').style.backgroundImage = "none";
+
+    //     function toggleKlineChart() {
+    //         const chart = document.getElementById('klinechart');
+    //         const button = document.getElementById('toggleChartBtn');
+
+    //         if (chart.style.display === 'none' || !chart.style.display) {
+    //             chart.style.display = 'block';
+    //             button.style.backgroundImage = "url('./common/ggmingxi/chartToggle.png')";
+    //         } else {
+    //             chart.style.display = 'none';
+    //             button.style.backgroundImage = "none"; // Default image
+    //         }
+    //     }
+
+    //     // Toggle chart on button click
+    //     document.getElementById('toggleChartBtn').addEventListener('click', toggleKlineChart);
+    // });
+</script>
+
+
+</html>
