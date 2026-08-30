@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034) -->
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport"
+		content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+	<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+	<meta name="format-detection" content="telephone=no">
+	<title>站点地图 | 炒家记账系统</title>
+	<script type="text/javascript" src="./mulu_files/jquery.min.js"></script>
+	<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+
+	<link href="./mulu_files/style.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="./mulu_files/global.js"></script>
+
+	<style type="text/css">
+		#header {
+			background-color: #0072C6;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="bodybar" class="ztlyanse"
+		style="height:2.23rem;background:#f12f37; position: fixed;top: 0px;width:100vw;z-index: 999;">
+	</div>
+	<div id="wrapper" class="wrapper" style="background:#fff;position:relative;margin-top:2.2rem">
+		<style type="text/css">
+			#header {
+				background-color: #f12f38;
+			}
+
+			.updateDiv {
+				position: fixed;
+				width: 90%;
+				left: 5%;
+				top: 5%;
+				height: 90%;
+				background-color: #ccc;
+				overflow-y: auto;
+				border-radius: 20px;
+			}
+
+			.updateAside {
+				width: 90%;
+				margin: 3vh auto;
+				height: 90%;
+				background-color: #fff;
+				white-space: pre-wrap;
+				/* 保持格式，并允许文本换行 */
+				word-wrap: break-word;
+				/* 允许长单词换行 */
+				border: 1px solid #ddd;
+				/* 给内容一个边框 */
+				padding: 10px;
+				/* 添加内边距 */
+				background-color: #f9f9f9;
+				/* 背景颜色 */
+				max-width: 100%;
+				/* 最大宽度设置为100% */
+				overflow-y: auto;
+				/* 超出宽度时显示水平滚动条 */
+
+			}
+		</style>
+
+		<div id="header">
+			<a href="javascript:;" onclick="javascript:history.back(-1);" class="back"></a>
+			<em>炒家记账</em>
+			<a href="mulu.html" class="siteMap"></a>
+			<a href="index.html" class="home"></a>
+		</div>
+		<div id="catalog">
+			<ul>
+
+				<li><a href="mingxi.html" style="font-size:14px;">流水账记录</a></li>
+
+				<li><a href="initial.html" style="font-size:14px;">设置</a></li>
+
+				<li><a href="shu-final.html" style="font-size:14px;">银证转账</a></li>
+
+				<li><a href="qx.html" style="font-size:14px;">收益曲线</a></li>
+				<li><a href="#" onclick="AddBSLink();" style="font-size:14px;">添加BS</a></li>
+
+				<!-- <li><a href="?rec=vip" style="font-size:14px;">VIP充值</a></li> -->
+
+				<li><a href="#" style="font-size:14px;" onclick="UserShowlog()">账号信息</a></li>
+
+				<!-- <li><a href="/user.html?rec=password" style="font-size:14px;">密码修改</a></li> -->
+
+
+				<li><a href="#" id="openPopupBtn" style="font-size:14px;">使用教程</a></li>
+
+
+				<li><a href="#" style="font-size:14px;" class="contact">联系我们()</a></li>
+				<li><a href="#" onclick="qingchuhuancun()" style="font-size:14px;">清除缓存-(更新数据已移曲线页面底部)</a></li>
+
+				<li><a href="#" onclick="loginout()" style="font-size:14px;">退出登录</a></li>
+				<li><a href="#" style="font-size:14px;" onclick="updatelog()">更新日志，更新提醒及版本</a></li>
+
+			</ul>
+		</div>
+
+		<div class="mobile-box">
+			<!-- 按钮1：自主购买及续费 -->
+			<button class="btn btn-primary" id="buyRenewBtn">
+                                单机版：无需购买 / 续费
+			</button>
+
+			<!-- 按钮2：复制客服链接 -->
+			<button class="btn btn-secondary" id="copyLinkBtn">
+                                客服功能已本地停用
+			</button>
+		</div>
+		<style>
+			/* 手机容器 */
+			.mobile-box {
+				width: 100%;
+				max-width: 360px;
+				background: white;
+				border-radius: 32px;
+				padding: 10px 0;
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+				text-align: center;
+			}
+
+			/* 按钮样式 */
+			.btn {
+				width: 100%;
+				padding: 16px 20px;
+				border: none;
+				border-radius: 60px;
+				font-size: 1.1rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: 0.1s;
+				margin-bottom: 20px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+			}
+
+			.btn:active {
+				transform: scale(0.97);
+			}
+
+			.btn-primary {
+				background: #1e5a7a;
+				color: white;
+				box-shadow: 0 4px 12px rgba(30, 90, 122, 0.3);
+			}
+
+			.btn-secondary {
+				background: white;
+				color: #1e5a7a;
+				border: 1.5px solid #1e5a7a;
+			}
+
+			/* 简单提示 */
+			.toast {
+				position: fixed;
+				bottom: 30px;
+				left: 50%;
+				transform: translateX(-50%);
+				background: rgba(0, 0, 0, 0.8);
+				color: white;
+				padding: 10px 20px;
+				border-radius: 40px;
+				font-size: 0.85rem;
+				z-index: 999;
+				opacity: 0;
+				transition: opacity 0.2s;
+				pointer-events: none;
+				white-space: nowrap;
+			}
+
+			.toast.show {
+				opacity: 1;
+			}
+		</style>
+
+	</div>
+	<p style=" font-size:12px;text-align:center;padding-top:40px;padding-bottom:20px;">
+		提醒：本记帐系统仅用于记录自己的操作过程，用于回顾分析、总结经验，模拟炒股训练、提高实战水平。请勿用于其它违规用途！由此造成的一切后果，与本系统无关。<br>浙ICP备16084214号-3A<br>
+		<a href="#" style="font-size:14px;">隐私政策</a>
+		<a href="#" style="font-size:14px;">用户协议</a>
+	</p>
+	<p style=" font-size:12px;text-align:center;color:red;padding-top:40px;padding-bottom:20px;">
+		功能界面：资金主界面，持仓界面，收益曲线及日历图(多种周期)，查询界面，当日成交，历史成交，对账单界面(多种周期)。</br>
+		使用小提示：1.每次修改持仓数据之后，需要清除缓存，并且更新数据。
+
+	</p>
+
+	<div class="updateDiv" onclick="updateDivhide();">
+		<aside class="updateAside"></aside>
+	</div>
+
+	<div class="UserInfoDiv" onclick="UserInfoDiv();">
+		<div class="popup-overlay"></div>
+		<div class="popup-content">
+			<h2>账户信息</h2>
+			<div class="namebox">
+				<span>账户：</span>
+				<input type="text" class="nameinfo" id="accountInfo" value="User12345">
+			</div>
+			<div class="ddatebox">
+				<span>到期时间：</span>
+				<input type="text" id="ddateinfo" class="ddateinfo" value="2024-12-31">
+			</div>
+			<button class="copy-btn" onclick="copyAccount()">复制账户</button>
+			<button class="close-btn">关闭</button>
+		</div>
+	</div>
+
+	<!-- 公告弹窗 -->
+	<div class="announcement-popup">
+		<div class="popup-overlay"></div>
+		<div class="popup-content">
+			<h2>公告标题</h2>
+			<p id="announcement_content">这是一个自定义的公告内容，您可以在这里写下您的公告信息。</p>
+			<button class="close-btn" onclick="closeAnnouncementPopup()">关闭</button>
+		</div>
+	</div>
+
+	<!-- 弹窗及遮罩层 -->
+	<div class="overlay" id="overlay">
+		<div class="popup">
+			<div class="popup-header">
+				教程列表
+				<button class="popup-close" id="closePopupBtn">&times;</button>
+				<button class="popup-return" id="returnToListBtn">返回列表</button>
+			</div>
+                        <div id="tutorialFrame">
+                                <h3>单机版使用说明</h3>
+                                <p>登录、交易、持仓、转账、自选和收益统计均保存在本机。</p>
+                                <p>只有股票报价、分时和 K 线行情需要联网。</p>
+                        </div>
+		</div>
+	</div>
+
+	<style type="text/css">
+		/* 弹窗背景和样式 */
+		.UserInfoDiv {
+			display: none;
+			/* 默认隐藏 */
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.7);
+			/* 半透明背景 */
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+			display: flex;
+			/* 需要用 flexbox 来居中 */
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* 覆盖层 */
+		.popup-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 999;
+			/* 保证遮罩层在内容上面 */
+		}
+
+		/* 弹窗内容 */
+		.popup-content {
+			position: relative;
+			background: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+			z-index: 1001;
+			width: 300px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+
+		.popup-content h2 {
+			font-size: 18px;
+			margin-bottom: 20px;
+			color: #333;
+		}
+
+		.namebox,
+		.ddatebox {
+			margin: 10px 0;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.namebox input,
+		.ddatebox input {
+			padding: 10px;
+			width: 60%;
+			font-size: 14px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+		}
+
+		.copy-btn,
+		.close-btn {
+			padding: 10px 20px;
+			margin: 10px 5px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+
+		.copy-btn {
+			background-color: #28a745;
+			color: white;
+			font-size: 14px;
+		}
+
+		.close-btn {
+			background-color: #dc3545;
+			color: white;
+			font-size: 14px;
+		}
+
+		.copy-btn:hover {
+			background-color: #218838;
+		}
+
+		.close-btn:hover {
+			background-color: #c82333;
+		}
+
+		.copy-btn:focus,
+		.close-btn:focus {
+			outline: none;
+		}
+
+
+		/* 公告弹窗背景和样式 */
+		.announcement-popup {
+			/* 默认隐藏 */
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.7);
+			/* 半透明背景 */
+			justify-content: center;
+			align-items: center;
+			z-index: 1000;
+			/* 需要用 flexbox 来居中 */
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			position: fixed;
+			display: none;
+
+		}
+
+		/* 覆盖层 */
+		.popup-overlay {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.5);
+			z-index: 999;
+			/* 保证遮罩层在内容上面 */
+		}
+
+		/* 公告内容 */
+		.popup-content {
+			position: relative;
+			background: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+			z-index: 1001;
+			width: 350px;
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+
+		.popup-content h2 {
+			font-size: 18px;
+			margin-bottom: 20px;
+			color: #333;
+		}
+
+		.popup-content p {
+			font-size: 14px;
+			color: #666;
+			margin-bottom: 20px;
+		}
+
+		.close-btn {
+			padding: 10px 20px;
+			margin: 10px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			background-color: #dc3545;
+			color: white;
+			font-size: 14px;
+		}
+
+		.popup-return {
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			background: green;
+			color: white;
+			border: none;
+			padding: 5px 15px;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		.close-btn:hover {
+			background-color: #c82333;
+		}
+
+		.close-btn:focus {
+			outline: none;
+		}
+
+		/* 背景遮罩层 */
+		.overlay {
+			display: none;
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: rgba(0, 0, 0, 0.7);
+			z-index: 5000;
+		}
+
+		/* 弹窗样式 */
+		.popup {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 95%;
+			height: 95%;
+			background-color: white;
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+			z-index: 1001;
+			overflow: hidden;
+		}
+
+		/* 弹窗标题 */
+		.popup-header {
+			background-color: #333;
+			color: white;
+			padding: 15px;
+			text-align: center;
+			font-size: 24px;
+		}
+
+		/* 弹窗关闭按钮 */
+		.popup-close {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: red;
+			color: white;
+			border: none;
+			border-radius: 50%;
+			width: 30px;
+			height: 30px;
+			cursor: pointer;
+			font-size: 20px;
+			text-align: center;
+			line-height: 30px;
+		}
+
+                #tutorialFrame {
+			width: 100%;
+                        box-sizing: border-box;
+                        padding: 2rem;
+                        color: #333;
+                        line-height: 1.8;
+                        text-align: center;
+		}
+	</style>
+	<script>
+		//不需要mui.js版本
+		document.addEventListener('plusready', function () {
+			//plus.navigator.setStatusBarBackground("#000");
+			plus.navigator.setStatusBarStyle('light');
+
+
+
+			var webview = plus.webview.currentWebview();
+			plus.key.addEventListener('backbutton', function () {
+				webview.canBack(function (e) {
+					if (e.canBack) {
+						webview.back();
+					} else {
+						//webview.close(); //hide,quit
+						//plus.runtime.quit();
+						//首页返回键处理
+						//处理逻辑：1秒内，连续两次按返回键，则退出应用；
+						var first = null;
+						plus.key.addEventListener('backbutton', function () {
+							//首次按键，提示‘再按一次退出应用’
+							if (!first) {
+								first = new Date().getTime();
+								//console.log('再按一次退出应用');
+								setTimeout(function () {
+									first = null;
+								}, 1000);
+							} else {
+								if (new Date().getTime() - first < 1500) {
+									plus.runtime.quit();
+								}
+							}
+						}, false);
+					}
+				})
+			});
+		});
+
+		function qingchuhuancun() {
+			qinghuancun();
+			alert("这里只清除本地缓存，更新数据已移至曲线页面底部。");
+			// gengqx();
+		}
+
+		function updatelog() {
+			//alert("11");
+			$.post(host + "php/user.php", {
+				rec: "updatelog"
+			})
+				.done(function (data) {
+					console.log(data);
+					var cont = "暂无更新日志";
+					if (data.status == "SUCCESS") {
+						cont = data.content;
+					}
+					$(".updateAside").html(cont);
+					$(".updateDiv").show();
+				})
+		}
+
+		function updateDivhide() {
+			$(".updateDiv").hide();
+		}
+
+		$(".updateDiv").hide();
+		$(".UserInfoDiv").hide();
+
+		function UserInfoDiv() {
+			$(".UserInfoDiv").hide();
+		}
+
+		function UserShowlog() {
+			$(".UserInfoDiv").show();
+		}
+		// 复制账户信息到剪贴板
+		function copyAccount() {
+			var accountInput = document.getElementById('accountInfo');
+			accountInput.select();
+			document.execCommand('copy');
+			alert('账户已复制: ' + accountInput.value);
+		}
+
+		loginstatus(function (data) {
+			loadlogindata(data);
+		})
+
+
+		// var loginData = localStorage.getItem("loginData");
+		// if (loginData) {
+		// 	loginData = JSON.parse(loginData);
+		// 	loadlogindata(loginData);
+		// } else {
+
+		// }
+
+		function loadlogindata(data) {
+			//console.log(JSON.stringify(data));
+			$("#accountInfo").val(data.userdata.username);
+			$("#ddateinfo").val(data.userdata.ddate);
+                        $(".contact").html("联系方式(单机版离线)");
+			if (data.gongaoFlag == true) {
+				$(".announcement-popup").css("display", "flex");
+				$("#announcement_content").html(data.gonggao);
+				showAnnouncementPopup();
+			}
+		}
+		function AddBSLink() {
+			if (Global_PhoneType == "Apple") {
+				window.parent.changeUrl("./bs/index.html?type=1");
+			} else {
+				window.location.href = "./bs/index.html?type=1";
+			}
+		}
+		// 打开公告弹窗
+		function showAnnouncementPopup() {
+			document.querySelector('.announcement-popup').style.display = 'flex';
+		}
+
+		// 关闭公告弹窗
+		function closeAnnouncementPopup() {
+			document.querySelector('.announcement-popup').style.display = 'none';
+		}
+
+		const openPopupBtn = document.getElementById('openPopupBtn');
+		const overlay = document.getElementById('overlay');
+		const closePopupBtn = document.getElementById('closePopupBtn');
+		const returnToListBtn = document.getElementById('returnToListBtn');
+		const tutorialFrame = document.getElementById('tutorialFrame');
+		openPopupBtn.addEventListener('click', function () {
+			overlay.style.display = 'block';
+		});
+
+		// 关闭弹窗
+		closePopupBtn.addEventListener('click', function () {
+			overlay.style.display = 'none';
+		});
+		returnToListBtn.addEventListener('click', function () {
+                        tutorialFrame.scrollTop = 0;
+		});
+
+		function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+			var OldBarHeight = NewBarHeight;
+			var DqBarHeight = 2; //单位rem;
+			viewRemWidth = window.innerWidth / remToPx;
+			NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+			if (NewBarHeight == NaN) {
+				NewBarHeight = OldBarHeight;
+			}
+			$(".mobile2").css("margin-top", NewBarHeight + "rem");
+			$("#wrapper").css("margin-top", NewBarHeight + "rem");
+			$(".ztlyanse").css("height", NewBarHeight + "rem");
+
+		}
+
+                const CUSTOMER_LINK = "";
+
+		// 显示提示
+		function showToast(msg) {
+			var toast = document.getElementById('toast');
+			toast.textContent = msg;
+			toast.classList.add('show');
+			setTimeout(function () {
+				toast.classList.remove('show');
+			}, 2500);
+		}
+
+		// 复制文本通用函数（兼容手机端）
+		function copyText(text, successMsg, errorMsg) {
+			// 方法1：现代 clipboard API
+			if (navigator.clipboard && window.isSecureContext !== false) {
+				navigator.clipboard.writeText(text).then(function () {
+					showToast(successMsg || '复制成功');
+				}).catch(function () {
+					fallbackCopy(text, successMsg, errorMsg);
+				});
+			} else {
+				fallbackCopy(text, successMsg, errorMsg);
+			}
+		}
+
+		// 降级方案（使用 textarea）
+		function fallbackCopy(text, successMsg, errorMsg) {
+			var textarea = document.createElement('textarea');
+			textarea.value = text;
+			textarea.style.position = 'fixed';
+			textarea.style.top = '-9999px';
+			textarea.style.left = '-9999px';
+			document.body.appendChild(textarea);
+			textarea.select();
+			textarea.setSelectionRange(0, text.length);
+			try {
+				var success = document.execCommand('copy');
+				if (success) {
+					showToast(successMsg || '复制成功');
+				} else {
+					showToast(errorMsg || '复制失败，请手动复制');
+				}
+			} catch (err) {
+				showToast(errorMsg || '复制失败，请手动复制');
+			}
+			document.body.removeChild(textarea);
+		}
+
+		// 弹窗提示（因为题目要求：弹窗提示可以在浏览器打开此链接联系客服）
+		function showBrowserDialog(link) {
+			// 创建遮罩层
+			var overlay = document.createElement('div');
+			overlay.style.position = 'fixed';
+			overlay.style.top = '0';
+			overlay.style.left = '0';
+			overlay.style.width = '100%';
+			overlay.style.height = '100%';
+			overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+			overlay.style.backdropFilter = 'blur(3px)';
+			overlay.style.zIndex = '1000';
+			overlay.style.display = 'flex';
+			overlay.style.alignItems = 'center';
+			overlay.style.justifyContent = 'center';
+
+			// 弹窗内容
+			var dialog = document.createElement('div');
+			dialog.style.backgroundColor = 'white';
+			dialog.style.borderRadius = '28px';
+			dialog.style.width = '280px';
+			dialog.style.padding = '24px 20px';
+			dialog.style.textAlign = 'center';
+			dialog.style.boxShadow = '0 20px 35px rgba(0,0,0,0.3)';
+			dialog.style.animation = 'fadeUp 0.2s ease';
+
+			// 添加简单动画
+			var style = document.createElement('style');
+			style.textContent = '@keyframes fadeUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }';
+			document.head.appendChild(style);
+
+			dialog.innerHTML = `
+            <div style="font-size: 48px; margin-bottom: 12px;">🔗</div>
+            <div style="font-weight: 700; font-size: 1.3rem; margin-bottom: 10px;">客服链接已复制</div>
+            <div style="color: #555; font-size: 0.85rem; margin-bottom: 20px; line-height: 1.4;">链接已经复制，请在浏览器中打开以下链接，直接粘贴<br>联系客服处理业务</div>
+            <div style="background: #f0f2f5; padding: 10px; border-radius: 40px; font-size: 0.7rem; word-break: break-all; margin-bottom: 20px; color: #1e5a7a;">${link}</div>
+            <button id="dialogConfirmBtn" style="background: #1e5a7a; border: none; color: white; padding: 12px 24px; border-radius: 40px; font-weight: 600; width: 80%; cursor: pointer;">我知道了</button>
+        `;
+
+			overlay.appendChild(dialog);
+			document.body.appendChild(overlay);
+
+			// 关闭弹窗
+			var closeBtn = document.getElementById('dialogConfirmBtn');
+			closeBtn.addEventListener('click', function () {
+				document.body.removeChild(overlay);
+			});
+			// 点击遮罩层也可关闭
+			overlay.addEventListener('click', function (e) {
+				if (e.target === overlay) {
+					document.body.removeChild(overlay);
+				}
+			});
+		}
+
+		// 按钮1：自主购买/续费（点击后显示简单提示或跳转，按需可修改）
+		document.getElementById('buyRenewBtn').addEventListener('click', function () {
+                        showToast('当前为永久本地版，无需购买或续费');
+		});
+		
+		function getBaseUrlByRegex(urlString){
+			const match = urlString.match(/^([a-zA-Z]+:\/\/[^/]+)/);
+			return match?match[1]:null;
+		}
+
+		// 按钮2：复制客服链接 + 弹窗提示在浏览器打开
+		document.getElementById('copyLinkBtn').addEventListener('click', function () {
+                        showToast('单机版已停用在线客服');
+		});
+
+                $(".contact").on("click", function () {
+                        showToast('单机版已停用在线客服');
+                });
+
+	</script>
+</body>
+
+</html>
