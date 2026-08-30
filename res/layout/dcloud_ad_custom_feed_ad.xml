@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent">
+        <FrameLayout android:id="@id/videoContainer" android:background="#00ffffff" android:layout_width="match_parent" android:layout_height="match_parent" />
+        <TextView android:textSize="14.0sp" android:textColor="#ffffffff" android:gravity="center" android:id="@id/skipView" android:background="@drawable/dcloud_ad_custom_ad_skip" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8.0dp" android:layout_marginRight="12.0dp" android:text="跳过" android:layout_alignParentEnd="true" />
+        <TextView android:textSize="10.0sp" android:textColor="#ffcccccc" android:id="@id/privacyInfo" android:visibility="gone" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="4.0dp" android:text="" android:layout_alignParentBottom="true" />
+    </RelativeLayout>
+</FrameLayout>
