@@ -1,0 +1,2381 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)qx.html -->
+<html style="font-size: 16.25px;">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport"
+		content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+	<meta name="theme-color" content="#e83030"> <!-- 设置状态栏颜色 -->
+	<meta name="format-detection" content="telephone=no">
+	<title></title>
+
+	<link rel="stylesheet" href="./qx/font-awesome.min.css">
+	<link rel="stylesheet" href="./qx/bootstrap.min.css" media="all" type="text/css">
+	<link href="./qx/user7.css" rel="stylesheet" type="text/css">
+	<link href="./qx/quxian2bg3.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" src="./qx/jquery.min.js  "></script>
+	<script type="text/javascript" src="./qx/flexible.js  "></script>
+	<script type="text/javascript" src="./qx/global.js  "></script>
+	<script type="text/javascript" src="./qx/echarts501.min.js  "></script>
+	<script type="text/javascript">
+		/*	// 进入页面时获取对应大小
+// 改变字体大小
+function resizeFont() {
+let winW = document.documentElement.clientWidth > 750 ? 750 : document.documentElement.clientWidth
+document.documentElement.style.fontSize = (winW / 750) * 100 + 'px'
+}
+window.addEventListener('load', () => resizeFont())
+window.addEventListener('resize', () => resizeFont())
+*/
+	</script>
+
+	<style>
+		@font-face {
+			font-family: qxzitisz;
+			src: url('./common/fonts/THSJinRongTi-Medium.otf');
+		}
+
+		@font-face {
+			font-family: qxzitiszxi;
+			src: url('./common/fonts/THSJinRongTi-Medium.otf');
+		}
+
+		@font-face {
+			font-family: bodyfont;
+			src: url('./common/fonts/MiSans-Normal.ttf');
+			/*  Miui-Regular.ttf 小米兰亭*/
+		}
+
+		@font-face {
+			font-family: riliziti;
+			src: url('./common/fonts/DIN-Mediumqx.woff');
+		}
+
+		@font-face {
+			font-family: thsRiliBold;
+			src: url('common/fonts/thsRili.ttf');
+
+		}
+
+		.bodyhd {
+			overflow: hidden;
+		}
+
+		.qxpao {
+
+			padding-bottom: 1.9rem;
+			margin-top: 0.5rem;
+			/* 1.2rem; */
+		}
+
+		#qxmiddle {
+			font-family: none;
+		}
+
+		.zhishilist {
+			font-size: 0.8rem;
+		}
+
+		.zhishilist li .name {
+			font-size: 0.7rem;
+			width: 30%;
+			color: #616161
+		}
+
+		.zhishilist li .jd {
+			width: 30%;
+		}
+
+		.qxnavtop {
+			width: 100vw;
+			height: 2.85rem;
+			line-height: 2.85rem;
+			border-bottom: 1px solid #f3f3f3;
+			position: fixed;
+			top: 4.9rem;
+			z-index: 9999;
+			background: #fff;
+			display: none;
+
+		}
+
+		.qxname {
+			font-size: 1.05rem;
+
+		}
+
+		.qxitme1 {
+
+			font-size: 0.85rem;
+
+		}
+
+		.qxitme2 {
+			padding-top: 0.6rem;
+			font-size: 2.3rem;
+			font-family: 'qxzitiszxi';
+			line-height: 150%;
+		}
+
+		.qxitme3 {
+			line-height: 200%;
+			font-size: 0.87rem;
+			font-family: 'qxzitiszxi';
+		}
+
+		.qxnav {
+			width: 100vw;
+			margin: 0 auto;
+			height: 3.0rem;
+			line-height: 3.1rem;
+			/* background: #066; */
+			margin-top: 0.3rem;
+			font-weight: bold;
+		}
+
+		.qxnav li {
+			font-size: 0.86rem;
+			font-family: bodyfont;
+		}
+
+		.qxnavtop li {
+			float: left;
+			font-size: 0.86rem;
+			width: 16.6%;
+			color: #707070;
+			font-family: bodyfont;
+			position: relative
+		}
+
+		.qxnavtop li span {
+			color: #707070;
+			font-family: 'bodyfont';
+		}
+
+		.qxnavtop li a {
+			color: #707070;
+			font-family: none;
+			font-family: bodyfont;
+		}
+
+		.qxnavtop li.active a {
+			color: #333;
+		}
+
+		.qxnavtop li.active:after {
+			content: "";
+			width: 0.8rem;
+			height: 3px;
+			border-left: 0px solid #fff;
+			border-right: 0px solid #fff;
+			border-bottom: 0.2rem solid #ea3035;
+			border-radius: 1px;
+			font-size: 0;
+			line-height: 0;
+			opacity: 1;
+			position: absolute;
+			bottom: 0.43rem;
+
+			left: calc(50% - 6px);
+		}
+
+		.xriqi5 {
+			font-size: 11px;
+			color: #909090;
+			width: 96.3vw;
+			margin-left: 2.8vw;
+			/*width:95vw;*/
+			padding-right: 2%;
+			height: 2rem;
+			position: relative;
+			z-index: 99999;
+			background: #fff;
+			top: -20px
+		}
+
+		.xriqi5 li {
+			float: left;
+			font-family: 'qxzitiszxi';
+			width: 32%;
+			margin-right: 0%;
+			text-align: left;
+			transform: scale(1);
+			text-align: center
+		}
+
+		.xriqi5 li:nth-child(1) {
+			margin-right: 0%;
+			width: 18%;
+			text-align: left
+		}
+
+		.xriqi5 li:nth-child(4) {
+			margin-right: 0%;
+			width: 18%;
+			text-align: right
+		}
+
+
+		.xriqi3 {
+			font-size: 11px;
+			color: #909090;
+			width: 88vw;
+			margin-left: 2.8vw;
+			/*width:95vw;*/
+			height: 2rem;
+			position: relative;
+			z-index: 99999;
+			background: #fff;
+			top: -20px
+		}
+
+		.xriqi3 li {
+			float: left;
+			font-family: 'qxzitiszxi';
+			width: 42%;
+			margin-right: 0%;
+			text-align: left;
+			transform: scale(1);
+			text-align: center
+		}
+
+		.xriqi3 li:nth-child(1) {
+			margin-right: 0%;
+			width: 18%;
+			text-align: left
+		}
+
+		.xriqi3 li:nth-child(3) {
+			margin-right: 0%;
+			width: 18%;
+			text-align: right
+		}
+
+		.qxitme6 {
+			margin-top: 1rem;
+		}
+
+		.qxitme6n {
+			margin-top: -1rem;
+			height: 6.8rem;
+		}
+
+		.qxbox {
+			z-index: 99
+		}
+
+		.qxbox:after {
+			content: "";
+			position: absolute;
+			width: 8.2rem;
+			height: 3rem;
+			top: 41%;
+			left: calc(47vw - 4.1rem);
+			transform: translateY(-35.5%);
+			z-index: -1;
+			background-image: url('');
+			background-size: 100% auto;
+			background-repeat: no-repeat
+		}
+
+		.qxbox:before {
+			content: "";
+			position: absolute;
+			width: 100vw;
+			height: 5rem;
+			top: 44%;
+			left: -3vw;
+			transform: translateY(-50%);
+			z-index: -1;
+			background-image: url('');
+			background-size: 100% auto;
+			background-repeat: no-repeat
+		}
+
+		.xriqi1 {
+			font-size: 11px;
+			color: #909090;
+			width: 95vw;
+			margin-left: 2.8vw;
+			/*width:95vw;*/
+			height: 2rem;
+			position: relative;
+			z-index: 99999;
+
+			top: -20px
+		}
+
+		.xriqi1 li {
+			font-family: 'qxzitiszxi';
+			margin-right: 0%;
+			width: 15%;
+			float: right;
+			margin-top: 0.02rem;
+			text-align: right;
+			transform: scale(0.93);
+			background: #fff;
+
+		}
+
+		.qxpao .qxpao2 {
+			font-size: 2.3rem;
+
+			line-height: 165%;
+		}
+
+		.getDateBg {
+			width: 100%;
+			height: 56.2rem;
+			background-color: rgba(0, 0, 0, 0.5);
+			position: absolute;
+
+			z-index: 99999;
+
+			display: none
+		}
+
+		.newSection {
+			margin-top: -1rem;
+			background-image: url('./qx/newSection1.png');
+			width: 100%;
+			height: 8rem;
+			background-size: contain;
+			/* or 'cover' depending on your needs */
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		@font-face {
+			font-family: digital;
+			src: url('./common/fonts/pingfang.TTF');
+		}
+
+		.newSectionText {
+			font-family: digital;
+			color: #9a9a9a;
+			font-size: 0.73rem;
+			text-align: left;
+			padding-left: 2.5rem;
+			padding-top: 4.4rem;
+		}
+	</style>
+</head>
+
+<body style="background-color: rgb(255, 255, 255); font-size: 36px;">
+    <div id="datePlugin"></div>
+	<div class="ztlyanse" style="width:100%;position:fixed;height:2.1rem;z-index:99999;top:0px;">
+		<!-- f12f37 -->
+	</div>
+	<div id="wrapper" class="home" style="background:#fff;margin-top:2rem">
+		<div id="user" style="margin-bottom:0px;background:#fff"> <input type="hidden" id="types" value="3">
+			<section class="getDateBg" id="getDateBg"></section>
+			<style>
+
+			</style>
+
+			<div id="headerqx" style="width: 100%; height: 3.1rem;background-color: #e83030; ">
+				<!-- #e83030 -->
+				<style type="text/css">
+					.headqx {
+
+						width: 60vw;
+
+					}
+
+					#headerqx .share {
+						font-size: 0.93rem;
+						line-height: 3rem;
+						position: absolute;
+						right: 1rem;
+						font-family: qxziti;
+
+					}
+
+					.qxname {
+						font-family: bodyfont;
+					}
+
+					.nongli {
+						width: 2rem;
+						margin-left: .2rem;
+						opacity: 0.8;
+					}
+
+					.qxnav li.active span {
+						opacity: 1;
+					}
+				</style>
+				<a class="back " href="index.html"><img src="./qx/b_fan.png" alt=""
+						style="width: .7rem;margin-left:1.1rem;margin-top: -.8rem;"> </a>
+				<div class="headqx">
+					<div class="qxname"><span>同花顺—资产分析</span></div>
+				</div>
+				<!-- <div class="share">分享</div> -->
+				<div class="gengxin" style="display:none"> <a href="userqx.html?rec=useryk"
+						onclick="return confirm('更新数据较慢，请耐心等待;每日可更新一次,交易记录无修改的不需要更新');">更新盈亏</a> </div>
+
+
+			</div>
+			<div id="qxmiddle" style="background-image: url(&#39;./qx/redbg_nian_03.png&#39;);">
+				<div class="qxitme1"></div>
+				<div class="qxitme2"><span class="timer counter" data-to="-3200.00" data-speed="1000">0.00</span>
+				</div>
+				<div class="qxitme3">收益率:<span>0.00%</span></div>
+				<script>
+					// $(window).ready(function () {
+
+					//   //  $(".math").removeClass("timer");
+					// })
+				</script>
+
+				<div class="qxnavtop">
+					<li class="li1 "><span>当日</span></li>
+					<li class="li2"><span onclick="('qxmonth');">本月</span></li>
+					<li class="li3  "><span onclick="zongloadqx('qxthree');">近三月</span></li>
+					<li class="li4"><span
+							onclick="zongloadqx('qxyear');">今年<!-- 蛇年<img src="./qx/nonglilight.png" class="nongli" /> --></span>
+					</li>
+					<li class="li5"><span onclick="zongloadqx('all');">全部</span></li>
+					<li class="li6"><a>自定义</a></li>
+				</div>
+				<div class="qxnav">
+					<li class="li1 "><span>当日</span></li>
+					<li class="li2"><span onclick="zongloadqx('qxmonth');">本月</span></li>
+					<li class="li3"><span onclick="zongloadqx('qxthree');">近三月</span></li>
+					<li class="li4"><span
+							onclick="zongloadqx('qxyear');">今年<!-- 蛇年<img src="./qx/nonglilight.png" class="nongli" /> --></span>
+					</li>
+					<li class="li5"><span onclick="zongloadqx('all');">全部</span></li>
+					<li class="li6"><a>自定义</a></li>
+				</div>
+				<div class="qxitme5"><img src="./qx/qx_052.jpg" width="100%"></div>
+				<div class="qxit me6"></div>
+				<div id="echart" class="qxbox"
+					style="width: 94vw; margin-left: 3vw; margin-top: 0rem; height: 17.8rem; background: rgb(255, 255, 255); -webkit-tap-highlight-color: transparent; user-select: none;"
+					_echarts_instance_="ec_1708316857752">
+					<div
+						style="position: relative; width: 367px; height: 289px; padding: 0px; margin: 0px; border-width: 0px;">
+						<canvas data-zr-dom-id="zr_0" width="1101" height="867"
+							style="position: absolute; left: 0px; top: 0px; width: 367px; height: 289px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+					</div>
+				</div>
+				<div class="xriqi1">
+					<li></li>
+				</div>
+				<div class="qxitme6n"><img src="./qx/midOption.png" width="100%"></div>
+				<!-- <div
+						style="width: 100%;height: 5.492rem; background-image: url('./qx/2024.jpg');background-size: 100%;background-repeat: no-repeat;">
+					</div> -->
+				<div class="qxpao">
+					<!-- <div class="newSection">
+						<div class="newSectionText">
+							2024.9.24~至今</div>
+					</div> -->
+					<div class="qxpao1">本月跑输上证指数</div>
+					<div class="qxpao2 ">0.00%</div>
+				</div>
+				<div class="qxbottom"></div>
+			</div>
+
+			<script type="text/javascript" src="./qx/qxqujian1104.js"></script>
+
+			<div class="zhishilist">
+				<li class="">
+					<div class="name">我：</div>
+					<div class="jd">
+						<div class="jdt" style="width:0%"></div>
+					</div>
+					<div class="sz">0.00%</div>
+				</li>
+				<li class="">
+					<div class="name">上证：</div>
+					<div class="jd">
+						<div class="jdt" style="width:37%"></div>
+					</div>
+                                    <div class="sz">--</div>
+				</li>
+				<li class="">
+					<div class="name">深证：</div>
+					<div class="jd">
+						<div class="jdt" style="width:76%"></div>
+					</div>
+                                    <div class="sz">--</div>
+				</li>
+				<li class="">
+					<div class="name">创业板：</div>
+					<div class="jd">
+						<div class="jdt" style="width:99%"></div>
+					</div>
+                                    <div class="sz">--</div>
+				</li>
+			</div>
+
+			<!-- 	<iframe id="myFrame" scrolling="no" frameborder="0" src="./qx/rili240102.html"
+					style="width:100%;height:38rem;border-top:0.8rem #f3f4f8 solid;"></iframe> -->
+
+
+
+			<section style="width:100%;height:38rem;border-top:0.8rem #f3f4f8 solid;" class="RiliSection">
+
+                            <link href="qx/style4.css?v=2" type="text/css" rel="stylesheet">
+				<style type="text/css">
+					<!--
+					@font-face {
+						font-family: qxzitiszxi;
+                                                src: url('./common/fonts/THSJinRongTi-Regluar.otf');
+					}
+
+					@font-face {
+						font-family: riliziti;
+                                                src: url('./common/fonts/THSJinRongTi-Medium.otf');
+					}
+
+					li {
+						list-style: none;
+					}
+
+					i {
+						font-style: normal
+					}
+
+					.RiliSection .rilibottom {
+						position: relative
+					}
+
+					.RiliSection .rilibottom .shangzheng {
+						position: absolute;
+						right: 6vw;
+					}
+
+					.RiliSection .clickbl {
+						position: absolute;
+						top: 10px;
+						right: 0px;
+						height: 2rem;
+						width: 20vw;
+					}
+
+					.RiliSection .rilitop {
+						width: 100vw;
+						height: 3rem;
+						position: relative;
+					}
+
+					.RiliSection .rilitop .rilinav {
+						width: 92%;
+						margin: 0 auto;
+						height: 3rem;
+					}
+
+					.RiliSection .rilitop .rilinav li {
+						list-style: none;
+						line-height: 240%;
+						margin-right: 1.2rem;
+						font-family: qxziti;
+						color: #666666;
+						float: left;
+						font-size: 1.1rem;
+					}
+
+					.RiliSection .rilitop .rilinav li.on {
+						font-weight: bold;
+						position: relative;
+						color: #333333;
+					}
+
+					.RiliSection .rilitop .rilinav li.on::after {
+						content: "";
+						width: 0.8rem;
+						height: 0.21rem;
+						background: #ea3035;
+						border-left: 0px solid #fff;
+						border-right: 0px solid #fff;
+						border-bottom: 0.2rem solid #ea3035;
+						border-radius: 4px;
+						font-size: 0;
+						line-height: 0;
+						opacity: 1;
+						position: absolute;
+						bottom: -0.02rem;
+						left: calc(50% - 6px);
+					}
+
+					.RiliSection .none {
+						display: none;
+					}
+
+					.RiliSection #myTab1_Content1,
+					#myTab1_Content2 {
+						position: relative
+					}
+
+					.RiliSection .yuebox {
+						width: 92%;
+						/* margin: 0 auto; */
+						margin-top: 0.7rem;
+						background: #fff;
+						padding-top: 1.2rem;
+						overflow: hidden;
+						clear: both;
+					}
+
+					.RiliSection .yuebox li {
+						width: calc(25% - 0.5rem);
+						color: rgb(191, 191, 197);
+						background-color: #fff;
+						font-size: 0.9rem;
+						float: left;
+						padding-right: 0.5rem;
+						padding-top: 0.6rem;
+						height: 3.3rem;
+						text-align: right;
+						line-height: 100%;
+						position: relative;
+						box-sizing: content-box;
+					}
+
+					.RiliSection .yuebox li.blue {
+						background-color: #6f92e6;
+						color: #fff
+					}
+
+					.RiliSection .yuebox li.red {
+						background-color: #ff745f;
+						color: #fff
+					}
+
+					.RiliSection .yuebox li.black {
+						background-color: #fff;
+						color: #2f2f2f
+					}
+
+					.RiliSection .yuebox li span {
+						font-family: riliziti;
+						font-weight: normal;
+						font-size: 14px;
+
+						text-align: right;
+						line-height: 14px;
+						display: block;
+						height: 15px;
+						color: rgb(191, 191, 197);
+						overflow: hidden;
+						padding-top: 0.8rem;
+						box-sizing: content-box;
+					}
+
+					.RiliSection .yuebox li.black span {
+						color: #2f2f2f;
+						font-family: riliziti;
+						font-size: 12px;
+					}
+
+					.RiliSection .yuebox li.red span {
+						color: #fff;
+						font-family: riliziti;
+						font-size: 12px;
+					}
+
+					.RiliSection .yuebox li.blue span {
+						color: #fff;
+						font-family: riliziti;
+						font-size: 12px;
+					}
+
+					.RiliSection .yuebox li i {
+						display: inline-block;
+						top: 0.4rem;
+						position: absolute;
+						left: 0.8rem;
+					}
+
+					.RiliSection .yuebox li i>img {
+						width: 1rem;
+					}
+
+					.RiliSection .yuebox .mykbili {
+						display: none;
+					}
+
+					.RiliSection .yuebox1 {
+						width: 92%;
+						margin: 0 auto;
+						margin-top: 4rem;
+						background: #fff;
+						padding-top: 0.9rem;
+						overflow: hidden;
+						clear: both;
+					}
+
+					.RiliSection .yuebox1 li {
+						width: calc(25% - 0.5rem);
+						color: rgb(191, 191, 197);
+						background-color: #fff;
+						font-size: 0.9rem;
+						float: left;
+						padding-right: 0.5rem;
+						padding-top: 0.6rem;
+						height: 3.3rem;
+						text-align: right;
+						line-height: 100%;
+						position: relative;
+						box-sizing: content-box;
+					}
+
+					.RiliSection .yuebox1 li.blue {
+						background-color: #6f92e6;
+						color: #fff
+					}
+
+					.RiliSection .yuebox1 li.red {
+						background-color: #ff745f;
+						color: #fff
+					}
+
+					.RiliSection .yuebox1 li.black {
+						background-color: #fff;
+						color: #2f2f2f
+					}
+
+					.RiliSection .yuebox1 li span {
+						font-family: riliziti;
+						font-weight: normal;
+						font-size: 14px;
+
+						text-align: right;
+						line-height: 14px;
+						display: block;
+						height: 15px;
+						color: rgb(191, 191, 197);
+						overflow: hidden;
+						padding-top: 0.8rem;
+						box-sizing: content-box;
+					}
+
+					.RiliSection .yuebox1 li.black span {
+						color: #2f2f2f;
+						font-family: riliziti;
+						font-size: 12px;
+					}
+
+					.RiliSection .yuebox1 li.red span {
+						color: #fff;
+						font-family: riliziti;
+						font-size: 12px;
+					}
+
+					.RiliSection .yuebox1 li.blue span {
+						color: #fff;
+						font-family: riliziti;
+						font-size: 12px;
+					}
+
+					.RiliSection .yuebox1 li i {
+						display: inline-block;
+						top: 0.4rem;
+						position: absolute;
+						left: 0.8rem;
+					}
+
+					.RiliSection .yuebox1 li i>img {
+						width: 1rem;
+					}
+
+					.RiliSection .yuebox1 .mykbili1 {
+						display: none;
+					}
+
+					.RiliSection .yuebox1 li.current-month {
+						background-color: #ff745f !important;
+						color: #fff !important;
+						position: relative;
+					}
+
+					.RiliSection .yuebox1 li.current-month:after {
+						content: "";
+						position: absolute;
+						bottom: 0;
+						left: 0;
+						width: 100%;
+						height: 3px;
+						/* background-color: #e83030; */
+					}
+
+					.RiliSection .yuebox1 li.current-month span {
+						color: #fff !important;
+						font-weight: bold;
+					}
+
+					.RiliSection .yearbox {
+						width: 92%;
+						margin: 0 auto;
+						margin-top: 4rem;
+						background: #fff;
+						padding-top: 0.9rem;
+						overflow: hidden;
+						clear: both;
+					}
+
+					.RiliSection .yearbox li {
+						width: calc(25% - 0.5rem);
+						color: #fff;
+						background-color: #ff745f;
+						font-size: 0.9rem;
+						float: left;
+						padding-right: 0.5rem;
+						padding-top: 0.6rem;
+						height: 3.3rem;
+						text-align: right;
+						line-height: 100%;
+						position: relative;
+						box-sizing: content-box;
+					}
+
+					.yearbox li.blue {
+						background-color: #6f92e6;
+						color: #fff;
+					}
+
+					.yearbox li.black {
+						background-color: #fff;
+						color: #2f2f2f
+					}
+
+					.yearbox li span {
+						font-family: riliziti;
+						font-weight: normal;
+						font-size: 12px;
+
+						text-align: right;
+						line-height: 14px;
+						display: block;
+						height: 15px;
+						color: #fff;
+						overflow: hidden;
+						padding-top: 0.8rem;
+						box-sizing: content-box;
+					}
+
+					.yearbox li.black span {
+						color: #2f2f2f;
+						font-family: riliziti;
+						font-size: 14px;
+					}
+
+					.yearbox li.blue span {
+						color: #fff;
+					}
+
+					.yearbox li i {
+						display: inline-block;
+						top: 0.4rem;
+						position: absolute;
+						left: 0.8rem;
+					}
+
+					.yearbox li i>img {
+						width: 1rem;
+					}
+
+					.yearbox .mykbili {
+						display: none;
+					}
+
+
+					.selectyearall {
+						width: 100%;
+						background: #Fff;
+						height: 3rem;
+						line-height: 3.2rem;
+						font-size: 1rem;
+						float: right
+					}
+
+					.selectyearall>img {
+						width: 100%;
+						padding-top: 0.521rem;
+					}
+
+					.selectyear {
+						width: 41%;
+						margin-right: 9%;
+						height: 3rem;
+						line-height: 3.2rem;
+						float: right;
+						font-size: 1rem;
+						background: #fff;
+						text-align: center;
+					}
+
+					.selectyear select {
+						/* 清除默认边框 */
+
+						width: 5rem;
+						height: 2rem;
+						border: 0;
+						/* 清除默认的箭头样式 */
+						appearance: none;
+						-moz-appearance: none;
+						-webkit-appearance: none;
+						/* 右侧添加小箭头的背景图 */
+						background: url('qx/icon.png') right center no-repeat;
+						background-size: 22px;
+					}
+
+					.rilibottom {
+						clear: both;
+					}
+
+					.aboluo-nextMonthDays a {
+						color: #BFBFC5
+					}
+
+					.aboluo-rilidiv .aboluo-rilitable tr td .aboluo-nextMonthDays a {
+						color: #BFBFC5
+					}
+
+					.aboluo-rilidiv .aboluo-rilitable tr td a {
+
+						/* font-family: none; */
+
+					}
+					-->
+				</style>
+				<script type="text/javascript">
+
+
+				</script>
+				<style type="text/css">
+					.aboluo-w-700 {
+						width: 100%;
+						height: 33rem;
+						margin-top: 0rem;
+					}
+
+					.aboluo-tools {
+
+						margin-left: 54%;
+					}
+
+					.aboluo-calendar-select-year {
+						float: left;
+						padding-right: 0.2rem;
+					}
+
+					#dateSelectorOne {
+						/*width: 5.6rem;*/
+						width: 3.6rem;
+						font-size: 1rem;
+						background: none;
+						font-weight: bold;
+						color: #2f2f2f;
+						position: relative
+					}
+
+					.jticon img {
+						width: 1.32rem
+					}
+
+					/* Top Navigation Boldness */
+					.qxnav li.active,
+					.qxnavtop li.active a,
+					.qxnavtop li.active span {
+						font-weight: 600 !important;
+						/*color: #000 !important;*/
+						/* This creates the extra thickness on iPhone */
+						/*-webkit-text-stroke: 0.6px currentColor;*/
+						/*text-shadow: 0.2px 0 0.1px currentColor;*/
+					}
+
+					.qxnavtop li.active span {
+						color: #000 !important;
+					}
+
+					/* Bottom Calendar Navigation Boldness */
+					.RiliSection .rilitop .rilinav li.on {
+						font-weight: 600 !important;
+						color: #000 !important;
+						/* This creates the extra thickness on iPhone */
+						/*-webkit-text-stroke: 0.8px currentColor; */
+						/*text-shadow: 0.3px 0 0.2px currentColor;*/
+					}
+
+					/* Optional: Make sure the red bar stays in place */
+					.qxnavtop li.active:after,
+					.RiliSection .rilitop .rilinav li.on::after {
+						font-weight: normal;
+						/* Don't bold the decorative bar */
+					}
+				</style>
+				<aside style="background-image: url(qx/rilibgn.jpg); background-position: 0px 0px; background-size:
+					100%; background-repeat: no-repeat; font-size: 36px;">
+
+					<div class="rilitop">
+						<div class="rilinav" id="myTab1">
+							<li class="on" onclick="nTabs(this,0);">日收益</li>
+							<li onclick="nTabs(this,1);">月收益</li>
+							<li onclick="nTabs(this,2);">年收益</li>
+							<li class="jieduan">阶段收益</li>
+						</div>
+						<div class=" clickbl "><input value=" 0" type="hidden" id="showtype"><input value="0.00%"
+								type="hidden" id="shouyibili"><input value="0.00" type="hidden" id="shouyi">
+						</div>
+						<div class="clickblm"><input value="0" type="hidden" id="showtype"></div>
+					</div>
+
+
+					<div class="aboluo-w-700" id="myTab1_Content0">
+						<div class="aboluo-leftdiv">
+							<div class="aboluo-tools">
+								<div class="aboluo-calendar-select-year"><select name="aboluo-yearSelect"
+										id="aboluo-yearSelect" style="pointer-events:none;">
+
+									</select>
+								</div>
+								<div class="aboluo-calendar-month">
+
+									<!-- <select name="aboluo-selectmonth" id="aboluo-selectmonth">
+            <option value="1">1月</option>
+            <option value="2">2月</option>
+            <option value="3">3月</option>
+            <option value="4">4月</option>
+            <option value="5">5月</option>
+            <option value="6">6月</option>
+            <option value="7">7月</option>
+            <option value="8">8月</option>
+            <option value="9">9月</option>
+            <option value="10">10月</option>
+            <option value="11">11月</option>
+            <option value="12">12月</option>
+          </select> -->
+
+									<a class="aboluo-month-a-next" href="javascript:;"> &gt;</a>
+								</div>
+
+							</div>
+							<div class="aboluo-rilidiv">
+								<table class="aboluo-rilitable" cellspacing="0" cellpadding="0">
+									<thead class="aboluo-rilithead" style="display:none">
+										<tr>
+											<th>日
+											</th>
+											<th>一
+											</th>
+											<th>二
+											</th>
+											<th>三
+											</th>
+											<th>四
+											</th>
+											<th>五
+											</th>
+											<th>六
+											</th>
+										</tr>
+									</thead>
+									<tbody class="aboluo-rilitbody">
+										<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+											<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-28"
+													style="text-decoration: none; color: rgb(191, 191, 197);">28</a>
+											</td>
+											<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-29"
+													style="text-decoration: none; color: rgb(191, 191, 197);">29</a>
+											</td>
+											<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-30"
+													style="text-decoration: none; color: rgb(191, 191, 197);">30</a>
+											</td>
+											<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-31"
+													style="text-decoration: none; color: rgb(191, 191, 197);">31</a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-1"
+													style="text-decoration: none;">01</a></td>
+											<td><a href="javascript:;" date="2024-2-2"
+													style="text-decoration: none;">02</a></td>
+											<td><a href="javascript:;" date="2024-2-3"
+													style="text-decoration: none;">03</a></td>
+										</tr>
+										<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+											<td><a href="javascript:;" date="2024-2-4"
+													style="text-decoration: none;">04</a></td>
+											<td><a href="javascript:;" date="2024-2-5"
+													style="text-decoration: none;">05</a></td>
+											<td><a href="javascript:;" date="2024-2-6"
+													style="text-decoration: none;">06</a></td>
+											<td><a href="javascript:;" date="2024-2-7"
+													style="text-decoration: none;">07</a></td>
+											<td><a href="javascript:;" date="2024-2-8" ztid="1671960" jjrzt="0"
+													style="text-decoration: none; background: rgb(255, 255, 255); color: rgb(0, 0, 0);">08<span
+														class="aboluo-td-a-ban">0</span></a></td>
+											<td><a href="javascript:;" date="2024-2-9" ztid="undefined" jjrzt="除夕"
+													style="text-decoration: none; background: rgb(255, 255, 255);">09<span>除夕</span></a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-10" ztid="undefined" jjrzt="春节"
+													style="text-decoration: none; background: rgb(255, 255, 255);">10<span>春节</span></a>
+											</td>
+										</tr>
+										<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+											<td><a href="javascript:;" date="2024-2-11" ztid="undefined" jjrzt="休"
+													style="text-decoration: none; background: rgb(255, 255, 255);">11<span>休</span></a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-12" ztid="undefined" jjrzt="休"
+													style="text-decoration: none; background: rgb(255, 255, 255);">12<span>休</span></a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-13" ztid="undefined" jjrzt="休"
+													style="text-decoration: none; background: rgb(255, 255, 255);">13<span>休</span></a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-14" ztid="undefined" jjrzt="休"
+													style="text-decoration: none; background: rgb(255, 255, 255);">14<span>休</span></a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-15" ztid="undefined" jjrzt="休"
+													style="text-decoration: none; background: rgb(255, 255, 255);">15<span>休</span></a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-16" ztid="undefined" jjrzt="休"
+													style="text-decoration: none; background: rgb(255, 255, 255);">16<span>休</span></a>
+											</td>
+											<td><a href="javascript:;" date="2024-2-17" ztid="undefined" jjrzt="休"
+													style="text-decoration: none; background: rgb(255, 255, 255);">17<span>休</span></a>
+											</td>
+										</tr>
+										<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+											<td><a href="javascript:;" date="2024-2-18"
+													style="text-decoration: none;">18</a></td>
+											<td><a href="javascript:;" date="2024-2-19" ztid="1673793" jjrzt="0"
+													style="text-decoration: none; background: rgb(255, 255, 255); color: rgb(0, 0, 0);">今<span
+														class="aboluo-td-a-ban">0</span></a></td>
+											<td><a href="javascript:;" date="2024-2-20"
+													style="text-decoration: none;">20</a></td>
+											<td><a href="javascript:;" date="2024-2-21"
+													style="text-decoration: none;">21</a></td>
+											<td><a href="javascript:;" date="2024-2-22"
+													style="text-decoration: none;">22</a></td>
+											<td><a href="javascript:;" date="2024-2-23"
+													style="text-decoration: none;">23</a></td>
+											<td><a href="javascript:;" date="2024-2-24"
+													style="text-decoration: none;">24</a></td>
+										</tr>
+										<tr>
+											<td><a href="javascript:;" date="2024-2-25"
+													style="text-decoration: none;">25</a></td>
+											<td><a href="javascript:;" date="2024-2-26"
+													style="text-decoration: none;">26</a></td>
+											<td><a href="javascript:;" date="2024-2-27"
+													style="text-decoration: none;">27</a></td>
+											<td><a href="javascript:;" date="2024-2-28"
+													style="text-decoration: none;">28</a></td>
+											<td><a href="javascript:;" date="2024-2-29"
+													style="text-decoration: none;">29</a></td>
+											<td class="aboluo-nextMonthDays"><a href="javascript:;" date="2024-3-1"
+													style="text-decoration: none; color: rgb(191, 191, 197);">01</a>
+											</td>
+											<td class="aboluo-nextMonthDays"><a href="javascript:;" date="2024-3-2"
+													style="text-decoration: none; color: rgb(191, 191, 197);">02</a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+
+							<div class="rilibottom">
+								<div class="leiji"><span id="yuefen"
+										style="color:#333333;font-family: thsRili, digital;">9</span>月累计收益<i id="lv"
+										style="display:none">率</i>：<span id="leiji" class="pred">0.00</span></div>
+								<div class="shangzheng">上证：<span id="rilisz" class="pred">+3.70%</span></div>
+							</div>
+						</div>
+					</div>
+
+					<!--<div id="myTab1_Content1" class=" none">-->
+
+					<!--	<script src="qx/iScroll.js"></script>-->
+					<!--	<script src="qx/Mdatey.js"></script>-->
+					<!--	<link href="qx/Mdatey.css" rel="stylesheet" type="text/css">-->
+					<!--	<div class="selectyear">-->
+					<!--		<input name="selectmonth6" id="dateSelectorOne" type="text" value="2025年以来"-->
+					<!--			onfocus="this.blur();" data-year="2025年以来"><span class="jticon"><img-->
+					<!--				src="qx/icon.png"></span>-->
+
+					<!--		<select name="selectmonth" id="selectmonth" style="display:none">-->
+					<!--			<option value="2020">2020年</option>-->
+					<!--			<option value="2021">2021年</option>-->
+					<!--			<option value="2022">2022年</option>-->
+					<!--			<option value="2023" selected="">2023年</option>-->
+					<!--			<option value="2024">2024年</option>-->
+					<!--			<option value="2025">2025年</option>-->
+					<!--		</select>-->
+					<!--	</div>-->
+					<!--	<div class="shangnianbox">-->
+					<!--		<div class="boxhang">-->
+					<!--			<div class="redrectange"></div>-->
+
+					<!--			<div class="nianspan"><span>2025年</span></div>-->
+					<!--		</div>-->
+					<!--	</div>-->
+					<!--	<div class="yuebox" id="yuebox">-->
+					<!--		<li class="black">一月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="black">二月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">三月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">四月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">五月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">六月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">七月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">八月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">九月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">十月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">十一月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">十二月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--	</div>-->
+					<!--	<div class="shangnianbox" id="yuebox1nian" style="height: 2rem;">-->
+					<!--		<div class="boxhang">-->
+					<!--			<div class="redrectange"></div>-->
+					<!--			<div class="nianspan" style="margin-top: -.2rem;"><span>2026年</span></div>-->
+					<!--		</div>-->
+					<!--	</div>-->
+					<!--	<div class="yuebox" id="yuebox1" style="padding-top: 0;">-->
+					<!--		<li class="black">一月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="black">二月<span class="myk">0</span><span class="mykbili">0.00%</span></li>-->
+					<!--		<li class="">三月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+					<!--		<li class="">四月<span class="myk">-</span><span class="mykbili">-</span></li>-->
+
+					<!--	</div>-->
+					<!--	<div class="rilibottom">-->
+					<!--		<div class="leiji">年度收益<i id="mlv" style="display:none">率</i>：<span id="mleiji"-->
+					<!--				class="pred">0.00</span><span id="mleijilv" style="display:none"-->
+					<!--				class="pred">0.00%</span></div>-->
+					<!--		<div class="shangzheng">上证：<span id="mrilisz" class="pblue">-2.79%</span></div>-->
+					<!--	</div>-->
+					<!--	<style>-->
+					<!--		.shangnianbox {-->
+					<!--			width: 100%;-->
+					<!--			height: 3rem;-->
+					<!--			font-size: .9rem;-->
+
+					<!--		}-->
+
+					<!--		.boxhang {-->
+					<!--			display: inline-flex;-->
+					<!--			width: 100%;-->
+					<!--			background: #fff;-->
+					<!--			margin-top: 0.7rem;-->
+					<!--		}-->
+
+					<!--		.redrectange {-->
+					<!--			background: #f00;-->
+					<!--			width: 0.2rem;-->
+					<!--			height: 0.6rem;-->
+					<!--			margin-left: 5%;-->
+					<!--			margin-top: 0.1rem;-->
+					<!--		}-->
+
+					<!--		.nianspan {-->
+					<!--			width: 50%;-->
+					<!--			margin-top: -.25rem;-->
+					<!--			margin-left: .2rem;-->
+
+					<!--		}-->
+
+					<!--		.nianspan span {-->
+					<!--			font-family: "Microsoft YaHei", "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;-->
+					<!--			font-weight: bold;-->
+					<!--		}-->
+					<!--	</style>-->
+					<!--	<script>-->
+					<!--		new Mdate("dateSelectorOne", {-->
+					<!--			acceptId: "dateSelectorOne",-->
+					<!--			beginYear: "2015",-->
+					<!--			endYear: "2026",-->
+					<!--			format: "-"-->
+					<!--		});-->
+					<!--	</script>-->
+					<!--</div>-->
+
+
+					<div id="myTab1_Content1" class=" none">
+<script src="qx/iScroll.js"></script>
+<script src="qx/Mdatey.js"></script>
+						<link href="qx/Mdatey.css" rel="stylesheet" type="text/css">
+
+						<div class="selectyear">
+							<!-- Changed value to 2026年 and data-year to 2026 -->
+							<input name="selectmonth6" id="dateSelectorOne" type="text" value="2026年"
+								onfocus="this.blur();" data-year="2026">
+							<span class="jticon"><img src="qx/icon.png"></span>
+						</div>
+
+						<div class="shangnianbox" id="yuebox1nian" style="height: 2rem;">
+							<div class="boxhang">
+								<div class="redrectange"></div>
+								<div class="nianspan" style="margin-top: -.2rem;"><span>2026年</span></div>
+							</div>
+						</div>
+
+						<!-- Targeted ID for dynamic injection -->
+						<div class="yuebox" id="yuebox" style="padding-top: 0;">
+							<!-- Months will be injected here by JavaScript -->
+						</div>
+
+						<div class="rilibottom">
+							<div class="leiji">年度收益：<span id="mleiji" class="pred">0.00</span></div>
+							<div class="shangzheng">上证：<span id="mrilisz" class="pred">+2.73%</span></div>
+						</div>
+
+						<style>
+							.shangnianbox {
+								width: 100%;
+								height: 3rem;
+								font-size: .9rem;
+							}
+
+							.boxhang {
+								display: inline-flex;
+								width: 100%;
+								background: #fff;
+								margin-top: 0.7rem;
+							}
+
+							.redrectange {
+								background: #f00;
+								width: 0.2rem;
+								height: 0.6rem;
+								margin-left: 5%;
+								margin-top: 0.1rem;
+							}
+
+							.nianspan {
+								width: 50%;
+								margin-top: -.25rem;
+								margin-left: .2rem;
+							}
+
+							.nianspan span {
+								font-family: "Microsoft YaHei", sans-serif;
+								font-weight: bold;
+							}
+						</style>
+					</div>
+					<!-- for months -->
+					<!-- <div id="myTab1_Content3" class=" none">
+
+						<div class="selectyear">
+							<input name="selectmonth6" id="dateSelectorOne" type="text" value="2025年"
+								onfocus="this.blur();" data-year="2025"><span class="jticon"><img
+									src="qx/icon.png"></span>
+
+							<select name="selectmonth" id="selectmonth" style="display:none">
+								<option value="2020">2020年</option>
+								<option value="2021">2021年</option>
+								<option value="2022">2022年</option>
+								<option value="2023" selected="">2023年</option>
+								<option value="2024">2024年</option>
+								<option value="2025">2025年</option>
+							</select>
+						</div>
+						<div class="yuebox1">
+						</div>
+						<div class="rilibottom">
+							<div class="leiji">月度总收益<i id="mlv" style="display:none">率</i>：<span id="mleiji1"
+									class="pred">0.00</span><span id="mleijilv" style="display:none"
+									class="pred">0.00%</span></div>
+							<div class="shangzheng">上证：<span id="mrilisz" class="pblue">-2.79%</span></div>
+						</div>
+					</div> -->
+
+					<div id="myTab1_Content2" class="none">
+						<div class="selectyearall"><img src="qx/rilipic2.png"></div>
+						<div class="yearbox">
+							<li class="black">今年<span class="myk">0</span><span class="mykbili">0.00%</span></li>
+						</div>
+						<div class="rilibottom">
+							<div class="leiji">全部总收益<i id="mlv" style="display:none">率</i>：<span id="yleiji"
+									class="pred">0.00</span><span id="yleijilv" style="display:none"
+									class="pred">0.00%</span></div>
+							<div class="shangzheng">上证：<span id="yrilisz" class="pred">+0.90%</span></div>
+						</div>
+					</div>
+					<script src="qx/zzsc0103.js"></script>
+					<script type="text/javascript">
+						$(function () {
+							// getMonthdata(2024);
+							// getYeardata();
+
+							$("#selectmonth").change(function () {
+								var selectedmonth = $(this).val();
+								getMonthdata(selectedmonth);
+							});
+						})
+
+						function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+							var OldBarHeight = NewBarHeight;
+							var DqBarHeight = 2; //单位rem;
+							viewRemWidth = window.innerWidth / remToPx;
+							NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+							if (NewBarHeight == NaN) {
+								NewBarHeight = OldBarHeight;
+							}
+							$("#wrapper").css("margin-top", NewBarHeight + "rem");
+							$("#header").css("margin-top", NewBarHeight + "rem");
+							$(".ztlyanse").css("height", (NewBarHeight + 0.2) + "rem");
+							$("#headerqx").css("top", NewBarHeight + "rem");
+							$(".qxnavtop").css("top", (NewBarHeight + 2.9) + "rem");
+
+
+							if (Global_PhoneType == "Apple") {
+								$(".qxitme5 img").attr("src", "./qx/qx_052_ios.jpg");
+
+								const font = new FontFace('thsRili', 'url(common/fonts/thsRili.ttf)');
+								font.load().then(() => {
+									document.fonts.add(font);
+									var j = 0;
+									var settimej = setInterval(function () {
+										$(".aboluo-rilitable tr td a").css("font-family", '"thsRiliBold","digital"');
+										// $("#aboluo-selectmonth").css("font-family", '"thsRiliBold", "digital"');
+										//  $("#aboluo-yearSelect").css("font-family",  '"thsRiliBold", "digital"');
+										j++;
+									}, 100);
+
+								}).catch(err => {
+									console.error('字体加载失败', err);
+								});
+							}
+						}
+					</script>
+
+
+				</aside>
+			</section>
+
+
+
+
+
+			<div style="padding-top:6rem;padding-bottom:3rem;text-align:center;" class="txtbottom">
+				<div id="oneMonthDataDisplay" style="font-size:14px;text-align:center; display: none;"></div>
+				<div id="threeMonthDataDisplay" style="font-size:14px;text-align:center; display: none;"></div>
+				<div id="OneYearDataDisplay" style="font-size:14px;text-align:center; display: none;"></div>
+				<div style="padding-top:6rem;padding-bottom:3rem;text-align:center;" class="txtbottom">
+					<div class="updatebtns">
+						<button style="font-size:14px;text-align:center;color:red"
+							onclick="getOneMonthData()">更新本月数据</button>
+						<button style="font-size:14px;text-align:center;color:red"
+							onclick="getThreeMonthData()">更新三个月的数据</button>
+						<button style="font-size:14px;text-align:center;color:red"
+							onclick="oneYearData()">更新今年数据</button>
+					</div>
+					<div style="padding-top:1rem;font-size:12px;text-align:center"
+						onclick="javascript:location.reload();">刷新页面</div>
+					<a style="font-size:14px;text-align:center;color:red" href="#" onclick="gengxinshuju();">更新全部盈亏</a>
+
+					<a style="font-size:14px;text-align:center;color:red;padding-left:30px"
+						onclick="location.reload()">刷新页面</a>
+
+					<!--<a style="font-size:14px;text-align:center;color:red;padding-left:30px"-->
+					<!--	onclick="openAdjustmentForm()">调整</a>-->
+					<p style="font-size:14px;text-align:center;color:blue;padding-left:30px;">
+						每次修改持仓数据之后，可以点击“更新盈亏”更新数据。对账单和曲线日历页面必须更新才能正常使用。曲线及日历图不正确时，先更新数据哈！</p>
+					<p style="font-size:14px;text-align:center;color:blue;padding-left:30px;">
+						如果数据太多，更新全部盈亏出错时，可以只更新本月或者是近三月数据。最新数据就会更新。</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Adjustment Modal -->
+		<div id="adjustmentModal"
+			style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:100000; overflow-y:auto; font-family: sans-serif; color: #333;">
+			<div
+				style="background:#fff; width:92%; margin:1.5rem auto; padding:20px; border-radius:12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+				<h2
+					style="font-size:1.1rem; border-bottom:2px solid #e83030; padding-bottom:10px; margin-bottom:15px; display:flex; justify-content:space-between; align-items:center;">
+					<span>全数据调整 (Adjust All Data)</span>
+					<button type="button" onclick="resetDefaultData()"
+						style="background:#ff4d4d; color:#fff; border:none; padding:5px 10px; border-radius:4px; font-size:12px; cursor:pointer;">恢复默认
+						(Reset)</button>
+				</h2>
+
+				<form id="dataForm">
+					<!-- SECTION 1: HEADER & MONTHLY STATS -->
+					<div style="background:#f4f4f4; padding:12px; border-radius:8px; margin-bottom:15px;">
+						<p style="font-weight:bold; margin-top:0; color:#444; font-size:14px;">1. 顶部数据 (Header Info)</p>
+						<div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px;">
+							<div>
+								<label style="font-size:11px;">金额 (Amount)</label>
+								<input type="text" id="edit_profit_amt">
+							</div>
+							<div>
+								<label style="font-size:11px;">收益率 (Profit %)</label>
+								<input type="text" id="edit_profit_rate">
+							</div>
+						</div>
+						<div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+							<div>
+								<label style="font-size:11px;">跑赢描述 (Text)</label>
+								<input type="text" id="edit_pao_text">
+							</div>
+							<div>
+								<label style="font-size:11px;">跑赢百分比 (%)</label>
+								<input type="text" id="edit_pao_val">
+							</div>
+						</div>
+					</div>
+
+					<!-- SECTION 2: ZHISHILIST -->
+					<div style="background:#f4f4f4; padding:12px; border-radius:8px; margin-bottom:15px;">
+						<p style="font-weight:bold; margin-top:0; color:#444; font-size:14px;">2. 指数对比列表 (Index
+							Comparison)</p>
+						<div style="display:grid; gap: 8px;">
+							<div style="display:flex; gap:10px;">
+								<input type="text" id="idx_val_0" placeholder="我 %" style="flex:1;">
+								<input type="text" id="idx_bar_0" placeholder="我 进度条%" style="flex:1;">
+							</div>
+							<div style="display:flex; gap:10px;">
+								<input type="text" id="idx_val_1" placeholder="上证 %" style="flex:1;">
+								<input type="text" id="idx_bar_1" placeholder="上证 进度条%" style="flex:1;">
+							</div>
+							<div style="display:flex; gap:10px;">
+								<input type="text" id="idx_val_2" placeholder="深证 %" style="flex:1;">
+								<input type="text" id="idx_bar_2" placeholder="深证 进度条%" style="flex:1;">
+							</div>
+							<div style="display:flex; gap:10px;">
+								<input type="text" id="idx_val_3" placeholder="创业板 %" style="flex:1;">
+								<input type="text" id="idx_bar_3" placeholder="创业板 进度条%" style="flex:1;">
+							</div>
+						</div>
+					</div>
+
+					<!-- SECTION 3: CALENDAR STATS -->
+					<div style="background:#f4f4f4; padding:12px; border-radius:8px; margin-bottom:15px;">
+						<p style="font-weight:bold; margin-top:0; color:#444; font-size:14px;">3. 日历总结 (Calendar Bottom
+							Summary)</p>
+						<div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+							<div>
+								<label style="font-size:11px;">本月累计收益</label>
+								<input type="text" id="edit_cal_leiji">
+							</div>
+							<div>
+								<label style="font-size:11px;">日历上证收益 %</label>
+								<input type="text" id="edit_cal_sz">
+							</div>
+						</div>
+					</div>
+
+					<!-- SECTION 4: DAILY CALENDAR GRID -->
+					<div style="background:#f4f4f4; padding:12px; border-radius:8px; margin-bottom:15px;">
+						<div
+							style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+							<p style="font-weight:bold; margin:0; color:#444; font-size:14px;">4. 每日盈亏列表</p>
+
+							<div style="display:flex; gap:5px;">
+								<select id="modal_year_select"
+									style="font-size:12px; padding:2px; border-radius:4px; border:1px solid #ccc;"></select>
+								<select id="modal_month_select"
+									style="font-size:12px; padding:2px; border-radius:4px; border:1px solid #ccc;">
+									<option value="1">1月</option>
+									<option value="2">2月</option>
+									<option value="3">3月</option>
+									<option value="4">4月</option>
+									<option value="5">5月</option>
+									<option value="6">6月</option>
+									<option value="7">7月</option>
+									<option value="8">8月</option>
+									<option value="9">9月</option>
+									<option value="10">10月</option>
+									<option value="11">11月</option>
+									<option value="12">12月</option>
+								</select>
+							</div>
+						</div>
+
+						<div id="calendarDayFields">
+							<!-- Grid is built here -->
+						</div>
+					</div>
+
+					<!-- SECTION 1.5: DATE RANGE (Only for 3 Months / Custom) -->
+					<div id="dateRangeSection"
+						style="display:none; background:#fffbe6; padding:12px; border-radius:8px; margin-bottom:15px; border:1px solid #ffe58f;">
+						<p style="font-weight:bold; margin-top:0; color:#856404; font-size:14px;">日期区间 (Date Range - Max
+							3
+							Months)</p>
+						<div style="display:grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+							<div>
+								<label style="font-size:11px;">开始日期 (Start)</label>
+								<input type="date" id="edit_start_date">
+							</div>
+							<div>
+								<label style="font-size:11px;">结束日期 (End)</label>
+								<input type="date" id="edit_end_date">
+							</div>
+						</div>
+					</div>
+					<div style="margin-top:20px; display:flex; gap: 10px;">
+						<button type="button" onclick="closeAdjustmentForm()"
+							style="flex:1; padding:12px; border-radius:6px; background:#aaa; color:#fff; border:none; font-size:15px; font-weight:bold; cursor:pointer;">取消
+							(Cancel)</button>
+						<button type="button" onclick="saveAdjustments()"
+							style="flex:1; padding:12px; border-radius:6px; background:#e83030; color:#fff; border:none; font-size:15px; font-weight:bold; cursor:pointer;">完成修改
+							(Save)</button>
+					</div>
+				</form>
+			</div>
+
+		</div>
+
+		<style>
+			#dataForm input {
+				width: 100%;
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;
+				font-size: 13px;
+				margin-top: 3px;
+			}
+
+			#dataForm label {
+				color: #555;
+			}
+		</style>
+
+		<style>
+			/* 1. Modal Grid Layout */
+			#calendarDayFields {
+				display: grid;
+				grid-template-columns: repeat(7, 1fr);
+				gap: 4px;
+				background: #f0f0f0;
+				padding: 5px;
+				border-radius: 4px;
+			}
+
+			.modal-calendar-day {
+				background: #fff;
+				border: 1px solid #ddd;
+				padding: 4px 2px;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				border-radius: 4px;
+				min-height: 45px;
+			}
+
+			.modal-day-label {
+				font-size: 10px;
+				color: #999;
+				margin-bottom: 2px;
+				font-weight: bold;
+			}
+
+			/* 2. INPUT FIX: This allows typing on mobile/desktop */
+			.cal-day-input {
+				all: unset !important;
+				display: block !important;
+				width: 90% !important;
+				height: 20px !important;
+				background: #fff !important;
+				color: #e83030 !important;
+				border: 1px solid #eee !important;
+				border-radius: 2px !important;
+				text-align: center !important;
+				font-size: 11px !important;
+				pointer-events: auto !important;
+				-webkit-user-select: text !important;
+				user-select: text !important;
+			}
+
+			/* Highlighting for the 3-month range */
+			.modal-day-in-range {
+				background: #fffbe6 !important;
+				border-color: #ffe58f !important;
+			}
+
+			.modal-day-in-range .modal-day-label {
+				color: #856404 !important;
+			}
+
+			.modal-day-off {
+				opacity: 0.4;
+				background: #fafafa;
+			}
+		</style>
+
+
+		<script type="text/javascript" src="./qx/number2.js  "></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+           <script type="text/javascript">
+                   (function () {
+                           var cacheKey = "qxLiveIndexQuotesV1";
+                           var refreshTimer = null;
+                           var requestPending = false;
+                           var indexes = [
+                                   { symbol: "sh000001", code: "000001" },
+                                   { symbol: "sz399001", code: "399001" },
+                                   { symbol: "sz399006", code: "399006" }
+                           ];
+
+                           function parseIndexQuote(payload, item) {
+                                   var market = payload && payload.data && payload.data[item.symbol];
+                                   var quote = market && (
+                                           (market.qt && market.qt[item.symbol]) ||
+                                           (market.data && market.data.qt && market.data.qt[item.symbol])
+                                   );
+                                   if (!quote || !quote[1]) throw new Error("未查询到指数行情");
+                                   var returnedCode = String(quote[2] || "").replace(/\D/g, "").slice(-6);
+                                   if (returnedCode && returnedCode !== item.code) {
+                                           throw new Error("指数行情代码不匹配");
+                                   }
+                                   var current = parseFloat(quote[3]);
+                                   var previousClose = parseFloat(quote[4]);
+                                   var percent = parseFloat(quote[32]);
+                                   if (!isFinite(percent)) {
+                                           percent = previousClose > 0 ? (current - previousClose) / previousClose * 100 : 0;
+                                   }
+                                   return {
+                                           symbol: item.symbol,
+                                           percent: percent,
+                                           quoteTime: String(quote[30] || "")
+                                   };
+                           }
+
+                           function renderIndexQuotes(quotes) {
+                                   if (!Array.isArray(quotes) || quotes.length !== indexes.length) return;
+                                   quotes.forEach(function (quote, index) {
+                                           var percent = parseFloat(quote.percent);
+                                           if (!isFinite(percent)) return;
+                                           var row = $(".zhishilist li").eq(index + 1);
+                                           row.find(".sz").text(percent.toFixed(2) + "%");
+                                           row.toggleClass("pblue", percent < 0);
+                                   });
+                           }
+
+                           function readCachedQuotes() {
+                                   try {
+                                           var cached = JSON.parse(localStorage.getItem(cacheKey) || "null");
+                                           return cached && Array.isArray(cached.quotes) ? cached.quotes : null;
+                                   } catch (error) {
+                                           return null;
+                                   }
+                           }
+
+                           function requestIndexQuote(item) {
+                                   var url = "https://bor.lingling123.top/chaojia/chaojia2_05_29/php/getgp.php?code=" +
+                                           encodeURIComponent(item.symbol) + "&rec=getDayKlinedata&_=" + Date.now();
+                                   return fetch(url, { cache: "no-store" }).then(function (response) {
+                                           if (!response || response.ok === false) throw new Error("指数行情请求失败");
+                                           return response.json();
+                                   }).then(function (payload) {
+                                           return parseIndexQuote(payload, item);
+                                   });
+                           }
+
+                           window.refreshLiveIndexComparisons = function () {
+                                   if (requestPending || typeof fetch !== "function") return Promise.resolve(null);
+                                   requestPending = true;
+                                   return Promise.all(indexes.map(requestIndexQuote)).then(function (quotes) {
+                                           renderIndexQuotes(quotes);
+                                           try {
+                                                   localStorage.setItem(cacheKey, JSON.stringify({
+                                                           savedAt: Date.now(),
+                                                           quotes: quotes
+                                                   }));
+                                           } catch (error) {}
+                                           requestPending = false;
+                                           return quotes;
+                                   }, function (error) {
+                                           requestPending = false;
+                                           console.log("[LocalAPI] 指数行情暂不可用:", error.message);
+                                           return null;
+                                   });
+                           };
+
+                           $(document).ready(function () {
+                                   var cached = readCachedQuotes();
+                                   if (cached) renderIndexQuotes(cached);
+                                   window.refreshLiveIndexComparisons();
+                                   refreshTimer = setInterval(function () {
+                                           if (typeof window.isMarketOpen === "function" && !window.isMarketOpen()) return;
+                                           window.refreshLiveIndexComparisons();
+                                   }, 30000);
+                                   document.addEventListener("visibilitychange", function () {
+                                           if (!document.hidden) window.refreshLiveIndexComparisons();
+                                   });
+                                   $(window).on("beforeunload", function () {
+                                           if (refreshTimer) clearInterval(refreshTimer);
+                                   });
+                           });
+                   })();
+           </script>
+
+		<script>
+			$(document).ready(function () {
+				// Function to remove data from grayed-out cells
+				function removeGrayedOutData() {
+					// Remove spans with profit/loss data
+					$(".aboluo-pervMonthDays span.aboluo-td-a-xiujia").remove();
+					$(".aboluo-nextMonthDays span.aboluo-td-a-xiujia").remove();
+
+					// Clear 'jjrzt' attribute
+					$(".aboluo-pervMonthDays a").removeAttr("jjrzt");
+					$(".aboluo-nextMonthDays a").removeAttr("jjrzt");
+				}
+
+				// Run immediately
+				//	removeGrayedOutData();
+
+				// Set up MutationObserver to detect future changes
+				const observer = new MutationObserver(function (mutations) {
+					mutations.forEach(function (mutation) {
+						if (mutation.addedNodes.length) {
+							//	removeGrayedOutData(); // Re-run cleanup
+						}
+					});
+				});
+
+				// Start observing the calendar container for changes
+				const calendarContainer = document.querySelector(".aboluo-rilidiv"); // Adjust selector if needed
+				if (calendarContainer) {
+					observer.observe(calendarContainer, {
+						childList: true,
+						subtree: true
+					});
+				}
+
+				// Optional: Re-run cleanup on calendar navigation (if months change)
+				$(".aboluo-month-a-next, .aboluo-month-a-prev").on("click", function () {
+					setTimeout(removeGrayedOutData, 300); // Wait for render
+				});
+			});
+		</script>
+		<script type="text/javascript">
+			function gengxinshuju() {
+				alert("更新曲线数据较慢，请耐心等职，完成后请点击刷新页面！");
+				gengqx();
+			}
+			//这是移动端的监听事件
+			window.addEventListener('scroll', function () {
+				height = $(this).scrollTop();
+				//    alert(height)
+				if (height > 150) {
+					$(".qxnavtop").css({
+						'display': 'block'
+					});
+				} else {
+					$(".qxnavtop").css({
+						'display': 'none'
+					});
+				}
+			})
+
+
+			loginstatus(function () {
+
+				setTimeout(function () {
+					zongloadqx("qxmonth"); //加载曲线总函数
+				}, 100);
+			});
+
+			// Add this function to handle month highlighting
+			function highlightCurrentMonth() {
+				// Get current date info
+				const now = new Date();
+				const currentYear = now.getFullYear();
+				const currentMonth = now.getMonth() + 1; // 1-12
+
+				// Get selected year from the dropdown
+				const selectedYear = parseInt($('#dateSelectorOne').data('year') || $('#selectmonth').val());
+
+				// // Only highlight if viewing current year
+				// if (selectedYear === currentYear) {
+				// 	$('.yuebox1 li').each(function (index) {
+				// 		const isCurrent = (index + 1) === currentMonth;
+				// 		$(this).toggleClass('current-month', isCurrent);
+
+				// 		// Preserve all existing classes and data
+				// 		if (isCurrent) {
+				// 			$(this).addClass('red').removeClass('black blue');
+				// 		}
+				// 	});
+				// } else {
+				// 	$('.yuebox1 li').removeClass('current-month');
+				// }
+			}
+
+			// Initialize on page load
+			$(document).ready(function () {
+				highlightCurrentMonth();
+
+				// Update when year changes
+				$('#dateSelectorOne, #selectmonth').on('change', function () {
+					setTimeout(highlightCurrentMonth, 50); // Small delay to ensure DOM updates
+				});
+			});
+		</script>
+
+		<style>
+			/* This ensures the date number and your custom value stay on separate lines */
+			.aboluo-rilitbody td a {
+				display: flex !important;
+				/* flex-direction: column !important; */
+				/* align-items: center !important; */
+				justify-content: center !important;
+				min-height: 40px;
+				text-decoration: none !important;
+			}
+
+			.val-label {
+				display: block;
+				font-size: 10px !important;
+				line-height: 1.2;
+				margin-top: 2px;
+				color: #ff4d4f;
+				/* Change color as needed */
+				font-weight: normal !important;
+			}
+		</style>
+
+		<!-- <script type="text/javascript">
+	// 1. On page load: Read from localStorage and apply
+	$(document).ready(function() {
+		setTimeout(applySavedData, 500); 
+	});
+	
+	function applySavedData() {
+		const saved = localStorage.getItem('qxModifyData');
+		if (!saved) return;
+		
+		try {
+			const data = JSON.parse(saved);
+	
+			// Apply Header data
+			if (data.profitAmt) $(".qxitme2 span").text(data.profitAmt);
+			if (data.profitRate) $(".qxitme3 span").text(data.profitRate);
+			if (data.paoText) $(".qxpao1").text(data.paoText);
+			if (data.paoVal) $(".qxpao2").text(data.paoVal);
+	
+			// Apply Zhishilist data
+			if (data.zhishilist && Array.isArray(data.zhishilist)) {
+				data.zhishilist.forEach((item, i) => {
+					const row = $(".zhishilist li").eq(i);
+					if (row.length > 0) {
+						if (item.val) row.find(".sz").text(item.val);
+						if (item.bar) row.find(".jdt").css("width", item.bar);
+					}
+				});
+			}
+	
+			// Apply Calendar bottom summaries
+			if (data.calLeiji) $("#leiji").text(data.calLeiji);
+			if (data.calSz) $("#rilisz").text(data.calSz);
+	
+			// Apply Calendar daily values
+			if (data.calDays && Array.isArray(data.calDays)) {
+				data.calDays.forEach(day => {
+					const targetA = $(".aboluo-rilitbody td").eq(day.idx).find("a");
+					if (targetA.length > 0) {
+						let valSpan = targetA.find("span.val-label");
+						if (valSpan.length === 0) {
+							targetA.append(`<span class="val-label"></span>`);
+							valSpan = targetA.find("span.val-label");
+						}
+						// Use empty string if no value, prevents the "060" bug
+						valSpan.text(day.val || ""); 
+					}
+				});
+			}
+		} catch (e) {
+			console.error("Error parsing qxModifyData", e);
+		}
+	}
+	
+	// 2. Open Adjustment Modal
+	function openAdjustmentForm() {
+		$("#edit_profit_amt").val($(".qxitme2 span").text());
+		$("#edit_profit_rate").val($(".qxitme3 span").text());
+		$("#edit_pao_text").val($(".qxpao1").text());
+		$("#edit_pao_val").val($(".qxpao2").text());
+	
+		$(".zhishilist li").each(function(i) {
+			if (i < 4) {
+				$("#idx_val_" + i).val($(this).find(".sz").text());
+				$("#idx_bar_" + i).val($(this).find(".jdt")[0].style.width);
+			}
+		});
+	
+		$("#edit_cal_leiji").val($("#leiji").text());
+		$("#edit_cal_sz").val($("#rilisz").text());
+
+		let dayHtml = "";
+		$(".aboluo-rilitbody td").each(function(i) {
+			const dayLink = $(this).find("a");
+			if (dayLink.length > 0) {
+				// Get the day number only (ignoring the span)
+				const dayNum = dayLink.contents().filter(function() { 
+                    return this.nodeType == 3; 
+                }).text().trim();
+                
+                // Get value from our specific class, default to empty
+				const dayValue = dayLink.find("span.val-label").text() || ""; 
+	
+				dayHtml += `<div style="display:flex; margin-bottom:5px; align-items:center; gap:10px;">
+					<span style="width:30px; font-size:12px; font-weight:bold;">${dayNum}:</span>
+					<input type="text" class="cal-day-input" data-idx="${i}" value="${dayValue}" placeholder="无数据" style="flex:1; padding:4px 8px; height:26px;">
+				</div>`;
+			}
+		});
+		$("#calendarDayFields").html(dayHtml);
+		$("#adjustmentModal").fadeIn(200);
+	}
+	
+	function closeAdjustmentForm() {
+		$("#adjustmentModal").fadeOut(200);
+	}
+	
+	// 3. Save adjustments
+	function saveAdjustments() {
+		const data = {
+			profitAmt: $("#edit_profit_amt").val(),
+			profitRate: $("#edit_profit_rate").val(),
+			paoText: $("#edit_pao_text").val(),
+			paoVal: $("#edit_pao_val").val(),
+			zhishilist: [],
+			calLeiji: $("#edit_cal_leiji").val(),
+			calSz: $("#edit_cal_sz").val(),
+			calDays: []
+		};
+	
+		$(".qxitme2 span").text(data.profitAmt);
+		$(".qxitme3 span").text(data.profitRate);
+		$(".qxpao1").text(data.paoText);
+		$(".qxpao2").text(data.paoVal);
+	
+		for (let i = 0; i < 4; i++) {
+			const val = $("#idx_val_" + i).val();
+			const bar = $("#idx_bar_" + i).val();
+			data.zhishilist.push({ val: val, bar: bar });
+			const row = $(".zhishilist li").eq(i);
+			row.find(".sz").text(val);
+			row.find(".jdt").css("width", bar);
+		}
+	
+		$("#leiji").text(data.calLeiji);
+		$("#rilisz").text(data.calSz);
+	
+		$(".cal-day-input").each(function() {
+			const idx = $(this).data("idx");
+			const val = $(this).val();
+			data.calDays.push({ idx: idx, val: val });
+
+			const targetA = $(".aboluo-rilitbody td").eq(idx).find("a");
+			let valSpan = targetA.find("span.val-label");
+			
+			if (valSpan.length === 0) {
+				targetA.append(`<span class="val-label"></span>`);
+				valSpan = targetA.find("span.val-label");
+			}
+			valSpan.text(val);
+		});
+	
+		localStorage.setItem('qxModifyData', JSON.stringify(data));
+		closeAdjustmentForm();
+		alert("数据已更新！");
+	}
+	
+	function resetDefaultData() {
+		if (confirm("确定要恢复初始设置吗？")) {
+			localStorage.removeItem('qxModifyData');
+			location.reload();
+		}
+	}
+</script> -->
+
+
+		<script type="text/javascript">
+			let currentActiveView = 'qxmonth';
+
+			// 1. Intercept Navigation
+			const originalZongloadqx = window.zongloadqx;
+			window.zongloadqx = function (type) {
+				currentActiveView = type;
+				if (typeof originalZongloadqx === 'function') { originalZongloadqx(type); }
+				setTimeout(() => { applySavedData(type); }, 400);
+			};
+
+			// 2. Click/Touch Fix (Stop Propagation)
+			$(document).on('touchstart mousedown click', '.cal-day-input, #modal_year_select, #modal_month_select', function (e) {
+				e.stopPropagation();
+			});
+
+			// 3. Grid Builder: This matches the modal to the background calendar table
+			window.renderModalGrid = function () {
+				let dayHtml = "";
+				$(".aboluo-rilitbody td").each(function (i) {
+					const td = $(this);
+					const dayLink = td.find("a");
+
+					if (dayLink.length > 0) {
+						const fullDate = dayLink.attr("date");
+						const isOffMonth = td.hasClass('aboluo-pervMonthDays') || td.hasClass('aboluo-nextMonthDays');
+						const dayNum = dayLink.contents().filter(function () { return this.nodeType == 3; }).text().trim();
+
+						// Read value from ANY existing span (ban or xiu)
+						let dayValue = "";
+						const existingSpan = dayLink.find("span");
+						if (existingSpan.length > 0) {
+							dayValue = existingSpan.text();
+						}
+
+						dayHtml += `
+            <div class="modal-calendar-day ${isOffMonth ? 'modal-day-off' : ''}" data-full-date="${fullDate}">
+                <span class="modal-day-label">${dayNum}</span>
+                <input type="text" class="cal-day-input" data-idx="${i}" value="${dayValue}" placeholder="-" inputmode="decimal">
+            </div>`;
+					}
+				});
+				const weekHeader = `<div style="grid-column: span 7; display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 10px; color: #999; padding-bottom: 5px;">
+        <span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>`;
+				$("#calendarDayFields").html(weekHeader + dayHtml);
+				window.refreshCalendarHighlights();
+			};
+
+			// 4. Opening and Syncing the Form
+			window.openAdjustmentForm = function () {
+				// Init Year Selector (2020 to 2026)
+				let yearOpts = "";
+				for (let y = 2020; y <= 2026; y++) yearOpts += `<option value="${y}">${y}年</option>`;
+				$("#modal_year_select").html(yearOpts);
+
+				// SYNC: Read current state from the Aboluo background logic
+				const bgYear = $("#aboluo-yearSelect").val() || 2024;
+				// Background Month detection: try to find the active month selector
+				let bgMonth = 1;
+				if ($("#aboluo-selectmonth").length) {
+					bgMonth = $("#aboluo-selectmonth").val();
+				} else {
+					bgMonth = (new Date()).getMonth() + 1;
+				}
+
+				$("#modal_year_select").val(bgYear);
+				$("#modal_month_select").val(bgMonth);
+
+				// Fill non-calendar fields
+				$("#edit_profit_amt").val($(".qxitme2 span").text());
+				$("#edit_profit_rate").val($(".qxitme3 span").text());
+				$("#edit_pao_text").val($(".qxpao1").text());
+				$("#edit_pao_val").val($(".qxpao2").text());
+				$("#edit_cal_leiji").val($("#leiji").text());
+				$("#edit_cal_sz").val($("#rilisz").text());
+
+				$(".zhishilist li").each(function (i) {
+					if (i < 4) {
+						$("#idx_val_" + i).val($(this).find(".sz").text());
+						$("#idx_bar_" + i).val($(this).find(".jdt")[0].style.width);
+					}
+				});
+
+				// Re-bind change events for dropdowns
+				$("#modal_year_select, #modal_month_select").off("change").on("change", function () {
+					const y = $("#modal_year_select").val();
+					const m = $("#modal_month_select").val();
+
+					$("#aboluo-yearSelect").val(y);
+					if ($("#aboluo-selectmonth").length) $("#aboluo-selectmonth").val(m);
+
+					$("#aboluo-yearSelect").trigger('change');
+
+					// Triple-check render to catch background script finish
+					setTimeout(window.renderModalGrid, 100);
+					setTimeout(window.renderModalGrid, 500);
+				});
+
+				// Date Range logic (3 months only)
+				if (currentActiveView === 'qxthree') {
+					$("#dateRangeSection").show();
+					const saved = JSON.parse(localStorage.getItem('qxModifyData_qxthree') || '{}');
+					$("#edit_start_date").val(saved.startDate || "");
+					$("#edit_end_date").val(saved.endDate || "");
+					$("#edit_start_date, #edit_end_date").off("change").on("change", window.refreshCalendarHighlights);
+				} else {
+					$("#dateRangeSection").hide();
+				}
+
+				// Build the grid
+				window.renderModalGrid();
+				$("#adjustmentModal").show();
+			};
+
+			// 5. Saving Data
+			window.saveAdjustments = function () {
+				const storageKey = 'qxModifyData_' + currentActiveView;
+				const data = {
+					profitAmt: $("#edit_profit_amt").val(),
+					profitRate: $("#edit_profit_rate").val(),
+					paoText: $("#edit_pao_text").val(),
+					paoVal: $("#edit_pao_val").val(),
+					startDate: $("#edit_start_date").val(),
+					endDate: $("#edit_end_date").val(),
+					zhishilist: [],
+					calLeiji: $("#edit_cal_leiji").val(),
+					calSz: $("#edit_cal_sz").val(),
+					calDays: []
+				};
+
+				for (let i = 0; i < 4; i++) {
+					data.zhishilist.push({ val: $("#idx_val_" + i).val(), bar: $("#idx_bar_" + i).val() });
+				}
+
+				$(".cal-day-input").each(function () {
+					const idx = $(this).data("idx");
+					const val = $(this).val();
+					data.calDays.push({ idx: idx, val: val });
+
+					const targetA = $(".aboluo-rilitbody td").eq(idx).find("a");
+
+					// IMPORTANT: Clear ANY existing span (ban or xiu) to prevent duplicates
+					targetA.find("span").remove();
+
+					// Add only the xiu span with the new value
+					if (val !== "") {
+						targetA.append(`<span class="aboluo-td-a-xiu">${val}</span>`);
+					}
+				});
+
+				localStorage.setItem(storageKey, JSON.stringify(data));
+				applySavedData(currentActiveView);
+				window.closeAdjustmentForm();
+				alert("已成功保存数据！");
+			};
+
+			// 6. Applying Data to Screen
+			function applySavedData(view = currentActiveView) {
+				const storageKey = 'qxModifyData_' + view;
+				const saved = localStorage.getItem(storageKey);
+
+				// Clear existing modified labels to prevent stacking
+				$(".aboluo-td-a-xiu").text("");
+
+				if (!saved) return;
+				try {
+					const data = JSON.parse(saved);
+					console.log("Applying saved data for view:", view, data);
+
+					// Apply Global Stats (Profit, Rates, etc.)
+					if (data.profitAmt) $(".qxitme2 span").text(data.profitAmt);
+					if (data.profitRate) $(".qxitme3 span").text(data.profitRate);
+					if (data.paoText) $(".qxpao1").text(data.paoText);
+					if (data.paoVal) $(".qxpao2").text(data.paoVal);
+
+					// Apply Zhishilist
+					if (data.zhishilist) {
+						data.zhishilist.forEach((item, i) => {
+                                                  if (i > 0 && i < 4) return;
+							const row = $(".zhishilist li").eq(i);
+							if (row.length > 0) {
+								row.find(".sz").text(item.val);
+								row.find(".jdt").css("width", item.bar);
+							}
+						});
+					}
+
+					$("#leiji").text(data.calLeiji || "0.00");
+					$("#rilisz").text(data.calSz || "0.00%");
+
+					// Apply Daily Data using the system xiu class
+					if (data.calDays) {
+						data.calDays.forEach(day => {
+							const targetA = $(".aboluo-rilitbody td").eq(day.idx).find("a");
+							if (targetA.length > 0) {
+								let targetSpan = targetA.find("span.aboluo-td-a-xiu");
+								if (targetSpan.length === 0) {
+									// If backend didn't have a span, create one
+									targetA.append(`<span class="aboluo-td-a-xiu"></span>`);
+									targetSpan = targetA.find("span.aboluo-td-a-xiu");
+								}
+								targetSpan.text(day.val || "");
+
+								// Optional: If value is 0, backend sometimes uses color: transparent
+								if (day.val == "0") targetSpan.css("color", "transparent");
+								else targetSpan.css("color", "");
+							}
+						});
+					}
+				} catch (e) { console.error("Error applying data:", e); }
+			}
+
+			// Helper: Highlights
+			function isDateInRange(dateStr, startStr, endStr) {
+				if (!dateStr || !startStr || !endStr) return false;
+				const current = new Date(dateStr);
+				const start = new Date(startStr);
+				const end = new Date(endStr);
+				return current >= start && current <= end;
+			}
+
+			window.refreshCalendarHighlights = function () {
+				const start = $("#edit_start_date").val();
+				const end = $("#edit_end_date").val();
+				$(".modal-calendar-day").each(function () {
+					const dateAttr = $(this).attr("data-full-date");
+					if (isDateInRange(dateAttr, start, end)) {
+						$(this).addClass("modal-day-in-range");
+					} else {
+						$(this).removeClass("modal-day-in-range");
+					}
+				});
+			};
+
+			window.closeAdjustmentForm = function () { $("#adjustmentModal").hide(); };
+
+			window.resetDefaultData = function () {
+				if (confirm("确定恢复默认？")) {
+					localStorage.removeItem('qxModifyData_' + currentActiveView);
+					location.reload();
+				}
+			};
+		</script>
+<script type="text/javascript">
+$(document).ready(function () {
+    // 1. Year change listener
+    var lastYear = $('#dateSelectorOne').val();
+    setInterval(function () {
+        var currentVal = $('#dateSelectorOne').val();
+        if (currentVal !== lastYear) {
+            lastYear = currentVal;
+            var selectedYear = currentVal.replace(/[^0-9]/g, '');
+            if (selectedYear && typeof window.getMonthdata === "function") {
+                $('#dateSelectorOne').attr('data-year', selectedYear);
+                window.getMonthdata(selectedYear, "#yuebox");
+            }
+        }
+    }, 500);
+
+    // 2. Safe Mdate Initialization
+    setTimeout(function() {
+        // CLEANUP: Remove any duplicate or broken plugin divs first
+        $('#datePlugin').remove(); 
+        
+        // Add the plugin div to the TOP of the body so it's easily found
+        $('body').prepend('<div id="datePlugin"></div>');
+
+        var target = document.getElementById("dateSelectorOne");
+        
+        if (target && !window.myMdateInstance) {
+            try {
+                window.myMdateInstance = new Mdate("dateSelectorOne", {
+                    acceptId: "dateSelectorOne",
+                    beginYear: "2015",
+                    endYear: "2026",
+                    format: "-"
+                });
+                console.log("Mdate system ready");
+            } catch (e) {
+                console.error("Mdate UI Error:", e);
+            }
+        }
+    }, 800); // 800ms gives the server extra time to finish loading iScroll
+});
+</script>
+</body>
+
+</html>
