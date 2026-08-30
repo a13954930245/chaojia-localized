@@ -1,0 +1,30 @@
+.navicon{
+	position:absolute;
+	top: 6.48rem;
+    width:100vw;
+	height:1.5rem;
+	margin-left:-0.95rem;
+background-size: 100% auto;
+    background-repeat: no-repeat;
+
+}
+.navicon .szpx{width:22%;height:2.2rem;
+position:absolute}
+
+.navicon .gspx{width:22%;height:2.2rem;right:25%;
+position:absolute}
+
+
+.navicon .ykpx{width:22%;height:2.2rem;left:27%;
+position:absolute}
+
+
+.navicon .szpxios{width:22%;height:2.2rem;
+position:absolute}
+
+.navicon .gspxios{width:22%;height:2.2rem;right:25%;
+position:absolute}
+
+
+.navicon .ykpxios{width:22%;height:2.2rem;left:27%;
+position:absolute}
