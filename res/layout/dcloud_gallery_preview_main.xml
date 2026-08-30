@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@id/root" android:background="#ff161c1e" android:layout_width="match_parent" android:layout_height="match_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <com.dmcbig.mediapicker.view.HackyViewPager android:id="@id/viewpager" android:layout_width="match_parent" android:layout_height="match_parent" />
+    <RelativeLayout android:id="@id/top" android:background="#ff21282c" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <include layout="@layout/dcloud_gallery_preview_actionbar" />
+    </RelativeLayout>
+    <RelativeLayout android:id="@id/bottom" android:background="#ff21282c" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true">
+        <include layout="@layout/dcloud_gallery_preview_bottombar" />
+    </RelativeLayout>
+</RelativeLayout>
