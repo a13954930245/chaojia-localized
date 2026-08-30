@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html style="font-size: 15.625px;">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport"
+		content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+	<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+	<meta name="format-detection" content="telephone=no">
+
+	<title>设置</title>
+
+	
+		
+
+	<link rel="stylesheet" href="./common/initial/font-awesome.min.css">
+	<link rel="stylesheet" href="./common/initial/bootstrap.min.css" media="all" type="text/css">
+
+	<link href="./common/initial/user7.css" rel="stylesheet" type="text/css">
+	<link href="./common/initial/userx0803.css" rel="stylesheet" type="text/css">
+
+	<script type="text/javascript" src="./common/initial/jquery.min.js"></script>
+		<script src="../js/common.js"></script>
+             <script src="../js/local-api.js?v=local48"></script>
+	<script type="text/javascript" src="./common/initial/flexible.js"></script>
+	<script type="text/javascript" src="./common/initial/global.js"></script>
+	<script src="./common/initial/bootstrap.bundle.min.js"></script>
+
+	<style type="text/css">
+		body {
+			touch-action: manipulation;
+			/* 只允许基本的触摸操作 */
+		}
+
+		.tab-nav2 {
+			background: #f5f5f5;
+		}
+
+		@supports (bottom: env(safe-area-inset-bottom)) {
+			.tab-na v2 {
+				padding-bottom: constant(safe-area-inset-bottom);
+				padding-bottom: env(safe-area-inset-bottom);
+			}
+		}
+	</style>
+
+
+	<style type="text/css">
+		@font-face {
+			font-family: Harmony;
+			src: url(./common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+
+		}
+
+		@font-face {
+			font-family: MiLanPro;
+			src: url(./common/fonts/MiLanProVF.woff);
+		}
+
+		@font-face {
+			font-family: 'DIN';
+			src: url('./common/fonts/digital.otf');
+			/*DIN-Mediummy.otf  /DIN-Mediummy.woff*/
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		.drcjios {
+			font-size: 1.1rem;
+			padding-right: 1rem;
+			padding-top: 0.05rem;
+			padding-bottom: 0.26rem;
+			padding-left: 0.9rem;
+
+			font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+		}
+
+		.userhomgback {
+			width: 12vw;
+			height: 2.7rem;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 99999
+		}
+
+		.zqnumber2 {
+			position: relative;
+			padding-left: 3px;
+		}
+
+		.zqnumber2 span {
+
+
+			position: relative;
+			top: 0rem;
+			left: 0rem;
+			font-family: 'DIN',
+		}
+
+
+
+
+		.drcjios,
+		.drcj {
+			padding-right: 0rem;
+			padding-left: 0rem;
+		}
+
+		.zqname2 {
+			font-family: 'DIN', "MiLanPro";
+			padding-right: 0rem;
+			padding-left: 0rem;
+			font-weight: normal;
+			position: relative
+		}
+
+		.zqnumber2 {
+			font-family: 'DIN', "MiLanPro";
+		}
+
+		.space {
+			height: 1.3rem;
+			font-size: 1rem;
+			color: blue;
+		}
+
+		/* Switch styling for toggle button */
+		.switch {
+			position: relative;
+			display: inline-block;
+			width: 60px;
+			height: 34px;
+		}
+
+		.switch input {
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		.slider {
+			position: absolute;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			transition: .4s;
+		}
+
+		.slider:before {
+			position: absolute;
+			content: "";
+			height: 26px;
+			width: 26px;
+			left: 4px;
+			bottom: 4px;
+			background-color: white;
+			transition: .4s;
+		}
+
+		input:checked+.slider {
+			background-color: #2196F3;
+		}
+
+		input:checked+.slider:before {
+			transform: translateX(26px);
+		}
+
+		/* Rounded sliders */
+		.slider.round {
+			border-radius: 34px;
+		}
+
+		.slider.round:before {
+			border-radius: 50%;
+		}
+	</style>
+
+</head>
+
+<body style="background-color: rgb(246, 246, 246); font-size: 36px;">
+	<div class="ztlyanse" style="position:fixed;top:0px;width:100vw;background:#f12f37; height:3.3rem;z-index:999999">
+	</div>
+	<div id="wrapper" style="background:#fff;margin-top: 3rem;">
+		<div id="user" style="margin-bottom:80px;background:#fff">
+
+
+			<link href="./common/initial/style.css" rel="stylesheet" type="text/css">
+			<style type="text/css">
+				label,
+				.form-control {
+					font-size: 12px;
+				}
+			</style>
+			<div style="">
+				<style type="text/css">
+
+				</style>
+
+				<div id="header" style="background:#f12f37;    margin-top: 3rem;">
+					<a href="javascript:;" onclick="javascript:history.back(-1);" class="back"></a>
+					<em>初始设置</em>
+					<a href="mulu.html" class="siteMap"></a>
+
+					<a href="index.html" class="home"></a>
+				</div>
+			</div>
+
+			<div class="container-fluid bgwrite">
+
+				<form id="userset" action="#" method="post" enctype="multipart/form-data">
+					<input type="hidden" class="form-control " id="ispost" name="ispost" value="8">
+					<div class="form-row">
+						<div class="form-group col-md-12">
+							<label for="inputPassword4">证券名称</label>
+							<!-- <input type="text" class="form-control " id="zqname" name="zqname" value="" required=""> -->
+							<select name="zqname" id="zqname">
+								<option value="">请选择证券名称</option>
+							</select>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="renzhengflag">资金页面是否显示认证</label>
+							<select name="renzhengflag" class="form-control renzhengflag" id="renzhengflag"
+								style="width:300px">
+								<option value="0" selected="selected">否</option>
+								<option value="1">无图标显示认证</option>
+								<option value="2">有图标显示认证</option>
+							</select>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputPassword4">别名</label>
+							<input type="text" class="form-control " id="bieming" name="bieming" value="">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputPassword4">证券号 (持仓页显示)参考：**1512</label>
+                                                        <input type="text" class="form-control" id="zqno" name="zqno" value="">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputPassword4">证券号 (资金页显示)参考：3017**121512 或 20****1512</label>
+                                                        <input type="text" class="form-control" id="zqnoindex" name="zqnoindex" value="">
+						</div>
+						<div class="form-group col-md-12">
+
+							<label for="inputEmail4">起始资金</label>
+
+							<input type="text" class="form-control" id="qszijin" name="qszijin" value="200000"
+								required="">
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="renzhengflag">手续费是否免5</label>
+							<select name="mian5flag" class="form-control mian5flag" id="mian5flag" style="width:300px">
+								<option value="0" selected="selected">否</option>
+								<option value="1">是</option>
+							</select>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputEmail4">手续费/千分之</label>
+							<input type="text" class="form-control" id="shouxufei" name="shouxufei" value="0.1"
+								placeholder="列如0.2" required="">
+						</div>
+						<div class="form-group col-md-12">
+							<label for="inputAddress">印花税/千分之</label>
+							<input type="text" class="form-control" id="shui" name="shui" value="0.5">
+						</div>
+
+						<div class="form-group col-md-12">
+							<label for="qcbili">清仓后盈利设置</label>
+							<select name="qcyingli" class="form-control" style="width:300px" id="qcyingli">
+								<option value="1" selected="selected"> 100.00(参考平安证券)</option>
+								<option value="2"> 0.00</option>
+								<option value="3">真实盈利比例</option>
+								<option value="4">实时比例</option>
+							</select>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="qcbili">清仓后成本显示设置</label>
+							<select name="qcchengben" class="form-control qcchengben" id="qcchengben"
+								style="width:300px">
+								<option value="0">成本价</option>
+								<option value="1" selected="selected">0.000</option>
+								<option value="2">买入价</option>
+							</select>
+						</div>
+						<div class="form-group col-md-12">
+							<label for="darkModeToggle">Dark Mode 黑暗模式</label>
+							<select name="darkModeToggle" id="darkModeToggle" class="form-control">
+								<option value="true">黑暗模式 (Dark Mode)</option>
+								<option value="false">白亮模式 (White Mode)</option>
+							</select>
+						</div>
+						<!-- <div class="form-group col-md-12">
+								<label for="qcbili">底部风格</label>
+								<select name="bottomstyle" class="form-control bottomstyle" id="bottomstyle"
+									style="width:300px">
+									<option value="0" selected="selected">白色</option>
+									<option value="1" style="display:none">黑色</option>
+								</select>
+							</div> -->
+						<!-- 			<div class="form-group col-md-12">
+								<label for="qcbili">首页是否显示</label>
+								<select name="showindex" class="form-control showindex" id="showindex"
+									style="width:300px">
+
+									<option value="0" selected="selected">显示</option>
+									<option value="1">不显示</option>
+								</select>
+							</div> -->
+
+						<!-- 	<div class="form-group col-md-12">
+								<label for="qcbili">风格选择(只限持仓查询等页面,不同风格字体稍有不同)</label>
+								<select name="pifu" class="form-control pifu" id="pifu" style="width:300px">
+									<option value="0" selected="selected">经典白</option>
+									<option value="1">经典黑</option>
+								</select>
+							</div> -->
+						<!-- <div class="space col-md-12 form-group">
+								<span>新股新债逆回购(资金页面IPO设置):</span>
+							</div>
+							<div class="form-group col-md-12  space_group">
+								<label for="xz_sg_type_for">首页新股/债类型</label>
+								<select name="xz_sg_type" class="form-control xz_sg_type" id="xz_sg_type"
+									style="width:300px">
+									<option value="0" selected="selected">股</option>
+									<option value="1">债</option>
+								</select>
+							</div>
+							<div class="form-group col-md-12 space_group">
+								<label for="xz_sg_for">首页新股/债数量(填写0时，显示“暂无新股和新债”)</label>
+								<input type="number" class="form-control " id="xz_sg" name="xz_sg" value="2">
+							</div>
+							<div class="form-group col-md-12 space_group">
+								<label for="gz_nhg_n_for">n天期（1,2,7,14）</label>
+								<input type="number" class="form-control " id="gz_nhg_n" name="gz_nhg_n" value="14">
+							</div>
+							<div class="form-group col-md-12 space_group">
+								<label for="gz_nhg_l_for">n天期逆回购率(格式：1.875%)</label>
+								<input type="text" class="form-control " id="gz_nhg_l" name="gz_nhg_l" value="1.785%">
+							</div> -->
+					</div>
+
+					<input type="hidden" name="token" value="d66d97df">
+					<input type="hidden" name="rec" value="initial">
+					<input type="hidden" name="username" id="Globalname" value="initial">
+					<input type="submit" name="submit" class="btnGray" value="提交">
+				</form>
+				<h4 style="padding-top:40px;mpaddingb-bottom:80px;"><span title="请谨慎操作" onclick="reset();"
+						style="color:#F00;font-size:14px;">初始化-清空所有数据</span>
+				</h4>
+				<p style=" font-size:12px;text-align:center;padding-top:40px;padding-bottom:20px;">
+					提醒：本记帐系统仅用于记录自己的操作过程，用于回顾、分析，总结经验、提高实战水平，请勿用于其它违规用途！由此造成的一切后果，与本系统无关。</p>
+			</div>
+		</div>
+		<input id="navcss" value="4" type="hidden">
+
+
+	</div>
+</body>
+<script>
+	var loginData = localStorage.getItem("loginData");
+	loginData = JSON.parse(loginData);
+	if (loginData && loginData.name) {
+		Global_Username = loginData.name;
+		//登陆状态检测
+		$.post(host + "php/user.php", {
+			rec: "loginstatus",
+			type: "initial",
+			username: loginData.name
+		})
+			.done(function (data) {
+				console.log("here", data);
+
+				if (data.status == "FAIL") {
+					window.location.href = "login.html";
+				} else {
+					$("#Globalname").val(data.name);
+					$("#renzhengflag").val(data.userdata.xz_sg);
+					$("#bieming").val(data.userdata.biemingname);
+					$("#zqno").val(data.userdata.zhengquannumber);
+					$("#zqnoindex").val(data.userdata.zhengquanindexnumber);
+					$("#qszijin").val(data.userdata.Initialmoney);
+					$("#mian5flag").val(data.userdata.gz_nhg_n);
+					$("#shouxufei").val(data.userdata.shouxufeilv);
+					$("#shui").val(data.userdata.yinhuashuilv);
+					$("#qcyingli").val(data.userdata.qcyingli);
+					$("#qcchengben").val(data.userdata.qcchengben);
+					$("#bottomstyle").val(data.userdata.bottomstyle);
+					$("#showindex").val(data.userdata.showindex);
+					$("#pifu").val(data.userdata.heibaistyle);
+					// $("#darkModeToggle").val(data.userdata.uimode);
+					// --- NEW ROBUST DARK MODE LOGIC ---
+					console.log("Database UI Mode value:", data.userdata.uimode); // Open browser console (F12) to see this
+
+					var rawMode = data.userdata.uimode;
+					// Standardize: if it is "True", 1, or true, we want the string "true"
+					var normalizedMode = (rawMode == "True" || rawMode == "true" || rawMode == 1 || rawMode === true) ? "true" : "false";
+
+					// We use a tiny delay (100ms) to make sure jQuery is ready
+					setTimeout(function () {
+						$("#darkModeToggle").val(normalizedMode);
+						console.log("Setting dropdown to:", normalizedMode);
+					}, 100);
+					// --- END ---
+
+					//新股新债逆回购
+					// $("#xz_sg_type").val(data.userdata.xz_sg_type);
+					// $("#xz_sg").val(data.userdata.xz_sg);
+					// $("#gz_nhg_n").val(data.userdata.gz_nhg_n);
+					// $("#gz_nhg_l").val(data.userdata.gz_nhg_l);
+					var zqnames = data.names;
+					zqnames.forEach(function (item) {
+						var option = '<option value="' + item + '">' + item + '</option>';
+						if (item === data.userdata.zhengquanname) {
+							option = '<option value="' + item + '" selected="selected">' + item + '</option>';
+						}
+						$('#zqname').append(option); // 将选项添加到 select 中
+					});
+					//$("#zqname").val();
+				}
+
+			})
+
+	}
+
+
+
+	function reset() {
+		if (confirm("确定删除?")) {
+			$.post(host + "php/user.php", {
+				rec: "reset",
+				username: Global_Username
+			})
+				.done(function (data) {
+					console.log(data);
+					if (data.status = "SUCCESS") {
+						qinghuancun();
+
+						window.location.reload();
+					}
+				})
+		};
+	}
+
+
+	$(document).ready(function () {
+		// $("#userset").submit(function (event) {
+		// 	event.preventDefault(); // 阻止表单的默认提交行为  
+
+		// 	// 获取表单数据  
+		// 	var formData = $(this).serialize();
+		// 	// console.log(formData)
+		// 	// 使用 AJAX 提交表单数据  
+		// 	$.ajax({
+		// 		type: "POST",
+		// 		url: host + "php/user.php", // 替换为你的服务器端点  
+		// 		data: formData,
+		// 		success: function (response) {
+		// 			// 处理服务器返回的响应  
+
+		// 			qinghuancun();
+		// 			localStorage.setItem("loginData", JSON.stringify(response));
+		// 			localStorage.removeItem('loginData.userdata');
+		// 			//	alert(response.beizhu);
+		// 			if (confirm("设置成功,第一次请点击确定，显示功能教程引导？非第一次点击取消会更新缓存数据")) {
+		// 				window.location.href = "index.html?show=true";
+
+		// 			} else {
+		// 				window.location.href = "index.html";
+
+		// 			}
+		// 			console.log(response);
+		// 		},
+		// 		error: function (xhr, status, error) {
+		// 			// 处理提交错误  
+		// 			console.log("Error: " + error);
+		// 		}
+		// 	});
+		// });
+
+		$("#userset").submit(function (event) {
+			event.preventDefault();
+
+			// 1. Get the selected value from the dropdown
+			var selectedUiMode = $("#darkModeToggle").val(); // "true" or "false"
+			// Convert to the "True"/"False" format the backend expects
+			var backendFormat = (selectedUiMode === "true") ? "True" : "False";
+
+			// 2. Prepare the data to send
+			var formDataArray = $(this).serializeArray();
+			formDataArray = formDataArray.map(function (item) {
+				if (item.name === "darkModeToggle") {
+					return { name: "darkModeToggle", value: backendFormat };
+				}
+				return item;
+			});
+
+			$.ajax({
+				type: "POST",
+				url: host + "php/user.php",
+				data: $.param(formDataArray),
+				dataType: "json", // Ensure we expect JSON
+				success: function (response) {
+					if (response.status === "SUCCESS" || response.name) {
+
+                                                // local-api returns the complete updated account.
+                                                // Persist it so every setting is visible after navigation.
+                                                if (response.userdata) {
+                                                        localStorage.setItem("loginData", JSON.stringify(response));
+                                                }
+
+						// Clear specific caches so changes reflect on other pages
+						localStorage.removeItem("ccstockData");
+						localStorage.removeItem("QxstockDataqxmonth");
+						localStorage.removeItem("QxstockDataqxthree");
+						localStorage.removeItem("QxstockDataqxyear");
+						localStorage.removeItem("QxstockDataall");
+
+						alert("设置成功！");
+						window.location.href = "index.html";
+					} else {
+						alert("保存失败: " + (response.beizhu || "未知错误"));
+					}
+				},
+				error: function (xhr) {
+					console.error("Server Error:", xhr.responseText);
+					alert("提交出现错误，请检查网络");
+				}
+			});
+		});
+
+		//赋值给清仓盈利
+		// var qcyingli = "<?php echo $data['qcyingli']; ?>"
+		// $(".qcyingli").val(qcyingli);
+		// var qcchengben = "<?php echo $data['qcchengben']; ?>"
+		// $(".qcchengben").val(qcchengben);
+		// var bottomstyle = "<?php echo $data['bottomstyle']; ?>"
+		// $(".bottomstyle").val(bottomstyle);
+		// var pifu = "<?php echo $data['heibaistyle']; ?>"
+		// $(".pifu").val(pifu);
+		// var showindex = "<?php echo $data['showindex']; ?>"
+		// $(".showindex").val(showindex);
+
+
+		const inputs = document.querySelectorAll('input');
+		inputs.forEach(input => {
+			input.style.setProperty('font-size', '16px', 'important');
+		});
+
+
+	});
+
+	function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+		var OldBarHeight = NewBarHeight;
+		var DqBarHeight = 2; //单位rem;
+		viewRemWidth = window.innerWidth / remToPx;
+		NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+		if (NewBarHeight == NaN) {
+			NewBarHeight = OldBarHeight;
+		}
+		//	NewBarHeight = NewBarHeight - 0.5;
+		$(".ztlyanse").css("height", NewBarHeight + "rem");
+		$("#header").css("margin-top", NewBarHeight + "rem");
+		//$("#header").css("top", (NewBarHeight + 2) + "rem");
+	}
+</script>
+
+
+</html>
