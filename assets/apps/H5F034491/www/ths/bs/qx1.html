@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html style="font-size: 16.25px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta name="viewport"
+			content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+
+		<title></title>
+		<script>
+			var UserData = null;
+			var LinkData = null;
+			var LocalBsGpData = null;
+		</script>
+		
+		
+
+		<link rel="stylesheet" href="./cx/font-awesome.min.css">
+		<link rel="stylesheet" href="./cx/bootstrap.min.css" media="all" type="text/css">
+
+		<link href="../cx/user7.css" rel="stylesheet" type="text/css">
+		<link href="../cx/userx0803.css" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript" src="../cx/jquery.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/local-api.js?v=local48"></script>
+		<script type="text/javascript" src="../cx/flexible.js"></script>
+		<script type="text/javascript" src="../cx/global.js"></script>
+
+		<script src="../cx/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript">
+			/*	// 进入页面时获取对应大小
+	// 改变字体大小
+function resizeFont() {
+let winW = document.documentElement.clientWidth > 750 ? 750 : document.documentElement.clientWidth
+document.documentElement.style.fontSize = (winW / 750) * 100 + 'px'
+}
+window.addEventListener('load', () => resizeFont())
+window.addEventListener('resize', () => resizeFont())
+*/
+		</script>
+
+
+
+		<style type="text/css">
+			.tab-nav2 {
+				background: #f5f5f5;
+
+			}
+
+			@supports (bottom: env(safe-area-inset-bottom)) {
+				.tab-na v2 {
+					padding-bottom: constant(safe-area-inset-bottom);
+					padding-bottom: env(safe-area-inset-bottom);
+				}
+			}
+		</style>
+
+
+		<style type="text/css">
+			@font-face {
+				font-family: Harmony;
+				src: url(../common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+
+			}
+
+			@font-face {
+				font-family: MiLanPro;
+				src: url(../common/fonts/MiLanProVF.woff);
+			}
+
+			@font-face {
+				font-family: 'DIN';
+				src: url('../common/fonts/digital.otf');
+
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			.drcjios {
+				font-size: 1.1rem;
+				padding-right: 1rem;
+				padding-top: 0.05rem;
+				padding-bottom: 0.26rem;
+				padding-left: 0.9rem;
+
+				font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+			}
+
+			.userhomgback {
+				width: 12vw;
+				height: 2.7rem;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				z-index: 99999
+			}
+
+			.zqnumber2 {
+				position: relative;
+				padding-left: 3px;
+			}
+
+			.zqnumber2 span {
+				position: relative;
+				top: 0rem;
+				left: 0rem;
+				font-family: 'DIN',
+			}
+
+
+
+
+			.drcjios,
+			.drcj {
+				padding-right: 0rem;
+				padding-left: 0rem;
+			}
+
+			.zqname2 {
+				font-family: 'DIN', "MiLanPro";
+				padding-right: 0rem;
+				padding-left: 0rem;
+				font-weight: normal;
+				position: relative
+			}
+
+			.zqnumber2 {
+				font-family: 'DIN', "MiLanPro";
+			}
+		</style>
+
+	</head>
+
+	<body style="background-color: rgb(246, 246, 246); font-size: 36px;">
+		<div class="ztlyanse"
+			style="position:fixed;top:0px;width:100vw;background:#f12f37; height:2.1rem;z-index:999999;left: 0;">
+		</div>
+		<div id="wrapper" style="background:#fff">
+			<div id="user" style="margin-bottom:80px;background:#fff">
+
+
+
+
+				<style type="text/css">
+					.drcj,
+					.drcjios {
+						font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+					}
+
+					.zqname2 {
+						font-size: 0.80rem;
+						padding-left: 0rem;
+						/*padding-left: 0.8rem;*/
+					}
+
+					.zqnumber2 {
+						font-size: 0.80rem;
+						padding-left: 0px;
+						text-align: center;
+					}
+
+					.chicang {
+						position: absolute;
+						width: 4rem;
+						height: 2.5rem;
+						top: 5rem;
+						right: 5rem;
+					}
+
+					.dangricj {
+						position: absolute;
+						width: 100vw;
+						height: 2.5rem;
+						top: 7.8rem;
+						right: 0rem;
+					}
+
+					.hiscj {
+						position: absolute;
+						width: 100vw;
+						height: 2.5rem;
+						top: 14.8rem;
+						right: 0rem;
+					}
+
+					.duizhangdan {
+						position: absolute;
+						width: 100vw;
+						height: 2.8rem;
+						top: 25.2rem;
+						right: 0rem;
+					}
+				</style>
+
+				<script>
+					loginstatus(function(data) {
+						UserData = data.userdata;
+						$(".drcjios").html(data.userdata.zhengquanname);
+						$(".zqnumber2").html(data.userdata.zhengquannumber);
+					}, "../login.html")
+				</script>
+
+				<div class="mobile2"
+					style="margin-top: 2rem;background-color: rgb(246, 246, 246);background-size:100% auto;background-repeat:no-repeat;height:93vh;">
+
+					<div class="mobiletop2">
+						<img src="./images/top.jpg" />
+						<div class="TopBtnBox">
+							<a class="callback" href="../cc.html">
+						</div></a>
+						<div class="centertopBox">
+							<div class="centerBoxgpname"></div>
+							<div class="centerBoxcode">
+								<div class="codecode"></div>
+								<div class="codeicon">
+									<div class="codeiconbox">
+										<span class="chuangchuang codeiconclild" style="display: none;">
+											创
+										</span>
+										<span class="chuangrong codeiconclild">
+											融
+										</span>
+										<span class="L1icon codeiconclild">
+											L1
+										</span>
+										<span class="hushentong codeiconclild">
+											沪股通
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="centerBoxfudu">
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="contentBox">
+
+					<img src="./hangqing/zxun_quan.jpg" class="contentBoxImg" />
+					<div style="width: 80%;margin: 5rem auto;color:#888; text-align: center;" class="clickshezhi">
+						请点击设置,设置后点击顶部名称也可以弹出设置窗口哈</div>
+					<div class="Btncollect">
+						<div class="BtnTime1" onclick="BtnTime(0)"></div>
+						<div class="BtnTime2" onclick="BtnTime(1)"></div>
+						<div class="BtnTime3" onclick="BtnTime(2)"></div>
+						<div class="BtnTime4" onclick="BtnTime(3)"></div>
+					</div>
+				</div>
+
+				<style type="text/css">
+					.Btncollect {
+						width: 60rem;
+						margin-top: 12rem;
+						left: .7rem;
+						position: absolute;
+						left: 0;
+						top: 0;
+						height: 4rem;
+
+					}
+
+					.Btncollect div {
+						width: 13.5vw;
+						height: 100%;
+						float: left;
+					}
+
+					.TopBtnBox {
+						position: absolute;
+						left: 0;
+						top: 2rem;
+						width: 100%;
+						height: 3rem;
+						font-family: "WeChat_Sans_SS";
+						color: #e73130;
+
+
+					}
+
+					.callback {
+						width: 20vw;
+						float: left;
+						height: 3rem;
+						z-index: 2;
+						position: absolute;
+					}
+
+					.centertopBox {
+						position: absolute;
+						left: 0;
+						width: 100vw;
+						height: 3rem;
+						z-index: 1;
+						top: 2rem;
+					}
+
+					.centerBoxgpname {
+						width: 50vw;
+						margin: 0 auto;
+						height: 1.2rem;
+						margin-top: .2rem;
+						text-align: center;
+						color: #fff;
+						font-size: 1rem;
+						font-family: "Harmony";
+					}
+
+					.codecode {
+						font-size: .88rem;
+						font-family: "DIN";
+						float: left;
+						color: #fff;
+						margin: .2rem 0 0 .9vw;
+					}
+
+					.codeicon {
+						float: left;
+						width: 16vw;
+						margin-left: 1vw;
+						overflow: hidden;
+					}
+
+					.centerBoxcode {
+						width: 30vw;
+						margin: 0 auto;
+						height: ;
+					}
+
+					.codeiconbox {
+						width: 25vw;
+						height: 1.2rem;
+						margin-top: .25rem;
+					}
+
+					.codeiconclild {
+						background-color: #e48d48;
+						padding: 0 0.5vw;
+						font-size: .52rem;
+						margin: 0 0.8vw;
+						float: left;
+						color: #fff;
+						/* font-family: MiLanPro; */
+					}
+
+					.kongbaiset {
+						margin-top: 10rem;
+						text-align: center;
+						color: #f12f37;
+					}
+
+					.kongbaiset button {
+						background-color: aquamarine;
+						padding: .3rem;
+						border: none;
+					}
+
+					.mobiletop2 {
+						position: fixed;
+						left: 0;
+						top: 0;
+						width: 100%;
+						z-index: 99;
+					}
+
+					.mobiletop2 img {
+						width: 100%;
+
+					}
+
+					.contentBox {
+						width: 100%;
+						height: 100%;
+						overflow-y: scroll;
+						position: fixed;
+						left: 0;
+						top: 0;
+						z-index: 1;
+					}
+
+					.contentBoxImg {
+						width: 100%;
+
+					}
+
+					.zhujiemian {
+						width: 100%;
+					}
+
+					.navbarf2>.tab-nav2 .hangqing {
+						position: absolute;
+						left: 16vw;
+						width: 16vw;
+						padding-bottom: 0;
+						height: 3.6rem;
+						background: none;
+					}
+
+					.navbarf2>.tab-nav2 .zixuan {
+						position: absolute;
+						left: 32vw;
+						width: 16vw;
+						padding-bottom: 0;
+						height: 3.6rem;
+						background: none;
+					}
+
+					.zqname2 {
+						font-family: "MiLanPro";
+						padding: 0;
+						font-weight: normal;
+						position: relative;
+						font-size: 0.80rem;
+						text-align: center;
+						/* width: 100%; */
+						display: inherit;
+						align-items: center;
+						justify-content: center;
+						/* margin-left: 1rem; */
+					}
+
+					.drcjios::after,
+					.zqname2after {
+						content: '';
+						background: url(./ls/topcion.png);
+						position: absolute;
+						background-size: 0.852rem;
+						transform: translate(-50%, 80%);
+						width: 0.8rem;
+						height: 0.8rem;
+						margin-left: .8rem;
+						-webkit-box-sizing: border-box;
+						box-sizing: border-box;
+						word-break: break-all;
+					}
+				</style>
+
+
+				<style type="text/css">
+					.tab-nav2 {
+						background: #fff;
+
+					}
+
+
+					@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+						.tab-nav2 {
+							background: #fff;
+
+						}
+
+						.navbarf2 {
+							position: fixed;
+							left: 0;
+							width: 100%;
+							bottom: 0;
+							z-index: 99;
+						}
+
+						.navbarf2>.tab-nav2 .bnews,
+						.navbarf2>.tab-nav2 .buser,
+						.navbarf2>.tab-nav2 .bhome,
+						.navbarf2>.tab-nav2 .bcatalog,
+						.navbarf2>.tab-nav2 .bzixuan,
+						.navbarf2>.tab-nav2 .hangqing,
+						.navbarf2>.tab-nav2 .zixuan {
+							bottom: calc(env(safe-area-inset-bottom) + 34px);
+							padding-bottom: calc(env(safe-area-inset-bottom) + 34px);
+							height: 3.6rem;
+						}
+					}
+				</style>
+
+
+
+				<style type="text/css">
+					.navbarf2>.tab-nav2 .bzixuan {
+						position: absolute;
+						bottom: 0px;
+						left: 16vw;
+						width: 16vw;
+						height: 3.6rem;
+						background: none;
+						z-index: 99;
+					}
+				</style>
+				<div class="navbarf2">
+					<div class="tab-nav2 tabs2" style="height: 3.3rem;">
+						<img src="./images/bottom.jpg">
+						<div class="AddDatype">
+							<div class="Datypename">化学制品</div>
+							<div class="Datypelv">11.28%</div>
+						</div>
+
+						<!-- 		<a class="bhome" href="index.html"></a>
+							<a class="bcatalog" href="mulu.html"></a>
+							<a class="zixuan" href="#"></a>
+							<a class="buser" href="index.html"></a>
+							<a class="bnews" href="#"></a>
+							<div class="bzixuan"></div> -->
+					</div>
+				</div>
+
+				<div class="addBox">
+					<div class="addtitle">
+						为股票(<span class="gpname">金禾实业</span>)设置曲线图
+						<span class="close-btn">&times;</span>
+					</div>
+					<div class="addform">
+						<div class="addcode">
+							<span><button class="UploadBack">请截长图后，点我上传背景底图</button></span>
+							<div class="item">
+								<input type="file" id="UploadFile" style="display: none;" class="BackImgupload"
+									placeholder="上传背景图" />
+							</div>
+							<div class="chooseTime">
+								选择时间段：
+								<select name="SelectTime" id="SelectTime">
+									<option value="0">分时</option>
+									<option value="1">日K</option>
+									<option value="2">周K</option>
+									<option value="3">月K</option>
+								</select>
+							</div>
+							<img src="" id="PreviewImg" />
+							<div class="editBS">
+								<button class="AddBsBtn">添加BS点</button>
+							</div>
+
+							<div class="DaBoxSize">
+								品类：
+								<input type="text" class="codeDaType">
+							</div>
+							<div class="DaBoxSize">
+								增长率：
+								<input type="text" class="Zenzhanglv">
+							</div>
+							<div class="DaBoxSize">
+								有无创字：
+								<select name="SelectChuang" id="SelectChuang">
+									<option value="0">无</option>
+									<option value="1">有</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="add-buttons">
+							<button class="SaveBack">保存</button>
+						</div>
+						<div class="descreption">
+							<span>说明：
+								<p>1.<span style="color: #f12f37;"> 请截长图上传</span>,这里设置的所有数据存储在本地，更换设备无法转移这里的数据。</p>
+								<p>2.这里设置的是对应股票的数据，当你新增或者删除或者变化时，这里的数据都需要重新设置</p>
+								<p>3.并不是很麻烦，就是去真实同花顺截图，然后上传就好！</p>
+							</span>
+						</div>
+					</div>
+				</div>
+				<style>
+					.AddDatype {
+						position: absolute;
+						left: 0;
+						bottom: 0;
+						width: 22.5vw;
+						font-size: .75rem;
+						height: 3.2rem;
+						text-align: center;
+						color: #f00;
+					}
+
+					.DaBoxSize {
+						margin-top: .2rem;
+						height: 1.7rem;
+					}
+
+					.Datypelv {
+						margin-top: .4rem;
+						font-size: .67rem;
+						color: #fe0000;
+						font-family: "Helvetica Neue";
+					}
+
+					.Datypename {
+						margin-top: .7rem;
+						font-family: MiLanPro;
+						color: #bdbdbd;
+					}
+
+					.addBox,
+					.addlocalBox {
+						position: fixed;
+						top: 50%;
+						left: 50%;
+						transform: translate(-50%, -50%);
+						background-color: #fff;
+						width: 85vw;
+						padding: 20px;
+						border-radius: 10px;
+						box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+						margin: 5px;
+						z-index: 1001;
+						/* 默认为隐藏，弹窗打开时通过JavaScript显示 */
+						box-sizing: border-box;
+						font-size: 1.1rem;
+						border: 3px solid #555;
+						display: none;
+						/* 加重阴影 */
+					}
+
+					.addtitle {
+						font-size: 18px;
+						font-weight: bold;
+						margin-bottom: 10px;
+						position: relative;
+						padding-right: 30px;
+					}
+
+					.addtitle .close-btn,
+					.close_local_btn {
+						position: absolute;
+						top: 0;
+						right: 0;
+						font-size: 24px;
+						cursor: pointer;
+						color: #888;
+					}
+
+					.descreption {
+						font-size: .7rem;
+					}
+
+					#PreviewImg {
+						width: 20vw;
+					}
+
+					.add-buttons {
+
+						text-align: center;
+						margin: .4rem 1rem;
+					}
+
+					.SaveBack {
+						padding: .2rem;
+					}
+				</style>
+				<script>
+					var nav = $("#navcss").val();
+
+					$('.tab-item').eq(nav).addClass("tab-item-active");
+
+					$('.bzixuan').click(function() {
+						// alert('功能正在开发中...');
+					});
+					$(".close-btn").click(function() {
+						$(".addBox").css("display", "none");
+					})
+
+
+
+					//BS相关功能
+					$(".centertopBox").click(function() {
+						$(".addBox").css("display", "block");
+					})
+					$(".clickshezhi").click(function() {
+						$(".addBox").css("display", "block");
+					})
+
+					$(".UploadBack").click(function() {
+						$("#UploadFile").click();
+					})
+
+
+					$("#UploadFile").change(function() {
+						// this.files[0]代表的是选择的文件资源的第一个，因为上面写了 multiple="multiple" 就表示上传文件可能不止一个
+						let imgname = this.files[0].name;
+						var reads = new FileReader();
+						f = document.getElementById("UploadFile").files[0];
+						reads.readAsDataURL(f);
+						reads.onload = function(e) {
+							$("#PreviewImg").attr("src", this.result);
+						}
+						$("#UploadFile").val("");
+					});
+					//存储背景
+					$(".SaveBack").click(function() {
+						var option = $("#SelectTime").val();
+						//获取用户名：
+						var LocalBsGpData = localStorage.getItem("LocalBsGpData");
+						LocalBsGpData = JSON.parse(LocalBsGpData);
+						if (LocalBsGpData) {
+							var localData = LocalBsGpData;
+						} else {
+							var localData = {};
+						}
+						username = UserData.username;
+						if (localData[username]) {
+							var GpData = localData[username];
+						} else {
+							var GpData = {};
+						}
+						if (GpData[LinkData.gpname]) {
+							var UnitGpData = GpData[LinkData.gpname]
+						} else {
+							var UnitGpData = {};
+						}
+						var Imgsrc = $("#PreviewImg").attr("src");
+						var DaType = $(".codeDaType").val();
+						var Zenzhanglv = $(".Zenzhanglv").val();
+						var SelectChuang = $("#SelectChuang").val();
+						UnitGpData["src" + option] = Imgsrc;
+						UnitGpData["code"] = LinkData.code;
+						UnitGpData["datype"] = DaType;
+						UnitGpData["zenzhanglv"] = Zenzhanglv;
+						UnitGpData["Chuangflag"] = SelectChuang;
+						GpData[LinkData.gpname] = UnitGpData;
+						localData[username] = GpData;
+						localStorage.setItem("LocalBsGpData", JSON.stringify(localData));
+
+						// 重新加载当前页面
+						location.reload();
+
+					});
+
+					//加载数据，从localstrage中加载
+					function loadImg() {
+						if (!UserData) {
+							username = Global_username;
+						} else {
+							username = UserData.username;
+						}
+						LocalBsGpDatapp = JSON.parse(LocalBsGpData);
+						if (LocalBsGpDatapp) {
+							var localData = JSON.parse(LocalBsGpData);
+							GpData = localData[username];
+							UnitGpData = GpData[LinkData.gpname];
+							if (UnitGpData) {
+								Imgsrc = UnitGpData.src0;
+								$(".kongbaiset").css("display", "none");
+								$(".contentBox .contentBoxImg").attr("src", Imgsrc);
+
+								$("#PreviewImg").attr("src", Imgsrc);
+								$(".codeDaType").val(UnitGpData.datype);
+								$(".Zenzhanglv").val(UnitGpData.zenzhanglv);
+								$(".Datypename").html(UnitGpData.datype);
+								if (parseFloat(UnitGpData.zenzhanglv.replace("%", "")) < 0) {
+									$(".Datypelv").css("color", "#08a94b");
+								} else if (parseFloat(UnitGpData.zenzhanglv.replace("%", "")) == 0) {
+									$(".Datypelv").css("color", "#bdbdbd");
+								}
+								$(".Datypelv").html(UnitGpData.zenzhanglv);
+								$(".centerBoxgpname").html(LinkData.gpname);
+								$(".gpname").html(LinkData.gpname);
+
+								if (UnitGpData.Chuangflag == "1") { //创业版需要显示，这里手动设置。
+									$(".chuangchuang").css("display", "block");
+								}
+								$(".clickshezhi").css("display", "none");
+							}
+						}
+					}
+					$(".AddBsBtn").click(function() {
+						var Imgsrc = $("#PreviewImg").attr("src");
+						if (Imgsrc != "") {
+							var BS_Lin = {};
+							BS_Lin["linkData"] = LinkData;
+							var option = $("#SelectTime").val();
+							username = UserData.username;
+							BS_Lin["Username"] = username;
+							BS_Lin["Imgsrc"] = Imgsrc;
+							BS_Lin["Option"] = option;
+							localStorage.setItem("BS_Lin", JSON.stringify(BS_Lin));
+							var p = window.location.href.replace("qx1", "index");
+							if(Global_PhoneType=="Apple"){
+									window.parent.changeUrl(p);
+							}else{
+							window.location.href = p;
+							}
+						} else {
+							alert("请先上传背景图");
+						}
+					})
+					$("#SelectTime").change(function() {
+						var option = $("#SelectTime").val();
+						console.log(option);
+						BtnTime(option, 1);
+					})
+					$(".callback").click(function() {
+						//window.history.back();
+					})
+
+					function BtnTime(option, preflag = 0) {
+						if (!UserData) {
+							username = Global_username;
+						} else {
+							username = UserData.username;
+						}
+						if (LocalBsGpData) {
+							var localData = JSON.parse(LocalBsGpData);
+							GpData = localData[username];
+							UnitGpData = GpData[LinkData.gpname];
+
+							Imgsrc = UnitGpData["src" + option];
+							$(".kongbaiset").css("display", "none");
+							if (Imgsrc == undefined) Imgsrc = "";
+							$(".contentBox .contentBoxImg").attr("src", Imgsrc);
+							if (preflag == 1) {
+								$("#PreviewImg").attr("src", Imgsrc);
+							}
+						}
+					}
+
+
+
+					const urlParams = new URLSearchParams(window.location.search);
+
+					if (urlParams.get("data")) {
+						data = urlParams.get("data");
+						data = base64ToUtf8(data);
+						LinkData = JSON.parse(data);
+						console.log(LinkData);
+						$(".centerBoxgpname").html(LinkData.gpname);
+						$(".gpname").html(LinkData.gpname);
+						$(".codecode").html(LinkData.code);
+						if (LinkData.prehref == "zx") {
+							$(".callback").attr("href", "../zx.html")
+						}
+					}
+
+
+
+					var loginData = localStorage.getItem("loginData");
+					if (loginData) {
+						loginData = JSON.parse(loginData);
+						Global_username = loginData.userdata.username;
+
+						LocalBsGpData = localStorage.getItem("LocalBsGpData");
+						loadImg();
+					}
+
+					function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+						var OldBarHeight = NewBarHeight;
+						var DqBarHeight = 2; //单位rem;
+						viewRemWidth = window.innerWidth / remToPx;
+						NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+						if (NewBarHeight == NaN) {
+							NewBarHeight = OldBarHeight;
+						}
+						$("#wrapper").css("margin-top", (NewBarHeight + 0.6) + "rem");
+						$(".mobile2").css("margin-top", NewBarHeight + "rem");
+						$(".mobiletop2").css("top", (NewBarHeight - 2) + "rem");
+						$(".codeiconbox").css("margin-top", "0.4rem");
+						$(".ztlyanse").css("height", (NewBarHeight + 0.2) + "rem");
+
+						//$(".centertopBox").css("top", (NewBarHeight + 0.2) + "rem");
+
+					}
+				</script>
+
+
+
+			</div>
+		</div>
+
+
+
+
+		</div>
+	</body>
+
+</html>
