@@ -1,0 +1,1437 @@
+@font-face {
+    font-family: 'DIN';
+    src: url('../common/fonts/digital.otf');
+
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HIVEBOX';
+    src: url(../common/fonts/RobotoFlex-MediumLoose2.ttf);
+}
+
+@font-face {
+    font-family: myFirstFang;
+    src: url(../common/fonts/NotoSansSC-Regular.ttf);
+}
+
+@font-face {
+    font-family: myFirstkFang;
+    src: url(../common/fonts/FZLTHJW.TTF);
+    /*FZLTKHJW.TTF*/
+}
+
+
+body {
+    /*font-family: myFirstFont,Microsoft Yahei,"Heiti SC","Droidsansfallback","Helvetica Neue",Helvetica,sans-serif;*/
+}
+
+html {
+    font-size: 62.5%;
+}
+
+
+.floatl {
+    float: left;
+}
+
+.floatr {
+    float: right;
+}
+
+.font6 {
+    font-size: 0.65rem;
+}
+
+.font7 {
+    font-size: 0.7rem;
+}
+
+.bgwrite {
+
+    background: #fff;
+    padding-top: 3rem;
+    padding-bottom: 3.2rem;
+}
+
+#header {
+    color: #fff;
+    height: 5.6rem;
+    width: 100vw;
+    top: 2rem;
+    position: fixed;
+    z-index: 9999
+}
+
+/* -- 1.2 -- */
+
+
+.back {
+    width: 12vw;
+    height: 2.7rem;
+
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.shuaxin {
+    width: 12vw;
+    height: 2.7rem;
+
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.drshuaxin {
+    width: 15vw;
+    height: 2.7rem;
+    position: absolute;
+    top: 0px;
+    right: 2.5rem;
+}
+
+/* 会员中心
+----------------------------------------------- */
+/* -- startPage -- */
+.headzq2 {
+    line-height: 2.85rem;
+    padding-top: 0rem;
+    text-align: center
+}
+
+
+.headzq {
+    line-height: 1.2rem;
+    position: absolute;
+    padding-top: 0.15rem;
+    width: 60vw;
+    left: 15vw;
+    top: 0px;
+    height: 2.7rem;
+}
+
+.zqname {
+    font-size: 1.1rem;
+    wdith: 100%;
+    text-align: center;
+    height: 100%;
+    padding-left: 2.5rem;
+}
+
+.zqnumber {
+    font-size: 0.8rem;
+    font-family: 'DIN'
+}
+
+.zqnumber i {
+    font-family: 'HIVEBOX';
+    font-size: 0.75rem;
+    font-weight: lighter;
+    font-style: normal
+}
+
+.zqjt {
+    font-size: 0.60rem;
+}
+
+.ccmiddle {
+    min-height: 14rem;
+  /*  margin: 0px 0.9rem; */
+    position: relative;
+	 
+	 
+	    padding: 0 0.9rem;
+}
+
+.navp1 img {
+    width: 100%
+}
+
+.navp2 .p1 {
+    width: 81.7%
+}
+
+.navp2 .p1 img {
+    width: 100%
+}
+
+.mairubtm {
+    position: absolute;
+    width: 4rem;
+    height: 2.5rem;
+    top: 2.8rem;
+
+    left: 1rem;
+}
+
+.maichubtn {
+    position: absolute;
+    width: 4rem;
+    height: 2.5rem;
+    top: 2.8rem;
+
+    left: 5rem;
+}
+
+.setbtm {
+    position: absolute;
+    width: 4rem;
+    height: 2.5rem;
+    top: 2.8rem;
+    right: 1rem;
+}
+
+
+
+.cangw ei {
+    border: 1px #efeff1 solid;
+    position: absolute;
+    right: 0.18rem;
+    width: 4.3rem;
+    height: 1rem;
+    line-height: 1rem;
+    padding-left: 0.1rem;
+    transform: scale(0.7);
+    top: 5.8rem;
+    font-size: 0.6rem;
+    font-family: myFirstFang;
+    color: #6a6a6a
+}
+
+.cangwei {
+    border: 1px #efeff1 solid;
+    position: absolute;
+    right: -0.1rem;
+    width: 4.4rem;
+    height: 1.1rem;
+    line-height: 1.1rem;
+
+    transform: scale(0.9);
+    top: 5.6rem;
+    font-size: 0.65rem;
+
+    color: #333;
+}
+
+
+
+
+
+.cangweibg {
+    background: #efeff1;
+}
+
+.cangwei span {
+
+    color: #969696;
+    /* font-s ize: 0.6rem; */
+    font-family: myFirstFang;
+}
+
+.cangwei i {
+    /* font-fam ily: 'HIVEBOX'; */
+    font-size: 0.62rem;
+    font-weight: normal;
+    font-style: normal;
+    position: relative;
+}
+
+.total {
+    position: absolute;
+    left: 0rem;
+    top: 9.5rem;
+    font-family: 'DIN';
+    width: 100%;
+}
+
+.total1 {
+    width: 100%;
+}
+
+.total1 .li {
+    float: left;
+    font-size: 1rem;
+    width: 33.3%
+}
+
+.total .li i {
+    font-family: 'HIVEBOX';
+    position: relative;
+    font-size: 0.9rem;
+    font-style: normal
+}
+
+.total .li i::af ter {
+    content: "";
+    position: absolute;
+    top: 0.3rem;
+    width: 0.09rem;
+    height: 0.6rem;
+    left: 0.32rem;
+    background: #212529;
+}
+
+.total1 .li3 span {
+    font-size: 0.7rem;
+    padding-left: 0.2rem;
+}
+
+.total2 {
+    position: absolute;
+    top: 4.6rem;
+}
+
+.total1 .li3 span i {
+    font-family: 'HIVEBOX';
+    position: relative;
+    font-size: 0.6rem;
+    font-style: normal
+}
+
+
+.total1 .li3 span j::a fter {
+    content: "";
+    position: absolute;
+    top: 0.17rem;
+    width: 0.08rem;
+    height: 0.26rem;
+    left: 0.18rem;
+    background: #568ed4;
+}
+
+.total1 .li3 span b::afte r {
+    content: "";
+    position: absolute;
+    top: 0.17rem;
+    width: 0.08rem;
+    height: 0.26rem;
+    left: 0.18rem;
+    background: #dd3834;
+}
+
+.total1 .li b {
+    font-family: 'HIVEBOX';
+    position: relative;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.total1 .li b::af ter {
+    content: "";
+    position: absolute;
+    top: 0.3rem;
+    width: 0.09rem;
+    height: 0.6rem;
+    left: 0.32rem;
+    background: #dd3834;
+
+}
+
+.total1 .li j {
+    font-family: 'HIVEBOX';
+    position: relative;
+    font-style: normal
+}
+
+.total1 .li j::aft er {
+    content: "";
+    position: absolute;
+    top: 0.3rem;
+    width: 0.09rem;
+    height: 0.6rem;
+    left: 0.36rem;
+    background: #568ed4;
+
+}
+
+.gpmiddle {
+    min-height: 0rem;
+    margin: 0px 0.95rem;
+    height: quto;
+    padding-top: 8.8rem;
+    position: relative
+}
+
+
+
+/* .gpitem:last-child {
+    border-bottom: 0px solid #f1f1f1;
+} */
+
+.gpitem .gpli {
+    font-family: 'DIN';
+    width: 100%;
+    height: 1.3rem;
+	line-height: 1.3rem;
+}
+
+.gpitem .gpli i {
+    font-family: 'HIVEBOX';
+    font-size: 0.86rem;
+    font-style: normal
+}
+
+.gpitem .gpli2 {
+    font-family: 'DIN';
+    width: 100%;
+    height: 1.3rem;
+    clear: both;
+    /* margin-top: 0.2rem; */
+}
+
+.gpitem .gpli li {
+    list-style: none;
+    float: left;
+    font-size: 0.9rem;
+    text-align: right;
+}
+
+.gpitem .gpli .li1 {
+    width: 13%;
+    text-align: left;
+    /* margin-top: 0.05rem; */
+}
+
+.gpitem .gpli .li4 {
+    width: 5.5rem;
+    padding-right: 0.05rem;
+    text-align: right;
+}
+
+.gpitem .gpli .li3 {
+    width: 6.1rem;
+    padding-right: 0rem;
+    text-align: right;
+}
+
+.gpitem .gpli .li2 {
+    width: 5rem;
+    text-align: right;
+}
+
+.gpitem .gpli .li5 {
+    width: 5.6rem;
+    padding-right: 0.05rem;
+    text-align: right;
+}
+
+.gpitem .gpli .li6 {
+    width: 6.3rem;
+    padding-right: 0.05rem;
+    text-align: right;
+}
+
+.gpitem .gpli .li7 {
+    width: 6.5rem;
+    padding-right: 0.05rem;
+    text-align: right;
+}
+
+.gpitem .gpli .liname {
+    font-family: myFirstFang;
+    font-size: 0.95rem;
+
+}
+
+/* .gpitem .gpli .liname7 {
+    font-family: myFirstFang;
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+    padding-top: 0.1rem;
+} */
+
+.gpitem .gpli .liname {
+    font-size: 0.989rem;
+ /*   font-family: "Helvetica Neue", "Heiti SC", "Droidsansfallback", "MiLanPro", "GPNAME", Helvetica, sans-serif; */
+    letter-spacing: -0.01rem;
+/*    font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif; */
+}
+
+
+
+.gpitem .gulicz li a {
+    color: #333;
+}
+
+.gpitem .gpli i,
+.gpitem .gpli b,
+.gpitem .gpli j {
+    font-family: 'HIVEBOX';
+    font-size: 0.8rem;
+    font-weight: normal;
+    position: relative;
+    font-style: normal
+}
+
+.gpitem .gpli b::after {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    width: 0.09rem;
+    height: 0.5rem;
+    left: 0.3rem;
+    background: #dd3834;
+
+}
+
+.gpitem .gpli j::after {
+    content: "";
+    position: absolute;
+    top: 0.25rem;
+    width: 0.09rem;
+    height: 0.5rem;
+    left: 0.3rem;
+    background: #4e87d6;
+
+}
+
+
+
+.fontred {
+    color: #dd3834
+}
+
+.fontblue {
+    color: #4e87d6
+}
+
+.fontblue2 {
+    color: #568ed4
+}
+
+
+
+label,
+.form-control {
+    font-size: 0.9rem;
+}
+
+.form-group {
+    font-size: 0.9rem;
+    margin-top: 0rem;
+    margin-bottom: 0.5rem;
+}
+
+.input2 {
+
+    width: 30%;
+    height: 2.2rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#user .startPage {
+    background-color: #FFF;
+    border: 1px solid #EEE;
+    padding: 20px 15px;
+}
+
+#user .startPage .basicInfo .basic {
+    padding: 10px 0 20px 100px;
+    border-bottom: 1px solid #EEE;
+    position: relative;
+    height: 80px;
+    margin-bottom: 20px;
+}
+
+#user .startPage .basicInfo .basic h2 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+#user .startPage .basicInfo .basic h2 em {
+    color: #999;
+}
+
+#user .startPage .basicInfo .basic p {
+    color: #999;
+    margin-bottom: 10px;
+}
+
+#user .startPage .basicInfo .basic a {
+    color: #19B4EA;
+}
+
+#user .startPage .basicInfo .basic .avatar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 4px;
+    border: 1px solid #e0e0e0;
+    border-radius: 120px;
+}
+
+#user .startPage .basicInfo .info {
+    font-size: 14px;
+    zoom: 1;
+    overflow: hidden;
+}
+
+#user .startPage .basicInfo .info dl {
+    padding: 4px 0;
+    width: 50%;
+    float: left;
+}
+
+#user .startPage .basicInfo .info dl dt {
+    color: #999;
+}
+
+#user .startPage .basicInfo .info dl dd {
+    color: #555;
+}
+
+/* -- userTree -- */
+#user .userTree li {
+    margin-bottom: 1px;
+}
+
+#user .userTree li a {
+    display: block;
+    background: #FFFFFF url(images/icon_arrow_right.png) no-repeat right center;
+    padding: 10px 10px;
+    font-size: 14px;
+}
+
+/* -- sns -- */
+#user .snsIcon {
+    background-color: #FFF;
+    padding: 0 10px;
+}
+
+#user .snsIcon a {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#user .snsLink {
+    padding: 30px 10px;
+    background-color: #FFF;
+    text-align: center;
+}
+
+#user .snsLink .head {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 40px;
+}
+
+#user .snsLink .img img {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #e0e0e0;
+    border-radius: 100px;
+}
+
+#user .snsLink .action {
+    margin-top: 40px;
+}
+
+#user .snsList {
+    background-color: #FFF;
+    padding: 0 15px;
+}
+
+#user .snsList dl {
+    zoom: 1;
+    overflow: hidden;
+    padding: 15px 0;
+    border-top: 1px dotted #DDD;
+    line-height: 30px;
+}
+
+#user .snsList dt {
+    float: left;
+}
+
+#user .snsList dt i {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+#user .snsList dt em {
+    color: #19B4EA;
+}
+
+#user .snsList dd {
+    float: right;
+}
+
+#user .snsList dd a {
+    color: #0072C6;
+}
+
+/* itemList */
+#user .itemList {
+    background-color: #FFF;
+}
+
+#user .itemList dl {
+    zoom: 1;
+    overflow: hidden;
+    background-color: #F8F8F8;
+    padding: 10px 10px;
+    margin-bottom: 3px;
+}
+
+#user .itemList dl dt {
+    width: 60px;
+    float: left;
+    margin-right: 10px;
+    line-height: 38px;
+}
+
+#user .itemList dl dd {
+    margin-left: 70px;
+}
+
+#user .itemList dl dd p {
+    float: left;
+    width: 60%;
+    font-weight: bold;
+}
+
+#user .itemList dl dd span {
+    float: right;
+    text-align: right;
+    color: #888;
+}
+
+/* item */
+#user .orderList .item {
+    margin-top: 5px;
+    background-color: #FFF;
+}
+
+#user .orderList .item h3 {
+    padding: 0 10px;
+    height: 38px;
+    line-height: 38px;
+}
+
+#user .orderList .item h3 span {
+    float: right;
+}
+
+#user .orderList .item h3 span b {
+    font-weight: bold;
+}
+
+#user .orderList .item ul.amount {
+    padding: 0 10px;
+    text-align: right;
+    height: 38px;
+    line-height: 38px;
+}
+
+#user .orderList .item ul.amount em {
+    color: #999;
+}
+
+#user .orderList .item ul.btnList {
+    padding: 10px;
+    height: 28px;
+    border-top: solid #EEE 1px;
+    text-align: right;
+}
+
+/* order */
+#user .order .tableBasic {
+    margin-bottom: 8px;
+}
+
+#user .order .totalAmount {
+    font-size: 13px;
+    padding: 5px 10px;
+    background-color: #FFF;
+    margin-bottom: 10px;
+}
+
+#user .order .totalAmount dl {
+    zoom: 1;
+    overflow: hidden;
+    padding: 3px 0;
+}
+
+#user .order .totalAmount dt {
+    float: left;
+    color: #999;
+}
+
+#user .order .totalAmount dd {
+    float: right;
+}
+
+#user .order .totalAmount .payment {
+    border-top: solid #EEE 1px;
+    margin-top: 10px;
+    padding: 10px 0;
+    text-align: right;
+}
+
+#user .order .itemList h3 {
+    padding: 8px 10px;
+    background-color: #FFF;
+}
+
+#user .order .info {
+    color: #999;
+}
+
+#user .order .btnBox {
+    float: right;
+}
+
+/*- inputFile -*/
+#user .inputFile {
+    width: 80px;
+}
+
+#user .inputFile .imgShow {
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    color: #555;
+    background-color: #F5F5F5;
+}
+
+#user .inputFile .imgShow img {
+    width: 100%;
+    height: 80px;
+}
+
+#user .inputFile .imgBtn {
+    width: 100%;
+    background-color: #EEE;
+    color: #999;
+    line-height: 25px;
+    cursor: pointer;
+    text-align: center;
+    -webkit-appearance: none;
+}
+
+/*- fileBox -*/
+#user .fileBox {
+    zoom: 1;
+    overflow: hidden;
+}
+
+#user .fileBox .fileBtn li {
+    display: block;
+    width: 130px;
+    line-height: 30px;
+    text-align: center;
+    border: 1px solid #DDD;
+    border-bottom: 0;
+    background-color: #F4F4F4;
+    cursor: pointer;
+    font-size: 12px;
+    color: #333;
+}
+
+#user .fileBox .fileBtn li img {
+    margin-top: 12px;
+}
+
+#user .fileBox .fileAdd {
+    float: left;
+}
+
+#user .fileBox .fileAdd li {
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    border: 1px dotted #CCCCCC;
+    background-color: #F4F4F4;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#user .fileBox .fileAdd li img {
+    margin-top: 40px;
+}
+
+#user .fileBox .fileList {
+    margin-left: 80px;
+    zoom: 1;
+    overflow: hidden;
+}
+
+#user .fileBox .fileList li {
+    float: left;
+    border: 1px dotted #CCCCCC;
+    height: 80px;
+    overflow: hidden;
+    margin-left: 10px;
+    position: relative;
+}
+
+#user .fileBox .fileList li img {
+    width: 80px;
+    height: 80px;
+}
+
+#user .fileBox .fileList li span {
+    display: none;
+    background-color: #60BBFF;
+    color: #FFF;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#user .fileBox .fileList li:hover span {
+    display: block;
+}
+
+
+
+#mobile2 {
+    position: relative;
+    height: 90vh;
+    width: 100%;
+    font-family: myFirstFang, Microsoft Yahei;
+    overflow: hidden
+}
+
+.mobiletop2 {
+    height: 2.85rem;
+    color: #fff;
+    /* background: #f12f37; */
+}
+
+.headzq2 {
+    line-height: 1rem;
+    font-size: 0.8rem;
+    width: 100vw;
+    position: relative;
+    letter-spacing: 0px;
+    font-family: myFirstFang;
+    text-align: center;
+    left: 0rem;
+    top: 0.35rem;
+}
+
+.drcj {
+    font-size: 1.1rem;
+    padding-right: 1rem;
+    padding-top: 0.05rem;
+    padding-bottom: 0.26rem;
+    padding-left: 0.9rem;
+}
+
+.zqname2 {
+    font-family: 'DIN', Microsoft Yahei;
+    padding-right: 0.85rem;
+    padding-left: 0.9rem;
+}
+
+.zqnumber2 {
+    font-size: 0.85rem;
+    letter-spacing: 0px;
+    font-family: 'DIN';
+    padding-left: 5px;
+    text-align: center;
+}
+
+.zqnumber2 i {
+    font-family: 'HIVEBOX';
+    font-size: 0.8rem;
+    font-weight: lighter;
+    font-style: normal
+}
+
+.hislists {
+    margin: 0px 1rem;
+    height: 70vh;
+    top: 4.9rem;
+    position: relative
+}
+
+.hislists .hislist {
+    width: 100%;
+    clear: both;
+    padding: 0px 0px;
+    height: 4rem;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.hislists .hislist li {
+    list-style: none;
+    float: left;
+    font-size: 0.95rem;
+    width: 25%;
+    line-height: 4.2rem;
+    font-family: 'DIN', Microsoft Yahei;
+    text-align: right;
+}
+
+.hislists .hislist li i {
+    font-family: 'HIVEBOX';
+    font-size: 0.85rem;
+    font-weight: lighter;
+    font-style: normal
+}
+
+.hislists .hislist li span i {
+    font-family: 'HIVEBOX';
+    font-size: 0.75rem;
+    font-weight: lighter;
+    font-style: normal
+}
+
+.hislists .hislist .li1 {
+    width: 32%;
+    text-align: left;
+}
+
+.hislists .hislist .li2 {
+    width: 18%;
+    padding-right: 0.5rem;
+}
+
+.hislists .hislist .li3 {
+    width: 24%
+}
+
+.hislists .hislist .li4 {
+    width: 26%;
+    line-height: 1.2rem;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+}
+
+.hislists .hislist .li4>div {
+    font-size: 1.0rem;
+    /* font-weig ht: 600; */
+    font-family: myFirstkFang, Microsoft Yahei;
+}
+
+.hislists .hislist .liname {
+    font-size: 0.8rem;
+    margin-top: 0px;
+    line-height: 0rem;
+    text-align: left;
+    margin-left: 0px;
+}
+
+
+.hislists .hislist .liname div {
+    font-size: 1rem;
+    font-family: myFirstkFang, Microsoft Yahei;
+    /* font-weigh t: 600; */
+    line-height: 1.5rem;
+    padding-top: 0.6rem;
+}
+
+.hislists .hislist .liname7 div {
+    font-size: 0.8rem;
+    font-family: myFirstkFang, Microsoft Yahei;
+    /* font-wei ght: 600; */
+    line-height: 1.5rem;
+    padding-top: 0.6rem;
+}
+
+.hislists .hislist .liname .b {
+    width: 1.1rem;
+}
+
+.hislists .hislist .liname span {
+    padding-top: 0.5rem;
+    padding-left: 0.2rem;
+    font-size: 0.8rem;
+    font-family: 'DIN', Microsoft Yahei;
+}
+
+.fontred2 {
+    color: #dd3834
+}
+
+.fontblue3 {
+    color: #3f99e7
+}
+
+.bluebg {
+    background: #e5ecfe
+}
+
+.redbg {
+    background: #f6dde1
+}
+
+.fontblue2 {
+    color: #568ed4
+}
+
+.blackbg {
+    background: #f1f1f1
+}
+
+
+.hissearch {
+    position: relative;
+    left: 1rem;
+    width: 90vw;
+    top: 3.4rem;
+}
+
+.hissearch .starttime {
+    border: 0px;
+    font-size: 0.9rem;
+    width: 5.5rem;
+    position: absolute;
+}
+
+.hissearch .endtime {
+    border: 0px;
+    font-size: 0.9rem;
+    width: 5.5rem;
+    position: absolute;
+    left: 8.8rem;
+}
+
+.hislists4 {
+    margin: 0px 1rem;
+    color: #333333;
+    height: 70vh;
+    top: 7.9rem;
+    position: relative
+}
+
+.hislists4 .hislist {
+    width: 100%;
+    clear: both;
+    padding: 0px 0px;
+    height: 3.55rem;
+    border-bottom: 1px solid #f5f5f5;
+    box-sizing: content-box;
+    margin: 0px;
+    position: relative;
+}
+
+.hislists4 .hislist li {
+    list-style: none;
+    float: left;
+    font-size: 0.95rem;
+    width: 25%;
+    line-height: 3.5rem;
+    font-family: 'DIN', Microsoft Yahei;
+    text-align: right;
+}
+
+.hislists4 .hislist li i {
+    font-family: 'HIVEBOX';
+    font-size: 0.85rem;
+    font-weight: lighter;
+    font-style: normal
+}
+
+.hislists4 .hislist li span i {
+    font-family: 'HIVEBOX';
+    font-size: 1.2rem;
+    font-weight: lighter;
+    font-style: normal
+}
+
+.hislists4 .hislist .li1 {
+    width: 32%;
+    text-align: left;
+    position: relative;
+    height: 100%;
+}
+
+.hislists4 .hislist .li2 {
+    width: 18%;
+    padding-right: 0.5rem;
+}
+
+.hislists4 .hislist .li3 {
+    width: 24%
+}
+
+.hislists4 .hislist .li4 {
+    width: 26%;
+    line-height: 1.2rem;
+    margin-top: 0.7rem;
+    font-size: 0.95rem;
+}
+
+.hislists4 .hislist .li4>div {
+    font-size: 1.0rem;
+    /* font-wei ght: 600; */
+    font-family: myFirstkFang, Microsoft Yahei;
+}
+
+.hislists4 .hislist .liname {
+    font-size: 0.8rem;
+    margin-top: 0rem;
+    line-height: 0rem;
+    text-align: left;
+    margin-left: 0px;
+}
+
+
+.hislists4 .hislist .liname div {
+    font-size: 1rem;
+    font-family: myFirstkFang, Microsoft Yahei;
+    /* font-weig ht: 600; */
+    line-height: 1.5rem;
+    padding-top: 0.6rem;
+}
+
+.hislists4 .hislist .liname7 div {
+    font-size: 0.8rem;
+    font-family: myFirstkFang, Microsoft Yahei;
+    font-weight: 600;
+    line-height: 1.5rem;
+    padding-top: 0.45rem;
+}
+
+.hislists4 .hislist .liname .b {
+    width: 0.82rem;
+    position: absolute;
+    bottom: 0.7rem;
+}
+
+.hislists4 .hislist .liname span {
+    padding-top: 0.5rem;
+    padding-left: 0rem;
+    font-family: 'DIN', Microsoft Yahei;
+}
+
+.hislists4 .hislist .liname .wu {
+    bottom: 1.1rem;
+    font-size: 0.6rem;
+    left: 0px;
+    position: absolute
+}
+
+.hislists4 .hislist .liname .wut {
+    position: absolute;
+    top: 2.05rem;
+    font-size: 1.2rem;
+    left: -1.9rem;
+    width: 150%;
+    transform: scale(0.42);
+
+}
+
+.hislists4 .hislist li .wu i {
+    font-family: 'HIVEBOX';
+    font-size: 0.45rem;
+    font-weight: lighter;
+    font-style: normal
+}
+
+.liushuis {
+    margin: 0px 1rem;
+    font-size: 1rem;
+    color: #333
+}
+
+.liushuili {
+    border-bottom: 1px solid #f5f5f5;
+    margin: 0.2rem 0;
+    padding: 0.5rem 0px;
+    overflow: hidden
+}
+
+.liushuili .liushuitop {
+    width: 100%;
+    font-size: 0.8rem;
+}
+
+.liushuili .liushuitop span {
+    padding-right: 0.5rem;
+    font-size: 1rem;
+}
+
+.liushuili .liushuibody li {
+    list-style: none;
+    float: left;
+    font-size: 0.8rem;
+    width: 50%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+
+.liushuili .liushuibody li span {
+    color: #666;
+    padding-right: 0.6rem;
+}
+
+.liushuili .liushuibottom {
+    width: 100%;
+}
+
+.liushuili .liushuibottom a {
+    color: #fff;
+    float: right;
+    margin: 0 0.5rem;
+    font-size: 0.8rem;
+    background: #28a745;
+    border-radius: 5px;
+    padding: 0.2rem 0.5rem;
+    text-align: right
+}
+
+.liushuili .liushuibottom a:first-child {
+    color: #212529;
+    background: #f8f9fa;
+}
+
+
+
+/* 导航栏CSS */
+.navbarf>.tab-nav {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    border: none;
+    padding-top: 5px;
+    height: 3rem;
+    background-image: none;
+    background-color: #000 !important;
+    font-size: 0.8rem;
+    color: #abacae;
+}
+
+.navbarf>.tab-nav>.tab-item {
+    padding-top: 0px;
+    color: white !important;
+    display: block;
+    width: 20vw;
+    float: left;
+    text-align: center
+}
+
+.navbarf a {
+    font-size: 0.8rem;
+    width: 25%;
+}
+
+.navbarf>.tab-nav>.tab-item i {
+    font-size: 1rem;
+}
+
+.navbarf>.tab-nav>.tab-item:before {
+    font-size: 20px;
+}
+
+.tabnone:before {
+    font-size: 0;
+}
+
+.navbarf>.tab-nav>.tab-item.tab-item-active {
+    color: #c53942 !important;
+}
+
+.navbarf>.tab-nav>.tab-item.tab-item-active:before {
+    font-size: 20px;
+}
+
+.navbarf>.tab-nav>.tab-item>span {
+    display: block;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+
+
+/* 导航栏CSS */
+.navbarf2>.tab-nav2 {
+    position: fixed;
+    width: 100%;
+    bottom: -6px;
+    border: none;
+    padding-top: 0px;
+
+    background-image: none;
+    font-size: 0.8rem;
+    color: #abacae;
+    z-index: 999;
+    background-color: #f5f5f5;
+
+}
+
+.navbarf2>.tab-nav2 img {
+    width: 100%
+}
+
+.navbarf2 a {
+    position: absolute;
+    bottom: 0px;
+}
+
+.navbarf2>.tab-nav2 .bhome {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 16vw;
+    height: 3.6rem;
+    background: none
+}
+
+.navbarf2>.tab-nav2 .buser {
+    position: absolute;
+    bottom: 0px;
+    right: 32vw;
+    width: 16vw;
+    height: 3.6rem;
+    background: none
+}
+
+.navbarf2>.tab-nav2 .bnews {
+    position: absolute;
+    bottom: 0px;
+    right: 16vw;
+    width: 16vw;
+    height: 3.6rem;
+    background: none
+}
+
+.navbarf2>.tab-nav2 .bcatalog {
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    width: 16vw;
+    height: 3.6rem;
+    background: none
+}
+
+.hblack {
+    color: #000 !important;
+}
