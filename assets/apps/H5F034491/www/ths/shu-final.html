@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+        content="width=device-width,user-scalable=0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f12f37">
+    <title>转账记录</title>
+    <script type="text/javascript" src="./dzd/jquery.min.js"></script>
+
+    <style>
+        /* Combined CSS from both files */
+        :root {
+            --blue: #536de6;
+            --red: #ff5b5b;
+            --danger: #ff5b5b;
+            --primary: #536de6;
+            --light: #dde8f5;
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 14.4583px;
+            font-family: sans-serif;
+            line-height: 1.15;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            /* font-family: 'sans-serif'; */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            /* font-family: bodyfont, myFirstFang, Harmony, MiLanPro, "Heiti SC", "Droidsansfallback", "Helvetica Neue", Helvetica, sans-serif, xmltpro; */
+            font-size: 14.4583px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #212529;
+            text-align: left;
+            background: #fff;
+        }
+
+        a {
+            color: #536de6;
+            text-decoration: none;
+            background-color: transparent;
+        }
+
+        a:hover {
+            color: #1e3dce;
+            text-decoration: underline;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: .5rem;
+        }
+
+        input,
+        select {
+            margin: 0;
+            font-family: inherit;
+        }
+
+        .container-fluid {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .col-md-12 {
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            padding-bottom: 1rem;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            height: calc(1.5em + .75rem + 2px);
+            padding: .375rem .75rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: #c2cbf6;
+            outline: 0;
+            box-shadow: 0 0 0 .2rem rgba(83, 109, 230, .25);
+        }
+
+        .btn {
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .btn-danger {
+            color: #fff;
+            background-color: #ff5b5b;
+            border-color: #ff5b5b;
+        }
+
+        .btn-danger:hover {
+            background-color: #ff3535;
+            border-color: #ff2828;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        /* Combined styles from both files... */
+        /* Custom styles */
+        .bgwrite {
+            background: #fff;
+            padding: 1rem 0 3.2rem;
+        }
+
+        .back {
+            width: 12vw;
+            height: 2.7rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .mobiletop2 {
+            height: 2.85rem;
+            color: #fff;
+        }
+
+        .headzq2 {
+            padding-top: 0;
+            line-height: 1rem;
+            font-size: 0.8rem;
+            width: 100vw;
+            position: relative;
+            letter-spacing: 0;
+            text-align: center;
+            left: 0;
+            top: 0.35rem;
+        }
+
+        .drcj {
+            font-size: 1.1rem;
+            padding: 0.05rem 0 0.26rem;
+            font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+            font-weight: 500;
+        }
+
+        .zqname2 {
+            font-family: "MiLanPro";
+            padding: 0;
+            font-weight: normal;
+            position: relative;
+        }
+
+        .zqname2::after {
+            content: "";
+            background-image: url("../img/nav-icon.png");
+            position: absolute;
+            background-size: 0.852rem;
+            top: -0.25rem;
+            right: -1.55rem;
+            transform: translate(-50%, -50%);
+            width: 0.8rem;
+            height: 0.8rem;
+            margin-left: 1rem
+        }
+
+        .zqnumber2 {
+            letter-spacing: 0;
+            font-family: "DIN";
+            padding-left: 5px;
+            text-align: center;
+            position: relative;
+            font-size: 0.80rem;
+        }
+
+        .zznav {
+            width: 100vw;
+            height: 2.3rem;
+            line-height: 2.3rem;
+            border-bottom: 1px solid #f6f6f6;
+            font-size: 0.932rem;
+        }
+
+        .zznav a {
+            color: #000;
+            width: 30vw;
+            display: block;
+            float: left;
+            margin: 0 10vw;
+            text-align: center;
+        }
+
+        .zznav a.on {
+            color: #f12f37;
+            border-bottom: 0.13rem solid #f12f37;
+        }
+
+        .zzbottomtxt {
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        #bodybar {
+            height: 0;
+            background: #f12f37;
+            position: fixed;
+            top: 0;
+            width: 100vw;
+            z-index: 999;
+        }
+
+        .wrapper {
+            background: #fff;
+            position: relative;
+            margin-top: 0;
+        }
+
+        #user {
+            margin-bottom: 80px;
+            background: #fff;
+        }
+
+        .mobile2 {
+            background-color: #f6f6f6;
+            background-image: url('../img/navbar.png');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            min-height: 30vh;
+        }
+
+
+        .headzq2 {
+            padding-top: 0;
+            line-height: 1rem;
+            font-size: 0.8rem;
+            width: 100vw;
+            position: relative;
+            letter-spacing: 0;
+            text-align: center;
+            left: 0;
+            top: 0.35rem;
+        }
+
+        .drcj {
+            font-size: 1.1rem;
+            padding: 0.05rem 0 0.26rem;
+            font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+            font-weight: 500;
+        }
+
+        .zznav {
+            width: 100vw;
+            height: 2.3rem;
+            line-height: 2.3rem;
+            border-bottom: 1px solid #f6f6f6;
+            font-size: 0.932rem;
+        }
+
+        .zznav a {
+            color: #000;
+            width: 30vw;
+            display: block;
+            float: left;
+            margin: 0 10vw;
+            text-align: center;
+        }
+
+        .zznav a.on {
+            color: #f12f37;
+            border-bottom: 0.13rem solid #f12f37;
+        }
+
+        .zzdrlist {
+            width: 94vw;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .zzdrlist ul {
+            padding: 0 0 1rem 0;
+            margin: 1rem 0 0;
+            border-bottom: 1px solid #f6f6f6;
+        }
+
+        .zzdrlist li {
+            font-size: 0.80rem;
+            line-height: 1.5rem;
+            list-style: none;
+        }
+
+        .zzdrlist span {
+            padding-right: 2rem;
+            color: #999;
+        }
+
+        .delzz {
+            color: var(--red);
+        }
+
+        .zznav2 {
+            width: 94vw;
+            margin: 0 auto;
+            height: 2.3rem;
+            line-height: 2.3rem;
+            font-size: 0.85rem;
+        }
+
+        .mobile2 {
+            background-color: #f6f6f6;
+            background-image: url('../img/navbar.png');
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            min-height: 30vh;
+        }
+
+        .form-section,
+        .query-section {
+            display: none;
+        }
+
+        .active-section {
+            display: block;
+        }
+
+        table ul,
+        table ol {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="wrapper">
+            <div id="user">
+                <div class="mobile2">
+                    <div class="mobiletop2" id="mobiletop2" style="height: 3.6rem;">
+                        <div class="headzq2">
+                            <div class="drcj">银证转账</div>
+                            <b class="zqname2">平安证券<span class="zqnumber2"> 蔡传启 </span></b>
+                        </div>
+                        <a class="back" href="cx.html"></a>
+                    </div>
+
+                    <div class="zznav">
+                        <a href="#" class="nav-link on" data-section="form">转账</a>
+                        <a href="#" class="nav-link" data-section="query">查询</a>
+                    </div>
+
+                    <div class="container-fluid bgwrite">
+                        <!-- Transfer Form Section -->
+                        <div id="form" class="active-section">
+                            <div id="memo" style="font-size:15px;color:#f00; text-align:center;padding: 0.2rem;"></div>
+                            <form id="yinzhengzz" method="post">
+                                <div class="form-group col-md-12">
+                                    <label for="zztype">转账类型</label>
+                                    <select id="zztype" name="zztype" class="form-control">
+                                        <option value="0" selected>转入</option>
+                                        <option value="1">转出</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>转账金额<span id="fundBalance" style="color:#999;float:right">(资金余额：0.00)</span></label>
+                                    <input type="text" class="form-control" id="zijinjine" name="zijinjine">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>转账日期从<span style="color:#999;float:right"></span></label>
+                                    <input type="date" class="form-control" id="timeriqi" name="timeriqi">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label>转账时间<span style="color:#999;float:right">(时间区间：9:30-15:00)</span></label>
+                                    <input type="time" class="form-control" id="timem" name="timem">
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <input type="submit" name="submit" class="btn btn-danger btn-block" id="tijiao"
+                                        value="提交">
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Query Section https://app.xunlianw.com/m/home.php?rec=zzinfo -->
+                        <div id="query" style="display: none;">
+                        <!--    <div class="zznav2">当日流水 <a style="text-align: right;  float: right;  color: #000;"-->
+                        <!--            href="#">历史转账记录</a>-->
+                        <!--    </div>-->
+                            <div class="zzdrlist"></div>
+                        </div>
+
+                        <div class="zzbottomtxt">
+                            请在股市交易日转账,非交易日不能转账;<br>未避免错误，转出日期后有操作记录的不能进行转出操作；<br>银证转账日期不能早于第一条交易记录
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+    <script type="text/javascript" src="./dzd/global.js"></script>
+    <script>
+        const mobiletop2 = document.getElementById('mobiletop2');
+
+        // const isIphone14ProMax = /iPhone/.test(navigator.userAgent) && window.screen.height === 932 && window.screen.width === 430;
+
+        // if (isIphone14ProMax) {
+        //     mobiletop2.style.height = '3.85rem';
+        //     mobiletop2.style.color = '#fff';
+        // } else {
+            mobiletop2.style.height = '3.6rem';
+            mobiletop2.style.color = '#fff';
+            mobiletop2.style.background = '#ff5b5b';
+       // }
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            function updateFundBalance() {
+                if (!window.LocalAPI || !LocalAPI.calculateAccount) return;
+                var account = LocalAPI.calculateAccount(Global_Username);
+                $('#fundBalance').text('(资金余额：' + Number(account.cash || 0).toFixed(2) + ')');
+            }
+
+            loginstatus(function (data) {
+                //存储数据；
+                var type = '?all';
+                var storageKey = 'myData' + type;
+                var storageDateKey = 'dataDate' + type;
+                var today = new Date().toISOString().split('T')[0];
+
+                var storedData = localStorage.getItem(storageKey);
+                var storedDate = localStorage.getItem(storageDateKey);
+
+                if (storedData != "undefined" && storedDate === today && storedData != "undefined") {
+                    // Use stored data
+                    var data = JSON.parse(storedData);
+                } else {
+                    localStorage.removeItem(storageKey);
+                    localStorage.removeItem(storageDateKey);
+                    // loadTransactions(type, function (data) {
+                    //     localStorage.setItem(storageKey, JSON.stringify(data));
+                    //     localStorage.setItem(storageDateKey, today);
+                    // });
+
+                }
+				if (data.userdata) {
+					$(".zqname2").html(data.userdata.zhengquanname+"<span class=\"zqnumber2\"> "+data.userdata.zhengquannumber+" </span>");
+				
+				}
+                updateFundBalance();
+            });
+
+
+            // Navigation handling
+            $('.nav-link').click(function (e) {
+                e.preventDefault();
+                currentSection = $(this).data('section');
+                $('.nav-link').removeClass('on');
+                $(this).addClass('on');
+                $('#form, #query').hide();
+                $('#' + currentSection).show();
+                if (currentSection === 'query') {
+                    loadTransactions('?all');
+                }
+            });
+
+            // Form submission handling
+            $('#yinzhengzz').on('submit', function (e) {
+                e.preventDefault();
+                const formData = {
+                    zztype: $('#zztype').val(),
+                    zijinjine: $('#zijinjine').val(),
+                    timeriqi: $('#timeriqi').val(),
+                    timem: $('#timem').val(),
+                    action: 'submit_transfer',
+
+                };
+
+                // Validation
+                if (!formData.zztype || !formData.timeriqi || !formData.zijinjine) {
+                    showError('转账类型和转账日期是必填项！');
+                    return;
+                }
+
+                if (formData.zijinjine && isNaN(formData.zijinjine)) {
+                    showError('请输入有效的金额数字！');
+                    return;
+                }
+                // console.log("here", formData);
+
+                $.ajax({
+                    url: host + "php/user.php",
+                    type: "POST",
+                    data: $.extend({
+                        rec: 'shu-recieve', // Custom parameter
+                        username: Global_Username,
+                        params: '?date'
+                    }, formData),
+                    success: function (response) {
+                        console.log(response);
+                        try {
+                            if (response.status) {
+                                showSuccess('转账提交成功！');
+                                updateFundBalance();
+                                $('#form').hide();
+                                $('#query').show();
+                                renderTransactions(response.data);
+                                clearForm();
+                            } else {
+                                showError(response.message || '提交失败');
+                            }
+                        } catch (e) {
+                            showError('响应解析失败');
+                        }
+                    },
+                    error: function () {
+                        showError('网络错误');
+                    }
+                });
+            });
+
+            // Transaction loading
+            function loadTransactions(params) {
+                $.ajax({
+                    url: host + "php/user.php",
+                    type: "POST",
+                    data: {
+                        rec: "shu-recieve",
+                        username: Global_Username,
+                        params: params
+                    },
+                    success: function (transactions) {
+                        try {
+                            renderTransactions(transactions.data);
+                        } catch (e) {
+                            console.error("Error parsing transactions:", e);
+                            renderFallbackTransactions();
+                        }
+                    },
+                    error: function () {
+                        renderFallbackTransactions();
+                    }
+                });
+            }
+
+            function renderFallbackTransactions() {
+                $('.zzdrlist').show();
+                $('.zzdrlist').html(`
+                <ul>
+                    <li><span>号码</span>0</li>
+                    <li><span>操作</span>买入</li>
+                    <li><span>时间</span>00:32:10</li>
+                    <li><span>金额</span>xxxxx.00</li>
+                    <li><span>操作</span><a class="delzz">删除</a></li>
+                </ul>
+            `);
+            }
+            // Transaction rendering
+            function renderTransactions(transactions) {
+                $('.zzdrlist').show();
+                const container = $('.zzdrlist');
+                container.empty();
+
+                if (!transactions.length) {
+                    container.append('<div class="no-data">没有转账记录</div>');
+                    return;
+                }
+
+                transactions.forEach(item => {
+                    // console.log("HERE", item)
+                    container.append(`
+                        <ul data-id="${item.id}">                           
+                            <li><span>类型</span>${item.type || ''}</li>
+                            <li><span>日期</span>${item.date || ''}</li>
+                            <li><span>时间</span>${item.time || ''}</li>
+                            <li><span>金额</span>${item.amount || '无金额'}</li>
+                            <li><span>操作</span><a class="delzz" href="javascript:void(0);">删除</a></li>
+                        </ul>
+                    `);
+                });
+            }
+
+            // Delete handling
+            $(document).on('click', '.delzz', function (e) {
+                e.preventDefault();
+                const el = $(this).closest('ul');
+                const id = el.data('id');
+
+                if (id && confirm('确定要删除这条转账记录吗?')) {
+                    $.ajax({
+                        url: host + "php/user.php",
+                        type: "POST",
+                        data: {
+                            rec: "shu-deleteTransaction",
+                            username: Global_Username,
+                            transaction_id: id
+                        },
+                        success: function (result) {
+                            const data = typeof result === 'string' ? JSON.parse(result) : result;
+                            if (data.status === "success") {
+                                el.remove();
+                            } else {
+                                alert(data.message || '删除失败');
+                            }
+                        },
+                        error: function () {
+                            alert('删除错误');
+                        }
+                    });
+                }
+            });
+
+            // Helper functions
+            function showError(msg) {
+                $('#memo').css('color', 'red').text(msg).show();
+            }
+
+            function showSuccess(msg) {
+                $('#memo').css('color', 'green').text(msg).show();
+            }
+
+            function clearForm() {
+                $('#yinzhengzz')[0].reset();
+                $('#timem').val('00:00');
+            }
+
+            // Initial setup
+            $('#timem').val('00:00');
+            $('#zijinjine').on('input', function () {
+                this.value = this.value.replace(/[^0-9.]/g, '');
+            });
+        });
+    </script>
+
+</body>
+
+</html>
