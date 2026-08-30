@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html style="font-size: 16.25px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="viewport"
+			content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link href="./style4.css" type="text/css" rel="stylesheet">
+		
+		
+		<style type="text/css">
+			@font-face {
+				font-family: qxzitiszxi;
+                                src: url('../common/fonts/THSJinRongTi-Regluar.otf');
+			}
+
+			@font-face {
+				font-family: riliziti;
+				src: url('../common/fonts/THSJinRongTi-Medium.otf');
+			}
+
+			li {
+				list-style: none;
+			}
+
+			i {
+				font-style: normal
+			}
+
+			.rilibottom {
+				position: relative
+			}
+
+			.rilibottom .shangzheng {
+				position: absolute;
+				right: 6vw;
+			}
+
+			.clickbl {
+				position: absolute;
+				top: 10px;
+				right: 0px;
+				height: 2rem;
+				width: 20vw;
+			}
+
+			.rilitop {
+				width: 100vw;
+				height: 3rem;
+			}
+
+			.rilitop .rilinav {
+				width: 92%;
+				margin: 0 auto;
+			}
+
+			.rilitop .rilinav li {
+				list-style: none;
+				line-height: 240%;
+				margin-right: 1.5rem;
+				font-family: qxziti;
+				color: #666666;
+				float: left;
+				font-size: 1.1rem;
+			}
+
+			.rilitop .rilinav li.on {
+				font-weight: bold;
+				position: relative;
+				color: #333333;
+			}
+
+			.rilitop .rilinav li.on::after {
+				content: "";
+				width: 0.8rem;
+				height: 0.21rem;
+				background: #ea3035;
+				border-left: 0px solid #fff;
+				border-right: 0px solid #fff;
+				border-bottom: 0.2rem solid #ea3035;
+				border-radius: 4px;
+				font-size: 0;
+				line-height: 0;
+				opacity: 1;
+				position: absolute;
+				bottom: -0.02rem;
+				left: calc(50% - 6px);
+			}
+
+			.none {
+				display: none;
+			}
+
+			#myTab1_Content1,
+			#myTab1_Content2 {
+				position: relative
+			}
+
+			.yuebox {
+				width: 92%;
+				margin: 0 auto;
+				margin-top: 4rem;
+				background: #fff;
+				padding-top: 0.9rem;
+				overflow: hidden;
+				clear: both;
+			}
+
+			.yuebox li {
+				width: calc(25% - 0.5rem);
+				color: rgb(191, 191, 197);
+				background-color: #fff;
+				font-size: 0.9rem;
+				float: left;
+				padding-right: 0.5rem;
+				padding-top: 0.6rem;
+				height: 3.3rem;
+				text-align: right;
+				line-height: 100%;
+				position: relative
+			}
+
+			.yuebox li.blue {
+				background-color: #6f92e6;
+				color: #fff
+			}
+
+			.yuebox li.red {
+				background-color: #ff745f;
+				color: #fff
+			}
+
+			.yuebox li.black {
+				background-color: #fff;
+				color: #2f2f2f
+			}
+
+			.yuebox li span {
+				font-family: riliziti;
+				font-weight: normal;
+				font-size: 14px;
+
+				text-align: right;
+				line-height: 14px;
+				display: block;
+				height: 15px;
+				color: rgb(191, 191, 197);
+				overflow: hidden;
+				padding-top: 0.8rem
+			}
+
+			.yuebox li.black span {
+				color: #2f2f2f;
+				font-family: riliziti;
+				font-size: 12px;
+			}
+
+			.yuebox li.red span {
+				color: #fff;
+				font-family: riliziti;
+				font-size: 12px;
+			}
+
+			.yuebox li.blue span {
+				color: #fff;
+				font-family: riliziti;
+				font-size: 12px;
+			}
+
+			.yuebox li i {
+				display: inline-block;
+				top: 0.4rem;
+				position: absolute;
+				left: 0.8rem;
+			}
+
+			.yuebox li i>img {
+				width: 1rem;
+			}
+
+			.yuebox .mykbili {
+				display: none;
+			}
+
+			.yearbox {
+				width: 92%;
+				margin: 0 auto;
+				margin-top: 4rem;
+				background: #fff;
+				padding-top: 0.9rem;
+				overflow: hidden;
+				clear: both;
+			}
+
+			.yearbox li {
+				width: calc(25% - 0.5rem);
+				color: #fff;
+				background-color: #ff745f;
+				font-size: 0.9rem;
+				float: left;
+				padding-right: 0.5rem;
+				padding-top: 0.6rem;
+				height: 3.3rem;
+				text-align: right;
+				line-height: 100%;
+				position: relative
+			}
+
+			.yearbox li.blue {
+				background-color: #6f92e6;
+				color: #fff;
+			}
+
+			.yearbox li.black {
+				background-color: #fff;
+				color: #2f2f2f
+			}
+
+			.yearbox li span {
+				font-family: riliziti;
+				font-weight: normal;
+				font-size: 12px;
+
+				text-align: right;
+				line-height: 14px;
+				display: block;
+				height: 15px;
+				color: #fff;
+				overflow: hidden;
+				padding-top: 0.8rem
+			}
+
+			.yearbox li.black span {
+				color: #2f2f2f;
+				font-family: riliziti;
+				font-size: 14px;
+			}
+
+			.yearbox li.blue span {
+				color: #fff;
+			}
+
+			.yearbox li i {
+				display: inline-block;
+				top: 0.4rem;
+				position: absolute;
+				left: 0.8rem;
+			}
+
+			.yearbox li i>img {
+				width: 1rem;
+			}
+
+			.yearbox .mykbili {
+				display: none;
+			}
+
+
+			.selectyearall {
+				width: 100%;
+				background: #Fff;
+				height: 3rem;
+				line-height: 3.2rem;
+				font-size: 1rem;
+				float: right
+			}
+
+			.selectyearall>img {
+				width: 100%;
+				padding-top: 0.521rem;
+			}
+
+			.selectyear {
+				width: 31%;
+				margin-right: 9%;
+				height: 3rem;
+				line-height: 3.2rem;
+				float: right;
+				font-size: 1rem;
+				background: #fff;
+
+
+			}
+
+			.selectyear select {
+				/* 清除默认边框 */
+
+				width: 5rem;
+				height: 2rem;
+				border: 0;
+				/* 清除默认的箭头样式 */
+				appearance: none;
+				-moz-appearance: none;
+				-webkit-appearance: none;
+				/* 右侧添加小箭头的背景图 */
+				background: url('./icon.png') right center no-repeat;
+				background-size: 22px;
+			}
+
+			.rilibottom {
+				clear: both;
+			}
+
+			.aboluo-nextMonthDays a {
+				color: #BFBFC5
+			}
+
+			.aboluo-rilidiv .aboluo-rilitable tr td .aboluo-nextMonthDays a {
+				color: #BFBFC5
+			}
+
+			.aboluo-rilidiv .aboluo-rilitable tr td a {
+
+				font-family: none;
+
+			}
+
+			-->
+		</style>
+		<script type="text/javascript">
+
+
+		</script>
+		<style type="text/css">
+			.aboluo-w-700 {
+				width: 100%;
+				height: 33rem;
+				margin-top: 0rem;
+			}
+
+			.aboluo-tools {
+
+				margin-left: 56%;
+			}
+
+			.aboluo-calendar-select-year {
+				float: left;
+				padding-right: 0.2rem;
+			}
+
+			#dateSelectorOne {
+				width: 3.6rem;
+				font-size: 1rem;
+				background: none;
+				font-weight: bold;
+				color: #000;
+				position: relative
+			}
+
+			.jticon img {
+				width: 1.32rem
+			}
+		</style>
+		<script type="text/javascript" src="flexible.js"></script>
+	</head>
+
+
+
+
+
+
+	<body
+		style="background-image: url(&quot;./rilibgn.jpg&quot;); background-position: 0px 0px; background-size: 100%; background-repeat: no-repeat; font-size: 36px;">
+		<div class="rilitop">
+			<div class="rilinav" id="myTab1">
+				<li class="on" onclick="nTabs(this,0);">日收益</li>
+				<li onclick="nTabs(this,1);">月收益</li>
+				<li onclick="nTabs(this,2);">年收益</li>
+			</div>
+			<div class="clickbl "><input value="0" type="hidden" id="showtype"><input value="0.00%" type="hidden"
+					id="shouyibili"><input value="0.00" type="hidden" id="shouyi"></div>
+			<div class="clickblm"><input value="0" type="hidden" id="showtype"></div>
+		</div>
+
+
+		<div class="aboluo-w-700" id="myTab1_Content0">
+			<div class="aboluo-leftdiv">
+				<div class="aboluo-tools">
+					<div class="aboluo-calendar-select-year"><select name="aboluo-yearSelect" id="aboluo-yearSelect"
+							style="pointer-events:none;">
+							<option value="2025">2025年 </option>
+							<option value="2024">2024年 </option>
+							<option value="2023">2023年 </option>
+						</select></div>
+					<div class="aboluo-calendar-month">
+
+						<!-- <select name="aboluo-selectmonth" id="aboluo-selectmonth">
+            <option value="1">1月</option>
+            <option value="2">2月</option>
+            <option value="3">3月</option>
+            <option value="4">4月</option>
+            <option value="5">5月</option>
+            <option value="6">6月</option>
+            <option value="7">7月</option>
+            <option value="8">8月</option>
+            <option value="9">9月</option>
+            <option value="10">10月</option>
+            <option value="11">11月</option>
+            <option value="12">12月</option>
+          </select> -->
+
+						<a class="aboluo-month-a-next" href="javascript:;"> &gt;</a>
+					</div>
+
+				</div>
+				<div class="aboluo-rilidiv">
+					<table class="aboluo-rilitable" cellspacing="0" cellpadding="0">
+						<thead class="aboluo-rilithead" style="display:none">
+							<tr>
+								<th>日
+								</th>
+								<th>一
+								</th>
+								<th>二
+								</th>
+								<th>三
+								</th>
+								<th>四
+								</th>
+								<th>五
+								</th>
+								<th>六
+
+								</th>
+							</tr>
+						</thead>
+						<tbody class="aboluo-rilitbody">
+							<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+								<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-28"
+										style="text-decoration: none; color: rgb(191, 191, 197);">28</a></td>
+								<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-29"
+										style="text-decoration: none; color: rgb(191, 191, 197);">29</a></td>
+								<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-30"
+										style="text-decoration: none; color: rgb(191, 191, 197);">30</a></td>
+								<td class="aboluo-pervMonthDays"><a href="javascript:;" date="2024-1-31"
+										style="text-decoration: none; color: rgb(191, 191, 197);">31</a></td>
+								<td><a href="javascript:;" date="2024-2-1" style="text-decoration: none;">01</a></td>
+								<td><a href="javascript:;" date="2024-2-2" style="text-decoration: none;">02</a></td>
+								<td><a href="javascript:;" date="2024-2-3" style="text-decoration: none;">03</a></td>
+							</tr>
+							<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+								<td><a href="javascript:;" date="2024-2-4" style="text-decoration: none;">04</a></td>
+								<td><a href="javascript:;" date="2024-2-5" style="text-decoration: none;">05</a></td>
+								<td><a href="javascript:;" date="2024-2-6" style="text-decoration: none;">06</a></td>
+								<td><a href="javascript:;" date="2024-2-7" style="text-decoration: none;">07</a></td>
+								<td><a href="javascript:;" date="2024-2-8" ztid="1671960" jjrzt="0"
+										style="text-decoration: none; background: rgb(255, 255, 255); color: rgb(0, 0, 0);">08<span
+											class="aboluo-td-a-ban">0</span></a></td>
+								<td><a href="javascript:;" date="2024-2-9" ztid="undefined" jjrzt="除夕"
+										style="text-decoration: none; background: rgb(255, 255, 255);">09<span
+											class="aboluo-td-a-xiujia">除夕</span></a></td>
+								<td><a href="javascript:;" date="2024-2-10" ztid="undefined" jjrzt="春节"
+										style="text-decoration: none; background: rgb(255, 255, 255);">10<span
+											class="aboluo-td-a-xiujia">春节</span></a></td>
+							</tr>
+							<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+								<td><a href="javascript:;" date="2024-2-11" ztid="undefined" jjrzt="休"
+										style="text-decoration: none; background: rgb(255, 255, 255);">11<span
+											class="aboluo-td-a-xiujia">休</span></a></td>
+								<td><a href="javascript:;" date="2024-2-12" ztid="undefined" jjrzt="休"
+										style="text-decoration: none; background: rgb(255, 255, 255);">12<span
+											class="aboluo-td-a-xiujia">休</span></a></td>
+								<td><a href="javascript:;" date="2024-2-13" ztid="undefined" jjrzt="休"
+										style="text-decoration: none; background: rgb(255, 255, 255);">13<span
+											class="aboluo-td-a-xiujia">休</span></a></td>
+								<td><a href="javascript:;" date="2024-2-14" ztid="undefined" jjrzt="休"
+										style="text-decoration: none; background: rgb(255, 255, 255);">14<span
+											class="aboluo-td-a-xiujia">休</span></a></td>
+								<td><a href="javascript:;" date="2024-2-15" ztid="undefined" jjrzt="休"
+										style="text-decoration: none; background: rgb(255, 255, 255);">15<span
+											class="aboluo-td-a-xiujia">休</span></a></td>
+								<td><a href="javascript:;" date="2024-2-16" ztid="undefined" jjrzt="休"
+										style="text-decoration: none; background: rgb(255, 255, 255);">16<span
+											class="aboluo-td-a-xiujia">休</span></a></td>
+								<td><a href="javascript:;" date="2024-2-17" ztid="undefined" jjrzt="休"
+										style="text-decoration: none; background: rgb(255, 255, 255);">17<span
+											class="aboluo-td-a-xiujia">休</span></a></td>
+							</tr>
+							<tr style="border-bottom: 0px solid rgb(255, 137, 116);">
+								<td><a href="javascript:;" date="2024-2-18" style="text-decoration: none;">18</a></td>
+								<td><a href="javascript:;" date="2024-2-19" ztid="1673793" jjrzt="0"
+										style="text-decoration: none; background: rgb(255, 255, 255); color: rgb(0, 0, 0);">今<span
+											class="aboluo-td-a-ban">0</span></a></td>
+								<td><a href="javascript:;" date="2024-2-20" style="text-decoration: none;">20</a></td>
+								<td><a href="javascript:;" date="2024-2-21" style="text-decoration: none;">21</a></td>
+								<td><a href="javascript:;" date="2024-2-22" style="text-decoration: none;">22</a></td>
+								<td><a href="javascript:;" date="2024-2-23" style="text-decoration: none;">23</a></td>
+								<td><a href="javascript:;" date="2024-2-24" style="text-decoration: none;">24</a></td>
+							</tr>
+							<tr>
+								<td><a href="javascript:;" date="2024-2-25" style="text-decoration: none;">25</a></td>
+								<td><a href="javascript:;" date="2024-2-26" style="text-decoration: none;">26</a></td>
+								<td><a href="javascript:;" date="2024-2-27" style="text-decoration: none;">27</a></td>
+								<td><a href="javascript:;" date="2024-2-28" style="text-decoration: none;">28</a></td>
+								<td><a href="javascript:;" date="2024-2-29" style="text-decoration: none;">29</a></td>
+								<td class="aboluo-nextMonthDays"><a href="javascript:;" date="2024-3-1"
+										style="text-decoration: none; color: rgb(191, 191, 197);">01</a></td>
+								<td class="aboluo-nextMonthDays"><a href="javascript:;" date="2024-3-2"
+										style="text-decoration: none; color: rgb(191, 191, 197);">02</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div class="rilibottom">
+					<div class="leiji"><span id="yuefen" style="color:#333333">2</span>月累计收益<i id="lv"
+							style="display:none">率</i>：<span id="leiji" class="pred">0.00</span></div>
+					<div class="shangzheng">上证：<span id="rilisz" class="pred">+3.70%</span></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="myTab1_Content1" class=" none">
+
+			<script src="./iScroll.js"></script>
+			<script src="./Mdatey.js"></script>
+			<link href="./Mdatey.css" rel="stylesheet" type="text/css">
+			<div class="selectyear">
+				<input name="selectmonth6" id="dateSelectorOne" type="text" value="2025年以来" onfocus="this.blur();"
+					data-year="2025"><span class="jticon"><img src="./icon.png"></span>
+
+				<select name="selectmonth" id="selectmonth" style="display:none">
+					<option value="2020">2020年</option>
+					<option value="2021">2021年</option>
+					<option value="2022">2022年</option>
+					<option value="2023" selected="">2023年</option>
+					<option value="2024">2024年</option>
+					<option value="2025">2025年</option>
+					<option value="2026">2026年</option>
+				</select>
+			</div>
+			<div class="shangnianbox">
+				<div class="rectange"></div>
+				<span>2025年</span>
+			</div>
+			<div class="yuebox">
+				<li class="black">一月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="black">二月<span class="myk">0</span><span class="mykbili">0.00%</span></li>
+				<li class="">三月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">四月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">五月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">六月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">七月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">八月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">九月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">十月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">十一月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">十二月<span class="myk">-</span><span class="mykbili">-</span></li>
+			</div>
+			<div class="shangnianbox">
+				<div class="rectange"></div>
+				<span>2026年</span>
+			</div>
+			<div class="yuebox">
+				<li class="black">一月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="black">二月<span class="myk">0</span><span class="mykbili">0.00%</span></li>
+				<li class="">三月<span class="myk">-</span><span class="mykbili">-</span></li>
+				<li class="">四月<span class="myk">-</span><span class="mykbili">-</span></li>
+				
+			</div>
+			<div class="rilibottom">
+				<div class="leiji">年度总收益<i id="mlv" style="display:none">率</i>：<span id="mleiji"
+						class="pred">0.00</span><span id="mleijilv" style="display:none" class="pred">0.00%</span></div>
+				<div class="shangzheng">上证：<span id="mrilisz" class="pblue">-2.79%</span></div>
+			</div>
+			<script>
+				new Mdate("dateSelectorOne", {
+					acceptId: "dateSelectorOne",
+					beginYear: "2015",
+					endYear: "2026",
+					format: "-"
+				});
+			</script>
+		</div>
+
+		<div id="myTab1_Content2" class="none">
+			<div class="selectyearall"><img src="./rilipic2.png"></div>
+			<div class="yearbox">
+				<li class="black">2024年<span class="myk">0</span><span class="mykbili">0.00%</span></li>
+			</div>
+			<div class="rilibottom">
+				<div class="leiji">全部总收益<i id="mlv" style="display:none">率</i>：<span id="yleiji"
+						class="pred">0.00</span><span id="yleijilv" style="display:none" class="pred">0.00%</span></div>
+				<div class="shangzheng">上证：<span id="yrilisz" class="pred">+0.90%</span></div>
+			</div>
+		</div>
+		<script src="./jquery-1.8.3.min.js"></script>
+		<script src="../../js/common.js"></script>
+		<script src="../../js/local-api.js?v=local48"></script>
+		<script src="./zzsc0103.js"></script>
+		<script type="text/javascript">
+			$(function() {
+                                var year = withID("aboluo-yearSelect").value;
+                                var month = parseInt(withID("aboluo-selectmonth").value);
+                                var localData = window.LocalAPI ? LocalAPI.handle("qxrili", {
+                                        username: window.Global_Username,
+                                        year: year,
+                                        yue: month
+                                }) : null;
+
+                                getjjrszModelByYear(year, month, function() {
+                                        createTabledate(parseInt(year), month, 0);
+                                        $("#yuefen").text(month);
+                                }, localData);
+
+				$("#selectmonth").change(function() {
+					var selectedmonth = $(this).val();
+					getMonthdata(selectedmonth);
+				});
+			})
+		</script>
+
+
+
+
+	</body>
+
+</html>
