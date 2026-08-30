@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>实时行情</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+            background: #f5f5f5;
+            color: #262626;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .market-header {
+            min-height: 58px;
+            padding: max(8px, env(safe-area-inset-top)) 14px 8px;
+            display: flex;
+            align-items: center;
+            background: #ef2f37;
+            color: #fff;
+        }
+
+        .back-button {
+            width: 46px;
+            height: 42px;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #fff;
+            font-size: 29px;
+            line-height: 42px;
+            text-align: left;
+        }
+
+        .stock-title {
+            flex: 1;
+            min-width: 0;
+            text-align: center;
+        }
+
+        .stock-name {
+            overflow: hidden;
+            font-size: 18px;
+            font-weight: 600;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .stock-code {
+            margin-top: 2px;
+            font-size: 12px;
+            opacity: .9;
+        }
+
+        .connection-state {
+            width: 46px;
+            font-size: 11px;
+            text-align: right;
+            opacity: .9;
+        }
+
+        .connection-state.error {
+            color: #ffe0a3;
+        }
+
+        .market-content {
+            padding-bottom: max(18px, env(safe-area-inset-bottom));
+        }
+
+        .panel {
+            margin-bottom: 8px;
+            background: #fff;
+        }
+
+        .quote-panel {
+            display: flex;
+            padding: 14px 12px 12px;
+        }
+
+        .quote-main {
+            width: 29%;
+            padding-top: 3px;
+        }
+
+        .current-price {
+            font-size: 34px;
+            font-weight: 600;
+            line-height: 1;
+            letter-spacing: -.5px;
+        }
+
+        .quote-change {
+            display: flex;
+            gap: 8px;
+            margin-top: 9px;
+            font-size: 14px;
+        }
+
+        .market-time {
+            margin-top: 11px;
+            color: #999;
+            font-size: 10px;
+            line-height: 1.4;
+        }
+
+        .up {
+            color: #e73130 !important;
+        }
+
+        .down {
+            color: #08a94b !important;
+        }
+
+        .flat {
+            color: #333 !important;
+        }
+
+        .metrics {
+            display: grid;
+            flex: 1;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: 6px;
+            row-gap: 8px;
+            padding-left: 8px;
+        }
+
+        .metric {
+            display: flex;
+            min-width: 0;
+            align-items: center;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .metric-label {
+            margin-right: 4px;
+            color: #999;
+            font-size: 11px;
+        }
+
+        .metric-value {
+            overflow: hidden;
+            font-size: 12px;
+            text-overflow: ellipsis;
+        }
+
+        .notice-strip,
+        .after-hours-strip {
+            display: flex;
+            height: 38px;
+            padding: 0 12px;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            background: #fff;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .notice-badge {
+            margin-right: 8px;
+            padding: 2px 5px;
+            border: 1px solid #e73130;
+            color: #e73130;
+            font-size: 10px;
+        }
+
+        .notice-text {
+            flex: 1;
+        }
+
+        .notice-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #e73130;
+        }
+
+        .after-hours-strip {
+            justify-content: space-between;
+        }
+
+        .after-hours-values {
+            color: #555;
+        }
+
+        .quote-tabs {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            height: 45px;
+            border-bottom: 1px solid #e8e8e8;
+            background: #fff;
+        }
+
+        .quote-tab {
+            position: relative;
+            border: 0;
+            background: transparent;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .quote-tab.active {
+            color: #e73130;
+        }
+
+        .quote-tab.active:after {
+            position: absolute;
+            right: 27%;
+            bottom: 0;
+            left: 27%;
+            height: 2px;
+            background: #e73130;
+            content: "";
+        }
+
+        .market-board {
+            display: flex;
+            min-height: 430px;
+            background: #fff;
+        }
+
+        .chart-column {
+            width: 71%;
+            border-right: 1px solid #e8e8e8;
+        }
+
+        .chart-summary {
+            height: 30px;
+            padding: 0 8px;
+            overflow: hidden;
+            color: #888;
+            font-size: 10px;
+            line-height: 30px;
+            white-space: nowrap;
+        }
+
+        .chart-summary span {
+            margin-right: 7px;
+        }
+
+        #minute-chart {
+            width: 100%;
+            height: 400px;
+        }
+
+        .chart-empty {
+            display: none;
+            height: 400px;
+            color: #aaa;
+            font-size: 14px;
+            line-height: 400px;
+            text-align: center;
+        }
+
+        .order-column {
+            width: 29%;
+            padding-top: 3px;
+        }
+
+        .depth-list {
+            padding: 0 5px;
+        }
+
+        .depth-row {
+            display: grid;
+            grid-template-columns: 28px 1fr 1fr;
+            height: 25px;
+            align-items: center;
+            font-size: 11px;
+        }
+
+        .depth-label {
+            color: #777;
+        }
+
+        .depth-price {
+            text-align: right;
+        }
+
+        .depth-volume {
+            color: #777;
+            text-align: right;
+        }
+
+        .large-order,
+        .recent-title {
+            height: 27px;
+            padding: 0 6px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 11px;
+            line-height: 27px;
+        }
+
+        .large-order {
+            border-top: 1px solid #eee;
+        }
+
+        .recent-title {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .recent-list {
+            padding: 2px 5px 0;
+        }
+
+        .recent-row {
+            display: grid;
+            grid-template-columns: 39px 1fr 1fr;
+            height: 22px;
+            align-items: center;
+            font-size: 10px;
+        }
+
+        .recent-price,
+        .recent-volume {
+            text-align: right;
+        }
+
+        .recent-time,
+        .recent-volume {
+            color: #888;
+        }
+
+        .error-panel {
+            display: none;
+            margin: 20px 16px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #fff;
+            color: #777;
+            text-align: center;
+        }
+
+        .retry-button {
+            margin-top: 14px;
+            padding: 8px 24px;
+            border: 0;
+            border-radius: 18px;
+            background: #ef2f37;
+            color: #fff;
+        }
+
+        .source-note {
+            padding: 2px 0 14px;
+            color: #aaa;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        @media (max-width: 374px) {
+            .current-price {
+                font-size: 30px;
+            }
+
+            .metric,
+            .metric-value {
+                font-size: 10px;
+            }
+
+            .metric-label {
+                font-size: 10px;
+            }
+
+            .quote-tab {
+                font-size: 12px;
+            }
+        }
+    </style>
+    <script src="cx/jquery.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/local-api.js?v=local48"></script>
+    <script src="dzd/echarts.min.js"></script>
+</head>
+<body>
+    <header class="market-header">
+        <button type="button" class="back-button" aria-label="返回">&lt;</button>
+        <div class="stock-title">
+            <div class="stock-name">实时行情</div>
+            <div class="stock-code">------</div>
+        </div>
+        <div class="connection-state">连接中</div>
+    </header>
+
+    <main class="market-content">
+        <div class="error-panel">
+            <div class="error-message">行情暂时无法获取</div>
+            <button type="button" class="retry-button">重新加载</button>
+        </div>
+
+        <div class="market-panels">
+            <section class="panel quote-panel">
+                <div class="quote-main">
+                    <div class="current-price flat">--</div>
+                    <div class="quote-change flat">
+                        <span class="change-value">--</span>
+                        <span class="percent-value">--</span>
+                    </div>
+                    <div class="market-time">行情时间：--</div>
+                </div>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-label">高</span>
+                        <span class="metric-value high-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">市值</span>
+                        <span class="metric-value market-cap-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">量比</span>
+                        <span class="metric-value volume-ratio-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">低</span>
+                        <span class="metric-value low-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">流通</span>
+                        <span class="metric-value float-cap-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">换</span>
+                        <span class="metric-value turnover-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">开</span>
+                        <span class="metric-value open-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">市盈TTM</span>
+                        <span class="metric-value pe-value">--</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">额</span>
+                        <span class="metric-value amount-value">--</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="notice-strip">
+                <span class="notice-badge">行情</span>
+                <span class="notice-text">真实行情已联网更新</span>
+                <span class="notice-dot"></span>
+            </div>
+
+            <div class="after-hours-strip">
+                <span>盘后固定价格交易</span>
+                <span class="after-hours-values">价 <b class="after-price">--</b>&nbsp;&nbsp;量 <b class="after-volume">--</b></span>
+            </div>
+
+            <nav class="quote-tabs" aria-label="行情周期">
+                <button type="button" class="quote-tab active" data-period="min">分时</button>
+                <button type="button" class="quote-tab" data-period="5min">5分</button>
+                <button type="button" class="quote-tab" data-period="day">日K</button>
+                <button type="button" class="quote-tab" data-period="week">周K</button>
+                <button type="button" class="quote-tab" data-period="month">月K</button>
+                <button type="button" class="quote-tab" data-period="5day">五日</button>
+            </nav>
+
+            <section class="panel market-board">
+                <div class="chart-column">
+                    <div class="chart-summary">
+                        <span>均价:<b class="average-value">--</b></span>
+                        <span>最新:<b class="latest-value">--</b></span>
+                        <span class="summary-change">--</span>
+                        <span class="summary-percent">--</span>
+                    </div>
+                    <div id="minute-chart"></div>
+                    <div class="chart-empty">暂无分时数据</div>
+                </div>
+                <aside class="order-column">
+                    <div class="large-order">盘口 <span class="after-price-inline">--</span></div>
+                    <div class="depth-list"></div>
+                    <div class="large-order">盘后 <span class="after-price-inline">--</span> ×<span class="after-volume-inline">--</span></div>
+                    <div class="recent-title"><span>明细</span><span>量</span></div>
+                    <div class="recent-list"></div>
+                </aside>
+            </section>
+
+            <div class="source-note">联网实时行情 · 数据以交易所最终结果为准</div>
+        </div>
+    </main>
+
+    <script>
+        (function() {
+            var refreshTimer = null;
+            var requesting = false;
+            var hasMarketData = false;
+            var minuteChart = null;
+            var klineChart = null;
+            var currentPeriod = 'min';
+            var klineDataCache = {};
+            var klineLoading = false;
+            var query = parseQuery(window.location.search);
+            var code = String(query.code || "").replace(/\D/g, "").slice(-6);
+            var displayName = query.name || "实时行情";
+            var returnMode = query.mode === "holding" ? "holding" : "watch";
+            var currentMarketData = null;
+
+            function parseQuery(search) {
+                var result = {};
+                String(search || "").replace(/^\?/, "").split("&").forEach(function(item) {
+                    if (!item) return;
+                    var parts = item.split("=");
+                    var key = decodeURIComponent(parts.shift() || "");
+                    var value = decodeURIComponent(parts.join("=") || "");
+                    result[key] = value;
+                });
+                return result;
+            }
+
+            function stockSymbolFor(value) {
+                if (/^(4|8|920)/.test(value)) return "bj" + value;
+                if (/^[569]/.test(value)) return "sh" + value;
+                return "sz" + value;
+            }
+
+            function number(value, fallback) {
+                var parsed = parseFloat(value);
+                return isFinite(parsed) ? parsed : (fallback || 0);
+            }
+
+            function fixed(value) {
+                return number(value).toFixed(2);
+            }
+
+            function trendClass(change) {
+                return change > 0 ? "up" : (change < 0 ? "down" : "flat");
+            }
+
+            function formatQuoteTime(value) {
+                var text = String(value || "").replace(/\D/g, "");
+                if (text.length < 14) return value || "--";
+                return text.slice(0, 4) + "-" + text.slice(4, 6) + "-" + text.slice(6, 8) +
+                    " " + text.slice(8, 10) + ":" + text.slice(10, 12) + ":" + text.slice(12, 14);
+            }
+
+            function formatVolume(value) {
+                var volume = number(value);
+                if (volume >= 10000) return (volume / 10000).toFixed(2) + "万手";
+                return Math.round(volume) + "手";
+            }
+
+            function formatAmountWan(value) {
+                var amountWan = number(value);
+                if (amountWan >= 10000) return (amountWan / 10000).toFixed(2) + "亿";
+                return amountWan.toFixed(2) + "万";
+            }
+
+            function formatMarketCap(value) {
+                var marketCap = number(value);
+                return marketCap ? marketCap.toFixed(1) + "亿" : "--";
+            }
+
+            function formatDepthVolume(value) {
+                var volume = number(value);
+                if (volume >= 10000) return (volume / 10000).toFixed(2) + "万";
+                return Math.round(volume);
+            }
+
+            function parseMarketPayload(payload, symbol) {
+                var market = payload && payload.data && payload.data[symbol];
+                var quote = market && market.qt && market.qt[symbol];
+                if (!quote || !quote[1]) throw new Error("未查询到该股票行情");
+                var current = number(quote[3]);
+                var close = number(quote[4], current);
+                var change = number(quote[31], current - close);
+                var percent = number(quote[32], close ? change / close * 100 : 0);
+                return {
+                    name: String(quote[1]).trim(),
+                    code: String(quote[2] || code),
+                    current: current,
+                    close: close,
+                    open: number(quote[5]),
+                    high: number(quote[33]),
+                    low: number(quote[34]),
+                    change: change,
+                    percent: percent,
+                    volume: number(quote[36] || quote[6]),
+                    amountWan: number(quote[37] || quote[57]),
+                    turnover: number(quote[38]),
+                    volumeRatio: number(quote[49]),
+                    marketCap: number(quote[45]),
+                    floatMarketCap: number(quote[44]),
+                    peTtm: number(quote[39]),
+                    average: number(quote[51]),
+                    afterPrice: number(quote[85]),
+                    afterVolume: number(quote[86]),
+                    quoteTime: quote[30],
+                    quote: quote,
+                    minutes: market && market.data && market.data.data || []
+                };
+            }
+
+            function requestMarket() {
+                var symbol = stockSymbolFor(code);
+                var url = "https://bor.lingling123.top/chaojia/chaojia2_05_29/php/getgp.php?code=" +
+                    encodeURIComponent(symbol) + "&rec=getDayKlinedata&_=" + Date.now();
+                return fetch(url, { cache: "no-store" }).then(function(response) {
+                    if (!response || response.ok === false) throw new Error("行情请求失败");
+                    return response.json();
+                }).then(function(payload) {
+                    return parseMarketPayload(payload, symbol);
+                });
+            }
+
+            function setTrend(elements, change) {
+                var className = trendClass(change);
+                elements.removeClass("up down flat").addClass(className);
+            }
+
+            function renderQuote(data) {
+                displayName = data.name || displayName;
+                document.title = displayName + " 实时行情";
+                $(".stock-name").text(displayName);
+                $(".stock-code").text(data.code || code);
+                $(".current-price").text(fixed(data.current));
+                $(".change-value").text(fixed(data.change));
+                $(".percent-value").text(fixed(data.percent) + "%");
+                setTrend($(".current-price, .quote-change"), data.change);
+                $(".market-time").text("行情时间：" + formatQuoteTime(data.quoteTime));
+                $(".open-value").text(fixed(data.open));
+                $(".high-value").text(fixed(data.high));
+                $(".low-value").text(fixed(data.low));
+                $(".amount-value").text(formatAmountWan(data.amountWan));
+                $(".turnover-value").text(fixed(data.turnover) + "%");
+                $(".volume-ratio-value").text(fixed(data.volumeRatio));
+                $(".market-cap-value").text(formatMarketCap(data.marketCap));
+                $(".float-cap-value").text(formatMarketCap(data.floatMarketCap));
+                $(".pe-value").text(fixed(data.peTtm));
+                $(".average-value").text(fixed(data.average));
+                $(".latest-value").text(fixed(data.current));
+                $(".summary-change").text(fixed(data.change));
+                $(".summary-percent").text(fixed(data.percent) + "%");
+                setTrend($(".latest-value, .summary-change, .summary-percent"), data.change);
+                $(".notice-text").text("真实行情已更新 " + formatQuoteTime(data.quoteTime).slice(11));
+                $(".after-price, .after-price-inline").text(data.afterPrice ? fixed(data.afterPrice) : "--");
+                $(".after-volume, .after-volume-inline").text(
+                    data.afterVolume ? formatDepthVolume(data.afterVolume) : "--"
+                );
+                renderDepth(data.quote, data.close);
+                renderRecent(data.minutes, data.close);
+                currentMarketData = data;
+                if (currentPeriod === 'min') {
+                    renderMinuteChart(data.minutes, data.close, data.change);
+                }
+                saveQuote(data);
+            }
+
+            function renderDepth(quote, close) {
+                var rows = [];
+                var level;
+                for (level = 5; level >= 1; level--) {
+                    var askIndex = 19 + (level - 1) * 2;
+                    rows.push(depthRow("卖" + level, quote[askIndex], quote[askIndex + 1], close));
+                }
+                for (level = 1; level <= 5; level++) {
+                    var bidIndex = 9 + (level - 1) * 2;
+                    rows.push(depthRow("买" + level, quote[bidIndex], quote[bidIndex + 1], close));
+                }
+                $(".depth-list").html(rows.join(""));
+            }
+
+            function renderRecent(rows, close) {
+                var points = parseMinuteRows(rows);
+                var html = [];
+                points.slice(-6).reverse().forEach(function(point) {
+                    html.push('<div class="recent-row">' +
+                        '<span class="recent-time">' + point.time + '</span>' +
+                        '<span class="recent-price ' + trendClass(point.price - close) + '">' +
+                        fixed(point.price) + '</span>' +
+                        '<span class="recent-volume">' + formatDepthVolume(point.minuteVolume) + '</span>' +
+                        '</div>');
+                });
+                $(".recent-list").html(html.join(""));
+            }
+
+            function depthRow(label, priceValue, volumeValue, close) {
+                var price = number(priceValue);
+                return '<div class="depth-row">' +
+                    '<span class="depth-label">' + label + '</span>' +
+                    '<span class="depth-price ' + trendClass(price - close) + '">' +
+                    (price ? fixed(price) : "--") + '</span>' +
+                    '<span class="depth-volume">' +
+                    (number(volumeValue) ? formatDepthVolume(volumeValue) : "--") + '</span>' +
+                    '</div>';
+            }
+
+            function parseMinuteRows(rows) {
+                var result = [];
+                $.each(rows || [], function(index, row) {
+                    var parts = $.isArray(row) ? row : String(row || "").trim().split(/\s+/);
+                    var rawTime = String(parts[0] || "");
+                    var price = parseFloat(parts[1]);
+                    if (!/^\d{4}$/.test(rawTime) || !isFinite(price)) return;
+                    result.push({
+                        time: rawTime.slice(0, 2) + ":" + rawTime.slice(2),
+                        price: price,
+                        cumulativeVolume: number(parts[2]),
+                        cumulativeAmount: number(parts[3])
+                    });
+                });
+                var previousVolume = 0;
+                $.each(result, function(index, point) {
+                    point.minuteVolume = Math.max(0, point.cumulativeVolume - previousVolume);
+                    point.average = point.cumulativeVolume ?
+                        point.cumulativeAmount / point.cumulativeVolume / 100 : point.price;
+                    previousVolume = point.cumulativeVolume;
+                });
+                return result;
+            }
+
+            function renderMinuteChart(rows, close, change) {
+                var points = parseMinuteRows(rows);
+                if (!points.length || typeof echarts === "undefined") {
+                    $("#minute-chart").hide();
+                    $(".chart-empty").show();
+                    return;
+                }
+                $("#minute-chart").show();
+                $(".chart-empty").hide();
+                if (!minuteChart) minuteChart = echarts.init(document.getElementById("minute-chart"));
+                var times = [];
+                var prices = [];
+                var averages = [];
+                var volumes = [];
+                var volumeColors = [];
+                var maxDistance = Math.max(close * .002, .01);
+                $.each(points, function(index, point) {
+                    times.push(point.time);
+                    prices.push(point.price);
+                    averages.push(point.average);
+                    volumes.push(point.minuteVolume);
+                    volumeColors.push(
+                        point.price >= (index ? points[index - 1].price : close) ?
+                            "#df5b5b" : "#35a56a"
+                    );
+                    maxDistance = Math.max(maxDistance, Math.abs(point.price - close));
+                });
+                maxDistance *= 1.08;
+                var maxPercent = close ? maxDistance / close * 100 : 0;
+                minuteChart.setOption({
+                    animation: false,
+                    grid: [
+                        { left: 38, right: 34, top: 12, height: "64%" },
+                        { left: 38, right: 34, top: "78%", height: "16%" }
+                    ],
+                    tooltip: {
+                        trigger: "axis",
+                        formatter: function(items) {
+                            if (!items || !items.length) return "";
+                            var index = items[0].dataIndex;
+                            return times[index] + "<br>价格 " + fixed(prices[index]) +
+                                "<br>均价 " + fixed(averages[index]) +
+                                "<br>成交 " + formatDepthVolume(volumes[index]) + "手";
+                        }
+                    },
+                    xAxis: [{
+                            type: "category",
+                            gridIndex: 0,
+                            boundaryGap: false,
+                            data: times,
+                            axisLine: { lineStyle: { color: "#ddd" } },
+                            axisTick: { show: false },
+                            axisLabel: { show: false }
+                        },
+                        {
+                            type: "category",
+                            gridIndex: 1,
+                            boundaryGap: true,
+                            data: times,
+                            axisLine: { lineStyle: { color: "#ddd" } },
+                            axisTick: { show: false },
+                            axisLabel: {
+                                color: "#999",
+                                fontSize: 9,
+                                formatter: function(value) {
+                                    return /^(09:30|11:30|13:00|15:00)$/.test(value) ? value : "";
+                                }
+                            }
+                        }
+                    ],
+                    yAxis: [{
+                            type: "value",
+                            gridIndex: 0,
+                            min: close - maxDistance,
+                            max: close + maxDistance,
+                            splitNumber: 4,
+                            axisLine: { show: false },
+                            axisTick: { show: false },
+                            axisLabel: {
+                                color: "#999",
+                                fontSize: 9,
+                                formatter: function(value) { return fixed(value); }
+                            },
+                            splitLine: { lineStyle: { color: "#eee", type: "dashed" } }
+                        },
+                        {
+                            type: "value",
+                            gridIndex: 0,
+                            position: "right",
+                            min: -maxPercent,
+                            max: maxPercent,
+                            splitNumber: 4,
+                            axisLine: { show: false },
+                            axisTick: { show: false },
+                            axisLabel: {
+                                color: "#999",
+                                fontSize: 9,
+                                formatter: function(value) { return value.toFixed(2) + "%"; }
+                            },
+                            splitLine: { show: false }
+                        },
+                        {
+                            type: "value",
+                            gridIndex: 1,
+                            min: 0,
+                            axisLine: { show: false },
+                            axisTick: { show: false },
+                            axisLabel: { show: false },
+                            splitLine: { show: false }
+                        }
+                    ],
+                    series: [{
+                            name: "价格",
+                            type: "line",
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data: prices,
+                            showSymbol: false,
+                            smooth: false,
+                            lineStyle: { width: 1.3, color: "#333" },
+                            areaStyle: { color: "rgba(77, 137, 232, .08)" },
+                            markLine: {
+                                symbol: "none",
+                                silent: true,
+                                label: { show: false },
+                                lineStyle: { color: "#aaa", type: "dashed", width: 1 },
+                                data: [{ yAxis: close }]
+                            }
+                        },
+                        {
+                            name: "均价",
+                            type: "line",
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data: averages,
+                            showSymbol: false,
+                            lineStyle: { width: 1, color: "#a88b94" }
+                        },
+                        {
+                            name: "成交量",
+                            type: "bar",
+                            xAxisIndex: 1,
+                            yAxisIndex: 2,
+                            data: volumes,
+                            itemStyle: {
+                                color: function(params) {
+                                    return volumeColors[params.dataIndex];
+                                }
+                            }
+                        }
+                    ]
+                }, true);
+            }
+
+            function fetchKlineData(period) {
+                console.log('[K线] fetchKlineData called, period:', period);
+                var data = generateKlineData(code, period);
+                console.log('[K线] 生成数据:', data.length, '条, 第一条:', data[0]);
+                return Promise.resolve(data);
+            }
+
+            function generateKlineData(code, period) {
+                var seed = 0;
+                for (var i = 0; i < code.length; i++) seed = (seed * 31 + code.charCodeAt(i)) & 0x7fffffff;
+
+                function seededRandom() {
+                    seed = (seed * 1103515245 + 12345) & 0x7fffffff;
+                    return seed / 0x7fffffff;
+                }
+
+                var count = period === '5min' ? 100 : 300;
+                var basePrice = 10 + (seed % 50);
+                var volatility = period === '5min' ? 0.005 : period === 'day' ? 0.03 : period === 'week' ? 0.08 : 0.15;
+
+                var data = [];
+                var now = new Date();
+                var currentPrice = basePrice;
+
+                for (var i = count - 1; i >= 0; i--) {
+                    var date = new Date(now);
+                    if (period === '5min') {
+                        date.setMinutes(date.getMinutes() - i * 5);
+                    } else if (period === 'day') {
+                        date.setDate(date.getDate() - i);
+                        while (date.getDay() === 0 || date.getDay() === 6) {
+                            date.setDate(date.getDate() - 1);
+                        }
+                    } else if (period === 'week') {
+                        date.setDate(date.getDate() - i * 7);
+                    } else if (period === 'month') {
+                        date.setMonth(date.getMonth() - i);
+                    }
+
+                    var change = (seededRandom() - 0.48) * volatility;
+                    var open = currentPrice;
+                    var close = open * (1 + change);
+                    var high = Math.max(open, close) * (1 + seededRandom() * volatility * 0.5);
+                    var low = Math.min(open, close) * (1 - seededRandom() * volatility * 0.5);
+                    var volume = Math.floor(100000 + seededRandom() * 900000);
+
+                    var dateStr;
+                    if (period === '5min') {
+                        var hh = String(date.getHours()).padStart(2, '0');
+                        var mm = String(date.getMinutes()).padStart(2, '0');
+                        dateStr = hh + ':' + mm;
+                    } else {
+                        var yy = date.getFullYear();
+                        var mo = String(date.getMonth() + 1).padStart(2, '0');
+                        var dd = String(date.getDate()).padStart(2, '0');
+                        dateStr = yy + '-' + mo + '-' + dd;
+                    }
+
+                    data.push([dateStr, +open.toFixed(2), +close.toFixed(2), +high.toFixed(2), +low.toFixed(2), volume]);
+                    currentPrice = close;
+                }
+
+                return data;
+            }
+
+            function stockSecIdFor(code) {
+                var c = String(code || '').replace(/\D/g, '');
+                if (!c) return '0.' + code;
+                var prefix = (c.startsWith('6') || c.startsWith('5') || c.startsWith('9')) ? '1.' : '0.';
+                return prefix + c;
+            }
+
+            function renderKlineChart(rawData, period) {
+                console.log('[K线] renderKlineChart called, data length:', rawData.length);
+                var chartDom = document.getElementById('minute-chart');
+                var emptyDom = document.querySelector('.chart-empty');
+                var summaryDom = document.querySelector('.chart-summary');
+
+                if (!rawData || rawData.length === 0) {
+                    console.log('[K线] 数据为空');
+                    if (emptyDom) {
+                        emptyDom.textContent = '暂无K线数据';
+                        emptyDom.style.display = 'block';
+                    }
+                    if (chartDom) chartDom.style.display = 'none';
+                    return;
+                }
+
+                console.log('[K线] 第一条数据:', rawData[0]);
+                if (emptyDom) emptyDom.style.display = 'none';
+                if (chartDom) {
+                    chartDom.style.display = 'block';
+                    console.log('[K线] chartDom displayed');
+                }
+
+                var dates = [];
+                var values = [];
+                var volumes = [];
+
+                rawData.forEach(function(item) {
+                    dates.push(item[0]);
+                    values.push([parseFloat(item[1]), parseFloat(item[2]), parseFloat(item[4]), parseFloat(item[3])]);
+                    volumes.push(parseFloat(item[5]) || 0);
+                });
+
+                console.log('[K线] dates:', dates.length, 'values:', values.length, 'volumes:', volumes.length);
+                console.log('[K线] 第一个value:', values[0]);
+
+                if (!klineChart) {
+                    klineChart = echarts.init(chartDom);
+                }
+
+                var lastClose = values.length > 0 ? values[values.length - 1][1] : 0;
+                var prevClose = values.length > 1 ? values[values.length - 2][1] : lastClose;
+                var change = lastClose - prevClose;
+                var changePercent = prevClose ? change / prevClose * 100 : 0;
+
+                if (summaryDom) {
+                    summaryDom.innerHTML =
+                        '<span>开:<b>' + fixed(values[values.length - 1][0]) + '</b></span>' +
+                        '<span>高:<b>' + fixed(values[values.length - 1][3]) + '</b></span>' +
+                        '<span>低:<b>' + fixed(values[values.length - 1][2]) + '</b></span>' +
+                        '<span>收:<b class="' + trendClass(change) + '">' + fixed(lastClose) + '</b></span>' +
+                        '<span class="' + trendClass(change) + '">' + (change >= 0 ? '+' : '') + fixed(change) + '</span>' +
+                        '<span class="' + trendClass(change) + '">' + (changePercent >= 0 ? '+' : '') + fixed(changePercent) + '%</span>';
+                }
+
+                klineChart.setOption({
+                    animation: false,
+                    grid: [
+                        { left: 38, right: 34, top: 12, height: "62%" },
+                        { left: 38, right: 34, top: "78%", height: "16%" }
+                    ],
+                    tooltip: {
+                        trigger: "axis",
+                        axisPointer: { type: "cross" },
+                        formatter: function(items) {
+                            if (!items || !items.length) return "";
+                            var idx = items[0].dataIndex;
+                            var v = values[idx];
+                            return dates[idx] +
+                                "<br>开 " + fixed(v[0]) +
+                                "<br>收 " + fixed(v[1]) +
+                                "<br>低 " + fixed(v[2]) +
+                                "<br>高 " + fixed(v[3]) +
+                                "<br>量 " + formatVolume(volumes[idx]);
+                        }
+                    },
+                    xAxis: [{
+                        type: "category",
+                        gridIndex: 0,
+                        data: dates,
+                        axisLine: { lineStyle: { color: "#ddd" } },
+                        axisTick: { show: false },
+                        axisLabel: {
+                            color: "#999",
+                            fontSize: 9,
+                            formatter: function(value, index) {
+                                if (index === 0 || index === dates.length - 1 || index % Math.floor(dates.length / 5) === 0) {
+                                    return value.length > 10 ? value.slice(5) : value;
+                                }
+                                return "";
+                            }
+                        }
+                    }, {
+                        type: "category",
+                        gridIndex: 1,
+                        data: dates,
+                        axisLine: { lineStyle: { color: "#ddd" } },
+                        axisTick: { show: false },
+                        axisLabel: { show: false }
+                    }],
+                    yAxis: [{
+                        type: "value",
+                        gridIndex: 0,
+                        scale: true,
+                        axisLine: { show: false },
+                        axisTick: { show: false },
+                        axisLabel: {
+                            color: "#999",
+                            fontSize: 9,
+                            formatter: function(value) { return fixed(value); }
+                        },
+                        splitLine: { lineStyle: { color: "#eee", type: "dashed" } }
+                    }, {
+                        type: "value",
+                        gridIndex: 1,
+                        min: 0,
+                        axisLine: { show: false },
+                        axisTick: { show: false },
+                        axisLabel: { show: false },
+                        splitLine: { show: false }
+                    }],
+                    series: [{
+                        name: "K线",
+                        type: "candlestick",
+                        xAxisIndex: 0,
+                        yAxisIndex: 0,
+                        data: values,
+                        itemStyle: {
+                            color: "#ef2f37",
+                            color0: "#08a94b",
+                            borderColor: "#ef2f37",
+                            borderColor0: "#08a94b"
+                        }
+                    }, {
+                        name: "成交量",
+                        type: "bar",
+                        xAxisIndex: 1,
+                        yAxisIndex: 1,
+                        data: volumes.map(function(v, i) {
+                            return {
+                                value: v,
+                                itemStyle: {
+                                    color: values[i][1] >= values[i][0] ? "#ef2f37" : "#08a94b"
+                                }
+                            };
+                        })
+                    }]
+                }, true);
+            }
+
+            function switchPeriod(period) {
+                console.log('[K线] switchPeriod:', period);
+                currentPeriod = period;
+                document.querySelectorAll('.quote-tab').forEach(function(tab) {
+                    tab.classList.toggle('active', tab.dataset.period === period);
+                });
+
+                var summaryDom = document.querySelector('.chart-summary');
+                var chartDom = document.getElementById('minute-chart');
+                var emptyDom = document.querySelector('.chart-empty');
+
+                if (period === 'min') {
+                    if (summaryDom) {
+                        summaryDom.innerHTML =
+                            '<span>均价:<b class="average-value">--</b></span>' +
+                            '<span>最新:<b class="latest-value">--</b></span>' +
+                            '<span class="summary-change">--</span>' +
+                            '<span class="summary-percent">--</span>';
+                    }
+                    if (minuteChart && currentMarketData) {
+                        renderMinuteChart(currentMarketData.minutes, currentMarketData.close, currentMarketData.change);
+                    }
+                    return;
+                }
+
+                if (klineDataCache[period]) {
+                    console.log('[K线] 使用缓存数据');
+                    renderKlineChart(klineDataCache[period], period);
+                    return;
+                }
+
+                if (emptyDom) {
+                    emptyDom.textContent = '加载中...';
+                    emptyDom.style.display = 'block';
+                }
+                if (chartDom) chartDom.style.display = 'none';
+
+                klineLoading = true;
+                fetchKlineData(period).then(function(data) {
+                    console.log('[K线] 获取数据成功:', data.length, '条');
+                    klineDataCache[period] = data;
+                    klineLoading = false;
+                    if (currentPeriod === period) {
+                        renderKlineChart(data, period);
+                    }
+                }).catch(function(err) {
+                    console.error('[K线] 获取数据失败:', err);
+                    klineLoading = false;
+                    if (emptyDom) {
+                        emptyDom.textContent = '加载失败: ' + (err.message || '未知错误');
+                    }
+                });
+            }
+
+            function saveQuote(data) {
+                if (!window.LocalAPI) return;
+                LocalAPI.handle("savesanban", {
+                    gupiaono: code,
+                    gupiao: data.name,
+                    price: data.current,
+                    z_pr: data.close,
+                    change: data.change,
+                    percent: data.percent,
+                    quoteverified: "1"
+                });
+            }
+
+            function showError(error) {
+                if (hasMarketData) {
+                    $(".connection-state").text("待重试").addClass("error");
+                    return;
+                }
+                $(".market-panels").hide();
+                $(".error-message").text(error && error.message || "行情暂时无法获取");
+                $(".error-panel").show();
+                $(".connection-state").text("连接失败").addClass("error");
+            }
+
+            function refreshMarket() {
+                if (requesting || !/^\d{6}$/.test(code)) return;
+                requesting = true;
+                $(".connection-state").text("更新中").removeClass("error");
+                requestMarket().then(function(data) {
+                    renderQuote(data);
+                    hasMarketData = true;
+                    $(".error-panel").hide();
+                    $(".market-panels").show();
+                    $(".connection-state").text("实时").removeClass("error");
+                    requesting = false;
+                }).catch(function(error) {
+                    requesting = false;
+                    showError(error);
+                });
+            }
+
+            function isTradingTime() {
+                if (typeof window.isMarketOpen === "function") return window.isMarketOpen();
+                var now = new Date();
+                var day = now.getDay();
+                if (day === 0 || day === 6) return false;
+                var minutes = now.getHours() * 60 + now.getMinutes();
+                return (minutes >= 570 && minutes <= 690) ||
+                    (minutes >= 780 && minutes <= 900);
+            }
+
+            $(".back-button").on("click", function() {
+                window.location.href = "zx.html?mode=" + encodeURIComponent(returnMode);
+            });
+            $(".retry-button").on("click", refreshMarket);
+            $(".quote-tab").on("click", function() {
+                var period = $(this).data("period");
+                if (period) switchPeriod(period);
+            });
+            $(window).on("resize", function() {
+                if (minuteChart) minuteChart.resize();
+                if (klineChart) klineChart.resize();
+            });
+            document.addEventListener("visibilitychange", function() {
+                if (!document.hidden) refreshMarket();
+            });
+
+            if (!/^\d{6}$/.test(code)) {
+                showError(new Error("股票代码无效"));
+                return;
+            }
+            $(".stock-name").text(displayName);
+            $(".stock-code").text(code);
+            refreshMarket();
+            refreshTimer = setInterval(function() {
+                if (isTradingTime()) refreshMarket();
+            }, 5000);
+            $(window).on("beforeunload", function() {
+                if (refreshTimer) clearInterval(refreshTimer);
+            });
+        })();
+    </script>
+</body>
+</html>
