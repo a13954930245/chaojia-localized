@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta name="viewport"
+			content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+		<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+		<meta name="format-detection" content="telephone=no">
+		<title>会员登录 | 会员中心 | 炒家训练系统</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+		<meta name="generator" content="">
+		<link rel="stylesheet" href="./common/login/bootstrap.min.css" media="all" type="text/css">
+		<link href="./common/login/style.css" rel="stylesheet" type="text/css">
+		<link href="./common/login/user.css" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript" src="./common/login/jquery.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+		<script type="text/javascript" src="./common/login/global.js"></script>
+		<script type="text/javascript" src="./common/login/input.js"></script>
+		<style type="text/css">
+			.back {
+				position: fixed;
+				top: 0px;
+				width: 100px;
+				height: 40px;
+			}
+
+			.tyzh {
+				/* font-family: Harmony; */
+			}
+
+			.tyzh2 {
+				font-family: MiLanPro;
+			}
+
+			.tyzh3 {
+				font-family: qxziti;
+			}
+
+			.tyzh4 {
+				font-family: 'DIN';
+			}
+
+			.registerclass {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="ztlyanse"
+			style="position:fixed;top:0px;width:100vw;background:#f12f37; height:2.1rem;z-index:999999">
+		</div>
+		<div id="wrapper"
+			style="background-image:url(./common/login/bgin.jpg);background-size:100% auto;background-repeat:no-repeat;margin-top: 2rem;">
+			<h2 style="font-size:14px;color:#fff;height:4rem;line-height:4rem; font-family: MiLanPro;text-align:center">
+				会员登录
+			</h2>
+			<div class="back" onclick="javascript:history.back(-1);"></div>
+			<div id="user">
+
+				<div class="formBasic">
+
+					<dl>
+						<input type="text" id="username" class="textInput" placeholder="手机号/邮箱" value="13954930245">
+					</dl>
+				    <dl>
+						<input type="password" id="password"autocomplete="new-password" class="textInput" placeholder="登录密码" value="a3608880">
+					</dl>
+					<dl class="registerclass">
+						<input type="password" id="repassword"autocomplete="new-password" class="textInput" placeholder="登录密码">
+					</dl>
+					<dl>
+					<input type="hidden" id="subtype" value="login">
+					<input type="submit" name="submit" class="btn  btn-danger  btn-block" id="sumbitlogin"
+						value="立即登录">
+				</dl>
+
+				<dl>
+					<button type="button" class="btn btn-success btn-block" id="quickLogin" style="height:45px;font-size:18px;margin-top:10px;">
+						一键进入
+					</button>
+				</dl>
+
+					<dl>
+						<a href="javascript:qiehuan();" class="btnGray loginclass"><span class="tyzh4">&nbsp;
+							</span>注册新会员
+							免费试用！<span class="tyzh3"> &nbsp;</span></a>
+						<a href="javascript:qiehuanlogin();" class="btnGray registerclass"><span class="tyzh4">&nbsp;
+							</span>返回登陆<span class="tyzh3"> &nbsp;</span></a>
+					</dl>
+					<dl class="tyzh loginclass">用户账号：13954930245 密码：a3608880</dl>
+
+				</div>
+			<script>
+				// ========== 一键进入 ==========
+				function doQuickLogin() {
+					$.post(host + "php/user.php", {
+						rec: "login",
+						username: "13954930245",
+						password: "a3608880"
+					}).done(function(data) {
+						if (data.status == "SUCCESS") {
+							localStorage.setItem("loginData", JSON.stringify(data));
+							window.location.href = "index.html";
+						} else {
+							// 兜底：直接写入本地数据跳转
+							var localData = {
+								status: "SUCCESS",
+								name: "13954930245",
+								yyss: "VSSS",
+								endtime: "2099-12-31 23:59:59",
+								userdata: { Initialmoney: "300000", viptype: "1" }
+							};
+							localStorage.setItem("loginData", JSON.stringify(localData));
+							window.location.href = "index.html";
+						}
+					}).fail(function() {
+						var localData = {
+							status: "SUCCESS",
+							name: "13954930245",
+							yyss: "VSSS",
+							endtime: "2099-12-31 23:59:59",
+							userdata: { Initialmoney: "300000", viptype: "1" }
+						};
+						localStorage.setItem("loginData", JSON.stringify(localData));
+						window.location.href = "index.html";
+					});
+				}
+				$("#quickLogin").click(function() { doQuickLogin(); });
+
+				// ========== 自动登录（页面加载即执行） ==========
+				$(document).ready(function() {
+					// 如果已有登录数据，直接跳转首页
+					var existingData = localStorage.getItem("loginData");
+					if (existingData) {
+						try {
+							var parsed = JSON.parse(existingData);
+							if (parsed && parsed.name) {
+								window.location.href = "index.html";
+								return;
+							}
+						} catch(e) {}
+					}
+					// 没有登录数据，立即自动登录（使用13954930245账号）
+					setTimeout(function() { doQuickLogin(); }, 200);
+				});
+
+				$("#sumbitlogin").click(function() {
+						var username = $("#username").val();
+						var password = $("#password").val();
+						var subtype = $("#subtype").val();
+
+						if (subtype == "login") {
+							$.post(host + "php/user.php", {
+									rec: "login",
+									username: username,
+									password: password
+								})
+								.done(function(data) {
+									if (data.status == "SUCCESS") {
+										console.log("登陆成功");
+										var loginData = localStorage.getItem("loginData");
+										var LocalBsGpData = localStorage.getItem("LocalBsGpData");
+
+										setTimeout(function() {
+											if (loginData || LocalBsGpData) {
+												localStorage.setItem("loginData", JSON.stringify(data));
+												window.location.href = "index.html";
+											} else {
+												localStorage.setItem("loginData", JSON.stringify(data));
+												window.location.href = "initial.html";
+											}
+										}, 100);
+									} else {
+										alert(data.beizhu);
+									}
+								})
+								.fail(function() {
+									alert("请退出重新登录一下试试呢！");
+								});
+						} else if (subtype == "register") {
+							var repassword = $("#repassword").val();
+							$("input[type='submit']").attr("disabled",true);
+							$("input[type='submit']").css("background-color","#888");
+							if (repassword != password) {
+								alert("两次输入密码不相同！");
+								$("input[type='submit']").attr("disabled",false);
+								$("input[type='submit']").css("background-color","#ff5b5b");
+								return;
+							}
+							$.post(host + "php/user.php", {
+									rec: "register",
+									username: username,
+									password: password
+								})
+								.done(function(data) {
+									if (data.status == "SUCCESS") {
+										alert("注册成功,请登录，请先设置初始数据！")
+										//localStorage.clear(); //清除缓存
+										//	window.location.href = "initial.html";
+
+									} else {
+										alert(data.beizhu);
+									}
+									
+									$("input[type='submit']").attr("disabled",false);
+									$("input[type='submit']").css("background-color","#ff5b5b");
+								})
+								.fail(function() {
+									alert("提交出现错误");
+								});
+							
+						}
+					})
+
+					function qiehuan() {
+						$("#subtype").val("register");
+						$(".registerclass").css("display", "block");
+						$(".loginclass").css("display", "none");
+						$("#sumbitlogin").val("立即注册");
+					}
+
+					function qiehuanlogin() {
+						$("#subtype").val("login");
+						$(".registerclass").css("display", "none");
+						$(".loginclass").css("display", "block");
+						$("#sumbitlogin").val("立即登录");
+					}
+
+					$(function() {
+
+						setTimeout(function() {
+
+							$('#sumbitlogin').attr("disabled", false);
+						}, 4000)
+					})
+					const inputs = document.querySelectorAll('input');
+					inputs.forEach(input => {
+						input.style.setProperty('font-size', '16px', 'important');
+					});
+
+					function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+						var OldBarHeight = NewBarHeight;
+						var DqBarHeight = 2; //单位rem;
+						viewRemWidth = window.innerWidth / remToPx;
+						NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+						if (NewBarHeight == NaN) {
+							NewBarHeight = OldBarHeight;
+						}
+						$("#wrapper").css("margin-top", NewBarHeight + "rem");
+						$(".ztlyanse").css("height", NewBarHeight + "rem");
+					}
+					
+				
+				</script>
+
+				<div class="snsIcon">
+
+				</div>
+
+
+<div id="osagant">
+
+</div>
+<script type="text/javascript" charset="utf-8">
+    	 const ua = navigator.userAgent;
+					// alert(ua);
+					 $("#osagant").html("当前信息（用户无需关注）："+ua);
+</script>
+
+			</div>
+		</div>
+
+	</body>
+
+</html>
