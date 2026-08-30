@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+
+<html style="font-size: 16.25px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta name="viewport"
+			content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+		<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+		<meta name="format-detection" content="telephone=no">
+
+		<title>股票卖出</title>
+
+
+		<link rel="stylesheet" href="./mc/font-awesome.min.css">
+		<link rel="stylesheet" href="./mc/bootstrap.min.css" media="all" type="text/css">
+
+		<link href="./mc/user7.css" rel="stylesheet" type="text/css">
+		<link href="./mc/userx0803.css" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript" src="./mc/jquery.min.js"></script>
+		<script type="text/javascript" src="./mc/flexible.js"></script>
+		<script type="text/javascript" src="./mc/global.js"></script>
+
+		<script src="./mc/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript">
+			/*	// 进入页面时获取对应大小
+// 改变字体大小
+function resizeFont() {
+let winW = document.documentElement.clientWidth > 750 ? 750 : document.documentElement.clientWidth
+document.documentElement.style.fontSize = (winW / 750) * 100 + 'px'
+}
+window.addEventListener('load', () => resizeFont())
+window.addEventListener('resize', () => resizeFont())y
+*/
+		</script>
+
+
+
+		<style type="text/css">
+			.tab-nav2 {
+				background: #f5f5f5;
+
+			}
+
+			@supports (bottom: env(safe-area-inset-bottom)) {
+				.tab-na v2 {
+					padding-bottom: constant(safe-area-inset-bottom);
+					padding-bottom: env(safe-area-inset-bottom);
+				}
+			}
+		</style>
+
+
+		<style type="text/css">
+			@font-face {
+				font-family: Harmony;
+				src: url(./common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+			}
+
+			@font-face {
+				font-family: MiLanPro;
+				src: url(./common/fonts/MiLanProVF.woff);
+			}
+
+			@font-face {
+				font-family: 'DIN';
+				src: url('./common/fonts/digital.otf');
+				/*DIN-Mediummy.otf  /DIN-Mediummy.woff*/
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			.drcjios {
+				font-size: 1.1rem;
+				padding-right: 1rem;
+				padding-top: 0.05rem;
+				padding-bottom: 0.26rem;
+				padding-left: 0.9rem;
+
+				font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+			}
+
+			.userhomgback {
+				width: 12vw;
+				height: 2.7rem;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				z-index: 99999
+			}
+
+			.zqnumber2 {
+				position: relative;
+				padding-left: 3px;
+			}
+
+			.zqnumber2 span {
+
+
+				position: relative;
+				top: 0rem;
+				left: 0rem;
+				font-family: 'DIN',
+			}
+
+
+
+
+			.drcjios,
+			.drcj {
+				padding-right: 0rem;
+				padding-left: 0rem;
+			}
+
+			.zqname2 {
+				font-family: 'DIN', "MiLanPro";
+				padding-right: 0rem;
+				padding-left: 0rem;
+				font-weight: normal;
+				position: relative
+			}
+
+			.zqnumber2 {
+				font-family: 'DIN', "MiLanPro";
+			}
+		</style>
+
+	</head>
+
+
+	<body style="background-color: rgb(246, 246, 246); font-size: 36px;">
+		<div class="ztlyanse"
+			style="position:fixed;top:0px;width:100vw;background:#f12f37; height:2.2rem;z-index:999999">
+		</div>
+		<div id="wrapper" style="background:#fff">
+			<div id="user" style="margin-bottom:80px;background:#fff">
+
+
+				<div style="background-size:100% auto;background-repeat:no-repeat">
+
+					<div id="header"
+						style="height:3.2rem;margin-top:2rem;background-position:0px -3px;background-size:100% auto;background-repeat:no-repeat;background:#f00">
+						<a class="mairubtm" href="mr.html"></a>
+						<a class="setbtm" href="mulu.html"></a>
+						<div class="container">
+							<div class="row">
+								<div class="back " onclick="javascript:history.back(-1);">
+									< </div>
+										<div class="headzq">
+											<div class="zqname">
+												<span class="biemingname"></span><br><span class="zqnumber"></span>
+											</div>
+
+										</div>
+
+								</div>
+
+								<div class="shuaxin" id="shuaxin" onclick="javascript:location.reload();"></div>
+							</div>
+						</div>
+
+					</div>
+					<div class="container-fluid bgwrite">
+						<form id="maichu" action="#" method="post" enctype="multipart/form-data">
+							<div class="form-row">
+
+								<div class="form-group col-md-12" style="display:none">
+									<input type="hidden" class="form-control" id="id" name="id" value="252935">
+									<input type="hidden" class="form-control" id="status" name="status" value="1">
+									<label for="inputEmail4">市场类型</label>
+									<input type="text" class="form-control" id="shichanglx" name="shichang" value="上海"
+										readonly="">
+									<input type="hidden" class="form-control" id="shichanglx" name="shichanglx"
+										value="sh" readonly="">
+								</div>
+
+								<div class="form-group col-md-12">
+
+									<label for="inputEmail4">股票代码1</label>
+									<input type="text" class="form-control" id="gupiaono" name="gupiaono" value=""
+										readonly="">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="inputEmail4">股票名称</label>
+									<input type="text" class="form-control" id="gupiao" name="gupiao" value=""
+										readonly="">
+								</div>
+								<div class="form-group col-md-12">
+									<label for="inputPassword4">卖出日期</label>
+									<input type="date" class="form-control "
+										style="width:100%;height:35px;background-color:white" id="jiaoyiriqi"
+										name="jiaoyiriqi" value="" required="">
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="inputPassword4">卖出时间</label>
+
+
+									<link rel="stylesheet" href="./mc/mobileSelect.css">
+
+									<script type="text/javascript" src="./mc/mobileSelect.js"></script>
+									<style type="text/css">
+										#trigger3 span:last-child tt {
+											color: #fff
+										}
+
+										#trigger3 span tt {
+											font-size: 14px;
+											line-height: 24px;
+											color: #000
+										}
+									</style>
+									<div id="trigger3" class="form-control"
+										style="cursor: pointer;opacity: 0.1;position: absolute;top: 30px;">选择时间
+									</div>
+									<input type="hidden" class="form-control" id="jiaoyitime1" name="jiaoyitime"
+										step="1" required="" value="">
+									<input type="text" class="form-control" id="jiaoyitime2" name="jiaoyitime" step="1"
+										required="" value="">
+
+									<script type="text/javascript">
+										var numArr1 = ['09', '10', '11', '13', '14', '15'];
+										var numArr2 = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14',
+											'15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31',
+											'32', '33', '34', '35', '36', '37', '38', '39', '40', '41', '42', '43', '44', '45', '46', '47', '48',
+											'49', '50', '51', '52', '53', '54', '55', '56', '57', '58', '59'
+										];
+										var mobileSelect3 = new MobileSelect({
+											trigger: '#trigger3',
+											title: '选择时间',
+											wheels: [{
+													data: numArr1
+												},
+												{
+													data: numArr2
+												},
+												{
+													data: numArr2
+												}
+											],
+											position: [0, 0, 0],
+											callback: function(indexArr, str) {
+												var mytime = $("#trigger3").text();
+												mytime = mytime.slice(0, -1);
+												mystr = mytime.replace(/\s*/g, "");
+
+												$("#jiaoyitime1").val(mystr);
+												$("#jiaoyitime2").val(mystr);
+
+											}
+										});
+
+
+										/**
+										 * 参数说明
+										 * @param trigger(必填参数) 触发对象的id/class/tag
+										 * @param wheels(必填参数)  数据源,需要显示的数据
+										 * @param title 控件标题
+										 * @param position 初始化定位
+										 * @param callback 选择成功后触发的回调函数，返回indexArr(选中的选项索引)、data(选中的数据)
+										 * @param transitionEnd 每一次手势滑动结束后触发的回调函数,返回indexArr(当前选中的选项索引)、data(选中的数据)
+										 */
+									</script>
+
+								</div>
+								<div class="form-group col-md-12">
+									<label for="inputAddress">卖出价格</label>
+									<input type="text" class="form-control" id="jiage" name="jiage" required=""
+										value="">
+								</div>
+
+
+								<div class="form-group col-md-12">
+									<label for="inputCity">可卖数量</label>
+									<input type="text" class="form-control" id="shuliang" readonly="" value="">
+								</div>
+
+								<div class="form-group col-md-12">
+									<label for="inputCity">卖出数量</label>
+									<input type="number" class="form-control" id="gushu" name="gushu" required=""
+										value="">
+								</div>
+
+							</div>
+
+							<input type="hidden" name="maichutype" value="add" id="maichutype">
+							<input type="hidden" name="rec" value="maichu">
+							<input type="hidden" name="id" value="" id="maichuid">
+							<input type="hidden" name="username" id="Globalname" value="initial">
+							<input type="submit" name="submit" class="btn  btn-danger btn-block" value="提交">
+						</form>
+					</div>
+					<style type="text/css">
+						.maichunav {
+							width: 90%;
+							margin: 0 auto;
+							padding-bottom: 20px;
+						}
+
+						.maichunav a {
+							font-size: 12px;
+							width: 40%;
+							padding: 5px 20px;
+							margin-right: 20px;
+							font-size: 14px;
+							line-height: 30px;
+							background: #f5f5f5;
+							color: #333;
+							display: inline-block;
+							text-align: center
+						}
+					</style>
+
+					<div class="maichunav">
+						<a href="#"><span class="fenhong"></span>
+							<b>分红</b></a>
+						<a href="#"><span class="songgu"></span><b>
+								送股</b></a>
+					</div>
+
+					<script>
+    $(document).ready(function() {
+        // Check if the function exists before calling it to avoid the crash
+        if (typeof loginstatus === "function") {
+            loginstatus(function(data) {
+                const urlParams = new URLSearchParams(window.location.search);
+                var id = null;
+                var code = null;
+                if (urlParams.get("id")) {
+                    id = urlParams.get("id");
+                    $("#maichutype").val("update");
+                    $("#maichuid").val(id);
+                }
+                if (urlParams.get("code")) {
+                    code = urlParams.get("code");
+                    num = urlParams.get("num");
+                    $("#maichutype").val("add");
+                    $("#shuliang").val(num);
+                }
+
+                $("#Globalname").val(Global_Username);
+                $.post(host + "php/user.php", {
+                        rec: "mcload",
+                        id: id,
+                        code: code,
+                        username: Global_Username
+                    })
+                    .done(function(data) {
+                        if (data.status == "FAIL") {
+                            window.location.href = "login.html";
+                        }
+                        if (data.userdata) {
+                            $(".biemingname").html(data.userdata.biemingname);
+                            $(".zqnumber").html(data.userdata.zhengquannumber);
+                            
+                            const now = new Date();
+                            const dateStr = now.getFullYear() + '-' + 
+                                           String(now.getMonth() + 1).padStart(2, '0') + '-' + 
+                                           String(now.getDate()).padStart(2, '0');
+                            
+                            const timeStr = String(now.getHours()).padStart(2, '0') + ':' + 
+                                           String(now.getMinutes()).padStart(2, '0') + ':' + 
+                                           String(now.getSeconds()).padStart(2, '0');
+                            $("#jiaoyiriqi").val(dateStr);
+                            $("#jiaoyitime1").val(timeStr);
+                            $("#jiaoyitime2").val(timeStr);
+                        }
+                        if (data.row) {
+                            if(data.row.jydate && data.row.jtime){
+                                $("#shichanglx").val(data.row.jydate);
+                                $("#jiaoyiriqi").val(data.row.jydate);
+                                $("#jiaoyitime1").val(data.row.jytime);
+                                $("#jiaoyitime2").val(data.row.jytime);
+                            }
+                            $("#gupiaono").val(data.row.jycode);
+                            $("#gupiao").val(data.row.name);
+                            $(".fenhong").html(data.row.name);
+                            $(".songgu").html(data.row.name);
+                            $("#jiage").val(data.row.price);
+                            $("#gushu").val(data.row.num * 100);
+                             huoxianjia(0);
+                            if (data.row.price) {
+                                $("#shuliang").val(data.row.num * 100);
+                            }
+                        }
+                    });
+            });
+        } else {
+            console.error("Error: loginstatus function is not defined. Check if common.js is loaded correctly.");
+        }
+    });
+
+						$(function() {
+
+							$('#gushu').blur(function() {
+								$gs = $(this).val();
+								$shuliang = $('#shuliang').val();
+								if (parseInt($gs) > parseInt($shuliang)) {
+									//$("#gushu").val('0');
+									alert('卖出数量只是参照，如果确认没问题请提交。')
+								}
+							});
+						});
+
+						$('#gupiaono').blur(function() {
+							huoxianjia();
+						});
+
+						var tradeQuoteRefreshTimer = null;
+						var latestTradeQuote = null;
+						var lastAutoTradePrice = null;
+
+						function tradeStockSymbol(code) {
+							code = String(code || "").replace(/\D/g, "").slice(-6);
+							if (/^(4|8|920)/.test(code)) return "bj" + code;
+							if (/^[569]/.test(code)) return "sh" + code;
+							return "sz" + code;
+						}
+
+						function tradeNumber(value) {
+							var parsed = parseFloat(value);
+							return isFinite(parsed) ? parsed : 0;
+						}
+
+						function parseTradeQuote(payload, symbol) {
+							var market = payload && payload.data && payload.data[symbol];
+							var quote = market && market.qt && market.qt[symbol];
+							if (!quote || !quote[1]) throw new Error("未查询到该股票行情");
+
+							var marketRows = market.qt && market.qt.market;
+							var marketText = marketRows && marketRows[0] || "";
+							var marketKey = symbol.slice(0, 2) === "sh" ? "SH" :
+								(symbol.slice(0, 2) === "sz" ? "SZ" : "");
+							var hasMarketState = marketKey && marketText.indexOf(marketKey + "_") >= 0;
+							var quoteTime = String(quote[30] || "").replace(/\D/g, "");
+							var now = new Date();
+							var today = String(now.getFullYear()) +
+								String(now.getMonth() + 1).padStart(2, "0") +
+								String(now.getDate()).padStart(2, "0");
+							var quoteDate = quoteTime.slice(0, 8);
+							var quoteAt = quoteTime.length >= 14 ?
+								new Date(
+									parseInt(quoteTime.slice(0, 4), 10),
+									parseInt(quoteTime.slice(4, 6), 10) - 1,
+									parseInt(quoteTime.slice(6, 8), 10),
+									parseInt(quoteTime.slice(8, 10), 10),
+									parseInt(quoteTime.slice(10, 12), 10),
+									parseInt(quoteTime.slice(12, 14), 10)
+								) : null;
+
+							return {
+								symbol: symbol,
+								name: String(quote[1]).trim(),
+								current: tradeNumber(quote[3]),
+								currentText: String(quote[3] || ""),
+								previousClose: tradeNumber(quote[4]),
+								open: tradeNumber(quote[5]),
+								volume: tradeNumber(quote[36] || quote[6]),
+								bidPrice: tradeNumber(quote[9]),
+								askPrice: tradeNumber(quote[19]),
+								upperLimit: tradeNumber(quote[47]),
+								lowerLimit: tradeNumber(quote[48]),
+								quoteTime: quoteTime,
+								quoteToday: quoteDate === today,
+								quoteAgeMinutes: quoteAt ? Math.max(0, (now.getTime() - quoteAt.getTime()) / 60000) : Infinity,
+								marketOpen: !hasMarketState || marketText.indexOf(marketKey + "_open_") >= 0
+							};
+						}
+
+						function requestLiveTradeQuote() {
+							var code = String($("#gupiaono").val() || "").replace(/\D/g, "").slice(-6);
+							if (!/^\d{6}$/.test(code)) {
+								return Promise.reject(new Error("股票代码错误，请重新输入"));
+							}
+							var symbol = tradeStockSymbol(code);
+							var url = "https://bor.lingling123.top/chaojia/chaojia2_05_29/php/getgp.php?code=" +
+								encodeURIComponent(symbol) + "&rec=getDayKlinedata&_=" + Date.now();
+							return fetch(url, { cache: "no-store" }).then(function(response) {
+								if (!response || response.ok === false) throw new Error("实时行情请求失败");
+								return response.json();
+							}).then(function(payload) {
+								return parseTradeQuote(payload, symbol);
+							});
+						}
+
+						function applyLiveTradeQuote(data, mode) {
+							var gpname = data.name;
+							var firstLetter = gpname.substr(0, 1);
+							if ((firstLetter === "C" || firstLetter === "N") && gpname.length === 5) {
+								gpname = gpname.substr(0, 3);
+							}
+
+							var enteredPrice = tradeNumber($("#jiage").val());
+							var canFollowMarket = mode === 0 || !enteredPrice ||
+								(lastAutoTradePrice !== null &&
+									Math.abs(enteredPrice - lastAutoTradePrice) < 0.000001);
+							$("#shichanglx").val(data.symbol.slice(0, 2));
+							$("#gupiao").val(gpname);
+							$(".fenhong").html(gpname);
+							$(".songgu").html(gpname);
+							if (canFollowMarket) $("#jiage").val(data.currentText);
+							lastAutoTradePrice = data.current;
+							latestTradeQuote = data;
+						}
+
+						function huoxianjia(m) {
+							m = typeof m === "undefined" ? 0 : m;
+							return requestLiveTradeQuote().then(function(data) {
+								applyLiveTradeQuote(data, m);
+								return data;
+							}).catch(function(error) {
+								if (m === 0) alert(error.message || "实时行情获取失败");
+								return null;
+							});
+						}
+
+						function validateLiveSellQuote() {
+							return requestLiveTradeQuote().then(function(data) {
+								applyLiveTradeQuote(data, 1);
+								if (!data.quoteToday || !data.marketOpen) {
+									throw new Error("当前市场未开市，禁止卖出");
+								}
+								if (data.current <= 0 || data.open <= 0 || data.volume <= 0 ||
+									data.quoteAgeMinutes > 15) {
+									throw new Error("该股票当前停牌或行情未更新，禁止卖出");
+								}
+								if (data.lowerLimit > 0 && data.current <= data.lowerLimit + 0.0001 &&
+									data.bidPrice <= 0) {
+									throw new Error("该股票当前跌停且无买盘，禁止卖出");
+								}
+								return data;
+							});
+						}
+
+						function refreshLiveSellQuote() {
+							var code = String($("#gupiaono").val() || "").replace(/\D/g, "");
+							if (!/^\d{6}$/.test(code)) return;
+							if (typeof window.isMarketOpen === "function" && !window.isMarketOpen()) return;
+							huoxianjia(1);
+						}
+
+						$(document).ready(function() {
+							setTimeout(refreshLiveSellQuote, 1000);
+							tradeQuoteRefreshTimer = setInterval(refreshLiveSellQuote, 5000);
+							document.addEventListener("visibilitychange", function() {
+								if (!document.hidden) refreshLiveSellQuote();
+							});
+							$(window).on("beforeunload", function() {
+								if (tradeQuoteRefreshTimer) clearInterval(tradeQuoteRefreshTimer);
+							});
+						});
+
+						//提交
+						$("#maichu").submit(function(event) {
+							event.preventDefault(); // 阻止表单的默认提交行为  
+							// 获取表单数据  
+                                                if (typeof window.isMarketOpen !== 'function' || !window.isMarketOpen()) {
+                                                        alert('非交易时间禁止卖出');
+                                                        return;
+                                                }
+                                                  var form = $(this);
+                                                  validateLiveSellQuote().then(function() {
+                                                          var formData = form.serialize();
+                                                          showLoadingLayer();
+                                                          // 使用 AJAX 提交表单数据
+                                                          $.ajax({
+                                                                  type: "POST",
+                                                                  url: host + "php/user.php", // 替换为你的服务器端点
+                                                                  data: formData,
+                                                                  success: function(response) {
+                                                                          // 处理服务器返回的响应
+                                                                          console.log(response);
+                                                                          alert(response.beizhu);
+                                                                          qinghuancun();
+                                                                          hideLoadingLayer();
+                                                                          window.location.href = "cc.html";
+                                                                  },
+                                                                  error: function(xhr, status, error) {
+                                                                          // 处理提交错误
+                                                                          console.log("Error: " + error);
+                                                                          hideLoadingLayer();
+                                                                  }
+                                                          });
+                                                  }).catch(function(error) {
+                                                          alert(error && error.message || "实时行情校验失败，无法卖出");
+                                                  });
+						});
+
+						function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+							var OldBarHeight = NewBarHeight;
+							var DqBarHeight = 2; //单位rem;
+							viewRemWidth = window.innerWidth / remToPx;
+							NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+							if (NewBarHeight == NaN) {
+								NewBarHeight = OldBarHeight;
+							}
+							$("#wrapper").css("margin-top", NewBarHeight + "rem");
+							$("#header").css("margin-top", NewBarHeight + "rem");
+							$(".ztlyanse").css("height", (NewBarHeight + 0.2) + "rem");
+						}
+					</script>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="mobileSelect">
+			<div class="grayLayer"></div>
+			<div class="content">
+				<div class="btnBar">
+					<div class="fixWidth">
+						<div class="cancel">取消</div>
+						<div class="title">选择时间</div>
+						<div class="ensure">确认</div>
+					</div>
+				</div>
+				<div class="panel">
+					<div class="fixWidth">
+						<div class="wheels">
+							<div class="wheel" style="width: 33.33%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li>09</li>
+									<li>10</li>
+									<li>11</li>
+									<li>13</li>
+									<li>14</li>
+									<li>15</li>
+								</ul>
+							</div>
+							<div class="wheel" style="width: 33.33%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li>00</li>
+									<li>01</li>
+									<li>02</li>
+									<li>03</li>
+									<li>04</li>
+									<li>05</li>
+									<li>06</li>
+									<li>07</li>
+									<li>08</li>
+									<li>09</li>
+									<li>10</li>
+									<li>11</li>
+									<li>12</li>
+									<li>13</li>
+									<li>14</li>
+									<li>15</li>
+									<li>16</li>
+									<li>17</li>
+									<li>18</li>
+									<li>19</li>
+									<li>20</li>
+									<li>21</li>
+									<li>22</li>
+									<li>23</li>
+									<li>24</li>
+									<li>25</li>
+									<li>26</li>
+									<li>27</li>
+									<li>28</li>
+									<li>29</li>
+									<li>30</li>
+									<li>31</li>
+									<li>32</li>
+									<li>33</li>
+									<li>34</li>
+									<li>35</li>
+									<li>36</li>
+									<li>37</li>
+									<li>38</li>
+									<li>39</li>
+									<li>40</li>
+									<li>41</li>
+									<li>42</li>
+									<li>43</li>
+									<li>44</li>
+									<li>45</li>
+									<li>46</li>
+									<li>47</li>
+									<li>48</li>
+									<li>49</li>
+									<li>50</li>
+									<li>51</li>
+									<li>52</li>
+									<li>53</li>
+									<li>54</li>
+									<li>55</li>
+									<li>56</li>
+									<li>57</li>
+									<li>58</li>
+									<li>59</li>
+									<li>60</li>
+								</ul>
+							</div>
+							<div class="wheel" style="width: 33.33%;">
+								<ul class="selectContainer" style="transform: translate3d(0px, 80px, 0px);">
+									<li>00</li>
+									<li>01</li>
+									<li>02</li>
+									<li>03</li>
+									<li>04</li>
+									<li>05</li>
+									<li>06</li>
+									<li>07</li>
+									<li>08</li>
+									<li>09</li>
+									<li>10</li>
+									<li>11</li>
+									<li>12</li>
+									<li>13</li>
+									<li>14</li>
+									<li>15</li>
+									<li>16</li>
+									<li>17</li>
+									<li>18</li>
+									<li>19</li>
+									<li>20</li>
+									<li>21</li>
+									<li>22</li>
+									<li>23</li>
+									<li>24</li>
+									<li>25</li>
+									<li>26</li>
+									<li>27</li>
+									<li>28</li>
+									<li>29</li>
+									<li>30</li>
+									<li>31</li>
+									<li>32</li>
+									<li>33</li>
+									<li>34</li>
+									<li>35</li>
+									<li>36</li>
+									<li>37</li>
+									<li>38</li>
+									<li>39</li>
+									<li>40</li>
+									<li>41</li>
+									<li>42</li>
+									<li>43</li>
+									<li>44</li>
+									<li>45</li>
+									<li>46</li>
+									<li>47</li>
+									<li>48</li>
+									<li>49</li>
+									<li>50</li>
+									<li>51</li>
+									<li>52</li>
+									<li>53</li>
+									<li>54</li>
+									<li>55</li>
+									<li>56</li>
+									<li>57</li>
+									<li>58</li>
+									<li>59</li>
+									<li>60</li>
+								</ul>
+							</div>
+						</div>
+						<div class="selectLine"></div>
+						<div class="shadowMask"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<script src="./mc/jquery.min.js"></script>
+		<script src="../js/common.js"></script>
+             <script src="../js/local-api.js?v=local48"></script>
+
+
+
+		<script>
+			const inputs = document.querySelectorAll('input');
+			inputs.forEach(input => {
+				input.style.setProperty('font-size', '16px', 'important');
+			});
+		</script>
+
+	</body>
+
+</html>
