@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+
+<html style="font-size: 16.25px;">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+	<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+	<meta name="viewport"
+		content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+	<!-- <meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black"> -->
+	<meta name="format-detection" content="telephone=no">
+
+	<title>资金首页</title>
+	<link rel="stylesheet" href="./index/font-awesome.min.css">
+	<link rel="stylesheet" href="./index/bootstrap.min.css" media="all" type="text/css">
+
+	<!-- <link href="./index/user7.css" rel="stylesheet" type="text/css">
+	<link href="./index/userx0803.css" rel="stylesheet" type="text/css"> -->
+	<!-- Existing styles -->
+	<link id="light-mode" rel="stylesheet" href="./index/user7.css">
+	<link rel="stylesheet" href="./index/userx0803.css">
+	<!-- Add dark mode stylesheet -->
+	<link id="light-theme" rel="stylesheet" href="./index/home.css">
+	<link id="dark-theme" rel="stylesheet" href="./index/home-dark.css" disabled>
+	<link href="./index/home.css" rel="stylesheet" type="text/css">
+
+	<script type="text/javascript" src="../js/jquery.min.js "></script>
+	<style type="text/css">
+		@font-face {
+			font-family: Harmony;
+			src: url(common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+
+		}
+
+
+		@font-face {
+			font-family: MiLanPro;
+			src: url(common/fonts/MiLanProVF.woff);
+
+		}
+
+		/* .homebox {
+
+			background-image: url(/index/homebgn.jpg);
+
+		} */
+
+		@font-face {
+			font-family: 'DIN';
+			src: url(' common/fonts/digital.otf');
+			/*DIN-Mediummy.otf*/
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		.homeset {
+			width: 100%;
+			height: 3.3rem;
+			display: block;
+			margin-bottom: 10rem;
+			margin-top: -11.5rem;
+		}
+
+		#hykbl {
+			font-size: 0.77rem;
+		}
+
+		.homexg {
+			/* 		font-family: MiLanPro; */
+			font-size: 0.73rem;
+			padding-top: 0.05rem;
+		}
+
+		.homezzzz {
+			width: 100%;
+			height: 3.3rem;
+			display: block;
+
+			margin-top: 17.5rem;
+		}
+
+		.homeqxn {
+			width: 100%;
+			height: 3.3rem;
+			display: block;
+
+			margin-top: 8rem;
+		}
+
+		.homebottom {
+			height: 5rem;
+			position: relative;
+		}
+
+		.homelogout {
+			margin-top: 6.5rem;
+			margin-bottom: 0px;
+			position: absolute;
+			bottom: 0;
+		}
+
+		.homeset {
+			width: 100%;
+			height: 3.3rem;
+			display: block;
+			margin-bottom: 0rem;
+			margin-top: 8.2rem;
+		}
+
+		.shu-final {
+			position: absolute;
+			/* Makes it positionable */
+			/* top: 0;
+    left: 0; */
+			background-color: transparent;
+			margin-top: 1.5rem;
+			height: 2rem;
+			width: 100%;
+			display: block;
+			cursor: pointer;
+			z-index: 99
+				/* Ensures it's above other elements */
+		}
+
+		#hykbl {
+			font-family: 'DIN';
+			font-size: 0.75rem;
+		}
+
+		.test {
+			position: absolute;
+			justify-content: end;
+			text-align: end;
+		}
+
+		.alert_windows {
+			display: none;
+			position: absolute;
+			z-index: 999;
+			width: 86vw;
+			height: auto;
+
+			background: #fff;
+			font-size: 14px;
+			color: #333;
+			border: #666 1px solid;
+		}
+
+		.alert_windows span {
+			float: right;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			font: 15px/30px Microsoft Yahei;
+			cursor: pointer;
+			color: #333;
+			background: lightblue;
+		}
+
+		.alert_windows span:hover {
+			color: #EEE;
+			background: red;
+		}
+
+		.navbarf2>.tab-nav2 .hangqing {
+			position: absolute;
+			left: 16vw;
+			width: 16vw;
+			padding-bottom: 0;
+			height: 3.6rem;
+			background: none;
+		}
+
+		.navbarf2>.tab-nav2 .zixuan {
+			position: absolute;
+			left: 32vw;
+			width: 16vw;
+			padding-bottom: 0;
+			height: 3.6rem;
+			background: none;
+		}
+
+		@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+			.tab-nav2 {
+				background: #f5f5f5;
+			}
+
+			.navbarf2>.tab-nav2 .bnews,
+			.navbarf2>.tab-nav2 .buser,
+			.navbarf2>.tab-nav2 .bhome,
+			.navbarf2>.tab-nav2 .bcatalog,
+			.navbarf2>.tab-nav2 .bzixuan,
+			.navbarf2>.tab-nav2 .hangqing,
+			.navbarf2>.tab-nav2 .zixuan {
+				bottom: calc(env(safe-area-inset-bottom));
+				padding-bottom: calc(env(safe-area-inset-bottom));
+				height: 3.6rem;
+			}
+		}
+
+		.navbarf2>.tab-nav2 .bzixuan {
+			position: absolute;
+			bottom: 0px;
+			left: 16vw;
+			width: 16vw;
+			height: 3.6rem;
+			background: none;
+		}
+
+		.tab-nav2 tabs2 {
+			z-index: 999;
+		}
+
+		.guide {
+			display: none;
+			position: fixed;
+			background-color: rgba(0, 0, 0, 0.5);
+			color: white;
+			padding: 20px;
+			border-radius: 10px;
+			z-index: 1000;
+			width: 300px;
+			text-align: center;
+		}
+
+		.guide button {
+			border: none;
+			font-size: 12px;
+		}
+
+		.guide-arrow {
+			position: fixed;
+			width: 2px;
+			height: 50px;
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+
+
+
+		.guide-content {
+			margin-bottom: 10px;
+		}
+	</style>
+
+</head>
+
+
+<body>
+	<!-- <section
+        style="width:100%;height:36rem;background:#f12f37;position:fixed;left:20%;background-size: 100% auto;top:0px;width:100%;z-index:9999;background-image: url(./index/333.jpg)">
+    </section> -->
+	<section style="background-color: rgb(246, 246, 246); font-size: 36px;" onpageshow="pageShow(event)">
+
+		<div id="wrapper" style="background:#fff">
+			<div id="user" style="margin-bottom:50px;background:#fff">
+
+
+				<section class="ztlyanse"
+					style="width:100%;height:2rem;background:#f12f37;position:fixed;top:0px;width:100%;z-index:9999">
+				</section>
+				<!-- <div class="homebox"
+					style="background-image: url(http://borilxx.cn/chaojia/ths/ths_1_11_24_dl/ths/index/homebgandroid1.png);margin-top: 1.9rem;"> -->
+				<div class="homebox" style="margin-top: 1.9rem;">
+					<div class="homenav">
+						<div class="homeshuaxin" onclick="javascript:location.reload();"></div>
+						<div class="theme-toggle" onclick="toggleDarkMode()"
+							style="position: absolute; right: 20rem; color: blue; display: none;">
+							<i class="fa fa-moon-o"></i>
+						</div>
+					</div>
+					<div class="home">
+						<div class="hometop">
+							<div class="homelogo"><img src=""></div>
+							<div class="homeyou"
+								style="position: absolute;right: .1rem;top:-.45rem;width: 3rem;height: 3rem;">
+								<img src="./index/you.png" style="width: 3rem;">
+							</div>
+							<div class="homename">
+								<span class="test"></span>
+								<div class="namep1"></div>
+								<div class="namep2">资金帐户 </div>
+							</div>
+						</div>
+						<div class="eyes"
+							style="position: absolute; ;width: 20px;height:20px;left: 3.4rem;top: 4.1rem;">
+							<img src="./index/eyehidden.png" style="width:100%;display: none;" alt="">
+						</div>
+						<div class="homezj">
+							<div class="homezj1">
+								<li class="zj1"><span id="htotal">--</span></li>
+								<li class="zj2"><span id="htotalyk">--</span></li>
+							</div>
+							<div class="homezj2">
+								<li class="zj1"><span id="htotalsz">--</span></li>
+								<li class="zj2 hdyykcss"><span id="hdyyk">--</span><span id="hykbl"></span></li>
+							</div>
+						</div>
+						<div class="homeyue clear">
+							<a class="homemairu" href="mr.html"></a>
+							<div class="homemaichu"></div>
+							<a class="chicang" href="cc.html"></a>
+							<a class="homechaxun" href="cx.html"></a>
+							<div class="homeyuetop">2月参考盈亏</div>
+							<script>
+								var p = new Date();
+								$(".homeyuetop").html((p.getMonth() + 1) + "月参考盈亏");
+							</script>
+							<div class="youjiantou"
+								style="position: absolute; width: 20px;height: 30px;right: 0;top: 8.5rem; background-color: #fff; display: none;">
+							</div>
+							<a class="homeqx" href="qx.html">
+								<div class="homeyuem clear">
+									<div class="homeyue1 "><span id="totalm">想看？就点我</span></div>
+									<div class="homeyue2 ">
+										<div id="echart"
+											style="position: absolute; width: 8.65rem; margin-left: -.5rem; top: -1.5rem; height: 3.6rem; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"
+											_echarts_instance_="ec_1708316597191">
+											<div
+												style="position: relative; width: 141px; height: 59px; padding: 0px; margin: 0px; border-width: 0px;">
+												<canvas data-zr-dom-id="zr_0" width="423" height="177"
+													style="position: absolute; left: 0px; top: 0px; width: 161px; height: 59px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas>
+											</div>
+										</div>
+										<!-- 		<script type="text/javascript" src="./index/homeqxnew240102.js "></script>
+										 -->
+									</div>
+
+								</div>
+								<div class="homeyuebt clear">收益率<span id="shouyi">****</span>，跑<span
+										id="hpaotxt">赢</span>上证指数<span id="homepaoyin">****</span></div>
+							</a>
+						</div>
+						<div class="homexg clear">
+							<!-- 	<div class="homexg1">暂无新股和新债</div> -->
+							<div class="homexg1">新债<span>1</span>只 </div>
+							<div class="homexg2">
+								<span style="font-family: DIN;color: #999;">7</span>天期<span>1.835%</span>
+							</div>
+						</div>
+						<div class="empty" style="height: 11rem;"></div>
+						<!-- <div class="shu-final" onclick=""></div> -->
+						<a class="shu-final" href="shu-final.html"></a>
+						<div class="homebottom">
+							<div class="suiji" style="width:100vw;margin-left:-4vw;margin-top: 0.95rem;display:none">
+								<img id="myPicture" src="./index/homebgm.jpg" width="100%">
+							</div>
+							<a href="javscript:loginout()" onclick="loginout()" class="homelogout"> &nbsp;</a>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="navbarf2">
+					<div class="tab-nav2 tabs2">
+						<!-- <img> -->
+						<img src="./mingxi_files/bottom4.jpg">
+						<a class="bhome" href="sy.html"></a>
+						<a class="bcatalog" href="mulu.html"></a>
+						<a class="zixuan" href="zx.html"></a>
+						<a class="buser" href="index.html"></a>
+						<a class="bnews" href="zxun.html"></a>
+						<!-- <div class="bzixuan"></div> -->
+						<a class="bzixuan" href="hq.html"></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</section>
+	<section class="YindaoClass" style="position: fixed;left: 0;top: 0;z-index: 999999;font-size: 1rem;">
+		<div class="guide" id="guideDiv" style="top: 208.4px; left: 10px; display: none;">
+			<div class="guide-arrow" id="guideArrow" style="top: 298px; left: 158px;"></div>
+			<div class="guide-content" id="guideContent"></div>
+			<button onclick="nextGuide()">下一步</button>
+		</div>
+
+	</section>
+
+</body>
+<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+<script type="text/javascript" src="./index/homenew1012.js "></script>
+<script type="text/javascript" src="./index/flexible.js "></script>
+<script type="text/javascript" src="./index/jquery.cookie.js "></script>
+<script type="text/javascript" src="./index/global.js "></script>
+<script type="text/javascript" src="./index/echarts.min.js "></script>
+<!-- <script type="text/javascript">
+	function pageShow(e) {
+
+		console.log('是否缓存', e.persisted)
+	}
+	/*	// 进入页面时获取对应大小
+// 改变字体大小
+function resizeFont() {
+let winW = document.documentElement.clientWidth > 750 ? 750 : document.documentElement.clientWidth
+document.documentElement.style.fontSize = (winW / 750) * 100 + 'px'
+}
+window.addEventListener('load', () => resizeFont())
+window.addEventListener('resize', () => resizeFont())
+*/
+</script> -->
+
+<script>
+	$(function () {
+		if ($.cookie("isClose") != 'yes') {
+			var winWid = $(window).width() / 2 - $('.alert_windows').width() / 2;
+			var winHig = $(window).height() / 2 - $('.alert_windows').height() / 2;
+			$(".alert_windows").css({
+				"left": winWid,
+				"top": -winHig * 2
+			}); //自上而下滑出
+			$(".alert_windows").show();
+			$(".alert_windows").animate({
+				"left": winWid,
+				"top": winHig
+			}, 1000);
+			$(".alert_windows span").click(function () {
+				$(this).parent().fadeOut(500);
+				//以天为单位
+				//$.cookie("isClose",'yes',{ expires:1/8640});	//测试十秒
+				$.cookie("isClose", 'yes', {
+					expires: 1
+				});
+			});
+		}
+	});
+
+	var nav = $("#navcss").val();
+
+	$('.tab-item').eq(nav).addClass("tab-item-active");
+
+	$('.bzixuan').click(function () {
+		// alert('功能正在开发中...');
+	});
+
+	// $('.hometop').click(function () {
+	// 	window.location.href = "index.html";
+	// });
+
+
+	$('.homeyou').toggle(function () {
+		$(".homename").css("background", "#fff");
+		$(".homeyou img").show();
+	}, function () {
+		$(".homename").css("background", "none");
+		$(".homeyou img").hide();
+	});
+	var indexshdata = {};
+	$(".eyes").toggle(function () {
+		$(".eyes img").show();
+		indexshowhidden(indexshdata);
+	}, function () {
+		$(".eyes img").hide();
+		indexshowhidden(indexshdata);
+	})
+
+	$('.homemaichu').click(function () {
+		alert('进入持仓页面，点击持仓的股票，选择卖出按钮');
+		window.location.href = "cc.html";
+	});
+
+	//window.onload = choosePic;
+	function choosePic() {
+		var myPix = new Array(" /index/homebgm_04.jpg", " /index/homebgm2_04.jpg");
+		var randomNum = Math.floor((Math.random() * myPix.length));
+		document.getElementById("myPicture").src = myPix[randomNum];
+	}
+
+
+
+	//loginstatus();页面单独请求，需要添加logo
+
+	var guideSteps = [{
+		element: '.homemairu',
+		content: '点击这里可以买入.'
+	},
+	{
+		element: '.chicang',
+		content: '持仓页面显示，点进去之后可以点击持仓股票可以卖出对应的股票数据.'
+	},
+	{
+		element: '.homechaxun',
+		content: '可以查询当日成交、历史成交、对账单(各种周期都可以查询).'
+	},
+	{
+		element: '.homeyue2',
+		content: '收益曲线,日历图都在这里，点进去后数据未更新时，请点击底部按钮更新数据.'
+	},
+	{
+		element: '.buser',
+		content: '此按钮可以返回本资金界面.'
+	},
+	{
+		element: '.bcatalog',
+		content: '显示初始设置,流水账(可以修改买卖信息),清除缓存等.'
+	}
+	];
+	var currentStep = 0;
+
+	function startGuide() {
+		currentStep = 0;
+		showGuideStep(currentStep);
+	}
+
+	function showGuideStep(stepIndex) {
+		if (stepIndex >= guideSteps.length) {
+			hideGuide();
+			return;
+		}
+
+		var step = guideSteps[stepIndex];
+		var $target = $(step.element);
+		var $guide = $('#guideDiv');
+		var $arrow = $('#guideArrow');
+
+		var targetOffset = $target.offset();
+		var targetWidth = $target.outerWidth();
+		var targetHeight = $target.outerHeight();
+		var guideWidth = $guide.outerWidth();
+		var guideHeight = $guide.outerHeight();
+
+		var targetTop = targetOffset.top + (targetHeight / 2);
+		var targetLeft = targetOffset.left + (targetWidth / 2);
+
+		// 计算引导位置，确保不会超出手机屏幕，并且不会遮挡目标元素
+		var top = targetOffset.top - guideHeight - 60; // 60是箭头和箭头的线的高度
+		if (top < 0) {
+			top = targetOffset.top + targetHeight + 20; // 20是距离目标元素的间距
+		}
+
+		var left = targetOffset.left + (targetWidth / 2) - (guideWidth / 2);
+		if (left < 0) {
+			left = 10; // 10是左边距
+		} else if (left + guideWidth > $(window).width()) {
+			left = $(window).width() - guideWidth - 10; // 10是右边距
+		}
+
+		// 设置引导 div 和箭头的位置
+		$guide.css({
+			top: top,
+			left: left
+		});
+
+		$arrow.css({
+			top: top + guideHeight,
+			left: targetLeft,
+			height: 50 + targetHeight / 2
+		});
+
+		$('#guideContent').text(step.content);
+		$guide.show();
+
+		var $newDiv = $('<div></div>');
+		$newDiv.css({
+			'background': 'rgba(0, 0, 0, 0.5)',
+			'width': targetWidth + 'px',
+			'height': targetHeight + 'px',
+			'position': 'fixed',
+			'left': targetOffset.left + 'px',
+			'top': targetOffset.top + 'px',
+			'z-index': 999999999
+		});
+		$('.YindaoClass').append($newDiv);
+
+		setTimeout(function () {
+			$newDiv.remove();
+		}, 3000)
+	}
+
+	function nextGuide() {
+		currentStep++;
+		showGuideStep(currentStep);
+		if (guideSteps.length - 1 == currentStep) {
+			$(".guide button").html("结束");
+		}
+	}
+
+	function hideGuide() {
+		$('#guideDiv').hide();
+
+	}
+
+
+
+	function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+		var OldBarHeight = NewBarHeight;
+		var DqBarHeight = 2; //单位rem; 
+		viewRemWidth = window.innerWidth / remToPx;
+		NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+		if (NewBarHeight == NaN) {
+			NewBarHeight = OldBarHeight;
+		}
+		//	NewBarHeight = NewBarHeight - 0.5;
+		$(".homebox").css("margin-top", NewBarHeight + "rem");
+		$(".ztlyanse").css("height", (NewBarHeight + 0.5) + "rem");
+		$(".homenav").css("top", NewBarHeight + "rem");
+		$(".home").css("top", (NewBarHeight + 2) + "rem");
+		document.addEventListener('plusready', function () {
+			plus.navigator.setStatusBarBackground(Global_BarColor); // 黄色背景
+			plus.navigator.setStatusBarStyle("light");
+		});
+		if (Global_PhoneType == "Apple") {
+			const isDarkMode = !document.getElementById('dark-theme').disabled;
+
+			if (!isDarkMode) {
+				$(".homebox").css("background-image", "url(./index/homebgios2.jpg)");
+				// $(".tab-nav2 img").attr("src", "./mingxi_files/bottom5.jpg");
+			} else {
+				// Optional: Set a dark version for Apple users if needed
+				$(".homebox").css("background-image", "url(./index/homedark.png)");
+				// $(".tab-nav2 img").attr("src", "./cc/bottom5.png");
+				// $(".tab-nav2 img").css("width", "100%");
+				// $(".homexg2").css("margin-top", "0.5rem");
+			}
+			if ($(".tab-nav2") && $(".tabs2") && $(".tab-nav2 img").attr("src") == "./mingxi_files/bottom4.jpg") {
+				$(".tab-nav2 img").attr("src", "./mingxi_files/bottom5.jpg");
+				$(".tab-nav2 img").css("width", "100%");
+				$(".tab-nav2 a").css("height", "4.8rem");
+			}
+		}
+	}
+</script>
+<script>
+	(function () {
+		// Check if the navigation type is NOT a reload
+		// (Type 0 = Navigate, Type 1 = Reload, Type 2 = Back/Forward)
+		var navType = window.performance.getEntriesByType("navigation")[0].type;
+
+		if (navType !== 'reload') {
+			// If we haven't refreshed yet during this specific navigation visit
+			if (!sessionStorage.getItem('isRefreshed')) {
+				sessionStorage.setItem('isRefreshed', 'true');
+				window.location.reload();
+			}
+		} else {
+			// If the user manually reloads, or after our auto-reload is done, 
+			// we clear the flag so it's ready for the next time they come from another page
+			sessionStorage.removeItem('isRefreshed');
+		}
+	})();
+
+
+	// const loginData = JSON.parse(localStorage.getItem('loginData'));
+
+	if (loginData && loginData.userdata) {
+		console.log("uimode:", loginData.userdata.uimode);  // Debug print
+		toggleDarkModeIndex(loginData.userdata.uimode);         // Use the value
+	} else {
+		console.error("loginData or userdata is missing");
+	}
+	// toggleDarkModeIndex();
+
+	// Update the Eye toggle specifically for theme syncing
+	$(".eyes").off('click').on('click', function () {
+		const isDark = $("body").hasClass("dark-mode");
+
+		if ($(".eye-hidden").is(":hidden")) {
+			$(".eye-hidden").show();
+			$(".eye-open").hide();
+			// Sync icon image
+			$(".eye-hidden").attr("src", isDark ? "./cc/eyeHiddenDark.png" : "./index/eyehidden.png");
+		} else {
+			$(".eye-hidden").hide();
+			$(".eye-open").show();
+			// Sync icon image
+			$(".eye-open").attr("src", isDark ? "./cc/eyeDark.png" : "./dzd/eye.png");
+		}
+		indexshowhidden(indexshdata);
+	});
+</script>
+
+</html>
