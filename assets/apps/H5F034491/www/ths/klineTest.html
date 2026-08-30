@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>K-line Chart</title>
+    <script src="../js/jquery.min.js"></script>
+    <script src="./dzd/echarts.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        #date-range {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        #kline-chart {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>K-Line Chart (sz000001)</h2>
+    <div id="date-range">
+        Date Range: <span id="start-date">Loading...</span> to <span id="end-date">Loading...</span>
+    </div>
+    <div id="kline-chart"></div>
+
+    <script>
+        $(document).ready(function () {
+            const url = "https://web.ifzq.gtimg.cn/appstock/app/fqkline/get?param=sz000001,day,2024-3-1,2024-6-1,500,qfq";
+
+            $.getJSON(url, function (response) {
+                const rawData = response?.data?.sz000001?.qfqday;
+
+                if (!Array.isArray(rawData) || rawData.length === 0) {
+                    $('#start-date').text("N/A");
+                    $('#end-date').text("N/A");
+                    alert("No data available.");
+                    return;
+                }
+
+                const categoryData = [];
+                const values = [];
+                let totalClose = 0;
+
+                rawData.forEach(item => {
+                    categoryData.push(item[0]); // date
+                    const open = parseFloat(item[1]);
+                    const close = parseFloat(item[2]);
+                    const low = parseFloat(item[4]);
+                    const high = parseFloat(item[3]);
+
+                    values.push([open, close, low, high]);
+                    totalClose += close;
+                });
+
+                const averageClose = totalClose / rawData.length;
+                const averageLine = new Array(categoryData.length).fill(averageClose);
+                const allPrices = values.flat(); // includes open, close, low, high
+                const minPrice = Math.min(...allPrices);
+                const maxPrice = Math.max(...allPrices);
+                const midPrice = (minPrice + maxPrice) / 2;
+
+                console.log(minPrice, maxPrice, midPrice);
+
+                // Display dynamic start and end dates
+                $('#start-date').text(categoryData[0]);
+                $('#end-date').text(categoryData[categoryData.length - 1]);
+
+                renderKlineChart(categoryData, values, midPrice, minPrice, maxPrice);
+            }).fail(function () {
+                $('#start-date').text("Failed");
+                $('#end-date').text("Failed");
+                alert("Failed to fetch data.");
+            });
+        });
+
+        function renderKlineChart(dates, data, midPrice, minPrice, maxPrice) {
+            const chartDom = document.getElementById('kline-chart');
+            const myChart = echarts.init(chartDom);
+
+            // Sample Buy/Sell info
+            const buyDate = "2025-03-26";
+            const buyPrice = 24.96;
+            const sellDate = "2025-05-12";
+            const sellPrice = 25.00;
+
+            const graphicAnnotations = [];
+
+            // Helper to add annotation
+            function addAnnotation(date, price, label, color) {
+                const index = dates.indexOf(date);
+                if (index !== -1) {
+                    graphicAnnotations.push({
+                        type: 'text',
+                        left: myChart.convertToPixel({ xAxisIndex: 0 }, index),
+                        top: myChart.convertToPixel({ yAxisIndex: 0 }, price) - 20,
+                        style: {
+                            text: `${label}\n¥${price}`,
+                            fontSize: 14,
+                            fill: color,
+                            textAlign: 'center',
+                            fontWeight: 'bold'
+                        },
+                        silent: true
+                    });
+                }
+            }
+
+            const option = {
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross'
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    data: dates,
+                    scale: true,
+                    boundaryGap: false,
+                    axisLine: { onZero: false },
+                    splitLine: { show: false },
+                    min: 'dataMin',
+                    max: 'dataMax',
+                    axisLabel: {
+                        formatter: function (value, index) {
+                            if (index === 0) {
+                                return value; // show first date
+                            } else if (index === dates.length - 1) {
+                                return value; // show last date
+                            } else {
+                                return ''; // hide other dates
+                            }
+                        }
+                    }
+                },
+
+                yAxis: {
+                    scale: true,
+                    splitArea: {
+                        show: true
+                    }
+                },
+                // dataZoom: [
+                //     {
+                //         type: 'inside',
+                //         start: 80,
+                //         end: 100
+                //     },
+                //     {
+                //         show: true,
+                //         type: 'slider',
+                //         top: '90%',
+                //         start: 80,
+                //         end: 100
+                //     }
+                // ],
+                series: [
+                    {
+                        name: 'K Line',
+                        type: 'candlestick',
+                        data: data,
+                        itemStyle: {
+                            color: '#fff',
+                            color0: '#306412',
+                            borderColor: '#d74853',
+                            borderColor0: '#21480d',
+                            borderWidth: 2,
+                            borderWidth0: 2
+                        },
+                        markPoint: {
+                            // symbol: 'image://bs/img/blue_s_D.png', // Or b-logo.png
+                            symbolSize: [20, 50], // [width, height]
+                            data: [
+                                {
+                                    name: 'Sell',
+                                    symbol: 'image://bs/img/d_blue_s_z.png',
+                                    coord: ['2024-03-05', 9.6], // [date, price]
+                                },
+                                {
+                                    name: 'Buy',
+                                    symbol: 'image://bs/img/d_red_b_z.png',
+                                    coord: ['2024-04-10', 9.5],
+                                }
+                            ]
+                        },
+                        markLine: {
+                            symbol: 'none',
+                            label: { show: false },
+                            lineStyle: {
+                                type: 'dashed',
+                                color: '#b8860b', // Dark yellow (GoldenRod)
+                                width: 1
+                            },
+                            data: [
+                                {
+                                    yAxis: midPrice
+                                }
+                            ]
+                        }
+                    }
+                ],
+                graphic: [
+                    {
+                        type: 'text',
+                        left: '45%',
+                        top: '5%',
+                        style: {
+                            text: `← ${maxPrice.toFixed(2)}`,
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            fill: '#444444'
+                        }
+                    },
+                    {
+                        type: 'text',
+                        right: '45%',
+                        bottom: '15%',
+                        style: {
+                            text: `${minPrice.toFixed(2)} →`,
+                            fontSize: 18,
+                            fontWeight: 'bold',
+                            fill: '#444444'
+                        }
+                    }
+                ]
+
+            };
+
+            myChart.setOption(option);
+
+            // Wait for the chart to render, then add annotation graphics
+            setTimeout(() => {
+                addAnnotation(buyDate, buyPrice, 'Buy', 'green');
+                addAnnotation(sellDate, sellPrice, 'Sell', 'red');
+
+                myChart.setOption({
+                    graphic: graphicAnnotations
+                });
+            }, 500);
+        }
+    </script>
+
+</body>
+
+</html>
