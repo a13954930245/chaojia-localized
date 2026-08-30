@@ -1,0 +1,165 @@
+/* Dark mode overrides */
+body {
+    background: #1a1a1a !important;
+}
+
+.ztlyanse{
+	height: 0rem !important;
+}
+
+.homebox {
+    width: 100vw;
+    background-color: #f5f5f5;
+    background-image: url(./../index/indexdark4.png) !important;
+    background-position: 0px 0px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    min-height: 90.5rem !important;
+}
+
+.homebox .home {
+    position: absolute !important;
+    top: 4.7rem !important;
+    /* Adjust this value to move it up or down */
+    margin-top: 0rem !important;
+    /* Resetting the 2rem margin from light mode */
+    display: block !important;
+}
+
+.homebox .home .homezj {
+    font-size: 1.2rem;
+}
+
+.homebox .home .homezj1 {
+    height: 4rem;
+	    margin-left: 0.3rem;
+}
+
+.homebox .home .homezj2 {
+    /* height: 4rem; */
+	    margin-left: 0.35rem !important;
+		margin-top: 0.45rem !important;
+}
+
+.ztlyanse {
+    background: #020202 !important;
+}
+
+/* .homename,
+.namep2,
+.homeyuetop,
+.homeyue1,
+.homeyuebt,
+.homexg1,
+.homexg2,
+#hykbl {
+    color: #fff !important;
+} */
+
+.navbarf2 .tab-nav2 {
+    background: #333 !important;
+}
+
+/* Add other element overrides as needed */
+
+.shu-final {
+    margin-top: 7rem !important;
+    height: 3rem !important;
+    background-color: transparent !important;
+}
+
+.zj1 #htotal,
+.zj1 #htotalsz {
+    color: #fff;
+}
+
+.homezj {
+    margin-top: 3rem !important;
+    height: 6.7rem !important;
+    margin-left: 0rem !important;
+}
+
+.homexg .homexg2 {
+    padding-left: 2.8rem;
+}
+
+.tab-nav2 img {
+    content: url('../cc/bottom5dark1.png') !important;
+    width: 100%;
+}
+
+/* .navbarf2>.tab-nav2 {
+    position: fixed;
+    width: 100%;
+    bottom: 0px;
+    border: none;
+    padding-top: 0px;
+    background-image: none;
+    font-size: 0.8rem;
+    color: #abacae;
+} */
+
+.namep1 {
+    color: #dedede !important;
+}
+
+
+.homename {
+    background: #1e1e1e !important;
+
+}
+
+.homeyou img {
+    content: url('youdark.png') !important;
+}
+
+.homeyue {
+    padding-top: 6.55rem !important;
+}
+
+.homeyue1 {
+    margin-top: .25rem !important;
+    padding-left: 0.1rem !important;
+    /* color: #ffffff !important; */
+}
+
+
+.homeqx,
+.homeqx:hover {
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.homexg {
+    padding-top: 0.7rem !important;
+    padding-left: 0.15rem !important;
+}
+
+.homeyuebt {
+    padding-top: 0.1rem !important;
+}
+
+.homename {
+    width: 87% !important;
+}
+
+.homename .namep1 {
+    height: 1.4rem !important;
+}
+
+.homeyuetop {
+    font-size: 0.9rem;
+    padding-left: 0.1rem;
+    font-family: Harmony;
+	    padding-top: 0.65rem !important;
+}
+
+.homexg {
+    height: 2rem;
+    width: 100%;
+    margin-top: 3.25rem !important;
+    font-size: 0.75rem;
+    color: #999999;
+    font-stretch: condensed;
+}
+ 
