@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+
+<html style="font-size: 16.25px;">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="viewport"
+		content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+	<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+	<meta name="format-detection" content="telephone=no">
+
+	<title>流水帐记录</title>
+
+	<link rel="stylesheet" href="./mingxi_files/font-awesome.min.css">
+	<link rel="stylesheet" href="./mingxi_files/bootstrap.min.css" media="all" type="text/css">
+
+	<link href="./mingxi_files/user7.css" rel="stylesheet" type="text/css">
+	<link href="./mingxi_files/userx0803.css" rel="stylesheet" type="text/css">
+	<style type="text/css">
+		.tab-nav2 {
+			background: #f5f5f5;
+
+		}
+
+		@supports (bottom: env(safe-area-inset-bottom)) {
+			.tab-na v2 {
+				padding-bottom: constant(safe-area-inset-bottom);
+				padding-bottom: env(safe-area-inset-bottom);
+			}
+		}
+	</style>
+
+
+	<style type="text/css">
+		@font-face {
+			font-family: Harmony;
+			src: url(common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+		}
+
+		@font-face {
+			font-family: MiLanPro;
+			src: url(common/fonts/MiLanProVF.woff);
+		}
+
+		@font-face {
+			font-family: 'DIN';
+			src: url('common/fonts/digital.otf');
+			/*DIN-Mediummy.otf  /DIN-Mediummy.woff*/
+			font-weight: normal;
+			font-style: normal;
+		}
+
+		.drcjios {
+			font-size: 1.1rem;
+			padding-right: 1rem;
+			padding-top: 0.05rem;
+			padding-bottom: 0.26rem;
+			padding-left: 0.9rem;
+
+			font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+		}
+
+		.userhomgback {
+			width: 12vw;
+			height: 2.7rem;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			z-index: 99999
+		}
+
+		.zqnumber2 {
+			position: relative;
+			padding-left: 3px;
+		}
+
+		.zqnumber2 span {
+			position: relative;
+			top: 0rem;
+			left: 0rem;
+			font-family: 'DIN',
+		}
+
+		.drcjios,
+		.drcj {
+			padding-right: 0rem;
+			padding-left: 0rem;
+		}
+
+		.zqname2 {
+			font-family: 'DIN', "MiLanPro";
+			padding-right: 0rem;
+			padding-left: 0rem;
+			font-weight: normal;
+			position: relative
+		}
+
+		.zqnumber2 {
+			font-family: 'DIN', "MiLanPro";
+		}
+	</style>
+
+</head>
+
+
+
+<body style="background-color: rgb(246, 246, 246); font-size: 36px;">
+	<div class="ztlyanse" style="position:fixed;top:0px;width:100vw;background:#f12f37; height:3.3rem;z-index:999999">
+	</div>
+	<div id="wrapper" style="background:#fff">
+		<div id="user" style="margin-bottom:80px;background:#fff">
+
+
+
+			<link rel="stylesheet" href="./mingxi_files/bootstrap(1).min.css">
+			<script src="./mingxi_files/jquery.min(1).js"></script>
+			<script src="./mingxi_files/bootstrap.bundle.min(1).js"></script>
+			<script type="text/javascript" src="./mingxi_files/gupiaodel.js"></script>
+			<div class="mobile2"
+				style="background-image:url(mingxi_files/bgin.jpg);background-size:100% auto;background-repeat:no-repeat;margin-top:3rem">
+
+				<div class="mobiletop2">
+					<div class="headzq2">
+						<div class="drcj">流水帐记录</div>
+						<div class="zqname2">
+							<span class="biemingname"></span><span class="zqnumber"></span>
+						</div>
+
+					</div>
+					<div class="back" onclick="javascript:history.back(-1);"></div>
+				</div>
+			</div>
+
+			<div class="liushuis" id="container">
+
+				<!--     <div class="liushuili">
+                <div class="liushuitop"> <span
+                    class="<?php echo $maimiaclass ?>"><?php echo $maimai ?></span><?php echo $row["jydate"] . " " . $row["jytime"] ?>
+                </div>
+                <div class="liushuibody">
+                  <li><span>代码</span><?php echo substr($row["jycode"], 3) ?></li>
+                  <li><span>名称</span><?php echo $row["name"] ?></li>
+                  <li><span>价格</span><?php echo $row["price"] ?></li>
+                  <li><span>金额</span><?php echo $shizhi ?></li>
+                  <li><span>数量</span><?php echo $row["num"] * 100 ?></li>
+                  <li><span>费用</span><?php echo $sxf ?></li>
+                </div>
+                <div class="liushuibottom">
+                  <a id="delgp" data-id="253179" href="#" onclick="delgp(<?php echo $row['Id'] ?>)">删除</a>
+                  <a href="#" onclick="editgp(<?php echo $row['Id'] ?>,<?php echo $row['type'] ?>)">修改</a>
+                </div>
+              </div> -->
+
+
+			</div>
+
+
+		</div>
+
+		<input id="navcss" value="3" type="hidden">
+
+		<style type="text/css">
+			.navbarf2>.tab-nav2 .hangqing {
+				position: absolute;
+				left: 16vw;
+				width: 16vw;
+				padding-bottom: 0;
+				height: 3.6rem;
+				background: none;
+			}
+
+			.navbarf2>.tab-nav2 .zixuan {
+				position: absolute;
+				left: 32vw;
+				width: 16vw;
+				padding-bottom: 0;
+				height: 3.6rem;
+				background: none;
+			}
+		</style>
+
+
+		<style type="text/css">
+			.tab-nav2 {
+				background: #f5f5f5;
+
+			}
+
+
+			@supports (bottom: constant(safe-area-inset-bottom)) or (bottom: env(safe-area-inset-bottom)) {
+				.tab-nav2 {
+					background: #f5f5f5;
+				}
+
+				.navbarf2>.tab-nav2 .bnews,
+				.navbarf2>.tab-nav2 .buser,
+				.navbarf2>.tab-nav2 .bhome,
+				.navbarf2>.tab-nav2 .bcatalog,
+				.navbarf2>.tab-nav2 .bzixuan,
+				.navbarf2>.tab-nav2 .hangqing,
+				.navbarf2>.tab-nav2 .zixuan {
+					bottom: calc(env(safe-area-inset-bottom));
+					padding-bottom: calc(env(safe-area-inset-bottom));
+					height: 3.6rem;
+				}
+			}
+		</style>
+
+
+
+		<style type="text/css">
+			.navbarf2>.tab-nav2 .bzixuan {
+				position: absolute;
+				bottom: 0px;
+				left: 16vw;
+				width: 16vw;
+				height: 3.6rem;
+				background: none;
+			}
+		</style>
+		<div class="navbarf2">
+			<div class="tab-nav2 tabs2">
+				<img src="./mingxi_files/bottom4.jpg">
+				<a class="bhome" href="index.html"></a>
+				<a class="bcatalog" href="mulu.html"></a>
+				<a class="zixuan" href="#"></a>
+				<a class="buser" href="index.html"></a>
+				<a class="bnews" href="#"></a>
+				<div class="bzixuan"></div>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="./mingxi_files/jquery.min.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+		<script type="text/javascript" src="./mingxi_files/flexible.js"></script>
+		<script type="text/javascript" src="./mingxi_files/global.js"></script>
+		
+		<script src="./mingxi_files/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript">
+		
+		</script>
+		<script>
+			var nav = $("#navcss").val();
+
+			$('.tab-item').eq(nav).addClass("tab-item-active");
+
+			$('.bzixuan').click(function () {
+				// alert('功能正在开发中...');
+			});
+		</script>
+
+
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">修改新三板最新价格</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">×</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="recipient-name" class="col-form-label">新三板股票:</label>
+								<input type="hidden" class="form-control" id="gupiaono" name="gupiaono" value="">
+								<input type="text" class="form-control" id="gupiao" name="gupiao" value="">
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">当前现价:</label>
+								<input type="text" class="form-control" id="price" name="price" value="">
+							</div>
+							<div class="form-group">
+								<label for="message-text" class="col-form-label">上一个交易日收盘价格:</label>
+								<input type="text" class="form-control" id="z_pr" name="z_pr" value="">
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary" id="addoredit">保存最新价格</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			loginstatus(function (data) {
+
+
+				$.post(host + "php/user.php", {
+					rec: "mingxiload",
+					username: Global_Username
+				})
+					.done(function (data) {
+						console.log(data);
+						if (data.status == "FAIL") {
+							window.location.href = "login.html";
+						}
+						if (data.userdata) {
+							$(".biemingname").html(data.userdata.biemingname);
+							$(".zqnumber").html(data.userdata.zhengquannumber);
+						}
+
+						let htmlContent = '';
+						data.datas.forEach(row => {
+							const sxf = 0; // 假设手续费为0
+							htmlContent += `
+					                <div class="liushuili">
+					                    <div class="liushuitop">
+					                        <span class="${row.maimiaclass}">${row.maimai}</span>${row.jydate} ${row.jytime}
+											<span style='color:blue;float:right'>编号：${row.Id}<span>
+					                    </div>
+					                    <div class="liushuibody">
+					                        <li><span>代码</span>${row.jycode.substring(3)}</li>
+					                        <li><span>名称</span>${row.name}</li>
+					                        <li><span>价格</span>${row.price}</li>
+					                        <li><span>金额</span>${row.shizhi}</li>
+					                        <li><span>数量</span>${row.num * 100}</li>
+					                        <li><span>费用</span>${row.sxf}</li>
+					                    </div>
+					                    <div class="liushuibottom">
+					                        <a id="delgp" data-id="${row.Id}" href="#" onclick="delgp(${row.Id})">删除</a>
+					                        <a href="#" onclick="editgp(${row.Id}, ${row.type})">修改</a>
+					                    </div>
+					                </div>
+					            `;
+						});
+						document.getElementById('container').innerHTML = htmlContent;
+					})
+			})
+		</script>
+
+		<script>
+			$(function () {
+				$('#exampleModal').on('show.bs.modal', function (event) {
+					var button = $(event.relatedTarget)
+					var price = button.data('price');
+					var z_pr = button.data('zpr');
+					var gupiao = button.data('gupiao');
+					var gupiaono = button.data('gupiaono');
+					$('#price').val(price);
+					$('#gupiao').val(gupiao);
+					$('#gupiaono').val(gupiaono);
+					$('#z_pr').val(z_pr);
+				})
+				//保存最新价格
+				$('#addoredit').on('click', function () {
+					var price = $("#price").val();
+					var gupiaono = $("#gupiaono").val();
+					var z_pr = $("#z_pr").val();
+					var gupiao = $("#gupiao").val();
+					if (gupiaono == '' || price == '' || z_pr == '') {
+						alert("请输入正确的信息！");
+						return;
+					}
+
+					$.ajax({
+						url: 'user.php?rec=savesanban',
+						type: 'post',
+						dataType: 'json',
+						data: {
+							gupiao: gupiao,
+							gupiaono: gupiaono,
+							price: price,
+							z_pr: z_pr
+						},
+						error: function () {
+							alert('出现错误！');
+						},
+						success: function (data) {
+							if (data == 1) {
+								$('#exampleModal').modal('hide');
+								location.reload();
+							} else {
+								alert('提交失败！');
+							}
+						}
+					});
+				});
+
+			})
+
+			// function delgp(id) {
+			// 	$.post(host + "php/user.php", {
+			// 		rec: "deletejy",
+			// 		id: id,
+			// 		username: Global_Username
+			// 	}).done(function (data) {
+			// 			console.log(JSON.stringify(data));
+			// 			if (data.status == "SUCCESS") {
+			// 				alert(data.beizhu); 
+			// 				qinghuancun();
+			// 				location.reload();
+			// 			}
+			// 		})
+			// }
+
+			function delgp(id) {
+				// Add confirmation dialog before deletion
+				const confirmed = confirm("确定要删除这条转账记录吗?");
+				if (!confirmed) return;
+
+				$.post(host + "php/user.php", {
+					rec: "deletejy",
+					id: id,
+					username: Global_Username
+				}).done(function (data) {
+					console.log("Delete response:", JSON.stringify(data));
+
+					if (data.status == "SUCCESS") {
+						alert("Successfully deleted: " + data.beizhu);
+						qinghuancun();
+						location.reload();
+					} else {
+						// Handle failure cases
+						alert("Deletion failed: " + (data.beizhu || "Unknown error"));
+					}
+				}).fail(function (jqXHR, textStatus, errorThrown) {
+					// Handle AJAX errors
+					console.error("Delete error:", textStatus, errorThrown);
+					alert("Deletion failed: " + textStatus);
+				});
+			}
+
+			function editgp(id, type) {
+				if (type == 0) {
+					window.location.href = "mr.html?id=" + id
+				} else {
+					window.location.href = "mc.html?id=" + id
+				}
+			}
+			function PC_Tiao(data, remToPx, NewBarHeight = 0) {
+				var OldBarHeight = NewBarHeight;
+				var DqBarHeight = 2; //单位rem;
+				viewRemWidth = window.innerWidth / remToPx;
+				NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+				if (NewBarHeight == NaN) {
+					NewBarHeight = OldBarHeight;
+				}
+				$(".mobile2").css("margin-top", NewBarHeight + "rem");
+				$("#wrapper").css("margin-top", NewBarHeight + "rem");
+				$(".ztlyanse").css("height", NewBarHeight + "rem");
+				$(".back").css("top", NewBarHeight + "rem");
+			}
+		</script>
+
+
+
+
+	</div>
+	</div>
+
+
+
+
+</body>
+
+</html>
