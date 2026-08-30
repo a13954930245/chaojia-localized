@@ -1,0 +1,95 @@
+.ccDataDiv {
+    width: 100vw;
+    background-color: #1e1e1e;
+    background-image: url(./../cc/ccdark1.png) !important;
+    background-position: 0px 0px;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    /* min-height: 89rem; */
+}
+
+/* Dark mode overrides */
+body {
+    background: #1e1e1e !important;
+}
+
+.headzq2 {
+    width: 46vw;
+    left: 27vw;
+    background: #1e1e1e;
+}
+
+/* .chicang {
+    content: url('../cc/ccToggledark.png');
+} */
+
+/* Dark mode specific styles */
+.dark-mode body {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Keep original font colors in dark mode */
+.dark-mode .gpmiddle,
+.dark-mode .gpitem .gpli,
+.dark-mode .gpitem .gpli .liname,
+.dark-mode .gpitem .gpli .li2,
+.dark-mode .gpitem .gpli .li3,
+.dark-mode .cangwei,
+.dark-mode .cangwei span {
+    color: inherit !important;
+    /* This will maintain the original colors */
+}
+
+/* Background colors for dark mode */
+.dark-mode .ccDataDiv,
+.dark-mode .gpmiddle,
+.dark-mode .gpitem .gpli {
+    background-color: #1e1e1e;
+}
+
+/* Specific element adjustments */
+.dark-mode .headzq2 {
+    background: #020202;
+    color: #fff;
+    height: 2.5rem;
+}
+
+/* .dark-mode .chicang img {
+    content: url('../cc/ccToggledark.png');
+} */
+
+/* Keep original text colors for these elements */
+.dark-mode .zqnumber2,
+.dark-mode .zqname2,
+.dark-mode .drcjios {
+    color: #fff !important;
+    /* Or whatever color you want to maintain */
+}
+
+.dark-mode .fontred {
+    color: #dd3834
+}
+
+.dark-mode .fontblue {
+    color: #4e87d6
+}
+
+.dark-mode .fontblue2 {
+    color: #568ed4
+}
+
+.dark-mode .total1 {
+    color: #d2d2d2 !important;
+}
+
+
+
+/* .dark-mode .bottompic {
+    background-image: url(./cc/bottom1dark.png) !important;
+    background-size: cover;
+    width: 100%;
+    height: 6rem;
+    aspect-ratio: 1125 / 162;
+    background-repeat: no-repeat;
+} */
