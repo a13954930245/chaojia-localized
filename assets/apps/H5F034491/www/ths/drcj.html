@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html style="font-size: 17.25px;">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<meta name="viewport"
+			content="width=device-width,user-scalable=0,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- 启用全屏 -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> <!-- 设定状态栏风格 -->
+		<meta name="theme-color" content="#f12f37"> <!-- 设置状态栏颜色 -->
+		<meta name="format-detection" content="telephone=no">
+
+		<title>当日成交</title>
+
+
+		<link rel="stylesheet" href="./ls/font-awesome.min.css">
+		<link rel="stylesheet" href="./ls/bootstrap.min.css" media="all" type="text/css">
+
+		<link href="./ls/user7.css" rel="stylesheet" type="text/css">
+		<link href="./ls/userx0803.css" rel="stylesheet" type="text/css">
+
+		<script type="text/javascript" src="./ls/jquery.min.js"></script>
+		<script type="text/javascript" src="./ls/flexible.js"></script>
+		<script type="text/javascript" src="./ls/global.js"></script>
+		<script src="../js/common.js"></script>
+		<script src="../js/local-api.js?v=local48"></script>
+
+		<script src="./ls/bootstrap.bundle.min.js"></script>
+		<script type="text/javascript">
+			/*	// 进入页面时获取对应大小
+	// 改变字体大小
+function resizeFont() {
+let winW = document.documentElement.clientWidth > 750 ? 750 : document.documentElement.clientWidth
+document.documentElement.style.fontSize = (winW / 750) * 100 + 'px'
+}
+window.addEventListener('load', () => resizeFont())
+window.addEventListener('resize', () => resizeFont())
+*/
+		</script>
+
+
+
+		<style type="text/css">
+			@font-face {
+				font-family: Harmony;
+				src: url(./common/fonts/HarmonyOS_Sans_SC_Regular.ttf);
+
+			}
+
+			@font-face {
+				font-family: MiLanPro;
+				src: url(./common/fonts/MiLanProVF.woff);
+
+			}
+
+			@font-face {
+				font-family: 'DIN';
+				src: url('./common/fonts/digital.otf');
+				font-weight: normal;
+				font-style: normal;
+			}
+
+			.drcjios {
+				font-size: 1.1rem;
+				padding-right: 1rem;
+				padding-top: 0.05rem;
+				padding-bottom: 0.26rem;
+				padding-left: 0.9rem;
+				font-family: "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+			}
+
+			.userhomgback {
+				width: 12vw;
+				height: 2.7rem;
+				position: absolute;
+				top: 0px;
+				left: 0px;
+				z-index: 99999
+			}
+
+			.zqnumber2 {
+				position: relative;
+				padding-left: 3px;
+			}
+
+			.zqnumber2 span {
+
+
+				position: relative;
+				top: 0rem;
+				left: 0rem;
+				font-family: 'DIN',
+			}
+
+
+
+
+			.drcjios,
+			.drcj {
+				padding-right: 0rem;
+				padding-left: 0rem;
+			}
+
+			.zqname2 {
+				font-family: 'DIN', "MiLanPro";
+				padding-right: 0rem;
+				padding-left: 0rem;
+				font-weight: normal;
+				position: relative
+			}
+
+			.zqnumber2 {
+				font-family: 'DIN', "MiLanPro";
+			}
+		</style>
+
+		<!-- <link rel="stylesheet" type="text/css" href="./ls/Mdate.css"> -->
+	</head>
+
+	<body style="background-color: rgb(246, 246, 246); font-size: 12px;">
+		<div class="ztlyanse"
+			style="position:fixed;top:0px;width:100vw;background:#f12f37; height:2.1rem;z-index:999999">
+		</div>
+		<div id="wrapper" style="background:#fff">
+			<div id="user" style="margin-bottom:80px;background:#fff">
+
+				<script src="./ls/iScroll.js"></script>
+				<script src="./ls/Mdate.js"></script>
+				<link href="./ls/Mdatew.css" rel="stylesheet" type="text/css">
+
+				<style type="text/css">
+					.headzq2 {
+						font-family: "MiLanPro";
+					}
+
+					.zqnumber2 {
+						font-size: 0.80rem;
+					}
+
+					.zqname2 {
+						font-family: "MiLanPro";
+						font-size: 0.80rem;
+					}
+
+					.hislists4 .hislist .liname div {
+						font-family: "MiLanPro";
+						font-size: 1.05rem;
+					}
+
+					.hislists4 .hislist .li4>div {
+						font-family: "MiLanPro";
+						font-size: 1.05rem;
+					}
+
+					.hissearch .starttime,
+					.hissearch .endtime {
+						font-family: Harmony, "MiLanPro", "Heiti SC", "Droidsansfallback", "Helvetica Neue", "GPNAME", Helvetica, sans-serif;
+
+						font-size: 0.88rem;
+						margin-left: 0rem;
+						line-height: 180%;
+						width: 4.9rem;
+					}
+
+					.hislists4 .hislist li .wu i {
+
+						font-size: 0.55rem;
+
+					}
+					
+				</style>
+
+				<style type="text/css">
+					.gohis {
+						position: absolute;
+						top: 5rem;
+						width: 50%;
+						height: 2.5rem;
+					}
+
+					.gohisall {
+						position: absolute;
+						top: 5rem;
+						width: 50%;
+						height: 2.5rem;
+						right: 0
+					}
+
+					.hislists4 {
+						margin: 0;
+						color: #333333;
+						height: 70vh;
+						top: 7.4rem;
+						position: relative;
+					}
+
+					.hislists4 .hislist li {
+						list-style: none;
+						float: left;
+						font-size: 1rem;
+						width: 25%;
+						line-height: 100%;
+						padding-top: 0rem;
+						font-family: 'DIN', Microsoft Yahei;
+
+					}
+
+					.hislists4 .hislist .li2,
+					.hislists4 .hislist .li3 {
+						font-size: 1rem;
+
+						padding-top: 1.3rem
+					}
+
+					.histijiao {
+						border: 0px;
+						font-size: 0.9rem;
+						width: 3.5rem;
+						height: 1.5rem;
+						position: absolute;
+						right: 0rem;
+						background: none;
+						color: none;
+					}
+
+					.headzq2 {
+						width: 56vw;
+						left: 22vw;
+						background: #f12f37
+					}
+
+					.zqname2::after {
+						content: '';
+						background: url(./ls/topcion.png);
+						position: absolute;
+
+						background-size: 0.852rem;
+						top: -0.25rem;
+						right: -1.55rem;
+						transform: translate(-50%, -50%);
+						width: 0.8rem;
+						height: 0.8rem;
+						margin-left: 1rem;
+					}
+
+					.zqnumber2 span {
+						position: relative;
+						top: 0rem;
+						left: 0rem;
+						font-family: 'DIN';
+					}
+
+					.hissearch .endtime {
+
+						left: 8.3rem;
+					}
+					
+					.back {
+					    width: 12vw;
+					    height: 2.8rem;
+					    position: absolute;
+					    top: 0rem;
+					    left: 0px;
+					}
+					
+					.hislists4 .todaylist .liname .wuttoday {
+					    position: absolute;
+					    top: 2.25rem;
+					    font-size: 2rem;
+					    left: -3.3rem;
+					    width: 158%;
+					    transform: scale(0.42);
+					}
+				</style>
+
+				<div class="mobile2"
+					style="background:#fff;background-image:url(&#39;./ls/drbg2.png&#39;);background-size:100% auto;background-repeat:no-repeat;height:93vh;margin-top:2rem;">
+
+					<div class="mobiletop2">
+						<div class="headzq2">
+							<div class="drcj" style="display:none">当日成交</div>
+							<div class="drcj">当日成交</div>
+							<b class="zqname2 ">
+								<span class="biemingname"></span> <span class="zqnumber"></span>
+								<!-- 	<span class=""></span>
+									<span class="zqnumber2"></span> -->
+							</b>
+						</div>
+						<a class="back" href="cx.html"></a>
+						<div class="drshuaxin" onclick="javascript:location.reload();"></div>
+					</div>
+
+					<!-- 	<div class="hissearch">
+						<div>
+							<input name="starttime" id="dateSelectorOne" type="text" class="starttime"
+								value="2024-06-25" onfocus="this.blur();" data-year="2024" data-month="6" data-day="25">
+							<input name="endtime" id="dateSelectorTwo" type="text" class="endtime" value="2024-06-30"
+								onfocus="this.blur();" data-year="2024" data-month="6" data-day="30">
+							<input type="button" name="submit" class="histijiao" onclick="subdate();" value=" ">
+							<input type="hidden" name="rec" class="histijiao" value="">
+						</div>
+					</div> -->
+					<div class="boxfixed" style=" ">
+						<div class="hislists4"
+							style="overflow-x: hidden;height: 70vh;background:#fff; overflow-y: scroll;">
+
+
+						</div>
+
+					</div>
+				</div>
+
+				<input id="navcss" value="2" type="hidden">
+
+				<a href="drcj.html" class="gohis"></a>
+				<a href="drcj.html?rec=all" class="gohisall"></a>
+
+				<style type="text/css">
+					.navbarf2>.tab-nav2 .hangqing {
+						position: absolute;
+						left: 16vw;
+						width: 16vw;
+						padding-bottom: 0;
+						height: 3.6rem;
+						background: none;
+					}
+
+					.navbarf2>.tab-nav2 .zixuan {
+						position: absolute;
+						left: 32vw;
+						width: 16vw;
+						padding-bottom: 0;
+						height: 3.6rem;
+						background: none;
+					}
+				</style>
+
+
+
+				<style type="text/css">
+					.navbarf2>.tab-nav2 .bzixuan {
+						position: absolute;
+						bottom: 0px;
+						left: 16vw;
+						width: 16vw;
+						height: 3.6rem;
+						background: none;
+					}
+				</style>
+				<div class="navbarf2">
+					<div class="tab-nav2 tabs2">
+						<img src="./mingxi_files/bottom4.jpg">
+						<a class="bhome" href="index.html"></a>
+						<a class="bcatalog" href="mulu.html"></a>
+						<a class="zixuan" href="#"></a>
+						<a class="buser" href="index.html"></a>
+						<a class="bnews" href="#"></a>
+						<div class="bzixuan"></div>
+					</div>
+				</div>
+				<script>
+					var nav = $("#navcss").val();
+
+					$('.tab-item').eq(nav).addClass("tab-item-active");
+
+					$('.bzixuan').click(function() {
+						// alert('功能正在开发中...');
+					});
+				</script>
+
+				<script>
+					function subdate() {
+						var start = $("#dateSelectorOne").val();
+						var end = $("#dateSelectorTwo").val();
+						drcjload(start, end);
+					}
+
+
+					drcjload();
+
+					function PC_Tiao(data, remToPx) {
+						var DqBarHeight = 2; //单位rem;
+						viewRemWidth = window.innerWidth / remToPx;
+						NewBarHeight = viewRemWidth * data.BarHeight / data.BarWidth
+
+						document.addEventListener('plusready', function() {
+							plus.navigator.setStatusBarBackground(Global_BarColor); // 黄色背景
+							plus.navigator.setStatusBarStyle("light");
+						});
+						$(".mobile2").css("margin-top", NewBarHeight + "rem");
+						$(".ztlyanse").css("height", NewBarHeight + "rem");
+						if (Global_PhoneType == "Apple") {
+							if ($(".tab-nav2") && $(".tabs2") && $(".tab-nav2 img").attr("src") == "./mingxi_files/bottom4.jpg") {
+								$(".tab-nav2 img").attr("src", "./mingxi_files/bottom5.jpg");
+								$(".tab-nav2 a").css("height", "4.8rem");
+							}
+						}
+					}
+
+
+					// new Mdate("dateSelectorOne", {
+					// 	acceptId: "dateSelectorOne",
+					// 	beginYear: "2008",
+					// 	beginMonth: "1",
+					// 	beginDay: "1",
+					// 	endYear: "2030",
+					// 	endMonth: "12",
+					// 	endDay: "30",
+					// 	format: "-"
+					// });
+
+					// new Mdate("dateSelectorTwo", {
+					// 	acceptId: "dateSelectorTwo",
+					// 	beginYear: "2008",
+					// 	beginMonth: "1",
+					// 	beginDay: "1",
+					// 	endYear: "2030",
+					// 	endMonth: "12",
+					// 	endDay: "30",
+					// 	format: "-"
+					// });
+				</script>
+
+
+
+			</div>
+		</div>
+
+
+
+
+	</body>
+
+</html>
