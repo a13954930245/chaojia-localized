@@ -1,0 +1,81 @@
+@charset "utf-8";
+
+@font-face {
+	font-family: 'DIN';
+
+	src: url('../common/fonts/digital.otf');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: gupiaofont;
+
+	src: url(../common/fonts/MiSans-Normal.ttf);
+	/*  小米兰亭*/
+}
+
+@font-face {
+	font-family: bodyfont;
+	src: url(../common/fonts/MiSans-Normal.ttf);
+	/*  Miui-Regular.ttf 小米兰亭*/
+}
+
+
+
+
+@font-face {
+	font-family: Demiboldfont;
+	src: url(../common/fonts/MiSans-Demibold.ttf);
+	/*  miui-bold.TTF 顶部证券字体，小米兰亭粗*/
+}
+
+@font-face {
+	font-family: MiSansR;
+	src: url(../common/fonts/MiSans-Regular.ttf);
+	/*  */
+}
+
+@font-face {
+	font-family: 'DINbold';
+
+	src: url('../common/fonts/THSMoneyfont-Medium.otf');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'THSMedium';
+	src: url('../common/fonts/THSJinRongTi-Medium.otf');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'THSRegular';
+	src: url('../common/fonts/THSJinRongTi-Regular.otf');
+
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: myFirstFang;
+	src: url(../common/fonts/NotoSansSC-Regular.ttf);
+
+}
+
+@font-face {
+	font-family: myFirstkFang;
+	src: url(../common/fonts/FZLTHJW.TTF);
+
+}
+
+@font-face {
+	font-family: MiLanPro;
+	src: url(../common/fonts/MiLanProVF.woff);
+
+}
